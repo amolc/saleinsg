@@ -191,7 +191,7 @@ section#footer {
 }
 #footer{
     background: #171717; 
-    border-top: 5px solid #fe6828;
+    border-top: 5px solid #bc0829;
 }
 #footer .jumbotron{
     background: transparent; 
@@ -389,7 +389,7 @@ section#footer {
  background: #efefef;
 }
 .orenge-btn{
-    background: #fe6828;
+    background: #bc0829;
     border: 0px;
     display: block;
     margin: 0 auto;
@@ -402,7 +402,7 @@ section#footer {
     background: #656057;
 }
 .orenge-logo-strip{
-    background-color: #ff6624;
+    background-color: #bc0829;
     padding: 20px 0px;
 }
 .logo-img img{
@@ -446,7 +446,7 @@ section#footer {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #ff6624;
+  background: #bc0829;
   height: 4px;
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
@@ -475,7 +475,7 @@ section#footer {
 .packeg-details-text h5 a{
     font-family: 'Lato', sans-serif;
     font-size: 17px;
-    color: #ff6624;
+    color: #bc0829;
     height: 36px;
     display: block;
     overflow: hidden;
@@ -491,7 +491,7 @@ section#footer {
     font-weight: 600;
 }
 .star-rating-wrap span{
-    color: #ff6624;
+    color: #bc0829;
     cursor: pointer;
 }
 #pakeges-wrap{
@@ -511,13 +511,13 @@ section#footer {
 }
 .price-right-block h4{
     font-size: 27px;
-    color: #ff6624;
+    color: #bc0829;
     margin-bottom: 4px;
     font-weight: 800;
 }
 .price-right-block a{
     color: #ffffff; 
-    background: #ff6624;
+    background: #bc0829;
     padding: 5px 14px 7px;
     display: inline-block;
     margin-top: 5px;
@@ -542,7 +542,7 @@ section#footer {
     color: #FFF;
 }
 .social-links ul li a:hover{
-    background: #ff6624;
+    background: #bc0829;
 }
 .packege-para{
     height: 80px;
@@ -557,7 +557,7 @@ section#footer {
   font-weight: normal;
 }
 .form-control:focus, .form-control:hover, .form-control:active{
-  border-color: #ff6624;
+  border-color: #bc0829;
 }
 .form-group {
     margin-bottom: 19px;

@@ -1,17 +1,17 @@
 'use strict';
 var app = angular.module('80consult', ['angular-storage']);
-if (document.location.hostname == "ambitiontours.80startups.com")
+if (document.location.hostname == "saleinsg.com")
 {
-  var baseurl = "https://ambitiontours.80startups.com/api/";
+  var baseurl = "https://saleinsg/api/";
 
 }
-else if (document.location.hostname == "www.ambitiontours.80startups.com")
+else if (document.location.hostname == "www.saleinsg.com")
 {
-  var baseurl = "https://www.ambitiontours.80startups.com/api/";
+  var baseurl = "https://www.saleinsg/api/";
 
 }else{
 
-  var baseurl = "http://localhost:6008/api/";
+  var baseurl = "http://localhost:6010/api/";
 }
 
 app.config(['storeProvider', function (storeProvider) {
