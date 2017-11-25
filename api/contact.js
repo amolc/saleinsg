@@ -14,6 +14,7 @@ var db = mysql.createPool({
 var CRUD = require('mysql-crud');
 var consultCRUD = CRUD(db, 'contact');
 var userCRUD = CRUD(db, 'tbl_Suppliers');
+var productCRUD = CRUD(db, 'tbl_Products');
 
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -91,6 +92,8 @@ exports.register = function(req, res){
 
   //console.log('req.body',req.body);
 
+
+   verifycode = randomString();
    dateToday = now.format("YYYY-MM-DD H:mm:ss");
    var fullname =req.body.fname+" "+req.body.lname;
 
@@ -225,7 +228,7 @@ exports.verifyAccount = function(req, res){
 
 exports.login = function (req, res) {
 
-     console.log('req.body',req.body);
+    // console.log('req.body',req.body);
 
     var email = req.body.email;
     //var password = md5(req.body.password);
@@ -317,6 +320,76 @@ exports.login = function (req, res) {
 
     });
 };
+
+
+exports.addproduct = function (req, res) {
+
+    // console.log(req.body.imagename)
+    verifycode = randomString();
+
+     if (req.body.image) {
+         var imagedata = req.body.image;
+         var matches = "";
+
+         function decodeBase64Image(dataString) {
+             var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                 response = {};
+             if (matches.length !== 3) {
+                 return new Error('Invalid input string');
+             }
+             response.type = matches[1];
+             response.data = new Buffer(matches[2], 'base64');
+             return response;
+         }
+         var decodedImg = decodeBase64Image(imagedata);
+         var imageBuffer = decodedImg.data;
+         var type = decodedImg.type;
+         fileName = verifycode+'_'+req.body.imagename;
+         fs.writeFileSync('www/uploads/' + fileName, imageBuffer, 'utf8');
+     }else {
+         fileName = '';
+         console.log("image not present");
+     }
+    
+    //console.log(req.body.TypeId.TypeId);
+
+    var createObj = {
+        "ProductName" :  req.body.name,
+        "Description": req.body.description || "",
+        "Price":req.body.price || "",
+        "Quantity": req.body.quantity || "",
+        "Image1": fileName || "",
+        "Category": req.body.category || "",
+        "SubCategory": req.body.subcat || "",
+        "SupplierId": req.body.UserId || "",      
+    };
+    // console.log("after", createObj);
+
+    productCRUD.create(createObj, function (err, data) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:data.insertId,
+                message: 'Details successfully added'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully added. '
+            };
+
+            res.jsonp(resdata);
+        }
+    });
+};
+
 
 ///____________________END______________________
 

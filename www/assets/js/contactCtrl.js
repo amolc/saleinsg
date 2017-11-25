@@ -27,6 +27,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         }
                         else
                         {
+                            document.formRegistration.reset(); 
                             $("#formRegistration").hide();
                             $("#thankyoudiv").show('slow');
                         }
@@ -74,7 +75,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
           $scope.login = function(logininfo,formLogin){
 
-            console.log($scope.logininfo);
+           // console.log($scope.logininfo);
 
             $("#alertmessage").hide(); 
 
@@ -158,11 +159,117 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             } 
 
-             $scope.logout = function() {             
+    $scope.logout = function() {             
 
-              $window.sessionStorage.clear();
-              location.href = "index.html"
-          }  
+          $window.sessionStorage.clear();
+          location.href = "index.html"
+    }  
+
+    var attachmentfile1 = [];
+    var filelength;
+
+     $scope.fileinit = function(ele) {
+
+
+        $scope.product = {};
+        $scope.attachmentCount = {};
+        $scope.attachment = {};
+        $scope.imgSrc = "";
+    };
+
+    $scope.updateattachment = function(file_browse) {
+
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+        // console.log(fileDisplayArea)
+        if (file_browse == 'file_browse1') {
+            var newfile = document.getElementById("file_browse1").files;
+        }            
+        var imageType = /image.*/;
+
+         function readAndPreview(file) {
+
+          // Make sure `file.name` matches our extensions criteria
+          if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+              var image = new Image();
+              image.height = 100;
+              image.title = file.name;
+              image.class = 'avatar img-circle img-thumbnail';
+              image.src = this.result;
+              //attachmentfile1.push(this.result); 
+              attachmentfile1[0] = this.result;
+              $scope.product.imagename = file.name;
+              
+              /*if(filelength==index){
+                callback(attachmentfile1);
+              }*/
+              imagepreview.appendChild( image );
+            }, false);
+
+            reader.readAsDataURL(file);
+          }
+
+        }
+
+        if (newfile) {
+          filelength = newfile.length;
+          /*var index=0;
+          for (var i = 0; i < newfile.length; i++) {
+              readAndPreview(newfile[i],function(){
+                console.log("done");
+              });
+              if(i==(newfile.length-1))
+                console.log(attachmentfile1);
+
+          };*/
+
+          [].forEach.call(newfile,readAndPreview);
+          setTimeout(function() { 
+            //console.log(attachmentfile1.length);
+            $scope.attachment.images = attachmentfile1;
+            //$scope.userdetails.profile_image = attachmentfile1[0];
+            $scope.attachmentCount.imagecount = attachmentfile1.length;
+            //$scope.parameters.attachment = "testes testett";//{images:attachmentfile1};
+            //$scope.parameters.attachment = JSON.stringify(images); 
+            //$scope.addProduct($scope.parameters);
+            //console.log(attachmentfile1); 
+          }, 3000);
+          
+        }
+        
+    }
+
+
+    $scope.saveproduct = function(product) {             
+
+             // console.log($scope.product);
+
+
+             $scope.product.UserId = window.sessionStorage.getItem('User_Id');
+           // console.log($scope.attachment.images);
+            if (Object.keys($scope.attachment).length>0) {
+                $scope.product.image = $scope.attachment.images[0];
+              }else{
+                $scope.product.iamge = '';
+              }
+
+            $http.post(baseurl + 'addproduct/',$scope.product).success(function(res) {
+
+                  $('#imagepreview').children().remove();
+                  $('.form-group select').val('');
+                  
+                  document.addproduct.reset(); 
+                  $("#addproduct").hide();
+                  $("#thankyoudiv").show('slow');
+
+
+                }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+                });
+    }  
+
 
 
 
