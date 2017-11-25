@@ -116,7 +116,7 @@ exports.register = function(req, res){
                             'Phone': req.body.phone,
                             'CompanyName':req.body.company,
                             'Location':req.body.location,
-                            'VerificationCode':verifycode,
+                            'VerificationCode':'',
                             'CreateDate':dateToday,
                             'PaymentStatus':'Pending',
                             'IsActive':1
@@ -126,34 +126,34 @@ exports.register = function(req, res){
                             if (!err2) 
                             {
                                // console.log(val2.insertId);
-                                var regId = val2.insertId;
-                               // console.log(req.body.Email);
-                                var recipientEmail = req.body.Email; 
-                                var subject = "[80STARTUPS.COM] saleinsg.com verification email";
-                                var mailbody = '<table>\
-                                                    <tr>\
-                                                      <td><h1>Dear '+fullname+',</td>\
-                                                    </tr>\
-                                                    <tr>\
-                                                    </tr>\
-                                                    <tr>\
-                                                      <td>Please click on the following link to verify your email account to complete registration process.</td>\
-                                                    </tr>\
-                                                    <tr>\
-                                                      <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
-                                                    </tr>\
-                                                    <tr>\
-                                                      <td>Best wishes,</td>\
-                                                    </tr>\
-                                                    <tr>\
-                                                      <td><h2>saleinsg.com</h2></td>\
-                                                    </tr>\
-                                                    <tr>\
-                                                      <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                                                    </tr>\
-                                                  </table>';
+                               //  var regId = val2.insertId;
+                               // // console.log(req.body.Email);
+                               //  var recipientEmail = req.body.Email; 
+                               //  var subject = "[80STARTUPS.COM] saleinsg.com verification email";
+                               //  var mailbody = '<table>\
+                               //                      <tr>\
+                               //                        <td><h1>Dear '+fullname+',</td>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                        <td>Please click on the following link to verify your email account to complete registration process.</td>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                        <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                        <td>Best wishes,</td>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                        <td><h2>saleinsg.com</h2></td>\
+                               //                      </tr>\
+                               //                      <tr>\
+                               //                        <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                               //                      </tr>\
+                               //                    </table>';
 
-                                send_mail(recipientEmail, subject, mailbody);
+                               //  send_mail(recipientEmail, subject, mailbody);
                                 var resdata = {
                                     status: true,
                                     value:val2,
@@ -214,11 +214,107 @@ exports.register = function(req, res){
 
 exports.verifyAccount = function(req, res){
 
-    console.log(req.params.id);
+    //console.log(req.params.id);
     var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
+    });
+};
+
+
+exports.login = function (req, res) {
+
+     console.log('req.body',req.body);
+
+    var email = req.body.email;
+    //var password = md5(req.body.password);
+    var password = req.body.password;
+
+    // console.log("Email :", email)
+    // console.log("Password",password);
+
+    userCRUD.load({
+        Email: email
+    }, function (err, val) {
+
+
+        if (val.length > 0) 
+        {
+
+            userCRUD.load({
+                Email: email,
+                VerificationCode: ''
+            },function (err3, val3) {
+
+                if (val3.length > 0) 
+                {
+
+                   userCRUD.load({
+                        Email: email,
+                        Password: password,
+                        VerificationCode: ''
+                    },function (err2, val2) {
+
+                        if (val2.length > 0) 
+                        {
+
+                            var resdata2 = {
+                                passValid: true,
+                                value:val2[0],
+                                message: 'successfully login welcome to admin panel.'
+                            };
+
+                            res.jsonp(resdata2);
+
+                        }
+                        else
+                        {
+
+                            var resdata2 = {
+                                passValid: false,
+                                error: err2,
+                                message: 'Password is incorrect!'
+                            };
+
+                            res.jsonp(resdata2);
+
+                        }
+
+
+                    });
+
+                }
+                else
+                {
+
+                    var resdata3 = {
+                        verifyValid: false,
+                        error: err3,
+                        message: 'Please confirm your email!'
+                    };
+
+                    res.jsonp(resdata3);
+
+                }
+
+
+            });
+
+        } 
+        else 
+        {
+            var resdata = {
+                emailexist: false,
+                error: err,
+                message: 'Email address does not exist!'
+            };
+
+            res.jsonp(resdata);
+        }
+
+       // res.jsonp(resdata);
+
     });
 };
 

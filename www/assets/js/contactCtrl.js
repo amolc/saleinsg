@@ -72,6 +72,78 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           }
 
 
+          $scope.login = function(logininfo,formLogin){
+
+            console.log($scope.logininfo);
+
+            $("#alertmessage").hide(); 
+
+            $http.post(baseurl + 'login', $scope.logininfo).success(function(data, status) {
+
+              console.log(data);
+
+                //console.log('data', data.status);
+
+                //console.log('result: ',data.value);
+               // console.log(data.value.address);
+                if(data.emailexist === false)
+                {
+
+                    $scope.alertmessage=data.message;
+                    $("#alertmessage").show('slow');  
+
+                }
+                else if(data.verifyValid === false)
+                {
+
+                    $scope.alertmessage=data.message;
+                    $("#alertmessage").show('slow');    
+
+                }
+                else
+                {
+
+                    if(data.passValid === true)
+                    {
+
+                        $scope.noemailpass = false;
+                        $scope.noemail = false;
+                        $scope.nopass = false;
+                        $scope.loginFailure = false;
+                        $scope.loginSuccess = true;
+
+                        $scope.loginSuccessMsg = 'Successfully Login.';
+
+                       // console.log(data);
+
+
+                        window.sessionStorage.setItem('User_Id', data.value.SupId);
+                        window.sessionStorage.setItem('User_Email', data.value.Email);
+                        window.sessionStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
+                        //console.log(window.sessionStorage.getItem('UserId'));
+                        //console.log(window.sessionStorage.getItem('UserId'));
+                        
+
+
+                       // window.location = "../index.html";
+                        window.location = "index.html";
+                    }
+                    else
+                    {
+                        $scope.alertmessage=data.message;
+                        $("#alertmessage").show('slow');    
+                    }
+
+
+                }
+                
+
+            });
+
+
+    }
+
+
 
   $scope.booknow = function (req, res) {
 

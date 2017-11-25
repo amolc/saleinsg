@@ -150,46 +150,23 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">Register</h2>
+           <h2 class="section-title">Login</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="formRegistration"  ng-controller="contactcontroller" data-ng-submit="register(formRegistration)" id="formRegistration" method="post">
+          <form name="formLogin"  ng-controller="contactcontroller" data-ng-submit="login(logininfo,formLogin)" id="formLogin" method="post">
              <div class="col-md-6">
-              <div class="form-group">
-              <label for="fname">First Name:</label>
-              <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required>
-            </div>           
-            <div class="form-group">
-              <label for="lname">Last Name :</label>
-              <input type="text" class="form-control" ng-model="registration.lname" name="lname" id="lname" required>
-              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
-            </div>
-            <div class="form-group">
-              <label for="phone">Contact No:</label>
-              <input type="text" class="form-control" ng-model="registration.phone" name="phone" id="phone" required>
-            </div> 
+              
              <div class="form-group">
               <label for="email">Email Id :</label>
-              <input type="email" class="form-control" ng-model="registration.email" name="email" id="email" required>
+              <input type="email" class="form-control" ng-model="logininfo.email" name="email" id="email" required>
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" class="form-control" ng-model="registration.password" name="password" id="password" required>
+              <input type="password" class="form-control" ng-model="logininfo.password" name="password" id="password" required>
             </div>
-            <div class="form-group">
-              <label for="cpassword">Confirm Password:</label>
-              <input type="password" class="form-control" ng-model="registration.cpassword" name="cpassword" id="cpassword" required>
-            </div>  
-            <div class="form-group">
-              <label for="company">Company Name:</label>
-              <input type="text" class="form-control" ng-model="registration.company" name="company" id="company" required>
-            </div> 
-            <div class="form-group">
-              <label for="location">Loaction:</label>
-              <input type="text" class="form-control" ng-model="registration.location" name="location" id="location" required>
-            </div> 
+
             <div class="form-group" id="alertmessage" hidden="">
               <label>{{alertmessage}}</label>
             </div> 
@@ -199,15 +176,9 @@
               <div class="clearfix"></div>
           
              
-            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Login</button>
           </form>
-          <div id="thankyoudiv" hidden="">
-            <div class="thankyou">
-                <div class="item">
-                    <span><h4><b><font>  Confirm your registration with verification link sent on your email.</font></b></h4></span>
-                </div>
-            </div>
-        </div>
+          
         </div>
 
       </div>
