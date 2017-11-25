@@ -15,8 +15,13 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+      <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+      <script type="text/javascript" src="assets/js/app.js"></script>
+      <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
     </head>
-    <body>
+    <body ng-app="80consult" ng-controller="contactcontroller">
         <!-- Start Header -->
         <header id="top-header">
             <div class="orenge-logo-strip">
@@ -52,12 +57,16 @@
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                                      <ul class="nav navbar-nav">
+                                      <ul class="nav navbar-nav" ng-init="isLoggedin()">
                                         <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
                                         <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
                                        <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
                                         <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
                                         <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                        <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
@@ -68,7 +77,7 @@
                 </div>
             </div>
         </header>
-        <section id="pakeges-wrap">
+        <section id="pakeges-wrap" ng-init="allproducts()">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -76,37 +85,32 @@
                             Products
                         </h2>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" ng-repeat="product in productslist">
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
                                 <div class="place-img">
-                                    <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+                                    <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="packeg-details-text">
-                                    <h5><a href="#">Universal Studios Singapore One-Day Pass</a></h5>
-                                    <p> Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</p>
-                                    <div class="right-blck">
+                                    <h5><a href="#">{{product.ProductName}}</a></h5>
+                                    <p>{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
+                                    <!-- <div class="right-blck">
                                         <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
                                             Duration: 1 day</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
+                                          
                                             <div id="stars-existing" class="starrr" data-rating='3'></div>
                                         </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
-                                    </div>
+                                       
+                                    </div> -->
                                     <div class="price-right-block">
                                         <span>From SGD</span>
-                                        <h4>$76</h4>
-                                        <a href="enquiry.html" class="pakege-btn">Enquiry</a>
-                                        <a href="order.html" class="pakege-btn">Book Now</a>
+                                        <h4>${{product.Price}}</h4>
+                                        <a href="#" class="pakege-btn">Enquiry</a>
+                                        <a href="#" class="pakege-btn">Order Now</a>
                                     </div>
 
                                 </div>
@@ -114,7 +118,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <!-- <div class="col-sm-6">
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
                                 <div class="place-img">
@@ -130,15 +134,7 @@
                                             Duration: 1 To 6 hrs</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                             
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -167,15 +163,7 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                            
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -204,15 +192,7 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                          
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -241,15 +221,10 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
+                                             <div class="row lead"></div>
                                             <div id="stars-existing" class="starrr" data-rating='3'></div>
                                         </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                       
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -278,15 +253,7 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                          
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -315,15 +282,7 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                            
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -353,15 +312,7 @@
                                             Duration: Flexible</span>
                                         </p>
                                         <div class="star-rating-wrap">
-                                             <!-- <div class="row lead"></div> -->
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div>
-                                        <!-- <div class="social-links">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div> -->
+                                           
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
@@ -373,7 +324,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-
+ -->
 
                 </div>
             </div>
@@ -620,6 +571,6 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
-        <script src="assets/js/custom.js"></script>
+   <!--      <script src="assets/js/custom.js"></script> -->
     </body>
 </html>

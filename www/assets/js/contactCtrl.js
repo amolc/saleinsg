@@ -271,6 +271,24 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }  
 
 
+     $scope.allproducts = function (req, res) {
+
+        $http.get(baseurl + 'allproducts').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+                //console.log(res);
+                $scope.productslist = res;
+            }
+
+        }).error(function () {
+
+        });
+    }
+
+
 
 
   $scope.booknow = function (req, res) {

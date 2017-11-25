@@ -390,6 +390,13 @@ exports.addproduct = function (req, res) {
     });
 };
 
+exports.allproducts = function (req, res) {
+    var sql = "SELECT * FROM `tbl_Products` ORDER BY `ProductId` DESC";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
 
 ///____________________END______________________
 

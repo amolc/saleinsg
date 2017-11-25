@@ -49,6 +49,8 @@ app.post('/api/login', contact.login);
 
 
 app.post('/api/addproduct', contact.addproduct);
+app.get('/api/allproducts', contact.allproducts);
+
 
 app.listen(6010, function () {
   console.log('CORS-enabled web server listening on port 6010')
