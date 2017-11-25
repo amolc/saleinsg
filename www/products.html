@@ -16,10 +16,18 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
+<<<<<<< HEAD
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
       <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
       <script type="text/javascript" src="assets/js/app.js"></script>
       <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+=======
+        <!-- Owl Stylesheets -->
+        <link rel="stylesheet" href="OwlCarousel/docs.theme.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.theme.default.min.css">
+   
+>>>>>>> master
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
         <!-- Start Header -->
@@ -88,6 +96,7 @@
                     <div class="col-sm-6" ng-repeat="product in productslist">
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
+<<<<<<< HEAD
                                 <div class="place-img">
                                     <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
                                 </div>
@@ -97,6 +106,31 @@
                                     <h5><a href="#">{{product.ProductName}}</a></h5>
                                     <p>{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
                                     <!-- <div class="right-blck">
+=======
+                             <div id="demos">
+                            <div class="owl-carousel owl-theme">
+            <div class="item">
+              <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+            </div>
+            <div class="item">
+              <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+            </div>
+            
+          </div>
+          </div>
+                                <!-- <div class="place-img">
+                                    <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+                                </div> -->
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Universal Studios Singapore One-Day Pass</a></h5>
+                                    <p class="small-height"> Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</p>
+                                    <div class="right-blck">
+>>>>>>> master
                                         <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
                                             Duration: 1 day</span>
                                         </p>
@@ -104,6 +138,7 @@
                                           
                                             <div id="stars-existing" class="starrr" data-rating='3'></div>
                                         </div>
+<<<<<<< HEAD
                                        
                                     </div> -->
                                     <div class="price-right-block">
@@ -111,7 +146,25 @@
                                         <h4>${{product.Price}}</h4>
                                         <a href="#" class="pakege-btn">Enquiry</a>
                                         <a href="#" class="pakege-btn">Order Now</a>
+=======
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
                                     </div>
+                                    <div class="price-right-block pull-right">
+                                        <span>From SGD</span>
+                                        <h4>$76</h4>
+                                        
+>>>>>>> master
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="price-right-block text-right">
+                                    <a href="enquiry.html" class="pakege-btn">Enquiry</a>
+                                        <a href="order.html" class="pakege-btn">Book Now</a>
+                                        </div>
 
                                 </div>
                             </div>
@@ -121,6 +174,9 @@
                     <!-- <div class="col-sm-6">
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
+
+                            
+
                                 <div class="place-img">
                                     <img src="assets/img/sentosa-sea.jpg" class="img-responsive" alt="" title="">
                                 </div>
@@ -128,7 +184,7 @@
                             <div class="col-sm-7">
                                 <div class="packeg-details-text">
                                     <h5><a href="#">Sentosa Sea Aquarium Day Pass</a></h5>
-                                    <p class="packege-para">Explore S.E.A. Aquarium at Resorts World Sentosa with a 1-day pass,  including skip-the-line admission. This non-guided ticket allows you to  enjoy the aquarium.</p>
+                                    <p class="packege-para small-height">Explore S.E.A. Aquarium at Resorts World Sentosa with a 1-day pass,  including skip-the-line admission. This non-guided ticket allows you to  enjoy the aquarium.</p>
                                     <div class="right-blck">
                                         <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
                                             Duration: 1 To 6 hrs</span>
@@ -139,7 +195,12 @@
                                     <div class="price-right-block">
                                         <span>From SGD</span>
                                         <h4>$38</h4>
-                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                        
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="price-right-block text-right">
+
+                                    <a href="enquiry.html" class="pakege-btn">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -570,7 +631,40 @@
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
+<<<<<<< HEAD
         <script src="assets/js/star-rating.js"></script>
    <!--      <script src="assets/js/custom.js"></script> -->
+=======
+        
+        <script src="assets/js/custom.js"></script>
+
+
+<script>
+            $(document).ready(function() {
+              var owl = $('.owl-carousel');
+              owl.owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true
+              });
+              $('.play').on('click', function() {
+                owl.trigger('play.owl.autoplay', [1000])
+              })
+              $('.stop').on('click', function() {
+                owl.trigger('stop.owl.autoplay')
+              })
+            })
+          </script>
+           <!-- javascript -->
+    <script src="OwlCarousel/jquery.min.js"></script>
+    <script src="OwlCarousel/owl.carousel.js"></script>
+        <!-- vendors -->
+    <script src="../assets/vendors/highlight.js"></script>
+    <script src="../assets/js/app.js"></script>
+<script src="assets/js/star-rating.js"></script>
+>>>>>>> master
     </body>
 </html>
