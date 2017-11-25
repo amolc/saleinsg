@@ -279,7 +279,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             }
             else {
-                //console.log(res);
+                console.log(res);
                 $scope.productslist = res;
             }
 
