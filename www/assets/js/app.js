@@ -11,7 +11,7 @@ else if (document.location.hostname == "www.saleinsg.com")
 
 }else{
 
-  var baseurl = "http://localhost:6010/api/";
+  var baseurl = "http://localhost:9888/api/";
 }
 
 app.config(['storeProvider', function (storeProvider) {

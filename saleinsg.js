@@ -52,7 +52,7 @@ app.post('/api/addproduct', contact.addproduct);
 app.get('/api/allproducts', contact.allproducts);
 
 
-app.listen(6010, function () {
-  console.log('CORS-enabled web server listening on port 6010')
+app.listen(9888, function () {
+  console.log('CORS-enabled web server listening on port 9888')
 })
-console.log("Magic at http://localhost:6010");
+console.log("Magic at http://localhost:9888");
