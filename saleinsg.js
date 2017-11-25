@@ -44,6 +44,8 @@ app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);
 app.post('/api/register', contact.register);
 
+app.get('/api/verify-account/:id', contact.verifyAccount);
+
 
 app.listen(6010, function () {
   console.log('CORS-enabled web server listening on port 6010')

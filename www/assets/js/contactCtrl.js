@@ -39,6 +39,40 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
 
 
+    $scope.verify = function() {
+                //console.log('hi');
+              $scope.data = {};
+              var url = window.location.href;
+               // console.log(url);
+                var parts = url.split("?");
+              if(parts.length>0){
+                   var urlparams = parts[1];
+                   //console.log(parts);
+                   // console.log(urlparams);
+                   var urlpart = urlparams.split('&');
+                   var verificationstring = urlpart[0].split('=');
+                   //var tourtype = urlpart[1].split('=');
+                   //console.log(verificationstring[1]);
+                   //var carimg  = carkey[1] ;
+                   //console.log(tourtype[1]);
+    
+                    //$scope.carimg = $scope.carImages[carkey[1]];
+                    $scope.verificationstring= verificationstring[1];
+                   // $scope.tourtype = tourtype[1];
+                    $http.get(baseurl + 'verify-account/'+$scope.verificationstring).success(function (res) {
+                        if (res.status == 'false') {
+                        }else {
+                            //console.log('Account verified Successfully');
+                            window.location = "login.html";
+                        }
+                    }).error(function () {
+                    });
+              }
+
+          }
+
+
+
   $scope.booknow = function (req, res) {
 
     console.info("in consult");

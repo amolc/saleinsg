@@ -211,6 +211,17 @@ exports.register = function(req, res){
        
 };
 
+
+exports.verifyAccount = function(req, res){
+
+    console.log(req.params.id);
+    var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 ///____________________END______________________
 
 function send_mail(usermail, subject, mailbody) {
