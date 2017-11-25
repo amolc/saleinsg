@@ -9,11 +9,11 @@ var bodyParser = require( 'body-parser' );
 var nodemailer = require( 'nodemailer' );
 var cors = require('cors');
 var http = require("http").createServer(app);
+fs = require('fs-extra');
 
 var contact = require('./api/contact.js');
 var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
-
 
 /*app.use(function(req, res, next){
 	var url_parts = url.parse(req.url, true);
@@ -42,7 +42,13 @@ app.use('/', www);
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);
+app.post('/api/register', contact.register);
 
+app.get('/api/verify-account/:id', contact.verifyAccount);
+app.post('/api/login', contact.login);
+
+
+app.post('/api/addproduct', contact.addproduct);
 
 app.listen(6010, function () {
   console.log('CORS-enabled web server listening on port 6010')

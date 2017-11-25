@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sale in Singapore </title>
+
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+  <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+</head>
+
+<body>
+<!-- Start Header -->
+       <header id="top-header">
+            <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="txt-logo">
+                                <a href="index.html"><h1>Sale in Singapore</h1>
+                                  <!-- <img src="assets/img/logo.jpg" class="img-responsive" alt="" title=""> -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="top-nav">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                                       <ul class="nav navbar-nav">
+                                        <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
+                                        <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
+                                       <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
+                                        <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
+                                        <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
+                                        <li><a href="login.html" class="hvr-underline-reveal">Login</a></li>
+                                      </ul>
+                                    </div><!-- /.navbar-collapse -->
+                                  </div><!-- /.container-fluid -->
+                                </nav>
+                            </div>
+                        </div >
+                    </div>
+                </div>
+            </div>
+        </header>
+    <!-- End Header -->
+  <div ng-app="80consult">
+<!--
+  <section id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Bonne Route Travels</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+
+<!--
+  <section id="context">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 box-context">
+          <div class="context-head text-center">
+            <h3>Book Now</h3>
+          </div>
+
+          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" id="phoneno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Travel Date</label>
+              <div class="input-append date">
+              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <div class="input-append date">
+                <textarea rows="4" cols="50">
+
+                  </textarea>
+            </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
+          </form>
+
+        </div>
+
+        <div class="col-md-6 box-context">
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+-->
+<div class="clearfix"></div>
+  <section id="book-now">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+           <h2 class="section-title">Register</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form name="formRegistration"  ng-controller="contactcontroller" data-ng-submit="register(formRegistration)" id="formRegistration" method="post">
+             <div class="col-md-6">
+              <div class="form-group">
+              <label for="fname">First Name:</label>
+              <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required>
+            </div> 
+             </div>  
+              <div class="col-md-6">        
+            <div class="form-group">
+              <label for="lname">Last Name :</label>
+              <input type="text" class="form-control" ng-model="registration.lname" name="lname" id="lname" required>
+              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+            </div>
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="phone">Contact No:</label>
+              <input type="text" class="form-control" ng-model="registration.phone" name="phone" id="phone" required>
+            </div> 
+            </div>
+             <div class="col-md-6">
+             <div class="form-group">
+              <label for="email">Email Id :</label>
+              <input type="email" class="form-control" ng-model="registration.email" name="email" id="email" required>
+            </div>
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" class="form-control" ng-model="registration.password" name="password" id="password" required>
+            </div>
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="cpassword">Confirm Password:</label>
+              <input type="password" class="form-control" ng-model="registration.cpassword" name="cpassword" id="cpassword" required>
+            </div>  
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="company">Company Name:</label>
+              <input type="text" class="form-control" ng-model="registration.company" name="company" id="company" required>
+            </div> 
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="location">Loaction:</label>
+              <input type="text" class="form-control" ng-model="registration.location" name="location" id="location" required>
+            </div> 
+            </div>
+             <div class="col-md-6">
+            <div class="form-group" id="alertmessage" hidden="">
+              <label>{{alertmessage}}</label>
+            </div> 
+            </div>
+           
+             
+        
+              <div class="clearfix"></div>
+          
+             
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
+          </form>
+          <div id="thankyoudiv" hidden="">
+            <div class="thankyou">
+                <div class="item">
+                   <!--  <span><h4><b><font>  Confirm your registration with verification link sent on your email.</font></b></h4></span> -->
+                   <span><h4><b><font>Registered Successfully...</font></b></h4></span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+      <div class="clearfix"></div>
+  </section>
+
+
+
+
+
+
+
+ <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-sm-4 col-md-4">
+                        <div class="foot-text">
+                            <h4>About us</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-4 col-md-4 pd-l80">
+                        <div class="foot-text">
+                              <h4>Contact Us</h4>
+                              <h5>Suzantravels.com</h5>
+                              <p>06-32 Paya Lebar Square</p>
+                              <p>Singapore 409051</p>
+
+                       </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 pd-l80">
+                        <div class="foot-text">
+                            <!-- <h4>select Hotels</h4>
+                            <ul>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer  id="bottom-strip">
+            <p>Copyright 2017- Suzan Travels - All Rights Reserved</p>
+        </footer>
+
+  <script  type="text/javascript"  src="assets/js/jquery.min.js"></script>
+  <script   type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script  type="text/javascript"  src="assets/js/main.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script>
+
+</div>
+</body>
+
+</html>
