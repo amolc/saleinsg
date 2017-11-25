@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sale in Singapore </title>
 
-  <title>Sale in Singapore </title>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+        
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/responsive.css" rel="stylesheet">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-  <script type="text/javascript" src="assets/js/angular.min.js"></script>
+
+         <link rel="stylesheet" href="OwlCarousel/docs.theme.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.theme.default.min.css">
+
+         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
-</head>
-
-<body>
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
        <header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="txt-logo">
+                         <div class="col-sm-12">
+                            <div class=" col-sm-9 txt-logo">
                                 <a href="index.html"><h1>Sale in Singapore</h1>
                                    <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
                                 </a>
+
+                            </div>
+                            <div class=" col-sm-3 txt-bcsup pull-right">
+                                <a href="register.html" class="pakege-btn">Become Supplier
+                                   <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
+                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -57,12 +69,17 @@
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                                       <ul class="nav navbar-nav">
+                                        <ul class="nav navbar-nav" ng-init="isLoggedin()">
                                         <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
                                         <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
                                        <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
                                         <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
                                         <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                        <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
+
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->

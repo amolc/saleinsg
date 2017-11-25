@@ -412,6 +412,21 @@ section#footer {
 .txt-logo h1{
   color: #bc0829;
 }
+
+.txt-bcsup{
+  color: #fff;
+  background-color: #bc0829;
+  border:1px solid #bc0829;
+  border-radius: 7px;
+  font-size: 21px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.txt-bcsup a {
+
+    color: #ffffff;
+}
 .navigation-strip{
     background-color: #bc0829;
 }

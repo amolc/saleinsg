@@ -1,87 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sale in Singapore </title>
-    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+        <title>Sale in Singapore </title>
 
-    <link href="css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+        
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-    <link href="css/plugins/font-awesome.min.css" rel="stylesheet">
-    <link href="css/plugins/lineicons.css" rel="stylesheet">
-    <link href="vendors/magnific-popup/magnific-popup.css" rel="stylesheet">
-    <link href="vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
-    <link href="vendors/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet">
-    <link href="vendors/owl-carousel/assets/owl.carousel.css" rel="stylesheet">
-    <!-- <link href="css/plugins/animate.css" rel="stylesheet">-->
 
-    <link href="css/plugins/preloader.css" rel="stylesheet">
-    <!-- <link href="css/themes/blue-orange.css" rel="stylesheet"> -->
-    <link href="assets/css/style.css" rel="stylesheet">
+         <link rel="stylesheet" href="OwlCarousel/docs.theme.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.theme.default.min.css">
 
-    <!--[if lt IE 9]>
-      <script src="js/lib/html5shiv.min.js"></script>
-      <script src="js/lib/respond.min.js"></script>
-    <![endif]-->
-
-    <script type="text/javascript">
-        /* <![CDATA[ */
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-38030533-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-
-        (function(b) {
-            (function(a) {
-                "__CF" in b && "DJS" in b.__CF ? b.__CF.DJS.push(a) : "addEventListener" in b ? b.addEventListener("load", a, !1) : b.attachEvent("onload", a)
-            })(function() {
-                "FB" in b && "Event" in FB && "subscribe" in FB.Event && (FB.Event.subscribe("edge.create", function(a) {
-                    _gaq.push(["_trackSocial", "facebook", "like", a])
-                }), FB.Event.subscribe("edge.remove", function(a) {
-                    _gaq.push(["_trackSocial", "facebook", "unlike", a])
-                }), FB.Event.subscribe("message.send", function(a) {
-                    _gaq.push(["_trackSocial", "facebook", "send", a])
-                }));
-                "twttr" in b && "events" in twttr && "bind" in twttr.events && twttr.events.bind("tweet", function(a) {
-                    if (a) {
-                        var b;
-                        if (a.target && a.target.nodeName == "IFRAME") a: {
-                            if (a = a.target.src) {
-                                a = a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);
-                                b = 0;
-                                for (var c; c = a[b]; ++b)
-                                    if (c.indexOf("url") === 0) {
-                                        b = unescape(c.split("=")[1]);
-                                        break a
-                                    }
-                            }
-                            b = void 0
-                        }
-                        _gaq.push(["_trackSocial", "twitter", "tweet", b])
-                    }
-                })
-            })
-        })(window);
-        /* ]]> */
-    </script>
-
-</head>
-
-<body data-scroll-animation="false">
+         <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller" data-scroll-animation="false">
 
     <div id="loading">
         <div id="loading-center">
@@ -98,11 +43,18 @@
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="txt-logo">
-                               <a href="index.html"><h1>Sale in Singapore</h1>
+                         <div class="col-sm-12">
+                            <div class=" col-sm-9 txt-logo">
+                                <a href="index.html"><h1>Sale in Singapore</h1>
                                    <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
                                 </a>
+
+                            </div>
+                            <div class=" col-sm-3 txt-bcsup pull-right">
+                                <a href="register.html" class="pakege-btn">Become Supplier
+                                   <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
+                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -128,12 +80,17 @@
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-                                      <ul class="nav navbar-nav">
+                                       <ul class="nav navbar-nav" ng-init="isLoggedin()">
                                         <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
                                         <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
                                        <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
                                         <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
                                         <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                        <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
+
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
