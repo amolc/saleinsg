@@ -6,6 +6,37 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   $scope.child = ['0','1','2','3','4','5','6','7','8','9','10'];
  // $scope.urlParams = $location.search();
  // console.log($location.search());
+   $scope.register = function(formRegistration){
+
+            console.log($scope.registration);
+        
+            $scope.alertmessage = '';
+            $scope.formvalidate ="true" ;
+                    
+
+                if($scope.formvalidate=="true"){
+                    $http.post(baseurl + 'register', $scope.registration).success(function(data, status) {
+
+                        console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                                $scope.alertmessage=data.message;
+                                $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            $("#formRegistration").hide();
+                            $("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+                }
+
+            }
+
+
 
   $scope.booknow = function (req, res) {
 

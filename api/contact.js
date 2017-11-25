@@ -1,7 +1,11 @@
 var http = require('http');
 var mysql = require('mysql');
+var randomString = require('random-string');
+var moment = require("moment");
+var verifycode = randomString();
+var now = moment();
 var db = mysql.createPool({
-  database: '80consult',
+  database: 'saleinsg',
   user: 'root',
   password: '10gXWOqeaf',
   host: 'db.80startups.com',
@@ -9,6 +13,7 @@ var db = mysql.createPool({
 
 var CRUD = require('mysql-crud');
 var consultCRUD = CRUD(db, 'contact');
+var userCRUD = CRUD(db, 'tbl_Suppliers');
 
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -80,6 +85,132 @@ exports.consult = function (req, res) {
 
       send_mail(recipientEmail, subject, mailbody);
 }
+
+
+exports.register = function(req, res){
+
+  console.log('req.body',req.body);
+
+
+   dateToday = now.format("YYYY-MM-DD H:mm:ss");
+   var fullname =req.body.fname+" "+req.body.lname;
+
+
+
+            userCRUD.load({
+                Email: req.body.email
+            },function (err3, val3) {
+
+               // console.log(val3);
+
+                if (val3.length<=0) 
+                {
+                    
+                      if (req.body.password == req.body.cpassword) 
+                        {
+
+                             userCRUD.create({
+                            'Email': req.body.email,
+                            'Password': req.body.password,
+                            'FirstName': req.body.fname,
+                            'LastName': req.body.lname,
+                            'Phone': req.body.phone,
+                            'CompanyName':req.body.company,
+                            'Location':req.body.location,
+                            'VerificationCode':verifycode,
+                            'CreateDate':dateToday,
+                            'PaymentStatus':'Pending',
+                            'IsActive':1
+
+                        }, function(err2, val2) {
+
+                            if (!err2) 
+                            {
+                                console.log(val2.insertId);
+                                var regId = val2.insertId;
+                               // console.log(req.body.Email);
+                                var recipientEmail = req.body.Email; 
+                                var subject = "[80STARTUPS.COM] saleinsg.com verification email";
+                                var mailbody = '<table>\
+                                                    <tr>\
+                                                      <td><h1>Dear '+fullname+',</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td>Please click on the following link to verify your email account to complete registration process.</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td>Best wishes,</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td><h2>saleinsg.com</h2></td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                                                    </tr>\
+                                                  </table>';
+
+                                send_mail(recipientEmail, subject, mailbody);
+                                var resdata = {
+                                    status: true,
+                                    value:val2,
+                                    message: 'A verification link has been sent to your email account'
+                                };
+
+                                res.jsonp(resdata);
+                            }
+                            else
+                            {
+                                var resdata = {
+                                    status: false,
+                                    error: err2,
+                                    message: 'Error: User not successfully added. '
+                                };
+
+                                res.jsonp(resdata);
+                            }
+
+                            });
+
+                          }
+                      
+                        else
+                        {
+
+                            var resdata2 = {
+                                status: false,
+                                error: err3,
+                                message: 'Both passwords should be same'
+                            };
+
+                            res.jsonp(resdata2);
+
+                        }
+                      
+
+                }
+                else
+                {
+
+                    var resdata3 = {
+                        status: false,
+                        error: err3,
+                        message: 'Email id already exists'
+                    };
+
+                    res.jsonp(resdata3);
+
+                }
+
+
+            });
+
+       
+};
 
 ///____________________END______________________
 

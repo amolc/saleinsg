@@ -402,15 +402,18 @@ section#footer {
     background: #656057;
 }
 .orenge-logo-strip{
-    background-color: #bc0829;
+   /* background-color: #bc0829;*/
     padding: 20px 0px;
 }
 .logo-img img{
     width: 224px;
     height: auto;
 }
+.txt-logo h1{
+  color: #bc0829;
+}
 .navigation-strip{
-    background-color: #280f0a;;
+    background-color: #bc0829;
 }
 .navigation-strip .navbar{
     margin: 0px;
