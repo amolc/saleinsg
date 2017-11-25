@@ -144,6 +144,27 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
 
+     $scope.isLoggedin = function() {
+
+                $scope.User_Id = 0;
+               // console.log($scope.User_Id);
+
+                //console.log(window.sessionStorage.getItem('User_Id'));
+                if (window.sessionStorage.getItem('User_Id')>0) 
+                {
+                    $scope.User_Id =window.sessionStorage.getItem('User_Id');
+                }
+               // console.log($scope.User_Id);
+
+            } 
+
+             $scope.logout = function() {             
+
+              $window.sessionStorage.clear();
+              location.href = "index.html"
+          }  
+
+
 
   $scope.booknow = function (req, res) {
 
