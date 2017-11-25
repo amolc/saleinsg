@@ -89,8 +89,7 @@ exports.consult = function (req, res) {
 
 exports.register = function(req, res){
 
-  console.log('req.body',req.body);
-
+  //console.log('req.body',req.body);
 
    dateToday = now.format("YYYY-MM-DD H:mm:ss");
    var fullname =req.body.fname+" "+req.body.lname;
@@ -109,7 +108,7 @@ exports.register = function(req, res){
                       if (req.body.password == req.body.cpassword) 
                         {
 
-                             userCRUD.create({
+                          userCRUD.create({
                             'Email': req.body.email,
                             'Password': req.body.password,
                             'FirstName': req.body.fname,
@@ -126,7 +125,7 @@ exports.register = function(req, res){
 
                             if (!err2) 
                             {
-                                console.log(val2.insertId);
+                               // console.log(val2.insertId);
                                 var regId = val2.insertId;
                                // console.log(req.body.Email);
                                 var recipientEmail = req.body.Email; 

@@ -8,13 +8,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
  // console.log($location.search());
    $scope.register = function(formRegistration){
 
-            console.log($scope.registration);
+          //  console.log($scope.registration);
         
             $scope.alertmessage = '';
             $scope.formvalidate ="true" ;
                     
 
                 if($scope.formvalidate=="true"){
+                 // console.log("register IN");
                     $http.post(baseurl + 'register', $scope.registration).success(function(data, status) {
 
                         console.log('data',data)
