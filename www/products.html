@@ -11,7 +11,7 @@
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <link href="assets/css/responsive.css" rel="stylesheet">
-        
+
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
@@ -25,7 +25,7 @@
       <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
       <script type="text/javascript" src="assets/js/app.js"></script>
       <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
-   
+
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
         <!-- Start Header -->
@@ -44,8 +44,9 @@
                                 <a href="register.html" class="txt-bcsup">Become Supplier
                                    <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
                                 </a>
-                                
+
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -78,9 +79,17 @@
                                         <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
                                          <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
                                         <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                        </li>
+                                      </ul>
+
+                                    
+                                    </div><!-- /.navbar-collapse -->
+                                    <div class="collapse navbar-collapse pd0 right" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav" ng-init="isLoggedin()">
                                         <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
                                         <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
                                       </ul>
+
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
                                 </nav>
@@ -112,24 +121,24 @@
                                 <div class="item">
                                   <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
                                 </div>
-                                
+
                               </div>
                               </div>
-                               
+
                             </div>
                             <div class="col-sm-7">
                                 <div class="packeg-details-text">
                                     <h5><a href="#">Universal Studios Singapore One-Day Pass</a></h5>
                                     <p class="small-height"> Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</p>
-                                   
+
                                     <div class="price-right-block pull-right">
                                         <span>From SGD</span>
                                         <h4>$76</h4>
-                                        
+
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="price-right-block text-right">
-                                 
+
                                         <a href="#" class="pakege-btn">Order Now</a>
                                         </div>
 
@@ -142,7 +151,7 @@
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
 
-                            
+
 
                                 <div class="place-img">
                                     <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
@@ -157,21 +166,21 @@
                                            Category : {{product.Category}}</span>
                                         </p>
                                         <!--  <div class="star-rating-wrap">
-                                             
+
                                             <div id="stars-existing" class="starrr" data-rating='3'></div>
                                         </div> -->
-                                       
+
                                     </div>
                                     <div class="price-right-block">
                                         <span>From SGD</span>
                                         <h4>${{product.Price}}</h4>
-                                        
+
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="price-right-block text-right">
 
-                                     <a href="#" class="pakege-btn">Enquiry</a> 
-                                        <a href="#" class="pakege-btn">Order Now</a> 
+                                     <a href="#" class="pakege-btn">Enquiry</a>
+                                        <a href="#" class="pakege-btn">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -216,7 +225,7 @@
 <div class="container">
 <div class="row">
     <div class="item">
-      <div class="well"> 
+      <div class="well">
         <div class="box-context">
                         <div class="Package-box">
                         <div class="context-img text-center">
@@ -234,7 +243,7 @@
                                 <li><span>Night Safari</span></li>
                             </ul>
 
-                        
+
                           <a href="enquiry.html?pck=3D2N WLIDLIFE From SGD 245" class="btn btn-info orenge-btn" role="button">Book Now</a>
                         </div>
                             </div>
@@ -242,7 +251,7 @@
       </div>
     </div>
      <div class="item">
-        <div class="well"> 
+        <div class="well">
             <div class="box-context">
                         <div class="Package-box">
                         <div class="context-img text-center">
@@ -260,7 +269,7 @@
                                 <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
                                 <li><span>Universal Studios </span></li>
                             </ul>
-                        
+
                         <a href="enquiry.html?pck=4D3 Package From SGD 350" class="btn btn-info orenge-btn" role="button">Book Now</a>
                          </div>
                             </div>
@@ -268,7 +277,7 @@
         </div>
     </div>
     <div class="item">
-        <div class="well"> 
+        <div class="well">
          <div class="box-context">
                          <div class="Package-box">
                         <div class="context-img text-center">
@@ -286,7 +295,7 @@
                                 <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
                                 <li><span>Universal Studios</span></li>
                             </ul>
-                       
+
                         <a href="enquiry.html?pck=3D2N WLIDLIFE From SGD 245" class="btn btn-info orenge-btn" role="button">Book Now</a>
                          </div>
                               </div>
@@ -294,7 +303,7 @@
         </div>
     </div>
     <div class="item">
-        <div class="well"> 
+        <div class="well">
                      <div class="box-context">
                          <div class="Package-box">
                             <div class="context-img text-center">
@@ -313,11 +322,11 @@
                                     <li><span>Universal Studios</span></li>
                                     <li><span>Marina Bay Sands & Gardens By The Bay Tour</span></li>
                                 </ul>
-                            
+
                             <a href="enquiry.html?pck=5D4N Package From SGD 495" class="btn btn-info orenge-btn" role="button">Book Now</a>
                          </div>
                              </div>
-                         
+
                     </div>
         </div>
     </div>
@@ -338,7 +347,7 @@
                                 <li><span>Night Safari</span></li>
                                 <li><span>Universal Studios</span></li>
                             </ul>
-                        
+
                         <a href="enquiry.html?pck=3D2N RWS From SGD 260" class="btn btn-info orenge-btn" role="button">Book Now</a>
                          </div>
                             </div>
@@ -346,7 +355,7 @@
         </div>
     </div>
     <div class="item">
-        <div class="well"> 
+        <div class="well">
            <div class="box-context">
                          <div class="Package-box">
                         <div class="context-img text-center">
@@ -364,7 +373,7 @@
                                 <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
                                 <li><span>Universal Studios</span></li>
                             </ul>
-                       
+
                         <a href="enquiry.html?pck=4D3N Package From SGD 365" class="btn btn-info orenge-btn" role="button">Book Now</a>
                          </div>
                               </div>
@@ -406,7 +415,7 @@
                     </div>
                     <div class="col-sm-4 col-md-4 pd-l80">
                         <div class="foot-text">
-                            <!-- <h4>select Hotels</h4> 
+                            <!-- <h4>select Hotels</h4>
                             <ul>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -424,7 +433,7 @@
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
-        
+
     <!--     <script src="assets/js/custom.js"></script> -->
 
 
@@ -448,11 +457,11 @@
             })
           </script>
            <!-- javascript -->
-  
+
     <script src="OwlCarousel/owl.carousel.js"></script>
         <!-- vendors -->
     <script src="../assets/vendors/highlight.js"></script>
-  
+
 <script src="assets/js/star-rating.js"></script>
     </body>
 </html>
