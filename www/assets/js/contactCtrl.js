@@ -389,6 +389,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             $scope.product = data;
             $scope.product.orderqty = 1;
+            $scope.product.paymenttype = 'Credit Card';
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
                $scope.qty.push(i);
@@ -413,8 +414,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-
-
   $scope.submitenquiry = function (enquiryform) {
 
       $http.post(baseurl + 'submitenquiry',$scope.enquiry).success(function(data, status) {
@@ -428,6 +427,33 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         }
        
       });
+  
+  }
+
+   $scope.order = function (enquiryform) {
+
+      if($scope.product.paymenttype=="Bank Transfer"){
+                  //console.log($scope.data.paymenttype);
+
+                  $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+
+                    $http.post(baseurl + 'addbankorder/',$scope.product).success(function(res) {
+
+                       $("#orderform").hide();
+                       $("#payform").hide();
+                       $("#thankyou").show("slow");
+
+
+                  }).error(function() {
+                        // alert("Please check your internet connection or data source..");
+                  });
+                   
+                }else {
+                    $("#orderform").hide();
+                    $("#payform").show("slow");
+                    $("#thankyou").hide();
+                  }
+
   
   }
 

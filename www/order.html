@@ -174,7 +174,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="placeorder()">
+          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
            <div class="col-md-6">
             <div class="form-group">
             <img src="uploads/{{product.Image1}}" class="img-responsive">
@@ -205,13 +205,69 @@
             <div class="form-group">
               <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
             </div>
+             <div class="form-group">
+              <label for="shippingaddress">Shipping Address : </label>
+              <textarea class="form-control mb19" id="address" name="address" ng-model="product.address" rows="6" required="">
+                
+              </textarea>
+            </div>
+
+             <div class="form-group" >
+              <label for="paymenttype">Payment Type : </label>
+                  <select ng-model="product.paymenttype" class="form-control" id="paymenttype" required="">
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Bank Transfer">Bank Transfer</option>
+                  </select>
             
               </div>
 
               <div class="clearfix"></div>
+              </div>
        
           <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
           </form>
+           <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
+
+                      
+
+                        <div class="col-sm-12 text-center" >
+                           <h3>{{product.ProductName}}</h3>
+                                  <h3>Total</h3>
+                                  <h3>{{product.Price * product.orderqty | currency }}</h3>
+                          </div>  
+
+                    
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Name</label>
+                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="order.cardname" value="Humty Dumty">
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Card Number</label>
+                                <input type="text"  class="form-control"  ng-model="order.number" payments-validate="card" payments-type-model="type" />
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Expiry MM/YYYY</label>
+                              <input type="text"  class="form-control"  ng-model="order.expiry" payments-format="expiry"  />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">CVV</label>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="order.cvc" maxlength="3" payments-format="cvc" >
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center m-t-40">
+                                <button type="submit" class="btn btn-warning" >Pay</button>
+                            </div>
+                        </div>
+                    </form>
           <div id="thankyou" hidden="">
             <div class="thankyou">
                 <div class="item">

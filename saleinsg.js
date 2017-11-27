@@ -56,6 +56,8 @@ app.get('/api/getProductDetails/:id', contact.getProductDetails);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 
 app.post('/api/submitenquiry', contact.submitenquiry);
+//app.post('/api/addorder', contact.addorder);
+app.post('/api/addbankorder', contact.addbankorder);
 
 
 app.listen(9888, function () {
