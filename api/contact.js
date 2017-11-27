@@ -412,7 +412,7 @@ exports.getProductDetails = function (req, res) {
 
 
 exports.submitenquiry = function (req, res) {
-
+  
  // console.log(req.body);
   dateToday = now.format("YYYY-MM-DD H:mm:ss");
   enquiryCRUD.create({

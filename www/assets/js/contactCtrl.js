@@ -294,6 +294,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     //console.log($scope.enquiry);
 
       $scope.enquiry = {};
+      $scope.product = {};
 
       var url = window.location.href;
 
@@ -315,6 +316,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.enquiry.SupId = data.SupplierId;
             $scope.enquiry.SupEmail = data.Email;
             $scope.enquiry.BuyerId = 0;
+            $scope.product = data;
+
        
       });
     }

@@ -27,7 +27,7 @@
       <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-app="80consult" ng-controller="contactcontroller" ng-init="enquiryinit()">
         <!-- Start Header -->
         <header id="top-header">
             <div class="orenge-logo-strip">
@@ -104,7 +104,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h2 class="section-title">
-                            Products
+                            Product Details
                         </h2>
                     </div>
                     <!-- <div class="col-sm-6">
@@ -147,26 +147,27 @@
                             <div class="clearfix"></div>
                         </div>
                     </div> -->
-                    <div class="col-sm-6" ng-repeat="product in productslist">
-                   
-                        <div class="packges-block">
+                    <div class="col-sm-12">
+                        <div class="packges-block" style="height: auto">
                             <div class="col-sm-5 pd0">
 
 
 
                                 <div class="place-img">
-                                 <a href="product_detail.html?id={{product.ProductId}}">
                                     <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
-                                    </a>
                                 </div>
                             </div>
                             <div class="col-sm-7">
                                 <div class="packeg-details-text">
-                                    <h5><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h5>
-                                    <p class="packege-para small-height">{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
+                                    <h5><a href="#">{{product.ProductName}}</a></h5>
+                                    <p>{{product.Description }}</p>
                                     <div class="right-blck">
-                                    <p class="gray-small-text"><span>   <!--  Location: Singapore, Singapore  --><br>
-                                           Category : {{product.Category}}</span>
+                                    <p class="gray-small-text"><span>   
+                                           Location: {{product.Location}}<br>
+                                           Category : {{product.Category}}
+                                           <br>
+                                           Sub Category : {{product.SubCategory}}
+                                           </span>
                                         </p>
                                         <!--  <div class="star-rating-wrap">
 
