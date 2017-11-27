@@ -80,17 +80,13 @@
                                          <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
                                         <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
                                         </li>
+                                         <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
                                       </ul>
 
                                     
                                     </div><!-- /.navbar-collapse -->
-                                    <div class="collapse navbar-collapse pd0 right" id="bs-example-navbar-collapse-1">
-                                      <ul class="nav navbar-nav" ng-init="isLoggedin()">
-                                        <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
-                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
-                                      </ul>
-
-                                    </div><!-- /.navbar-collapse -->
+                               
                                   </div><!-- /.container-fluid -->
                                 </nav>
                             </div>
@@ -147,7 +143,7 @@
                             <div class="clearfix"></div>
                         </div>
                     </div> -->
-                    <div class="col-sm-6" ng-repeat="product in productslist">
+                    <!-- <div class="col-sm-6" ng-repeat="product in productslist">
                    
                         <div class="packges-block">
                             <div class="col-sm-5 pd0">
@@ -165,13 +161,7 @@
                                     <h5><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h5>
                                     <p class="packege-para small-height">{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
                                     <div class="right-blck">
-                                    <p class="gray-small-text"><span>   <!--  Location: Singapore, Singapore  --><br>
-                                           Category : {{product.Category}}</span>
-                                        </p>
-                                        <!--  <div class="star-rating-wrap">
-
-                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
-                                        </div> -->
+                                    <p class="gray-small-text"><span>   
 
                                     </div>
                                     <div class="price-right-block">
@@ -183,11 +173,37 @@
                                     <div class="price-right-block text-right">
 
                                      <a href="enquiry.html?id={{product.ProductId}}" class="pakege-btn">Enquiry</a>
-                                        <a href="#" class="pakege-btn">Order Now</a>
+                                        <a href="order.html?id={{product.ProductId}}" class="pakege-btn">Order Now</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-sm-3" ng-repeat="product in productslist">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="uploads/{{product.Image1}}" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                                <h5>{{product.Description | limitTo: 50 }}{{product.Description.length > 50 ? '...' : ''}}</h5>
+                                <!-- <p>Category : Footwears</p> -->
+                                <h4><span>From SGD</span>${{product.Price}}</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>{{product.Category | limitTo: 20 }}{{product.Category.length > 20 ? '...' : ''}}</span>
+                            </div>
                         </div>
                     </div>
 

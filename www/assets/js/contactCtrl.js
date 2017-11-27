@@ -316,7 +316,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.enquiryinit = function (req, res) {
        
-    //console.log($scope.enquiry);
+     //console.log($scope.enquiry);
 
       $scope.enquiry = {};
 
@@ -377,6 +377,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
+            $scope.product.orderqty = 2;
+            if (window.sessionStorage.getItem('User_Id')>0) 
+            {
+                $scope.product.BuyerId = window.sessionStorage.getItem('User_Id');
+                $scope.product.fullname = window.sessionStorage.getItem('User_Name');
+                $scope.product.email = window.sessionStorage.getItem('User_Email');
+                $scope.product.phonenumber = window.sessionStorage.getItem('User_Phone');
+            }
 
        
       });

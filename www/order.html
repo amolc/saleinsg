@@ -17,30 +17,24 @@
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 
-
          <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+   <script type="text/javascript">
+         if (window.sessionStorage.getItem('User_Id')<=0) 
+                {
+                   window.location.href="login.html";
+                }
+    </script>
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller" data-scroll-animation="false">
-
-    <div id="loading">
-        <div id="loading-center">
-            <div id="loading-center-absolute">
-                <div class="object" id="object_four"></div>
-                <div class="object" id="object_three"></div>
-                <div class="object" id="object_two"></div>
-                <div class="object" id="object_one"></div>
-            </div>
-        </div>
-    </div>
-
-    <header id="top-header">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
+<!-- Start Header -->
+       <header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
-                         <div class="col-sm-12">
+                        <div class="col-sm-12">
                             <div class=" col-sm-9 txt-logo">
                                  <a href="index.html">
                                     <img src="assets/img/logo.jpg" alt="" title="">
@@ -63,7 +57,7 @@
                         <div class="col-sm-12">
                             <div class="top-nav">
                                 <nav class="navbar navbar-default">
-                                  <div class="container-fluid ">
+                                  <div class="container-fluid pd0">
                                     <!-- Brand and toggle get grouped for better mobile display -->
                                     <div class="navbar-header">
                                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -76,8 +70,8 @@
                                     </div>
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
-                                    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-                                       <ul class="nav navbar-nav" ng-init="isLoggedin()">
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav" ng-init="isLoggedin()">
                                         <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
                                         <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
                                        <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
@@ -98,555 +92,151 @@
                 </div>
             </div>
         </header>
-    <section class="cust-section" ng-app="shopcart" ng-controller="orderCtrl" ng-init="init()" >
-
-        <div class="container" >
-          <div class="row section-header wow fadeInUp after-none" id="orderform">
-            <div class="col-sm-12">
-                        <h2 class="section-title">
-                            Order
-                        </h2>
-                    </div>
-            <form class="form-horizontal">
-              <div class="form-wrap">
-                   <div class="col-sm-12 col-md-12 wrap-bg">
-                        <div class="col-sm-7 pad-none">
-                          
-                    <div class="form-group" class="sm6" >
-                          <div class="col-sm-10 ">
-                                    <h3 class="form-heding">{{cardetails.CarModel}} - {{tourtype}}</h3>
-                                  
-                          
-                          </div>
-                       
-                        <div class="col-sm-2 ">
-                            <h3 class="form-heding">{{ tourtype=='hourly'? cardetails.HourlyRate : cardetails.OneWayRate | currency }}</h3>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" class="sm6" >
-                    
-                        <div class="col-sm-10 " >
-                                <h3 class="form-heding">Pick Location</h3>
-                        </div>
-                        <div class="col-sm-10" >
-                            <input type="hidden" ng-model="data.bookedcar" value="{{cardetails.CarModel}}" />
-                            <input type="hidden" ng-model="data.car" value="{{carkey}}" />
-                             
-                             <input type="hidden" ng-model="data.bookedtype" value="{{tourtype}}" />
-
-                             <textarea ng-model="data.picklocation" rows="3" class="form-control" tabindex="0">    
-                              </textarea>
-                        </div>
-                    </div>
-                    <div class="form-group" class="sm6" >
-                    
-                        <div class="col-sm-10 " >
-                                <h3 class="form-heding">Destination</h3>
-                        </div>
-                        <div class="col-sm-10" >
-                             <textarea ng-model="data.destination" rows="3" class="form-control" tabindex="1">    
-                              </textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group" class="sm6" >
-                        <div class="col-sm-5 ">
-                            <h3 class="form-heding">Schedule Pickup Date</h3>
-                        </div>
-                        <div class="col-sm-4 ">
-                            <h3 class="form-heding">Pickup Time</h3>
-                        </div>
-                        <div class="col-sm-4 " >
-                       
-                        <!-- <datepicker date-format="yyyy-MM-dd">
-                          <input ng-model="date" placeholder="Choose a date" class="form-control" type="text"/>
-                        </datepicker> -->
-                        <datepicker date-format="dd-MM-yyyy" selector="form-control">
-                            <div class="input-group">
-                                <input ng-model="data.pickupdate" class="form-control" placeholder="Choose a date"/>
-                                <span class="input-group-addon" style="cursor: pointer">
-                                <i class="fa fa-lg fa-calendar"></i>
-                                </span>
-                            </div>
-                        </datepicker>
-
-                        
-                        </div>
-                        <div class="col-sm-3 " >
-                         
-                         <select ng-model="data.pickuphours" placeholder="Hours" class="form-control" ng-options="hrs for hrs in [] | range:1:24"> 
-                          <option value="" selected="selected">Hours</option>
-                          {{hrs}}
-                         </select>
-                        </div>
-                        <div class="col-sm-3 " >
-                          <select ng-model="data.pickupminutes" class="form-control" placeholder="Minutes" ng-options="mts for mts in [] | minutesrange:0:60"><option value="" selected="selected">Minues</option>{{mts}}</select>
-                        
-                        </div>
-                        <!-- <div class="col-sm-2" >
-                            <h3 class="form-heding">{{data.schedulecharge | currency}}</h3>
-                        </div> -->
-                    </div>
-                      <div class="form-group" class="sm6" ng-if="tourtype=='hourly'" >
-                        <div class="col-sm-12 ">
-                            <h3 class="form-heding">No Of Hours</h3>
-                        </div>
-                        <div class="col-sm-5 " >
-                         
-                            <select ng-model="data.nohours" placeholder="Hours" class="form-control" ng-options="hrs for hrs in [] | range:1:24" ng-change="calculate()"><option value="" selected="selected">No Of Hours</option>{{hrs}}</select>
-                        </div>
-                        
-                        
-                    </div>
-                    <div class="form-group" class="sm6" >
-                    
-                        <div class="col-sm-10 " >
-                                <h3 class="form-heding">Total</h3>
-                        </div>
-                        <div class="col-sm-2" >
-                            <h3 class="form-heding">{{data.totalprice | currency }}</h3>
-                        </div>
-                    </div>
-                 
-                        </div>
-                       <div class="col-sm-5">
-                            <div class="form-car-img">
-                                <img src="uploads/{{cardetails.CarImage}}" alt="" title="" class="img-responsive" />
-                            </div>
-                       </div>
-                  </div> 
-                  <div class="col-sm-12 col-md-12 wrap-bg">
-                       
-                            <div class="col-sm-6">
-                            <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-12 control-label">Name</label>
-                              <input type="text" class="form-control" id="" placeholder="Name" tabindex="1" ng-model="data.ordername" value="Name">
-                          </div>
-                      </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-6 control-label">Email</label>
-                              <input type="text" class="form-control" id="email" placeholder="Email" ng-model="data.orderemail" tabindex="2" value="desibites.sg2017@gmail.com">
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-6 control-label">Phone Number</label>
-                              <input type="text" class="form-control" id="phone" placeholder="88888888" ng-model="data.orderphone" tabindex="3" value="2882828">
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                            <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-6 control-label">Address</label>
-                              <input type="text" class="form-control" id="Address1" placeholder="Address1" ng-model="data.orderaddress1" tabindex="4" value="Address 1 Lane 1">
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                            <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-6  control-label">Address2</label>
-                              <input type="text" class="form-control" id="address2" placeholder="Address2" ng-model="data.orderaddress2" tabindex="5"  value="Address 1 Lane 2">
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="inputEmail3" class="col-sm-6  control-label">Postal Code</label>
-                              <input type="text" class="form-control" id="postalcode" placeholder="123452" ng-model="data.orderpostalcode" tabindex="6" value="207226">
-                          </div>
-                      </div>
-                      <div class="col-sm-6">
-                            <div class="form-group" >
-                        <label for="inputEmail3" class="col-sm-6 control-label">Payment Type</label>
-                            <select ng-model="data.paymenttype" class="form-control" tabindex="7">
-                                    <option value="Credit Card" selected>Credit Card</option>
-                                    <option value="Bank Transfer">Bank Transfer</option>
-
-
-                          </select>
-
-                          </div>
-                      </div>
-                            <div class="col-sm-6">
-                      <div class="form-group" >
-                        <label for="inputEmail3" class="col-sm-12 control-label">Message</label>
-                              <textarea ng-model="data.ordermessage" rows="4" class="form-control" tabindex="8">    
-                              </textarea>
-                                
-                          </div>
-                      </div>
-                        
-                             <div class="col-sm-12 col-md-12">
-                                 <div class="terms-text">   
-                         <div class="form-group" >
-                       <!--  <label for="inputEmail3" class="col-sm-12 control-label">Terms and Condition</label> -->
-                          <div class="col-sm-12" style="text-align:center">
-                                <input  ng-model="data.orderterms" type="checkbox" >&nbsp;&nbsp;&nbsp;<a href="#test-popup" tabindex="9" class="open-popup-link color-white">Terms and Condition</a>
-                          </div>
-                      </div>        
-                    </div>
-                      <div class="form-group" class="sm6" id="alertmessage" >
-                        <div class="col-sm-12" >
-                        </div>
-
-                          <div class="col-sm-1" >
-                                  <h3 align="center"></h3>
-                          </div>
-                          <div class="col-sm-8 pink"  >
-                              <h4 align="center">{{alertmessage}}</h4>
-                          </div>
-                      </div>
-                            
-                        </div>
-                      <div class="form-group">
-                          <div class="col-sm-12" style="text-align:center">
-                              <button type="submit" class="btn btn-warning"  ng-click="order()" tabindex="10"> Order</button>
-                          </div>
-                      </div>
-                        
-                  </div>
-
-<!--                  <h2>Order Form</h2>-->
-                 <div class="clearfix"></div>
-              </div>
-              </form>
+    <!-- End Header -->
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+<!--
+  <section id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Bonne Route Travels</h3>
           </div>
-          <div class="clearfix"></div>
-            <div class="row section-header thanks-wrap after-none" id="thankyou">
+        </div>
+      </div>
+    </div>
+  </section>
+-->
 
-                  <h2 class="color-white"> Thank you for the order.</h2>
-                                  <br><br>
-                    <div class="col-sm-12">
-                      <div class="smile-img">
-                        <img src="images/smile.png">
-                        <br><br>
-                      </div>
-                    </div>
-                    <div class="col-sm-12">
-                      <div>
-                            <p>{{paymessage}}</p>
-                      </div>
-                      <div>
 
-                      </div>
-                    </div>
+<!--
+  <section id="context">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 box-context">
+          <div class="context-head text-center">
+            <h3>Book Now</h3>
+          </div>
 
-                      <div class="row">
-                          <a href="index.html" class="btn color-white">Thank You</a>
-                      </div>
-
+          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name">
             </div>
-            <div class="clearfix"></div>
-            <div class="row section-header" id="preview">
-                <h2> </h2>
-                <div>
-                    <h2>Preview Order</h2>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" id="phoneno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Travel Date</label>
+              <div class="input-append date">
+              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <div class="input-append date">
+                <textarea rows="4" cols="50">
 
-                    <form class="form-horizontal" >
+                  </textarea>
+            </div>
+            </div>
 
-                          <input type="hidden" ng-model="data.bookedcar" value="{{cardetails.CarModel}} - {{tourtype}}" />
-                          <input type="hidden" ng-model="data.car" value="{{carkey}}" />
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
+          </form>
 
-                          <input type="hidden" ng-model="data.bookedtype" value="{{tourtype}}" />
+        </div>
 
-                          <input type="hidden" ng-model="data.picklocation" value="{{data.picklocation}}" />
-                          <input type="hidden" ng-model="data.destination" value="{{data.destination}}" />
-                          <input type="hidden" ng-model="data.pickupdate" value="{{data.pickupdate}}" />
+        <div class="col-md-6 box-context">
 
-                          <input type="hidden" ng-model="data.pickuphours" value="{{data.pickuphours}}" />
-
-                          <input type="hidden" ng-model="data.pickupminutes" value="{{data.pickupminutes}}" />
-                          
-                          <input type="hidden" ng-model="data.nohours" value="{{data.nohours}}" />
-
-
-                          <input type="hidden" ng-model="data.ordername" value="{{data.ordername}}" />
-                          <input type="hidden" ng-model="data.orderemail" value="{{data.orderemail}}" />
-                          <input type="hidden" ng-model="data.orderphone" value="{{data.orderphone}}" />
-                          <input type="hidden" ng-model="data.orderaddress1" value="{{data.orderaddress1}}" />
-                          <input type="hidden" ng-model="data.orderaddress2" value="{{data.orderaddress2}}" />
-                          <input type="hidden" ng-model="data.orderpostalcode" value="{{data.orderpostalcode}}" />
-                          <input type="hidden" ng-model="data.paymenttype" value="{{data.paymenttype}}" />
-                          <input type="hidden" ng-model="data.ordermessage" value="{{data.ordermessage}}" />
-
-                          <div class="form-group" >
-                              <div class="col-sm-2">
-                              </div>
-                            <div class="col-sm-2">
-                                <h4>Order</h4>
-                            </div>
-                              <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.productname}}</h4>
-                              </div>
-                          </div>
-
-                          <div class="form-group" >
-                              <div class="col-sm-2">
-                              </div>
-                            <div class="col-sm-2">
-                                <h4>Booked Car</h4>
-                            </div>
-                              <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{cardetails.CarModel}} - {{tourtype}}</h4>
-                              </div>
-                          </div>
-                          <div class="form-group" >
-                              <div class="col-sm-2">
-                              </div>
-                            <div class="col-sm-2">
-                                <h4>Item Price[Subtotal]</h4>
-                            </div>
-                              <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.itemprice}}</h4>
-                              </div>
-                          </div>
-                          <div class="form-group" >
-                              <div class="col-sm-2">
-                              </div>
-                            <div class="col-sm-2">
-                                <h4>Total Price</h4>
-                            </div>
-                              <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.totalprice}}</h4>
-                              </div>
-                          </div>
-
-                        <div class="form-group" >
-                            <div class="col-sm-2">
-                            </div>
-                          <div class="col-sm-2">
-                              <h4>Pickup Location</h4>
-                          </div>
-                            <div class="col-sm-4" style="text-align:left">
-                                <h4>{{data.picklocation}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                            <div class="col-sm-2">
-                            </div>
-                          <div class="col-sm-2">
-                              <h4>Pickup Destination</h4>
-                          </div>
-                            <div class="col-sm-4" style="text-align:left">
-                                <h4>{{data.destination}}</h4>
-                            </div>
-                        </div>
-
-                        <div class="form-group" >
-                            <div class="col-sm-2">
-                            </div>
-                          <div class="col-sm-2">
-                              <h4>Pickup Date Time</h4>
-                          </div>
-                            <div class="col-sm-4" style="text-align:left">
-                                <h4>{{data.pickupdate}} {{data.pickuphours}}:{{data.pickupminutes}} </h4>
-                            </div>
-                        </div>
-
-                        <div class="form-group" ng-if="tourtype=='hourly'" >
-                            <div class="col-sm-2">
-                            </div>
-                          <div class="col-sm-2">
-                              <h4>No of Hours</h4>
-                          </div>
-                            <div class="col-sm-4" style="text-align:left">
-                                <h4>{{data.nohours}}</h4>
-                            </div>
-                        </div>
+        </div>
 
 
-                        <div class="form-group" >
-                            <div class="col-sm-2">
-                            </div>
-                          <div class="col-sm-2">
-                              <h4>Name</h4>
-                          </div>
-                            <div class="col-sm-4" style="text-align:left">
-                                <h4>{{data.ordername}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
 
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Email</h4>
-                          </div>
 
-                            <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.orderemail}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
 
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Phone Number</h4>
-                          </div>
 
-                            <div class="col-sm-4" style="text-align:left" >
-                                  <h4>{{data.orderphone}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
+      </div>
+    </div>
+  </section>
+-->
+<div class="clearfix"></div>
+  <section id="book-now">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+           <h2 class="section-title">Place Order</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="placeorder(order)">
+           <div class="col-md-6">
+            <div class="form-group">
+            <img src="uploads/{{product.Image1}}" class="img-responsive">
+          
+            </div>
+           
+                </div>
+             <div class="col-md-6"><div class="form-group">
+              <label for="fullname">Name : {{product.fullname}}</label>
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number : {{product.phonenumber}}</label>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address : {{product.email}}</label>
+            </div>
+            <div class="form-group">
+              <label for="productname">Product Name : {{product.ProductName}}</label>
+            </div>
+              <div class="form-group">
+              <label for="productprice">Product Price : SGD ${{product.Price}}</label>
+            </div>
+              <div class="form-group">
+             <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
+               <label for="productprice">Quantity :</label>
+               <select name="orderqty" class="form-control" id="orderqty" ng-options="n for n in [] | range:1:30" ng-model="product.orderqty">
+                          </select>  
+            </div>
+            <div class="form-group">
+              <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
+            </div>
+            
+              </div>
 
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Address1</h4>
-                          </div>
-
-                            <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.orderaddress1}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
-
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Address 2</h4>
-                          </div>
-
-                            <div class="col-sm-4" style="text-align:left">
-                                  <h4>{{data.orderaddress2}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
-
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Postal Code</h4>
-                          </div>
-
-                            <div class="col-sm-4" style="text-align:left" >
-                                  <h4>{{data.orderpostalcode}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
-
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Payment Type</h4>
-                          </div>
-
-                            <div class="col-sm-4" style="text-align:left" >
-                                  <h4>{{data.paymenttype}}</h4>
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                          <div class="col-sm-2" >
-
-                          </div>
-                          <div class="col-sm-2">
-                              <h4>Message</h4>
-                          </div>
-                          <div class="clearfix"></div>
-                            <div class="col-sm-4" style="text-align:left" >
-                                  <h4>{{data.ordermessage}}</h4>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-6">
-                                <button type="submit" class="btn btn-warning" ng-click="bankorder()" >Confirm Order</button>
-                            </div>
-                        </div>
-                         <div class="clearfix"></div>
-                    </form>
+              <div class="clearfix"></div>
+       
+          <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
+          </form>
+          <div id="thankyou" hidden="">
+            <div class="thankyou">
+                <div class="item">
+                    <span><h4><b><font>Order Placed Successfully!</font></b></h4></span>
                 </div>
             </div>
-
-            <div class="row section-header after-none" id="payform">
-                <h2> </h2>
-                <div class="pay-form-wrap">
-                    <h2>Pay Form</h2>
-                      <div class="col-sm-12" >
-                          <p style="color:red;">{{paymessage}}</p>
-                      </div>
-
-                    <form class="form-horizontal" stripe-form="stripeCallback">
-                       
-                       
-
-                        <input type="hidden" ng-model="data.bookedcar" value="{{cardetails.CarModel}} - {{tourtype}}" />
-                          <input type="hidden" ng-model="data.car" value="{{carkey}}" />
-
-                          <input type="hidden" ng-model="data.bookedtype" value="{{tourtype}}" />
-
-                          <input type="hidden" ng-model="data.picklocation" value="{{data.picklocation}}" />
-                          <input type="hidden" ng-model="data.destination" value="{{data.destination}}" />
-                          <input type="hidden" ng-model="data.pickupdate" value="{{data.pickupdate}}" />
-
-                          <input type="hidden" ng-model="data.pickuphours" value="{{data.pickuphours}}" />
-
-                          <input type="hidden" ng-model="data.pickupminutes" value="{{data.pickupminutes}}" />
-                          
-                          <input type="hidden" ng-model="data.nohours" value="{{data.nohours}}" />
-
-                          <input type="hidden" ng-model="data.ordername" value="{{data.ordername}}" />
-                          <input type="hidden" ng-model="data.orderemail" value="{{data.orderemail}}" />
-                          <input type="hidden" ng-model="data.orderphone" value="{{data.orderphone}}" />
-                          <input type="hidden" ng-model="data.orderaddress1" value="{{data.orderaddress1}}" />
-                          <input type="hidden" ng-model="data.orderaddress2" value="{{data.orderaddress2}}" />
-                          <input type="hidden" ng-model="data.orderpostalcode" value="{{data.orderpostalcode}}" />
-                          <input type="hidden" ng-model="data.paymenttype" value="{{data.paymenttype}}" />
-
-                      <div class="form-group" class="sm6" >
-                        <div class="col-sm-2" >
-                        </div>
-
-                          <div class="col-sm-8" >
-                           <h3>{{cardetails.CarModel}} - {{tourtype}}</h3>
-                                  <h3>Total</h3>
-                                  <h3>{{data.totalprice | currency }}</h3>
-                          </div>    
-                      </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="cardname" value="Humty Dumty">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Card Number</label>
-                            <div class="col-sm-10">
-                                <input type="text"  class="form-control"  ng-model="number" placeholder="Card Number" payments-validate="card" payments-type-model="type" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Expiry MM/YYYY</label>
-                            <div class="col-sm-3">
-                              <input type="text"  class="form-control"  ng-model="expiry" payments-format="expiry"  />
-                            </div>
-
-                            </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">CVV</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="cvc" maxlength="3" payments-format="cvc" >
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-12 text-center mr-t20">
-                                <button type="submit" class="btn btn-warning" >Pay</button>
-                            </div>
-                        </div>
-                    </form>
-                  </div>
-
-            
         </div>
-        </div>  
-    </section>
+        </div>
 
-    <section id="footer">
+      </div>
+    </div>
+      <div class="clearfix"></div>
+  </section>
+
+
+
+
+
+
+
+ <section id="footer">
             <div class="container">
                 <div class="row">
-                   <!--  <div class="col-sm-4 col-md-4">
+                    <!-- <div class="col-sm-4 col-md-4">
                         <div class="foot-text">
                             <h4>About us</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -658,59 +248,32 @@
                               <h5>Sale In Singapore</h5>
                               <p>06-32 Paya Lebar Square</p>
                               <p>Singapore 409051</p>
-
                        </div>
                     </div>
                     <div class="col-sm-4 col-md-4 pd-l80">
                         <div class="foot-text">
-                            <!-- <h4>select Hotels</h4> 
+                            <!-- <h4>select Hotels</h4>
                             <ul>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                                 <li><a href="#" class="hvr-radial-out"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            </ul>-->
+                            </ul> -->
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <footer  id="bottom-strip">
-            <p>Copyright 2017- Sale In Singapore - All Rights Reserved.</p>
+            <p>Copyright 2017- Sale In Singapore - All Rights Reserved</p>
         </footer>
-         
 
-<!--
-Alternative markup with data-mfp-src attribute:
-<a href="mobile-friendly-page.html" data-mfp-src="#test-popup" class="open-popup-link">Show inline popup</a>
--->
-    
-    <script src="js/lib/jquery-2.2.0.min.js"></script>
-    <script src="js/lib/bootstrap.min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.js"></script>
-    <script src="vendors/magnific-popup/jquery.magnific-popup.min.js"></script>
-    <script src="vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="vendors/bootstrap-select/js/bootstrap-select.min.js"></script>
-    <script src="https://www.w3schools.com/lib/w3data.js"></script>
-<!--    <script src="js/plugins/wow.min.js"></script>-->
-    <script src="js/main.js"></script>
-
-    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-        <script src="js/angular-datepicker.js"></script> 
+  <script  type="text/javascript"  src="assets/js/jquery.min.js"></script>
+  <script   type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script  type="text/javascript"  src="assets/js/main.js"></script>
 
 
-    <script src="lib/angular-storage.min.js"></script>
-    <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
-    <script src="js/angular-datepicker.js"></script> 
-    <script src="https://js.stripe.com/v2/"></script>
-    <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
-    <script src="js/shopcartCtrl.js"></script>
+</div>
 </body>
 
 </html>
-
-<!-- Localized -->
