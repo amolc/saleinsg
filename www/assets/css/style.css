@@ -985,6 +985,8 @@ section#footer {
   -o-transform: rotate(40deg) translate(21px, -10px);
   width: 122px;
 }
-
+.pd0{
+  padding: 0px;
+}
 
 .text-right { text-align: right;}
