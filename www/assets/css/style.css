@@ -875,8 +875,115 @@ section#footer {
   width: 63%;
   border-radius: 8px;
 }
+.product-box{
+  background-color: #ffffff;
+  border: 1px solid #bdbdbd;
+  position: relative;
+  overflow: hidden;
+}
+.product-footer{
+  padding: 15px 15px 20px;
+  text-align: center;
+}
+.product-footer h3 a {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color: #f60001;
+    display: block;
+    overflow: hidden;
+    height: 50px;
+}
+.product-footer h5{
+  font-size: 14px;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    font-family: 'Lato', sans-serif;
+    margin: 14px 0px;
+}
+.product-footer h4 span{
+  font-size: 17px;
+  color: #887476;
+  position: relative;
+  line-height: 19px;
+  position: relative;
+  top: -5px;
+  margin-right: 6px;
+}
+.product-footer h4{
+  font-size: 33px;  
+  color: #f60001;
+  font-family: 'Lato', sans-serif;
+}
+.product-footer p{
+  font-size: 13px;
+  color: #b9b9b9;
+  font-family: 'Lato', sans-serif;
+}
+.order-btn{
+  width: 47%;
+  float: left;
+}
+.inquiry-btn{
+  width: 47%;
+  float: right;
+}
+.red-btn{
+  background-color: #f60001;
+  border: 1px solid #f60001;
+  color: #ffffff;
+  padding: 7px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.5s linear 0s;
+  -webkit-transition: all 0.5s linear 0s;
+  -ms-transition: all 0.5s linear 0s;
+  -moz-transition: all 0.5s linear 0s;
+  -o-transition: all 0.5s linear 0s;
+} 
+.red-btn:hover{
+  color: #f60001;
+  border: 1px solid #f60001;
+  /*background-color: #bc0829;*/
+  background: transparent;
+  transition: all 0.5s linear 0s;
+  -webkit-transition: all 0.5s linear 0s;
+  -ms-transition: all 0.5s linear 0s;
+  -moz-transition: all 0.5s linear 0s;
+  -o-transition: all 0.5s linear 0s;
+}
+.bottom-btn{
+  margin: 20px 0px 0px;
+}
+.pro-img{
+  width: 100%;
+  height: 197px;
+  overflow: hidden;
+  text-align: center;
+}
 
-
+.cat-text{
+  position: absolute;
+  top: 14px;
+  right: 0px;
+  padding: 3px 10px;
+  text-align: center;
+  background: #f60002;
+  color: #fff;
+  font-size: 12px;
+  box-shadow: -1px 1px 2px #b5b4b4;
+  transform: rotate(37deg) translate(16px, -10px);
+  -webkit-transform: rotate(37deg) translate(16px, -10px);
+  -moz-transform: rotate(37deg) translate(16px, -10px);
+  -ms-transform: rotate(37deg) translate(16px, -10px);
+  -o-transform: rotate(37deg) translate(16px, -10px);
+  width: 122px;
+}
 
 
 .text-right { text-align: right;}
