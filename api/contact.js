@@ -514,35 +514,30 @@ exports.addbankorder = function (req, res) {
 
                             if (!err2) 
                             {
-                               // console.log(val2.insertId);
-                               //  var regId = val2.insertId;
-                               // // console.log(req.body.SupEmail);
-                               //  var recipientEmail = req.body.Email; 
-                               //  var subject = "[80STARTUPS.COM] saleinsg.com verification email";
-                               //  var mailbody = '<table>\
-                               //                      <tr>\
-                               //                        <td><h1>Dear '+req.body.SupName+',</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>You have new enquiry for your product.</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Product Name : '+req.body.productname+'</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Best wishes,</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td><h2>saleinsg.com</h2></td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                               //                      </tr>\
-                               //                    </table>';
+                            var orderID = val2.insertId ;
+                            var agentemail = "ceo@80startups.com";
+                            var officeremail = "shital.talole@fountaintechies.com";
+                            var subject = "New Order - "+orderID;
+                            var mailbody = "Hello,</br><p>New Order  : </p>"
 
-                               //  send_mail(recipientEmail, subject, mailbody);
+
+                             + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
+                             + "</br><p><b> Email:</b> " + req.body.email + "</p>"
+                             + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
+                             + "</br><p><b> Address :</b> " + req.body.address + "</p>"
+                             + "</br><p><b> Product :</b> " + req.body.productname + "</p>"
+                             + "</br><p><b> Qty :</b> " + req.body.orderqty + " Tray</p>"
+                             + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
+                             + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
+                             + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
+
+                             + "<p></br><p><b></p>"
+
+                             + "Thanks, Sales In Singapore";
+
+                             send_mail( agentemail, subject, mailbody );
+                             send_mail( officeremail, subject, mailbody );
+                             send_mail( req.body.Email, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,
@@ -573,13 +568,12 @@ exports.addorder = function(req, res){
         var amount = req.body.total ;
         var stripeToken = "" ;
         amount = amount*100 ;
-        var data = req.body ;
         dateToday = now.format("YYYY-MM-DD H:mm:ss");
         // Charge the user's card:
         var charge = stripe.charges.create({
           amount: amount,
           currency: "sgd",
-          description: data.ProductName,
+          description: req.body.productname,
           source: token
         }, function(err, charge) {
           // asynchronously called
@@ -588,17 +582,16 @@ exports.addorder = function(req, res){
               //  console.log('charge',charge);
                 stripetoken = charge.id ;
                 orderCRUD.create({
-                  SuplierId:data.orderdate,
-                  ProductId:data.ordername,
-                  Quantity:data.orderemail,
-                  Price: data.orderphone,
-                  TotalAmount: data.orderaddress1,
-                  BuyerId: data.orderaddress2,
-                  OrderDate: data.orderpostalcode,
-                  PaymentStatus:data.qty,
-                  ShippingAddress: data.productprice,
-                  stripeToken: stripetoken,
-                  paymenttype: data.paymenttype,
+                  SuplierId:req.body.SupplierId,
+                            ProductId:req.body.ProductId,
+                            Quantity:req.body.orderqty,
+                            Price:req.body.Price,
+                            TotalAmount: req.body.total,
+                            BuyerId: req.body.BuyerId,
+                            OrderDate: dateToday,
+                            ShippingAddress: req.body.address,
+                            paymenttype:req.body.paymenttype,
+                            stripeToken: stripetoken,
                  }, function (err, vals) {
                   //mysql callback
                         if(err){
@@ -614,21 +607,15 @@ exports.addorder = function(req, res){
                             var mailbody = "Hello,</br><p>New Order  : </p>"
 
 
-                             + "<p></br><p><b> Name: </b> " + data.ordername + "</p>"
-                             + "</br><p><b> Email:</b> " + data.orderemail + "</p>"
-                             + "</br><p><b> Phone: </b> " + data.orderphone + "</p>"
-                             + "</br><p><b> Address 1:</b> " + data.orderaddress1 + "</p>"
-                             + "</br><p><b> Address 2:</b> " + data.orderaddress2 + "</p>"
-                             + "</br><p><b> Postal Code:</b> " + data.orderpostalcode + "</p>"
-                             + "</br><p><b> Product :</b> " + data.productname + "</p>"
-                             + "</br><p><b> Qty :</b> " + data.qty + " Tray</p>"
-                             + "</br><p><b> Product Price:</b> " + data.productprice + "</p>"
-                             + "<p></br><p><b> Delivery Date: </b> " + data.orderdate + "</p>"
-                             + "</br><p><b> Delivery Charge:</b> " + data.deliverycharge + "</p>"
-                             + "</br><p><b> Delivery Charge:</b> " + data.deliverycharge + "</p>"
-                             + "</br><p><b> Total Price:</b> SGD " + data.totalprice + "</p>"
-                             + "</br><p><b> Payment Type:</b> " +  data.paymenttype + "</p>"
-                             + "</br><p><b> Schedule Delivery:</b> " +  delivery + "</p>"
+                             + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
+                             + "</br><p><b> Email:</b> " + req.body.email + "</p>"
+                             + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
+                             + "</br><p><b> Address :</b> " + req.body.address + "</p>"
+                             + "</br><p><b> Product :</b> " + req.body.productname + "</p>"
+                             + "</br><p><b> Qty :</b> " + req.body.orderqty + " Tray</p>"
+                             + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
+                             + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
+                             + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
 
                              + "<p></br><p><b></p>"
                              + "</br><p><b> Token:</b> " + stripetoken + "</p>"
@@ -636,7 +623,7 @@ exports.addorder = function(req, res){
 
                              send_mail( agentemail, subject, mailbody );
                              send_mail( officeremail, subject, mailbody );
-                             send_mail( data.orderemail, subject, mailbody );
+                             send_mail( req.body.Email, subject, mailbody );
                              //mail to ordering customer
                              //send_mail( data.orderemail, subject, mailbody );
 
