@@ -415,8 +415,8 @@ section#footer {
 
 .txt-bcsup{
   color: #fff;
-  background-color: #bc0829;
-  border:1px solid #bc0829;
+  background-color: #52bad5;
+  border:1px solid #52bad5;
   border-radius:0px;
   font-size:20px;
   padding: 10px 25px;
@@ -430,7 +430,8 @@ section#footer {
     color: #ffffff;
 }
 .navigation-strip{
-    background-color: #bc0829;
+    /*background-color: #bc0829;*/
+    background-color: #f2f2f2;
 }
 .navigation-strip .navbar{
     margin: 0px;
@@ -443,10 +444,10 @@ section#footer {
     padding: 0px;
 }
 .navigation-strip .navbar-default .navbar-nav > li > a{
-    color: #ffffff;
+    color: #000000;
     font-family: 'Lato', sans-serif;
     font-size: 16px;
-    font-weight: 600;
+    /*font-weight: 600;*/
 }
 
 /* Underline Reveal */
@@ -466,7 +467,7 @@ section#footer {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #bc0829;
+  background: #52bad5;
   height: 4px;
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
@@ -515,9 +516,9 @@ section#footer {
     color: #bc0829;
     cursor: pointer;
 }
-#pakeges-wrap{
+/*#pakeges-wrap{
     background-color: #f1eada;
-}
+}*/
 .right-blck{
     width: 65%;
     float: left;
@@ -569,9 +570,9 @@ section#footer {
     height: 80px;
     overflow: hidden;
 }
-#book-now{
+/*#book-now{
   background-color: #f1eada;
-}
+}*/
 #book-now label{
   color: #280f0a;
   font-family: 'Lato', sans-serif;
@@ -689,7 +690,7 @@ section#footer {
   max-width: none;
   width: -webkit-calc(100% + 50px);
   width: calc(100% + 50px);
-  opacity: 0.2;
+  opacity: 1;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
   -webkit-transform: translate3d(-40px, 0, 0);
@@ -733,9 +734,9 @@ section#footer {
 .hero-grid img{
   width: 100%;
 }
-#country-box{
+/*#country-box{
   background-color: #f1eada;
-}
+}*/
 .breadcrumb{
   background: transparent;
   padding: 0px;
