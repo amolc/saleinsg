@@ -424,7 +424,11 @@ section#footer {
   margin-top:30px;
   display: inline-block;
 }
-.txt-bcsup:hover { color:#171717; }
+.txt-bcsup:hover { 
+  color:#171717;
+  background-color: transparent;
+  
+}
 .txt-bcsup a {
 
     color: #ffffff;
