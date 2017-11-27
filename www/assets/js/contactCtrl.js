@@ -318,7 +318,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     //console.log($scope.enquiry);
 
       $scope.enquiry = {};
-      $scope.product = {};
 
       var url = window.location.href;
 
@@ -340,6 +339,34 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.enquiry.SupId = data.SupplierId;
             $scope.enquiry.SupEmail = data.Email;
             $scope.enquiry.BuyerId = 0;
+       
+      });
+    }
+    else
+    {
+        location.href = "products.html";
+    }
+
+    }
+
+      $scope.productinit = function (req, res) {
+
+      $scope.product = {};
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var productId = urlpart[0].split('=');
+
+      $scope.product.productId= productId[1];
+
+       $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
+
             $scope.product = data;
 
        
