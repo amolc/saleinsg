@@ -399,6 +399,7 @@ exports.allproducts = function (req, res) {
     });
 };
 
+
 exports.getproductsbylocation = function (req, res) {
   var location = req.params.id;
     var sql = "SELECT p.* FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE s.`Location` LIKE '%"+location+"%'  ORDER BY `ProductId` DESC";
@@ -412,6 +413,7 @@ exports.getProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT * FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE p.`ProductId`= "+ProductId;
+   // console.log(sql);
   // console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);

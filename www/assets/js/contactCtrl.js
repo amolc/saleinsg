@@ -1,3 +1,14 @@
+ app.filter('range', function() {
+      return function(input, min, max) {
+        min = parseInt(min); //Make string input int
+        max = parseInt(max);
+        for (var i=min; i<max; i++)
+          input.push(i);
+        return input;
+      };
+    });
+
+
 app.controller('contactcontroller', function ($scope, $location, $http, $window) {
 
   //----------- Book Now ------------------------///
@@ -377,7 +388,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
-            $scope.product.orderqty = 2;
+            $scope.product.orderqty = 1;
+            $scope.qty = [];
+            for (var i = 1; i <=  $scope.product.Quantity; i++) {
+               $scope.qty.push(i);
+            }
+          //  console.log($scope.qty);
+          
             if (window.sessionStorage.getItem('User_Id')>0) 
             {
                 $scope.product.BuyerId = window.sessionStorage.getItem('User_Id');

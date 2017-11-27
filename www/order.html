@@ -174,7 +174,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="placeorder(order)">
+          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="placeorder()">
            <div class="col-md-6">
             <div class="form-group">
             <img src="uploads/{{product.Image1}}" class="img-responsive">
@@ -200,8 +200,7 @@
               <div class="form-group">
              <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
                <label for="productprice">Quantity :</label>
-               <select name="orderqty" class="form-control" id="orderqty" ng-options="n for n in [] | range:1:30" ng-model="product.orderqty">
-                          </select>  
+               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:1:product.Quantity"></select>
             </div>
             <div class="form-group">
               <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
@@ -211,7 +210,7 @@
 
               <div class="clearfix"></div>
        
-          <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
+          <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
           </form>
           <div id="thankyou" hidden="">
             <div class="thankyou">
