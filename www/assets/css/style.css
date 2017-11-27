@@ -191,7 +191,7 @@ section#footer {
 }
 #footer{
     background: #171717; 
-    border-top: 5px solid #bc0829;
+    border-top: 5px solid #52bbd5;
 }
 #footer .jumbotron{
     background: transparent; 
@@ -990,11 +990,13 @@ section#footer {
   padding: 0px;
 }
 
-<<<<<<< HEAD
 .text-right { text-align: right;}
-=======
 .text-right { text-align: right;}
 .cos-width.col-sm-offset-1{
   margin-left: 13.733333%;
 }
->>>>>>> master
+
+.orenge-logo-strip a img{
+  width: 290px;
+  height: auto;
+}
