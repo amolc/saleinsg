@@ -22,7 +22,7 @@
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="enquiryinit()">
 <!-- Start Header -->
        <header id="top-header">
             <div class="orenge-logo-strip">
@@ -87,7 +87,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller" data-ng-init="initfunc()">
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
 <!--
   <section id="header">
     <div class="container">
@@ -163,62 +163,46 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">BOOK NOW</h2>
+           <h2 class="section-title">Enquiry</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+          <form name="enquiryform" id="enquiryform"  ng-controller="contactcontroller" ng-submit="submitenquiry(enquiryform)">
              <div class="col-md-6"><div class="form-group">
-              <label for="">Name :</label>
-              <input type="name" class="form-control" ng-model="fullname" name="fullname" id="fullname" required>
+              <label for="fullname">Name :</label>
+              <input type="text" class="form-control" ng-model="enquiry.fullname" name="fullname" id="fullname" required>
             </div>
             <div class="form-group">
               <label for="phoneno">Phone Number:</label>
-              <input type="phoneno" class="form-control" ng-model="phonenumber" name="phonenumber" id="phonenumber" required>
+              <input type="text" class="form-control" ng-model="enquiry.phonenumber" name="phonenumber" id="phoneno" required>
             </div>
             <div class="form-group">
               <label for="email">Email Address:</label>
-              <input type="email" class="form-control" ng-model="email" name="email" id="email" required>
+              <input type="email" class="form-control" ng-model="enquiry.email" name="email" id="email" required>
             </div>
             <div class="form-group">
-              <label for="pwd">No of Adult :</label>
+              <label for="productname">Product Name :</label>
 
-              <select ng-model="adults" name="adults" id="adults" class="form-control" required>
-                  <option ng-repeat="item in adults" value="{{item}}">{{item}}</option>
-              </select>
+             <input type="text" class="form-control" ng-model="enquiry.productname" name="productname" id="productname" required>
             </div>
-            <div class="form-group">
-              <label for="pwd">No of Child :</label>
-
-              <select ng-model="Child" name="Child" id="Child" class="form-control">
-                  <option ng-repeat="item in child" value="{{item}}">{{item}}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Travel Date :</label>
-              <input type="date" class="form-control" ng-model="travelDate" name="travelDate" id="travelDate" required>
-            </div>
+            
               </div>
             <div class="col-md-6">
             <div class="form-group">
-              <label for="pwd">Special Request</label>
-              <textarea class="form-control mb19" name="message" ng-model="message" id="message" cols="30" rows="17"></textarea>
+              <label for="pwd">Enquiry</label>
+              <textarea class="form-control mb19" name="message" ng-model="enquiry.message" id="message" cols="30" rows="13" required=""></textarea>
             </div>
-            <div class="form-group">
-              <label for="pwd">Promo Code :</label>
-              <input type="text" class="form-control" ng-model="promoCode" name="promoCode" id="promoCode">
-            </div>
+           
                 </div>
               <div class="clearfix"></div>
-           <!--  <input type="text" class="form-control" ng-model="packageName" name="packageName" id="packageName"> -->
-             <input type="hidden" class="form-control" ng-model="packagename" value="{{packagename}}" name="packageName" id="packageName">
-            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">BOOKING</button>
+       
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
           </form>
-          <div id="thankyou">
+          <div id="thankyou" hidden="">
             <div class="thankyou">
                 <div class="item">
-                    <span><h4><b><font>Submitted Successfully!</font></b></h4></span>
+                    <span><h4><b><font>Enquiry Submitted Successfully!</font></b></h4></span>
                 </div>
             </div>
         </div>
@@ -273,7 +257,7 @@
   <script  type="text/javascript"  src="assets/js/jquery.min.js"></script>
   <script   type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script  type="text/javascript"  src="assets/js/main.js"></script>
- <script src="assets/js/custom.js"></script>
+
 
 </div>
 </body>
