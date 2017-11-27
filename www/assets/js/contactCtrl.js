@@ -289,6 +289,61 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
 
+  $scope.enquiryinit = function (req, res) {
+       
+    //console.log($scope.enquiry);
+
+      $scope.enquiry = {};
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var productId = urlpart[0].split('=');
+
+      $scope.enquiry.productId= productId[1];
+
+       $http.get(baseurl + 'getProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
+
+           // console.log(data);
+            $scope.enquiry.productname = data.ProductName;
+            $scope.enquiry.SupName = data.FirstName+' '+data.LastName;
+            $scope.enquiry.SupId = data.SupplierId;
+            $scope.enquiry.SupEmail = data.Email;
+            $scope.enquiry.BuyerId = 0;
+       
+      });
+    }
+    else
+    {
+        location.href = "products.html";
+    }
+
+    }
+
+
+
+  $scope.submitenquiry = function (enquiryform) {
+
+      $http.post(baseurl + 'submitenquiry',$scope.enquiry).success(function(data, status) {
+
+        if (data.status == true) 
+        {
+             document.enquiryform.reset(); 
+             $("#enquiryform").hide();
+             $("#thankyou").show('slow');
+
+        }
+       
+      });
+  
+  }
+
+
 
 
   $scope.booknow = function (req, res) {

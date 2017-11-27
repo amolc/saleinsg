@@ -211,8 +211,8 @@
             </div>
              <div class="col-md-6">
             <div class="form-group">
-              <label for="location">Loaction:</label>
-              <input type="text" class="form-control" ng-model="registration.location" name="location" id="location" required>
+              <label for="location">Location:</label>
+              <input type="text" class="form-control" ng-model="registration.location" name="location" id="address" required>
             </div> 
             </div>
              <div class="col-md-6">
@@ -296,6 +296,26 @@
          // Find any date inputs and override their functionality
          $('input[type="date"]').datepicker();
     });
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQD-LT4-VzlsdNpf33yNDeT38EaF3Kz-g&libraries=places"></script>
+<script>
+
+
+google.maps.event.addDomListener(window, 'load', function () 
+{
+
+  var options = { types: ['(cities)']};
+
+ // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
+ // };
+            var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
+            google.maps.event.addListener(places, 'place_changed', function () { 
+             
+
+            });
+                
+});
+
 </script>
 
 </div>
