@@ -273,19 +273,43 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.allproducts = function (req, res) {
 
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var location = urlpart[0].split('=');
+
+      $scope.location= location[1];
+
+      $http.get(baseurl + 'getproductsbylocation/'+$scope.location).success(function(data, status) {
+
+           $scope.productslist = data;
+       
+      });
+    }
+    else
+    {
+        
         $http.get(baseurl + 'allproducts').success(function (res) {
 
             if (res.status == 'false') {
 
             }
             else {
-                console.log(res);
+               // console.log(res);
                 $scope.productslist = res;
             }
 
         }).error(function () {
 
         });
+    }
+
     }
 
 
