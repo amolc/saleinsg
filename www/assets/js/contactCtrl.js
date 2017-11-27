@@ -121,6 +121,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         window.sessionStorage.setItem('User_Id', data.value.SupId);
                         window.sessionStorage.setItem('User_Email', data.value.Email);
                         window.sessionStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
+                        window.sessionStorage.setItem('User_Phone', data.value.Phone);
                         //console.log(window.sessionStorage.getItem('UserId'));
                         //console.log(window.sessionStorage.getItem('UserId'));
                         
@@ -334,11 +335,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
 
            // console.log(data);
+
             $scope.enquiry.productname = data.ProductName;
             $scope.enquiry.SupName = data.FirstName+' '+data.LastName;
             $scope.enquiry.SupId = data.SupplierId;
             $scope.enquiry.SupEmail = data.Email;
             $scope.enquiry.BuyerId = 0;
+            if (window.sessionStorage.getItem('User_Id')>0) 
+            {
+                $scope.enquiry.BuyerId = window.sessionStorage.getItem('User_Id');
+                $scope.enquiry.fullname = window.sessionStorage.getItem('User_Name');
+                $scope.enquiry.email = window.sessionStorage.getItem('User_Email');
+                $scope.enquiry.phonenumber = window.sessionStorage.getItem('User_Phone');
+            }
        
       });
     }
