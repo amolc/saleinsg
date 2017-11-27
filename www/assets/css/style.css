@@ -653,7 +653,7 @@ section#footer {
   font-weight: 800;
   margin: 0;
   padding: 0.25em 0;
-  font-size: 35px;
+  font-size: 27px;
   line-height: 1;
   font-family: Open Sans Condensed;
 }
@@ -989,4 +989,11 @@ section#footer {
   padding: 0px;
 }
 
+<<<<<<< HEAD
 .text-right { text-align: right;}
+=======
+.text-right { text-align: right;}
+.cos-width.col-sm-offset-1{
+  margin-left: 13.733333%;
+}
+>>>>>>> master
