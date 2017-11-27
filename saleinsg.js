@@ -49,9 +49,10 @@ app.post('/api/login', contact.login);
 
 
 app.post('/api/addproduct', contact.addproduct);
+
 app.get('/api/allproducts', contact.allproducts);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
-
+app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.post('/api/submitenquiry', contact.submitenquiry);
 
 
