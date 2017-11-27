@@ -9,6 +9,16 @@ else if (document.location.hostname == "www.saleinsg.com")
 {
   var baseurl = "https://www.saleinsg.com/api/";
 
+}
+else if (document.location.hostname == "tradeexchange.co")
+{
+  var baseurl = "https://tradeexchange.co/api/";
+
+}
+else if (document.location.hostname == "www.tradeexchange.co")
+{
+  var baseurl = "https://www.tradeexchange.co/api/";
+
 }else{
 
   var baseurl = "http://localhost:9888/api/";
