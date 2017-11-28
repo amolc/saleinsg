@@ -1,7 +1,8 @@
 /*google font*/
 @import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
 /*font-family: 'Lato', sans-serif;*/
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+  /*font-family: 'Open Sans', sans-serif;*/
 
 /* Base CSS */
 .alignleft {
@@ -35,7 +36,7 @@ h6 {
     font-weight: 700;
 }
 body {
-
+  font-family: 'Open Sans', sans-serif;
 }
 a:hover { text-decoration: none }
 
@@ -402,8 +403,9 @@ section#footer {
     background: #656057;
 }
 .orenge-logo-strip{
-   /* background-color: #bc0829;*/
+    background-color: #f2f2f2;
     padding: 20px 0px;
+
 }
 .logo-img img{
     width: 224px;
@@ -459,7 +461,7 @@ section#footer {
 }
 .navigation-strip .navbar-default .navbar-nav > li > a{
     color: #000000;
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     font-size: 16px;
     /*font-weight: 600;*/
 }
@@ -509,7 +511,7 @@ section#footer {
     margin-bottom: 5px;
 }
 .packeg-details-text h5 a{
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     font-size: 17px;
     color: #bc0829;
     height: 36px;
@@ -517,12 +519,12 @@ section#footer {
     overflow: hidden;
 }
 .packeg-details-text p{
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     font-size: 14px;
 }
 .gray-small-text span{
     font-size: 12px;
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     color: #c3c3c3;
     font-weight: 600;
 }
@@ -539,7 +541,7 @@ section#footer {
 }
 .price-right-block{
     text-align: center;
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
 }
 .price-right-block span{
     font-size: 14px;
@@ -589,7 +591,7 @@ section#footer {
 }*/
 #book-now label{
   color: #280f0a;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
 .form-control:focus, .form-control:hover, .form-control:active{
@@ -690,7 +692,7 @@ section#footer {
 #country-box .hero-grid h2,
 #country-box .hero-grid p {
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
 }
 
 #country-box .hero-grid p {
@@ -754,7 +756,7 @@ section#footer {
 .breadcrumb{
   background: transparent;
   padding: 0px;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
 /*.form-group{
@@ -901,7 +903,7 @@ section#footer {
   text-align: center;
 }
 .product-footer h3 a {
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     font-size: 18px;
     color: #443f3f;
     display: block;
@@ -915,7 +917,7 @@ section#footer {
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
-    font-family: 'Lato', sans-serif;
+    ont-family: 'Open Sans', sans-serif;
     margin: 14px 0px;
 }
 .product-footer h4 span{
@@ -930,12 +932,12 @@ section#footer {
 .product-footer h4{
   font-size: 33px;  
   color: #f60001;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
 }
 .product-footer p{
   font-size: 13px;
   color: #b9b9b9;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
 }
 .order-btn{
   width: 47%;
@@ -953,7 +955,7 @@ section#footer {
   text-align: center;
   width: 100%;
   display: block;
-  font-family: 'Lato', sans-serif;
+  ont-family: 'Open Sans', sans-serif;
   /*text-transform: uppercase;*/
   transition: all 0.5s linear 0s;
   -webkit-transition: all 0.5s linear 0s;
@@ -1011,6 +1013,19 @@ section#footer {
 }
 
 .orenge-logo-strip a img{
-  width: 290px;
+  width: 200px;
   height: auto;
+} 
+.navigation-wrap .navbar{
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+.navigation-wrap .navbar-default{
+  background: transparent;
+  border: 0px;
+}
+.navigation-wrap .navbar-default .navbar-nav>li>a{
+  color: #484848;
+  font-weight: 600;
+  font-size: 14px;
 }
