@@ -1,6 +1,7 @@
 var http = require('http');
 var mysql = require('mysql');
 var randomString = require('random-string');
+var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7"); 
 var moment = require("moment");
 var verifycode = randomString();
 var now = moment();
@@ -525,15 +526,15 @@ exports.addbankorder = function (req, res) {
                              + "</br><p><b> Email:</b> " + req.body.email + "</p>"
                              + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
                              + "</br><p><b> Address :</b> " + req.body.address + "</p>"
-                             + "</br><p><b> Product :</b> " + req.body.productname + "</p>"
-                             + "</br><p><b> Qty :</b> " + req.body.orderqty + " Tray</p>"
+                             + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
+                             + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
                              + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
                              + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
                              + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
 
                              + "<p></br><p><b></p>"
 
-                             + "Thanks, Sales In Singapore";
+                             + "Thanks, tradeexchange";
 
                              send_mail( agentemail, subject, mailbody );
                              send_mail( officeremail, subject, mailbody );
@@ -573,7 +574,7 @@ exports.addorder = function(req, res){
         var charge = stripe.charges.create({
           amount: amount,
           currency: "sgd",
-          description: req.body.productname,
+          description: req.body.ProductName,
           source: token
         }, function(err, charge) {
           // asynchronously called
@@ -611,15 +612,15 @@ exports.addorder = function(req, res){
                              + "</br><p><b> Email:</b> " + req.body.email + "</p>"
                              + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
                              + "</br><p><b> Address :</b> " + req.body.address + "</p>"
-                             + "</br><p><b> Product :</b> " + req.body.productname + "</p>"
-                             + "</br><p><b> Qty :</b> " + req.body.orderqty + " Tray</p>"
+                             + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
+                             + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
                              + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
                              + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
                              + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
 
                              + "<p></br><p><b></p>"
                              + "</br><p><b> Token:</b> " + stripetoken + "</p>"
-                             + "Thanks, Shelley Cupcakes";
+                             + "Thanks, tradeexchange";
 
                              send_mail( agentemail, subject, mailbody );
                              send_mail( officeremail, subject, mailbody );

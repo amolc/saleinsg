@@ -18,6 +18,9 @@
 
 
          <script type="text/javascript" src="assets/js/angular.min.js"></script>
+           <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
@@ -228,7 +231,9 @@
           </form>
            <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
 
-                      
+                      <div class="col-sm-10" >
+                          <p style="color:red;">{{paymessage}}</p>
+                      </div>
 
                         <div class="col-sm-12 text-center" >
                            <h3>{{product.ProductName}}</h3>
@@ -240,25 +245,25 @@
                         <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Name</label>
-                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="order.cardname" value="Humty Dumty">
+                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="product.cardname" value="Humty Dumty">
                         </div>
                         </div>
                         <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Card Number</label>
-                                <input type="text"  class="form-control"  ng-model="order.number" payments-validate="card" payments-type-model="type" />
+                                <input type="text"  class="form-control"  ng-model="product.number" payments-validate="card" payments-type-model="type" />
                         </div>
                         </div>
                         <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Expiry MM/YYYY</label>
-                              <input type="text"  class="form-control"  ng-model="order.expiry" payments-format="expiry"  />
+                              <input type="text"  class="form-control"  ng-model="product.expiry" payments-format="expiry"  />
                             </div>
                         </div>
                         <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">CVV</label>
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="order.cvc" maxlength="3" payments-format="cvc" >
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="product.cvc" maxlength="3" payments-format="cvc" >
                         </div>
                         </div>
 
