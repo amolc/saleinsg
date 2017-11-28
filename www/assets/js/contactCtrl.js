@@ -462,6 +462,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   $scope.stripeCallback = function (code, result) {
 
 
+       //   console.log(code);
+
+
           if (result.error) {
               //window.alert('it failed! error: ' + result.error.message);
                 $scope.paymessage = result.error.message ;
