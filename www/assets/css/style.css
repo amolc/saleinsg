@@ -911,7 +911,7 @@ section#footer {
     height: 50px;
 }
 .product-footer h5{
-  font-size: 14px;
+  font-size: 16px;
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
@@ -932,7 +932,8 @@ section#footer {
 .product-footer h4{
   font-size: 29px;  
   color: #f60001;
-  ont-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
 }
 .product-footer p{
   font-size: 13px;
@@ -1042,6 +1043,7 @@ section#footer {
   -ms-transform: rotate(40deg) translate(21px, -10px);
   -o-transform: rotate(40deg) translate(21px, -10px);
   width: 122px;
+  display: none;
 }
 .pd0{
   padding: 0px;
