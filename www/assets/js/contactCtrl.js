@@ -461,7 +461,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.stripeCallback = function (code, result) {
 
-          alert('hi');
 
           if (result.error) {
               //window.alert('it failed! error: ' + result.error.message);
