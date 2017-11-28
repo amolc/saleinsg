@@ -11,6 +11,8 @@
 
 app.controller('contactcontroller', function ($scope, $location, $http, $window) {
 
+     $window.Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO');
+
   //----------- Book Now ------------------------///
 
   $scope.adults = ['0','1','2','3','4','5','6','7','8','9','10'];
@@ -456,6 +458,59 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   
   }
+
+  $scope.stripeCallback = function (code, result) {
+
+
+       //   console.log(code);
+
+
+          if (result.error) {
+              //window.alert('it failed! error: ' + result.error.message);
+                $scope.paymessage = result.error.message ;
+                $scope.transactionid = result.id ;
+
+                console.log("Error");
+                $("#orderform").hide();
+                $("#payform").show();
+                $("#thankyou").hide();
+
+          } else {
+                //$scope.data = {};
+              //window.alert('success! token: ' + result.id);
+               $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+
+                $scope.message = "Card Successfully Approved."
+                $scope.product.stripeToken = result.id ;
+                $scope.paymessage = $scope.message ;
+                $("#orderform").hide("slow");
+                $("#payform").hide("slow");
+                $("#thankyou").show("slow");
+
+
+              /*  $http.post(baseurl + 'addorder/', $scope.data).success(function (res) {
+                  if (res.status == 'false') {
+                  }
+                }).error(function () {
+                  console.log("error");
+                })*/
+
+                //console.log($scope.data);
+                $http.post(baseurl + 'addorder/',$scope.product).success(function(res) {
+                  $scope.response = res;
+                //  console.log(res);
+                  if (res.status == 'false') {
+                    alert(res.message);
+                  } else {
+                    alert(res.message);
+                    //$location.path("/Cart");
+                  }
+                }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+                });
+          }
+
+      };
 
 
 

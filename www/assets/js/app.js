@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('80consult', ['angular-storage']);
+var app = angular.module('80consult', ['angular-storage','angularPayments']);
 if (document.location.hostname == "saleinsg.com")
 {
   var baseurl = "https://saleinsg.com/api/";
