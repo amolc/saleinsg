@@ -437,7 +437,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
 
-    $scope.allproducts = function (req, res) {
+    $scope.getrecentproducts = function (req, res) {
 
         
         $http.get(baseurl + 'getrecentproducts').success(function (res) {
