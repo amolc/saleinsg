@@ -441,11 +441,12 @@ exports.getproductsbylocation = function (req, res) {
 };
 
 exports.getrecentprod = function (req, res) {  
-    
-  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`ProductId` IN ("+req.body.reproducts+") GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-  //console.log(sql);
+    console.log("product ids "+req.body.recentProducts);
+  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`ProductId` IN ("+req.body.recentProducts+") GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+ // console.log(sql);
     db.query(sql, function (err, data) {
-        res.json(data);
+        res.jsonp(data);
+       // console.log(data);
     });
 };
 

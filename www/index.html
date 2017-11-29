@@ -503,6 +503,7 @@
                   <div class="carousel-inner" ng-init="allproducts()">
                   <div class="item active" ng-repeat="product in productslist">
                       <div class="col-xs-12 col-sm-6 col-md-3">
+                      <a href="product_detail.html?id={{product.ProductId}}">
                         <div class="product-box">
                             <div class="pro-img">
                                 <img src="uploads/{{product.Image1}}" alt="" title="">
@@ -531,6 +532,7 @@
                             </div>
                         </div>
                       </div>
+                      </a>
                     </div>
                     <!-- <div class="item">
 =======
@@ -711,7 +713,7 @@
           </div>
          </section>
          <section id="viewed-wrap" ng-init="getrecentproducts()">
-          <div class="container">
+          <div ng-if="recentcount==1" class="container">
             <div class="row">
               <div class="col-sm-12">
                 <h2 class="section-title">
@@ -728,6 +730,7 @@
 
                   <div class="item active" ng-repeat="product in recentproducts">
                       <div class="col-xs-12 col-sm-6 col-md-3">
+                       <a href="product_detail.html?id={{product.ProductId}}">
                         <div class="product-box">
                             <div class="pro-img">
                                 <img src="uploads/{{product.Image1}}" alt="" title="">
@@ -755,6 +758,7 @@
                                 <span>Footwears</span>
                             </div>
                         </div>
+                        </a>
                       </div>
                     </div>
 

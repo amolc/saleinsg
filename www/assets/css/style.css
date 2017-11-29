@@ -201,7 +201,7 @@ section#footer {
 .foot-text h4{
     color: #fff; 
     text-transform: uppercase; 
-    margin-bottom: 28px;
+    margin-bottom: 18px;
 }
 .foot-text h5{
     color: #fff; 
@@ -231,24 +231,22 @@ section#footer {
 }
 .foot-text ul li{
     list-style-type: none; 
-    float: left;
-}
+ }
 .foot-text ul li a{
-    color: #171717;
+    color: #ffffff;
     display: inline-block; 
-    font-size: 20px; 
-    margin-right: 20px;
-    background-color:  #fff; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 50%; 
+    font-size: 17px; 
+    font-family: 'Open Sans', sans-serif;
+    margin-right: 20px; 
     text-align: center; 
-    line-height: 40px; 
     transition: all 0.2s linear 0s; 
     -webkit-transition: all 0.2s linear 0s; 
     -moz-transition: all 0.2s linear 0s; 
     -ms-transition: all 0.2s linear 0s; 
     -o-transition: all 0.2s linear 0s;
+}
+.foot-logo{
+  width: 250px;
 }
 .foot-text ul li:last-child a{
     margin: 0px;
@@ -1104,7 +1102,7 @@ section#footer {
   background-color: transparent;
 }
 .banner-form-wrap{
-  background: url("../img/top-banner.jpg") no-repeat center;
+  background: url("../img/top-banner.jpg") no-repeat top center;
   padding: 90px 0px;
   background-size: cover;
   -webkit-background-size: cover;
