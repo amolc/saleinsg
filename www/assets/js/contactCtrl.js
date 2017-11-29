@@ -437,6 +437,26 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
 
+    $scope.allproducts = function (req, res) {
+
+        
+        $http.get(baseurl + 'getrecentproducts').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.recentproducts = res;
+            }
+
+        }).error(function () {
+
+        });
+
+    }
+
+
   $scope.enquiryinit = function (req, res) {
        
      //console.log($scope.enquiry);
@@ -527,7 +547,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             else
             {
                 var productarray = JSON.parse(sessionStorage.getItem("Recent_Products"));
-                if (productarray.length>3) 
+                if (productarray.length>7) 
                 {
                     productarray.shift();
                 }
