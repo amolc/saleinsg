@@ -1476,14 +1476,14 @@ section#footer {
 .ch-info-wrap, 
 .ch-info{
   position: absolute;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 }
 
 .ch-info-wrap {
-  top: 20px;
-  left: 20px;
+  top: 10px;
+  left: 10px;
   background: #f9f9f9 url(../images/bg.jpg);
   box-shadow: 
     0 0 0 20px rgba(255,255,255,0.2), 
