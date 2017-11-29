@@ -99,13 +99,22 @@ exports.allcountries = function (req, res) {
     });
 };
 
-exports.allcountries = function (req, res) {
-    var sql = "SELECT `CountryId`,`CountryTitle` FROM `tbl_Countries`";
+exports.allcategories = function (req, res) {
+    var sql = "SELECT `CategoryId`,`CategoryTitle` FROM `tbl_Categories`";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
 };
+
+exports.getsubcategories = function (req, res) {
+    var sql = "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = "+req.params.id;
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 
 
 exports.register = function(req, res){
@@ -380,8 +389,11 @@ exports.addproduct = function (req, res) {
         "Price":req.body.price || "",
         "Quantity": req.body.quantity || "",
         "Image1": fileName || "",
-        "Category": req.body.category || "",
-        "SubCategory": req.body.subcat || "",
+        "CountryId" : req.body.CountryId,
+        "CategoryId" : req.body.CategoryId,
+        "SubCatId" : req.body.SubCatId,
+        // "Category": req.body.category || "",
+        // "SubCategory": req.body.subcat || "",
         "SupplierId": req.body.UserId || "",      
     };
     // console.log("after", createObj);

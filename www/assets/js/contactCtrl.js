@@ -206,6 +206,50 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           location.href = "index.html"
     }  
 
+    $scope.getCategories = function() {
+
+    $scope.product = {};
+    $scope.product.SubCatId = 0;
+    $scope.subcatlist = {};
+
+    $http.get(baseurl + 'allcategories').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.categorieslist = res;
+               // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+               //console.log($scope.categorieslist);
+            }
+
+        }).error(function () {
+
+        });
+
+   }
+
+    $scope.getSubCat = function() {
+
+    $http.get(baseurl + 'getsubcategories/'+$scope.product.CategoryId).success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.subcatlist = res;
+               // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+               //console.log($scope.categorieslist);
+            }
+
+        }).error(function () {
+
+        });
+
+   }
+
     var attachmentfile1 = [];
     var filelength;
 
@@ -216,6 +260,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         $scope.attachmentCount = {};
         $scope.attachment = {};
         $scope.imgSrc = "";
+
     };
 
     $scope.updateattachment = function(file_browse) {
@@ -288,6 +333,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              // console.log($scope.product);
 
 
+             if(typeof $scope.product.CategoryId === 'undefined'){
+              $scope.alertmessage="Please Select Country";
+              $("#alertmessage").show('slow');
+             }
+             else{
+
+              $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
              $scope.product.UserId = window.sessionStorage.getItem('User_Id');
            // console.log($scope.attachment.images);
             if (Object.keys($scope.attachment).length>0) {
@@ -309,6 +361,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 }).error(function() {
                       // alert("Please check your internet connection or data source..");
                 });
+
+             }
+
     }  
 
 
