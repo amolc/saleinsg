@@ -19,6 +19,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   $scope.child = ['0','1','2','3','4','5','6','7','8','9','10'];
  // $scope.urlParams = $location.search();
  // console.log($location.search());
+
+   $scope.getCountries = function() {
+
+    $scope.registration = {};
+
+    $http.get(baseurl + 'allcountries').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.countrylist = res;
+                $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+                //console.log($scope.countrylist);
+            }
+
+        }).error(function () {
+
+        });
+
+   }
+
    $scope.register = function(formRegistration){
 
           //  console.log($scope.registration);
@@ -130,11 +153,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
                        // console.log(data);
 
-
                         window.sessionStorage.setItem('User_Id', data.value.SupId);
                         window.sessionStorage.setItem('User_Email', data.value.Email);
                         window.sessionStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
                         window.sessionStorage.setItem('User_Phone', data.value.Phone);
+                        window.sessionStorage.setItem('User_Location', data.value.CountryId);
                         //console.log(window.sessionStorage.getItem('UserId'));
                         //console.log(window.sessionStorage.getItem('UserId'));
                         
@@ -175,7 +198,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.logout = function() {             
 
-          $window.sessionStorage.clear();
+          window.sessionStorage.clear();
           location.href = "index.html"
     }  
 

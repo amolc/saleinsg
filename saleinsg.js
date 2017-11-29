@@ -42,8 +42,9 @@ app.use('/', www);
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);
-app.post('/api/register', contact.register);
 
+app.post('/api/register', contact.register);
+app.get('/api/allcountries', contact.allcountries);
 app.get('/api/verify-account/:id', contact.verifyAccount);
 app.post('/api/login', contact.login);
 

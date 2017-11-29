@@ -13,7 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Satradeexchange.co </title>
+  <title>tradeexchange.co </title>
 
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/css/font-awesome.min.css" rel="stylesheet">
@@ -26,11 +26,11 @@
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
-      <script src="https://js.stripe.com/v2/"></script>
+  <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 </head>
 
-<body>
+<body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
        <header id="top-header">
             <div class="orenge-logo-strip">
@@ -91,7 +91,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div ng-app="80consult">
+  <div >
 <!--
   <section id="header">
     <div class="container">
@@ -172,7 +172,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="addproduct"  ng-controller="contactcontroller" ng-submit="saveproduct(product)" id="addproduct" method="post" ng-init="fileinit()">
+          <form name="addproduct" ng-submit="saveproduct(product)" id="addproduct" method="post" ng-init="fileinit()">
              <div class="col-md-6">
               <div class="form-group">
               <label for="name">Product Name:</label>

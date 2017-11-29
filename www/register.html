@@ -167,7 +167,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="formRegistration"  ng-controller="contactcontroller" data-ng-submit="register(formRegistration)" id="formRegistration" method="post">
+          <form name="formRegistration"  ng-controller="contactcontroller" data-ng-submit="register(formRegistration)" id="formRegistration" method="post" ng-init="getCountries()">
              <div class="col-md-6">
               <div class="form-group">
               <label for="fname">First Name:</label>
@@ -184,13 +184,13 @@
              <div class="col-md-6">
             <div class="form-group">
               <label for="phone">Contact No:</label>
-              <input type="text" class="form-control" ng-model="registration.phone" name="phone" id="phone" required>
+              <input type="text" class="form-control" ng-model="registration.phone" name="phone" id="phone" pattern="[+]{0,1}[0-9]{10,15}"  oninvalid="setCustomValidity('Enter Valid Contact Number')" onchange="try{setCustomValidity('')}catch(e){}" required>
             </div> 
             </div>
              <div class="col-md-6">
              <div class="form-group">
               <label for="email">Email Id :</label>
-              <input type="email" class="form-control" ng-model="registration.email" name="email" id="email" required>
+              <input type="email" class="form-control" oninvalid="setCustomValidity('Enter Valid Email Address')" onchange="try{setCustomValidity('')}catch(e){}" ng-model="registration.email" name="email" id="email" required>
             </div>
             </div>
              <div class="col-md-6">
@@ -211,10 +211,17 @@
               <input type="text" class="form-control" ng-model="registration.company" name="company" id="company" required>
             </div> 
             </div>
-             <div class="col-md-6">
+             <!-- <div class="col-md-6">
             <div class="form-group">
               <label for="location">Location:</label>
               <input type="text" class="form-control" ng-model="registration.location" name="location" id="address" required>
+            </div> 
+            </div> -->
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="country">Select Country:</label>
+              <select class="form-control" id="country" name="country" ng-options="cou.CountryId as cou.CountryTitle for cou in countrylist" ng-model="registration.CountryId" required="">
+              </select>
             </div> 
             </div>
              <div class="col-md-6">
