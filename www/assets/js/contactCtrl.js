@@ -439,20 +439,37 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.getrecentproducts = function (req, res) {
 
-        
-        $http.get(baseurl + 'getrecentproducts').success(function (res) {
-
-            if (res.status == 'false') {
-
+          if (window.sessionStorage.getItem('Recent_Products')==null) 
+            {
+                $scope.recentcount = 0;
             }
-            else {
-               // console.log(res);
-                $scope.recentproducts = res;
-            }
+            else
+            {
+                $scope.recentcount = 1;
+                $scope.items = JSON.parse(sessionStorage.getItem("Recent_Products"));
+              //  console.log($scope.items);
+                $scope.reproducts = "";
 
-        }).error(function () {
+                var q = '';
+                $.each($scope.items,function (index, value) { 
+                         $scope.reproducts += q+value;
+                                q=',';
+                        
+                   });
+              console.log($scope.reproducts);
 
-        });
+
+              $http.post(baseurl + 'getrecentprod',$scope.reproducts).success(function(data, status) {
+
+              if (res.status == true) 
+              {
+                   $scope.recentproducts = data;
+
+              }
+             
+            });
+
+            }   
 
     }
 
