@@ -1510,11 +1510,15 @@ section#footer {
   transition: all 0.6s ease-in-out;
 }
 
+.ch-info .ch-info-back a{
+   color: #ffffff;
+}
 .ch-info .ch-info-back {
   opacity: 0;
 
-  background: #223e87;
+  background: #52bcd5;
   pointer-events: none;
+ 
   
   -webkit-transform: scale(1.5);
   -moz-transform: scale(1.5);
