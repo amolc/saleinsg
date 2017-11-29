@@ -213,7 +213,7 @@
                               <span>to </span> 
                               <div class="cos-select-box">
                                 <select class="form-control effect-7">
-                                   <option class="color-black">singapur</option>
+                                   <option class="color-black">singapore</option>
                                   <option class="color-black">Malaysia</option>
                                   <option class="color-black">Thailand</option>
                                   <option class="color-black">Indonesia</option>
@@ -499,8 +499,43 @@
             <div class="row">
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
+                  <div class="carousel-inner" ng-init="allproducts()">
+                  <div class="item active" ng-repeat="product in productslist">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="uploads/{{product.Image1}}" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                                <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p>
+                                <h4><span>From SGD</span>${{product.Price}}</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="item">
+=======
                   <div class="carousel-inner">
                     <div class="item">
+>>>>>>> master
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
@@ -666,7 +701,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+ -->                  </div>
                   <a class="left carousel-control" href="#offers-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
                   <a class="right carousel-control" href="#offers-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
                 </div>
@@ -674,7 +709,7 @@
             </div>
           </div>
          </section>
-         <section id="viewed-wrap">
+         <section id="viewed-wrap" ng-init="getrecentproducts()">
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
@@ -689,7 +724,40 @@
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
                   <div class="carousel-inner">
-                    <div class="item active">
+
+                  <div class="item active" ng-repeat="product in recentproducts">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="uploads/{{product.Image1}}" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                                <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p>
+                                <h4><span>From SGD</span>${{product.Price}}</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="item active">
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
@@ -850,7 +918,7 @@
                             </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <a class="left carousel-control" href="#recently-viewed-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
                   <a class="right carousel-control" href="#recently-viewed-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>

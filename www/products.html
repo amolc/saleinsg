@@ -139,8 +139,9 @@
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                                <h5>{{product.Description | limitTo: 50 }}{{product.Description.length > 50 ? '...' : ''}}</h5>
-                                <!-- <p>Category : Footwears</p> -->
+                                <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p>
                                 <h4><span>From SGD</span>${{product.Price}}</h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
@@ -152,8 +153,11 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div>
                             <div class="cat-text">
-                                <span>{{product.Category | limitTo: 10 }}{{product.Category.length > 10 ? '...' : ''}}</span>
+                                <span>Footwears</span>
                             </div>
                         </div>
                     </div>
