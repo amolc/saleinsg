@@ -91,6 +91,15 @@ exports.consult = function (req, res) {
       send_mail(recipientEmail, subject, mailbody);
 }
 
+exports.allcountries = function (req, res) {
+    var sql = "SELECT `CountryId`,`CountryTitle` FROM `tbl_Countries`";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+
 
 exports.register = function(req, res){
 
@@ -122,7 +131,8 @@ exports.register = function(req, res){
                             'LastName': req.body.lname,
                             'Phone': req.body.phone,
                             'CompanyName':req.body.company,
-                            'Location':req.body.location,
+                          //  'Location':req.body.location,
+                            'CountryId' :req.body.CountryId,
                             'VerificationCode':'',
                             'CreateDate':dateToday,
                             'PaymentStatus':'Pending',
