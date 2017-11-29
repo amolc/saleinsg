@@ -1113,19 +1113,21 @@ section#footer {
   -o-background-size: cover;
 }
 .banner-form-text h1{
-  font-size: 44px;
+  font-size: 62px;
   color: #52bcd5;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   margin: 0;
+  font-weight: 600;
 }
 .banner-form-text h4{
-  font-size: 28px;
+  font-size: 34px;
   color: #ffffff;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   line-height: 38px;
-  margin: 8px 0px;
+  margin: 13px 0px;
+  font-weight: normal;
 }
 .form-fild{
   width: 70%;
