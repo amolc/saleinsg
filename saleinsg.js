@@ -48,9 +48,9 @@ app.get('/api/allcountries', contact.allcountries);
 app.get('/api/verify-account/:id', contact.verifyAccount);
 app.post('/api/login', contact.login);
 
-
+app.get('/api/allcategories', contact.allcategories);
+app.get('/api/getsubcategories/:id', contact.getsubcategories);
 app.post('/api/addproduct', contact.addproduct);
-
 app.get('/api/allproducts', contact.allproducts);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
 
