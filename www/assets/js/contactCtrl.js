@@ -203,7 +203,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.logout = function() {             
 
-          window.sessionStorage.clear();
+          //window.sessionStorage.clear();
+          window.sessionStorage.removeItem('User_Id');
+          window.sessionStorage.removeItem('User_Email');
+          window.sessionStorage.removeItem('User_Name');
+          window.sessionStorage.removeItem('User_Phone');
+          window.sessionStorage.removeItem('User_Location');
           location.href = "index.html"
     }  
 
@@ -379,15 +384,37 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var urlparams = parts[1];
 
       var urlpart = urlparams.split('&');
-      var location = urlpart[0].split('=');
+      //alert(urlpart);
+      var type = urlpart[0].split('=');
+      var id = urlpart[1].split('=');
+      //alert(type[1]);
+      if (type[1]=='category') 
+      {
+         $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
 
-      $scope.location= location[1];
+             $scope.productslist = data;
+         
+        });
 
-      $http.get(baseurl + 'getproductsbylocation/'+$scope.location).success(function(data, status) {
+      }
+      else if (type[1]=='country') 
+      {
 
-           $scope.productslist = data;
+        $http.get(baseurl + 'filterbycountry/'+id[1]).success(function(data, status) {
+
+             $scope.productslist = data;
+         
+        });
+
+      }
+
+      // $scope.location= location[1];
+
+      // $http.get(baseurl + 'getproductsbylocation/'+$scope.location).success(function(data, status) {
+
+      //      $scope.productslist = data;
        
-      });
+      // });
     }
     else
     {
@@ -406,6 +433,26 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
         });
     }
+
+    }
+
+
+    $scope.getrecentproducts = function (req, res) {
+
+        
+        $http.get(baseurl + 'getrecentproducts').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.recentproducts = res;
+            }
+
+        }).error(function () {
+
+        });
 
     }
 
@@ -457,6 +504,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.productinit = function (req, res) {
 
       $scope.product = {};
+      
 
       var url = window.location.href;
 
@@ -487,6 +535,27 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.product.fullname = window.sessionStorage.getItem('User_Name');
                 $scope.product.email = window.sessionStorage.getItem('User_Email');
                 $scope.product.phonenumber = window.sessionStorage.getItem('User_Phone');
+            }
+
+
+            if (window.sessionStorage.getItem('Recent_Products')==null) 
+            {
+                var productarray = [];
+                productarray.push(productId[1]);
+                window.sessionStorage.setItem("Recent_Products", JSON.stringify(productarray));
+            }
+            else
+            {
+                var productarray = JSON.parse(sessionStorage.getItem("Recent_Products"));
+                if (productarray.length>7) 
+                {
+                    productarray.shift();
+                }
+                if(productarray.indexOf(productId[1]) < 0) 
+                {
+                  productarray.push(productId[1]);
+                  window.sessionStorage.setItem("Recent_Products", JSON.stringify(productarray));
+                }
             }
 
        

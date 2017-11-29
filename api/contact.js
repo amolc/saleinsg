@@ -19,7 +19,6 @@ var productCRUD = CRUD(db, 'tbl_Products');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
 
-
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var transporter = nodemailer.createTransport({
@@ -92,7 +91,7 @@ exports.consult = function (req, res) {
 }
 
 exports.allcountries = function (req, res) {
-    var sql = "SELECT `CountryId`,`CountryTitle` FROM `tbl_Countries`";
+    var sql = "SELECT `CountryId`,`CountryTitle`,`CountryFlag` FROM `tbl_Countries`";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -436,6 +435,26 @@ exports.getproductsbylocation = function (req, res) {
   var location = req.params.id;
     var sql = "SELECT p.* FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE s.`Location` LIKE '%"+location+"%'  ORDER BY `ProductId` DESC";
    // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.filterbycategory = function (req, res) {
+
+    var id = req.params.id;
+    var sql = "SELECT * FROM `tbl_Products` WHERE `CategoryId` = "+id+" ORDER BY `ProductId` DESC";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.filterbycountry = function (req, res) {
+
+    var id = req.params.id;
+    var sql = "SELECT * FROM `tbl_Products` WHERE `CountryId` = "+id+" ORDER BY `ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
