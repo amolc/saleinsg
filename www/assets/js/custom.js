@@ -41,3 +41,18 @@ $(function(){
     }
   });
 }());
+
+
+
+
+// FOR HEDAER FOOTER page
+w3IncludeHTML();
+/* <![CDATA[ */
+  var _wpcf7 = {
+    "recaptcha": {
+    "messages": {
+    "empty": "Please verify that you are not a robot."
+  }
+ }
+};
+/* ]]> */
