@@ -1326,7 +1326,7 @@ section#footer {
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   overflow: hidden;
-  background: #ffffff;
+  background: #f2f2f2;
 }
 .flag-img img{
   box-shadow: 1px 1px 5px #868686;
@@ -1357,4 +1357,11 @@ section#footer {
   .flag-col-width .col-sm-3{
     width: 20%;
   }
+}
+.box-flag-img{
+  width: 35px;
+  height: auto;
+  position: absolute;
+  top:10px;
+  right: 10px;
 }
