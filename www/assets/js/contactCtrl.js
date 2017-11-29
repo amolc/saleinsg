@@ -197,6 +197,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                     $scope.User_Id =window.sessionStorage.getItem('User_Id');
                 }
                // console.log($scope.User_Id);
+               alert($scope.User_Id);
 
             } 
 
