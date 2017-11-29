@@ -32,8 +32,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             else {
                // console.log(res);
                 $scope.countrylist = res;
-                $scope.registration.CountryId = $scope.countrylist[0].CountryId;
-                //console.log($scope.countrylist);
+               // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+               //console.log($scope.countrylist);
             }
 
         }).error(function () {
@@ -44,14 +44,17 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
    $scope.register = function(formRegistration){
 
-          //  console.log($scope.registration);
+           // console.log($scope.registration.CountryId);
         
             $scope.alertmessage = '';
-            $scope.formvalidate ="true" ;
-                    
 
-                if($scope.formvalidate=="true"){
-                 // console.log("register IN");
+             if(typeof $scope.registration.CountryId === 'undefined'){
+              $scope.alertmessage="Please Select Country";
+              $("#alertmessage").show('slow');
+             }
+             else
+             {
+               // console.log("register IN");
                     $http.post(baseurl + 'register', $scope.registration).success(function(data, status) {
 
                         console.log('data',data)
@@ -70,7 +73,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                                 
                         //console.log('data',data)
                     });  
-                }
+
+             }
 
             }
 

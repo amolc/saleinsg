@@ -99,6 +99,13 @@ exports.allcountries = function (req, res) {
     });
 };
 
+exports.allcountries = function (req, res) {
+    var sql = "SELECT `CountryId`,`CountryTitle` FROM `tbl_Countries`";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
 
 
 exports.register = function(req, res){
