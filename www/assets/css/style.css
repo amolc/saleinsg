@@ -350,7 +350,7 @@ section#footer {
 }
 #book-now{padding: 60px;}
 .form-control{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; height: 35px; border-color: #171717;}
-.form-control:focus, .form-control:hover, .form-control:active{box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none; border-color: #18a7e2; }
+.form-control:focus, .form-control:hover, .form-control:active{box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none; border-color: #18a7e2;}
 .btn-success{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; display: block; margin: 40px auto 0px; padding: 10px 45px; background-color: #18a7e2;
     border-color: #18a7e2;}
 #thankyou{
@@ -1210,7 +1210,9 @@ section#footer {
   width: auto;
   display: inline-block;
 }
-
+.color-black{
+  color: #000000;
+}
 
 
 /*SLIDER CSS*/
