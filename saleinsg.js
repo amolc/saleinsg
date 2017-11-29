@@ -55,6 +55,8 @@ app.get('/api/allproducts', contact.allproducts);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
 
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
+app.get('/api/filterbycategory/:id', contact.filterbycategory);
+app.get('/api/filterbycountry/:id', contact.filterbycountry);
 
 app.post('/api/submitenquiry', contact.submitenquiry);
 app.post('/api/addorder', contact.addorder);
