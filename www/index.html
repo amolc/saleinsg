@@ -113,13 +113,14 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav">
-                            <li><a href="#">Electronics</a></li>
+                          <ul class="nav navbar-nav" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li>
+                            <!-- <li><a href="#">Electronics</a></li>
                             <li><a href="#">Appliances</a></li>
                             <li><a href="#">Men</a></li>
                             <li><a href="#">Women</a></li>
                             <li><a href="#">Baby & Kids</a></li>
-                            <li><a href="#">Home & Furniture</a></li>
+                            <li><a href="#">Home & Furniture</a></li> -->
                             <!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">India <span class="caret"></span></a>
                               <ul class="dropdown-menu">
@@ -429,22 +430,28 @@
                           Country
                         </h2>
                     </div>
-                    <div class="flag-col-width">
-                        <div class="col-sm-3">
+                    <div class="flag-col-width" ng-init="getCountries()">
+                    <div class="col-sm-3" ng-repeat="cn in countrylist">
+                        <div class="circle-1">
+                            <div class="flag-img">
+                                <img src="assets/img/flags/{{cn.CountryFlag}}" />
+                                <h5><a href="products.html?filter=country&id={{cn.CountryId}}">{{cn.CountryTitle}}</a></h5>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-3">
                         <div class="circle-1">
                             <div class="flag-img">
                                 <img src="assets/img/flags/india.jpg" />
                                 <h5><a href="#">india</a></h5>
                             </div>
-                        </div><!-- circle-1 -->
-                    </div>
+                        </div>
                     <div class="col-sm-3">
                         <div class="circle-1">
                             <div class="flag-img">
                                 <img src="assets/img/flags/malaysia.jpg" />
                                 <h5><a href="#">malaysia</a></h5>
                             </div>
-                        </div><!-- circle-1 -->
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="circle-1">
@@ -452,7 +459,7 @@
                                 <img src="assets/img/flags/thailand.jpg" />
                                 <h5><a href="#">thailand</a></h5>
                             </div>
-                        </div><!-- circle-1 -->
+                        </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="circle-1">
@@ -460,7 +467,7 @@
                                 <img src="assets/img/flags/indonesia.jpg" />
                                 <h5><a href="#">indonesia</a></h5>
                             </div>
-                        </div><!-- circle-1 -->
+                        </div><
                     </div>
                     <div class="col-sm-3">
                         <div class="circle-1">
@@ -468,8 +475,8 @@
                                 <img src="assets/img/flags/bangladesh.jpg" />
                                 <h5><a href="#">bangladesh</a></h5>
                             </div>
-                        </div><!-- circle-1 -->
-                    </div>
+                        </div>
+                    </div> -->
                     </div>
                 </div>
             </div>
