@@ -901,7 +901,7 @@ section#footer {
   text-align: center;
 }
 .product-footer h3 a {
-    ont-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     color: #443f3f;
     display: block;
@@ -1103,7 +1103,7 @@ section#footer {
 }
 .banner-form-wrap{
   background: url("../img/top-banner.jpg") no-repeat top center;
-  padding: 90px 0px;
+  padding: 130px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
