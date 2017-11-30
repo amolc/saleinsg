@@ -1414,7 +1414,7 @@ section#footer {
 .control {
   color: #000000;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   position: relative;
   display: block;
   margin-bottom: 15px;
@@ -1469,12 +1469,18 @@ section#footer {
 .according-wrap .panel-title > a:before {
   float: right !important;
   font-family: FontAwesome;
-  content: "\f068";
+  content: "-";
+  font-size: 16px;
+  font-weight: 900;
+  /*content: "\f068";*/
   padding-right: 5px;
 }
 .according-wrap .panel-title > a.collapsed:before {
   float: right !important;
-  content: "\f067";
+  content: "+";
+  font-size: 16px;
+  font-weight: 900;
+  /*content: "\f067";*/
 }
 .according-wrap .panel-title > a:hover,
 .according-wrap .panel-title > a:active,
@@ -1487,7 +1493,7 @@ section#footer {
 .according-wrap .panel-title{
   color: #000000;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
 }
 .according-wrap .panel-default{
   border: 0px;
