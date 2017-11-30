@@ -115,8 +115,17 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav" ng-init="getCategories()">
-                          <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li>
+                          <ul class="nav navbar-nav" ng-if="CountryId>0" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li>
+                          </ul>
+                          <ul class="nav navbar-nav" ng-if="CountryId==0" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li>
                             <!-- <li><a href="#">Electronics</a></li>
                             <li><a href="#">Appliances</a></li>
                             <li><a href="#">Men</a></li>

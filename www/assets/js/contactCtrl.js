@@ -376,9 +376,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.allproducts = function (req, res) {
 
-      var referrer =  document.referrer;
-      console.log(referrer);
+      var previous =  document.referrer;
+      var fullpath = previous.split("?");
+      var pageurl = fullpath[0].split("/");
+      var filename = pageurl.pop();
+      console.log(filename);
+      if (filename !== 'products.html') 
+      {
+          window.localStorage.removeItem('filter_country');
+          window.localStorage.removeItem('filter_category');
+          window.localStorage.removeItem('filter_subcategory');
+      }
 
+      $scope.filter = {};
       var url = window.location.href;
 
       var parts = url.split("?");
@@ -388,37 +398,39 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       var urlpart = urlparams.split('&');
       //alert(urlpart);
-      var type = urlpart[0].split('=');
-      var id = urlpart[1].split('=');
+      var id = urlpart[0].split('=');
       //alert(type[1]);
-      if (type[1]=='category') 
+      if (id[0]=='category') 
       {
          $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
 
-             $scope.productslist = data;
-             $scope.CategoryId = id[1];         
+             $scope.productslist = data;  
+             window.localStorage.setItem('filter_category',id[1]);  
         });
 
       }
-      else if (type[1]=='country') 
+      else if (id[0]=='country') 
       {
 
         $http.get(baseurl + 'filterbycountry/'+id[1]).success(function(data, status) {
 
              $scope.productslist = data;
-             $scope.CountryId = id[1];
+             window.localStorage.setItem('filter_country',id[1]);
                      
         });
 
       }
+       if (window.localStorage.getItem('filter_country')>0) 
+           $scope.CountryId = id[1];
+       else 
+           $scope.CountryId = 0;
+       if (window.localStorage.getItem('filter_category')>0) 
+           $scope.CategoryId = id[1];
+       else 
+           $scope.CategoryId = 0;
 
-      // $scope.location= location[1];
+       console.log($scope.CountryId);
 
-      // $http.get(baseurl + 'getproductsbylocation/'+$scope.location).success(function(data, status) {
-
-      //      $scope.productslist = data;
-       
-      // });
     }
     else
     {
