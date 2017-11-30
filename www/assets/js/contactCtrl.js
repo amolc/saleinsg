@@ -246,6 +246,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             else {
                // console.log(res);
                 $scope.subcatlist = res;
+               // console.log($scope.subcatlist);
                // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
                //console.log($scope.categorieslist);
             }
@@ -375,6 +376,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.allproducts = function (req, res) {
 
+      var referrer =  document.referrer;
+      console.log(referrer);
 
       var url = window.location.href;
 
@@ -393,7 +396,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
 
              $scope.productslist = data;
-         
+             $scope.CategoryId = id[1];         
         });
 
       }
@@ -403,7 +406,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         $http.get(baseurl + 'filterbycountry/'+id[1]).success(function(data, status) {
 
              $scope.productslist = data;
-         
+             $scope.CountryId = id[1];
+                     
         });
 
       }
@@ -436,7 +440,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-
     $scope.getrecentproducts = function (req, res) {
         //alert("1");
           if (window.localStorage.getItem('Recent_Products')==null) 
@@ -450,7 +453,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.items = JSON.parse(localStorage.getItem("Recent_Products"));
               //  console.log($scope.items);
                 $scope.reproducts = {};
-                 $scope.commaproducts = "";
+                $scope.commaproducts = "";
                 var q = '';
                 $.each($scope.items,function (index, value) { 
                          $scope.commaproducts += q+value;
