@@ -947,6 +947,12 @@ section#footer {
   width: 47%;
   float: right;
 }
+.small-btn{
+  width: 100%;
+  max-width: 180px;
+  display: block;
+  margin: 0 auto;
+}
 .red-btn{
   background-color: #52bad5;
   border: 1px solid #52bad5;
@@ -1104,7 +1110,7 @@ section#footer {
 }
 .banner-form-wrap{
   background: url("../img/top-banner.jpg") no-repeat top center;
-  padding: 130px 0px;
+  padding: 100px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1363,4 +1369,15 @@ section#footer {
   position: absolute;
   top:10px;
   right: 10px;
+}
+
+
+
+
+
+
+
+
+.mr-t50{
+  margin-top: 50px;
 }
