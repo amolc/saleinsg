@@ -901,13 +901,14 @@ section#footer {
   text-align: center;
 }
 .product-footer h3 a {
-    ont-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     color: #443f3f;
     display: block;
     overflow: hidden;
     height: 50px;
 }
+
 .product-footer h5{
   font-size: 16px;
     white-space: nowrap;
@@ -1103,7 +1104,7 @@ section#footer {
 }
 .banner-form-wrap{
   background: url("../img/top-banner.jpg") no-repeat top center;
-  padding: 90px 0px;
+  padding: 130px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
