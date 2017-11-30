@@ -483,7 +483,7 @@ exports.filterbyCouCat = function (req, res) {
 exports.getProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT * FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE p.`ProductId`= "+ProductId;
+   var sql = "SELECT p.*,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
    // console.log(sql);
   // console.log(sql);
     db.query(sql, function (err, data) {
