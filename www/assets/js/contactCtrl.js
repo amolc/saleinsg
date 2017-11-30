@@ -439,7 +439,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.getrecentproducts = function (req, res) {
         //alert("1");
-          if (window.sessionStorage.getItem('Recent_Products')==null) 
+          if (window.localStorage.getItem('Recent_Products')==null) 
             {   // alert("2");
                 $scope.recentcount = 0;
             }
@@ -447,7 +447,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             {
                //alert("3");
                 $scope.recentcount = 1;
-                $scope.items = JSON.parse(sessionStorage.getItem("Recent_Products"));
+                $scope.items = JSON.parse(localStorage.getItem("Recent_Products"));
               //  console.log($scope.items);
                 $scope.reproducts = {};
                  $scope.commaproducts = "";
@@ -557,15 +557,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             }
 
 
-            if (window.sessionStorage.getItem('Recent_Products')==null) 
+            if (window.localStorage.getItem('Recent_Products')==null) 
             {
                 var productarray = [];
                 productarray.push(productId[1]);
-                window.sessionStorage.setItem("Recent_Products", JSON.stringify(productarray));
+                window.localStorage.setItem("Recent_Products", JSON.stringify(productarray));
             }
             else
             {
-                var productarray = JSON.parse(sessionStorage.getItem("Recent_Products"));
+                var productarray = JSON.parse(localStorage.getItem("Recent_Products"));
                 if (productarray.length>7) 
                 {
                     productarray.shift();
@@ -573,7 +573,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 if(productarray.indexOf(productId[1]) < 0) 
                 {
                   productarray.push(productId[1]);
-                  window.sessionStorage.setItem("Recent_Products", JSON.stringify(productarray));
+                  window.localStorage.setItem("Recent_Products", JSON.stringify(productarray));
                 }
             }
 
