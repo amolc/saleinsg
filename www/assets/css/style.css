@@ -249,6 +249,9 @@ section#footer {
     -ms-transition: all 0.2s linear 0s; 
     -o-transition: all 0.2s linear 0s;
 }
+.foot-text ul li a:hover{
+  color: #52bbd5;
+}
 .foot-logo{
   width: 250px;
 }
@@ -1395,6 +1398,9 @@ section#footer {
   color: #ffffff;
   padding: 15px 10px;
   margin: 0px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
 }
 .panle-footer{
   padding: 15px 15px 15px;
@@ -1504,7 +1510,29 @@ section#footer {
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
 }
-
+.sub-cat-list ul{
+  margin: 0px;
+  padding: 0;
+}
+.sub-cat-list ul li{
+  list-style-type: none;
+}
+.sub-cat-list ul li a{
+  color: #000000;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  line-height:  23px;
+}
+.sub-cat-list ul li a:hover{
+  color: #52bbd5;
+}
+.according-wrap .panel-title a:hover{
+  color: #52bbd5;
+}
+.panel-body{
+  padding: 8px 15px;
+}
 
 
 
