@@ -110,11 +110,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                           </button>
-                          <a class="navbar-brand" href="#">Go quickly to <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                          <!-- <a class="navbar-brand" href="#">Go quickly to <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav" ng-init="getCategories()">
                           <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li>
                             <!-- <li><a href="#">Electronics</a></li>
@@ -190,6 +190,50 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="banner-form-wrap">
+                <div class="container">
+                    <div class="col-sm-12">
+                      <div class="banner-form-text">
+                        <!-- <h1>What is tradeexchange.co</h1> -->
+                        <div class="clearfix"></div>
+                        <h4>Tradeexchange is a 100% International export<br> platform for asian countries.</h4>
+                        <form>
+                          <div class="form-fild">
+                            <div>Sell from 
+                              <div class="cos-select-box">
+                                <select class="form-control effect-7">
+                                  <option class="color-black">India</option>
+                                  <option class="color-black">Malaysia</option>
+                                  <option class="color-black">Thailand</option>
+                                  <option class="color-black">Indonesia</option>
+                                  <option class="color-black">Bangladesh</option>
+                                </select>
+        
+                              <span class="focus-border"><i></i></span>
+                              </div>
+                              <span>to </span> 
+                              <div class="cos-select-box">
+                                <select class="form-control effect-7">
+                                   <option class="color-black">Singapore</option>
+                                  <option class="color-black">Malaysia</option>
+                                  <option class="color-black">Thailand</option>
+                                  <option class="color-black">Indonesia</option>
+                                  <option class="color-black">Bangladesh</option>
+                                </select>
+                                <span class="focus-border"><i></i></span>
+                                </div>
+                              </div>
+                              <div class="col-sm-12 mr-t50">
+                                <a href="register.html" class="red-btn small-btn">Start Here</a>
+                              </div>
+                          </div>
+                        </form>
+                         
+
+                      </div>
+                    </div>
+                </div>
             </div>
         </header>
         <section id="pakeges-wrap" ng-init="allproducts()">
