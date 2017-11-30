@@ -227,10 +227,11 @@
                                 -->
 
                     <div class="col-sm-3" ng-repeat="product in productslist">
-                     <a href="product_detail.html?id={{product.ProductId}}">
                         <div class="product-box">
                             <div class="pro-img">
+                            <a href="product_detail.html?id={{product.ProductId}}">
                                 <img src="uploads/{{product.Image1}}" alt="" title="">
+                                </a>
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
