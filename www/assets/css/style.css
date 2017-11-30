@@ -1557,6 +1557,12 @@ section#footer {
   display: inline-block;
   margin-right: 20px;
 }
+#pro-details-wrap{
+  padding: 100px 0px;
+}
+.pl50{
+  padding-left: 50px;
+}
 
 
 
@@ -1581,3 +1587,5 @@ section#footer {
 .pd0{padding: 0px;}
 .mb30{margin-bottom: 30px;}
 .mr20{margin-right: 20px;}
+
+
