@@ -434,11 +434,14 @@
                     </div>
                     <div class="flag-col-width" ng-init="getCountries()">
                     <div class="col-sm-3" ng-repeat="cn in countrylist">
+                    <a href="products.html?filter=country&id={{cn.CountryId}}">
                         <div class="circle-1">
                             <div class="flag-img">
                                 <img src="assets/img/flags/{{cn.CountryFlag}}" />
                                 <h5><a href="products.html?filter=country&id={{cn.CountryId}}">{{cn.CountryTitle}}</a></h5>
                             </div>
+                        </div>
+                        </a>
                         </div>
                         <!-- <div class="col-sm-3">
                         <div class="circle-1">
@@ -511,9 +514,9 @@
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                                <h5>{{product.Description}}</h5>
+                               <!--  <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
                                 <h4><span>From SGD</span>${{product.Price}}</h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
@@ -738,9 +741,9 @@
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                                <h5>{{product.Description}}</h5>
+                                <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
                                 <h4><span>From SGD</span>${{product.Price}}</h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
