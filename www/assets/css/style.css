@@ -1324,8 +1324,8 @@ section#footer {
 }
 
 .circle-1 .flag-img {
-  width:100%;
-  height:172px;
+  width:101px;
+  height:101px;
   border-radius: 50%;
   cursor:pointer;
   transition: all 0.2s linear;
@@ -1342,11 +1342,12 @@ section#footer {
 }
 .flag-img h5 a{
   text-align: center;
-  font-size: 17px;
+  font-size: 13px;
   text-transform: uppercase;
-  margin-top: 14px;
+  margin-top: 8px;
   display: block;
   color: #000000;
+  font-weight: 400;
 }
 .circle-1:hover .flag-img {
  transform: scale(1.1);
@@ -1360,7 +1361,7 @@ section#footer {
 }
 @media all and (min-width: 1200px) {
   .flag-col-width .col-sm-3{
-    width: 20%;
+    width: 14.2%;
   }
 }
 .box-flag-img{
