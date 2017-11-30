@@ -259,7 +259,10 @@
                                     <div class="panel panel-default" ng-repeat="cat in categorieslist">
                                           <div class="panel-heading" role="tab" id="headingOne_{{cat.CategoryId}}">
                                             <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne_{{cat.CategoryId}}" aria-expanded="true" aria-controls="collapseOne_{{cat.CategoryId}}">
+                                        <a ng-if="CountryId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                         <a ng-if="CategoryId!=null" data-parent="#accordion" href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
                                           {{cat.CategoryTitle}}
                                         </a>
                                       </h4>
