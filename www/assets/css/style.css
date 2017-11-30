@@ -975,8 +975,8 @@ section#footer {
   padding: 7px;
   text-align: center;
   width: 100%;
-  display: block;
-  ont-family: 'Open Sans', sans-serif;
+  display: inline-block;
+  font-family: 'Open Sans', sans-serif;
   /*text-transform: uppercase;*/
   transition: all 0.5s linear 0s;
   -webkit-transition: all 0.5s linear 0s;
@@ -1534,8 +1534,29 @@ section#footer {
   padding: 8px 15px;
 }
 
-
-
+.pro-title{
+  font-size: 25px;
+  color: #000000;
+}
+.pro-price{
+  font-size: 21px;
+  color: #555555;
+  font-weight: normal;
+}
+.description-para{
+  font-size: 15px;
+  color: #000000;
+  font-family: 'Open Sans', sans-serif;
+  text-align: justify;
+}
+.category-title span{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: #52bbd5;
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 20px;
+}
 
 
 
@@ -1558,3 +1579,6 @@ section#footer {
   margin-top: 50px;
 }
 .pd0{padding: 0px;}
+.mb20{
+  margin-bottom: 20px;
+}
