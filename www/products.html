@@ -115,7 +115,7 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav" ng-if="CountryId!=null" ng-init="getCategories()">
+                          <!-- <ul class="nav navbar-nav" ng-if="CountryId!=null" ng-init="getCategories()">
                           <li ng-repeat='cat in categorieslist'>
                           <a href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
                           {{cat.CategoryTitle}}
@@ -125,7 +125,7 @@
                           <li ng-repeat='cat in categorieslist'>
                           <a href="products.html?category={{cat.CategoryId}}">
                           {{cat.CategoryTitle}}
-                          </a></li>
+                          </a></li> -->
                             <!-- <li><a href="#">Electronics</a></li>
                             <li><a href="#">Appliances</a></li>
                             <li><a href="#">Men</a></li>
@@ -214,8 +214,6 @@
                             <div class="panle-head">
                                 <h4>Country</h4>
                             </div>
-
-                            
                             <div class="panle-footer">
                                 <div class="cuntry-cate-list">
                                     <div class="main-cat">
@@ -225,37 +223,24 @@
 <<<<<<< HEAD
                                                 <div class="control__indicator"></div>
                                             </label> -->
-                                            <label class="control control--radio" ng-repeat="cn in countrylist">{{cn.CountryTitle}}
-                                                <input type="radio" name="radio" ng-model="filter.CountryId" ng-value="CountryId"/>
-                                                <div class="control__indicator"></div>
-=======
+                                            <label ng-if="CategoryId==null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
                                                 <div class="select-country"></div>
+                                            </a>
                                             </label>
-                                            <label class="control control--radio">Malaysia
+                                            <label ng-if="CategoryId!=null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
+                                                <div class="select-country"></div>
+                                            </a>
+                                            </label>
+                                           <!--  <label class="control control--radio">Malaysia
                                                 <input type="radio" name="radio"/>
                                                 <div class="select-country"></div>
-                                            </label>
-                                            <label class="control control--radio">Thailand
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
-                                            </label>
-                                            <label class="control control--radio">Indonesia
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
-                                            </label>
-                                            <label class="control control--radio">Bangladesh
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
-                                            </label>
-                                            <label class="control control--radio">Singapore
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
-                                            </label>
-                                            <label class="control control--radio">Vietnam
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
->>>>>>> master
-                                            </label>
+                                            </label> -->
                                             
                                         </div>
                                     </div>
@@ -267,8 +252,56 @@
                                 <h4>Category</h4>
                             </div>
                             <div class="panle-footer">
-                                <div class="cate-list according-wrap">
+                                <div class="cate-list according-wrap" ng-init="getCategories()">
                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+
+                                    <div class="panel panel-default" ng-repeat="cat in categorieslist">
+                                          <div class="panel-heading" role="tab" id="headingOne_{{cat.CategoryId}}">
+                                            <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-{{cat.CategoryId}}" aria-expanded="true" aria-controls="collapseOne_{{cat.CategoryId}}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                      </h4>
+
+                                          </div>
+                                          <div id="collapseOne_{{cat.CategoryId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}">
+                                            <div class="panel-body">
+                                                <div class="sub-cat-list">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                      <!--   <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Electronics
+                                        </a>
+                                      </h4>
+
+                                          </div>
+                                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="sub-cat-list">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+
                                         <div class="panel panel-default">
                                           <div class="panel-heading" role="tab" id="headingOne">
                                             <h4 class="panel-title">
@@ -355,7 +388,7 @@
                                           <div id="books-tab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="books">
                                             <div class="panel-body">Books & more</div>
                                           </div>
-                                        </div>
+                                        </div> -->
 
                                       </div>
                                 </div>

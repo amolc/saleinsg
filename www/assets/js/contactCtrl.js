@@ -422,6 +422,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         });
 
       }
+      
 
        if (window.localStorage.getItem('filter_country')>0) 
            $scope.CountryId = id[1];
