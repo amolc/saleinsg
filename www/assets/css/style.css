@@ -1465,7 +1465,39 @@ section#footer {
   background: #7b7b7b;
 }
 
-
+/*ACCORDIN TOGGL*/
+.according-wrap .panel-title > a:before {
+  float: right !important;
+  font-family: FontAwesome;
+  content: "\f068";
+  padding-right: 5px;
+}
+.according-wrap .panel-title > a.collapsed:before {
+  float: right !important;
+  content: "\f067";
+}
+.according-wrap .panel-title > a:hover,
+.according-wrap .panel-title > a:active,
+.according-wrap .panel-title > a:focus {
+  text-decoration: none;
+}
+.according-wrap .panel-default>.panel-heading{
+  background: transparent;
+}
+.according-wrap .panel-title{
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+}
+.according-wrap .panel-default{
+  border: 0px;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
 
 
 
