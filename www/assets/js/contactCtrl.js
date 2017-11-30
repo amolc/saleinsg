@@ -393,11 +393,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       var parts = url.split("?");
               //console.log(parts.length);
-      if(parts.length==1){
+      if(parts.length>1){
+
       var urlparams = parts[1];
 
       var urlpart = urlparams.split('&');
-      //alert(urlpart);
+
+      if (urlpart.length==1) 
+      {
+
+        //alert(urlpart);
       var id = urlpart[0].split('=');
       //alert(type[1]);
       if (id[0]=='category') 
@@ -433,8 +438,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
        console.log($scope.CountryId);
 
-    }
-      else if(parts.length==2){
+      }
+       else if(urlpart.length==2){
         var urlparams = parts[1];
 
         var urlpart = urlparams.split('&');
@@ -442,6 +447,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         var id1 = urlpart[0].split('=');
         var id2 = urlpart[1].split('=');
         //alert(type[1]);
+        //alert(id1[0]);
         if (id1[0]=='country' && id2[0]=='category') 
         {
 
@@ -456,9 +462,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                $scope.CategoryId = id2[1];
           });
 
+           if (window.localStorage.getItem('filter_country')) 
+           $scope.CountryId = window.localStorage.getItem('filter_country');
+       if (window.localStorage.getItem('filter_category')) 
+           $scope.CategoryId = window.localStorage.getItem('filter_category');
+
         }          
 
-         console.log($scope.CountryId);
+     }
+      
 
     }
 
