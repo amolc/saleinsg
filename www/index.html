@@ -505,10 +505,11 @@
                   <div class="carousel-inner" ng-init="allproducts()">
                   <div class="item active" ng-repeat="product in productslist">
                       <div class="col-xs-12 col-sm-6 col-md-3">
-                      <a href="product_detail.html?id={{product.ProductId}}">
                         <div class="product-box">
                             <div class="pro-img">
+                            <a href="product_detail.html?id={{product.ProductId}}">
                                 <img src="uploads/{{product.Image1}}" alt="" title="">
+                                 </a>
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
@@ -534,7 +535,6 @@
                             </div>
                         </div>
                       </div>
-                      </a>
                     </div>
                     <!-- <div class="item">
 =======
@@ -732,10 +732,11 @@
 
                   <div class="item active" ng-repeat="product in recentproducts">
                       <div class="col-xs-12 col-sm-6 col-md-3">
-                       <a href="product_detail.html?id={{product.ProductId}}">
                         <div class="product-box">
                             <div class="pro-img">
+                            <a href="product_detail.html?id={{product.ProductId}}">
                                 <img src="uploads/{{product.Image1}}" alt="" title="">
+                              </a>
                             </div>
                             <div class="product-footer">
                                 <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
@@ -760,7 +761,6 @@
                                 <span>Footwears</span>
                             </div>
                         </div>
-                        </a>
                       </div>
                     </div>
 
