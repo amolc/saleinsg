@@ -469,6 +469,17 @@ exports.filterbycountry = function (req, res) {
     });
 };
 
+exports.filterbyCouCat = function (req, res) {
+
+    var CountryId = req.body.CountryId;
+    var CategoryId = req.body.CategoryId;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 exports.getProductDetails = function (req, res) {
 
   var ProductId = req.params.id;

@@ -376,50 +376,92 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.allproducts = function (req, res) {
 
-      var referrer =  document.referrer;
-      console.log(referrer);
+      var previous =  document.referrer;
+      var fullpath = previous.split("?");
+      var pageurl = fullpath[0].split("/");
+      var filename = pageurl.pop();
+      console.log(filename);
+      if (filename !== 'products.html') 
+      {
+          window.localStorage.removeItem('filter_country');
+          window.localStorage.removeItem('filter_category');
+          window.localStorage.removeItem('filter_subcategory');
+      }
 
+      $scope.filter = {};
       var url = window.location.href;
 
       var parts = url.split("?");
               //console.log(parts.length);
-      if(parts.length>1){
+      if(parts.length==1){
       var urlparams = parts[1];
 
       var urlpart = urlparams.split('&');
       //alert(urlpart);
-      var type = urlpart[0].split('=');
-      var id = urlpart[1].split('=');
+      var id = urlpart[0].split('=');
       //alert(type[1]);
-      if (type[1]=='category') 
+      if (id[0]=='category') 
       {
          $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
 
-             $scope.productslist = data;
-             $scope.CategoryId = id[1];         
+             $scope.productslist = data;  
+             window.localStorage.setItem('filter_category',id[1]); 
+             $scope.CategoryId = id[1]; 
         });
 
       }
-      else if (type[1]=='country') 
+      else if (id[0]=='country') 
       {
 
         $http.get(baseurl + 'filterbycountry/'+id[1]).success(function(data, status) {
 
              $scope.productslist = data;
+             window.localStorage.setItem('filter_country',id[1]);
              $scope.CountryId = id[1];
                      
         });
 
       }
 
-      // $scope.location= location[1];
 
-      // $http.get(baseurl + 'getproductsbylocation/'+$scope.location).success(function(data, status) {
+       if (window.localStorage.getItem('filter_country')) 
+           $scope.CountryId = window.localStorage.getItem('filter_country');
+       if (window.localStorage.getItem('filter_category')) 
+           $scope.CategoryId = window.localStorage.getItem('filter_category');
 
-      //      $scope.productslist = data;
-       
-      // });
+          
+
+       console.log($scope.CountryId);
+
     }
+      else if(parts.length==2){
+        var urlparams = parts[1];
+
+        var urlpart = urlparams.split('&');
+        //alert(urlpart);
+        var id1 = urlpart[0].split('=');
+        var id2 = urlpart[1].split('=');
+        //alert(type[1]);
+        if (id1[0]=='country' && id2[0]=='category') 
+        {
+
+           $scope.filter.CountryId = id1[1];
+           $scope.filter.CategoryId = id2[1];
+           $http.post(baseurl + 'filterbyCouCat',$scope.filter).success(function(data, status) {
+
+               $scope.productslist = data;  
+               window.localStorage.setItem('filter_country',id1[1]);
+               window.localStorage.setItem('filter_category',id2[1]);  
+               $scope.CountryId = id1[1];
+               $scope.CategoryId = id2[1];
+          });
+
+        }          
+
+         console.log($scope.CountryId);
+
+    }
+
     else
     {
         
