@@ -1320,18 +1320,23 @@ section#footer {
 .circle-1 {
   border-radius: 50%;
   border:16px solid #f2f2f2;
-  float:left;
+  /*float:left;*/
 }
 
 .circle-1 .flag-img {
-  width:101px;
-  height:101px;
+  width:105px;
+  height:105px;
   border-radius: 50%;
   cursor:pointer;
   transition: all 0.2s linear;
   -webkit-transition: all 0.2s linear;
   overflow: hidden;
   background: #f2f2f2;
+  box-shadow: 1px 1px 5px #d6d6d6;
+  -wbkit-box-shadow: 1px 1px 5px #d6d6d6;
+  -moz-box-shadow: 1px 1px 5px #d6d6d6;
+  -ms-box-shadow: 1px 1px 5px #d6d6d6;
+  -o-box-shadow: 1px 1px 5px #d6d6d6;
 }
 .flag-img img{
   box-shadow: 1px 1px 5px #868686;
@@ -1342,12 +1347,12 @@ section#footer {
 }
 .flag-img h5 a{
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
   margin-top: 8px;
   display: block;
   color: #000000;
-  font-weight: 400;
+  margin-top: 15px;
 }
 .circle-1:hover .flag-img {
  transform: scale(1.1);
