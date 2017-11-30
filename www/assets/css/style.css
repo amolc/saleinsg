@@ -249,6 +249,9 @@ section#footer {
     -ms-transition: all 0.2s linear 0s; 
     -o-transition: all 0.2s linear 0s;
 }
+.foot-text ul li a:hover{
+  color: #52bbd5;
+}
 .foot-logo{
   width: 250px;
 }
@@ -937,8 +940,8 @@ section#footer {
   margin-right: 6px;
 }
 .product-footer h4{
-  font-size: 20px;  
-  color: #f60001;
+  font-size: 18px;  
+  color: #000000;
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
   margin-bottom: 6px;
@@ -1395,6 +1398,9 @@ section#footer {
   color: #ffffff;
   padding: 15px 10px;
   margin: 0px;
+  font-size: 17px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
 }
 .panle-footer{
   padding: 15px 15px 15px;
@@ -1410,10 +1416,123 @@ section#footer {
 }
 
 
+/*FOR REDIO BOX*/
+.control {
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+  position: relative;
+  display: block;
+  margin-bottom: 15px;
+  padding-left: 30px;
+  cursor: pointer;
+}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: #e6e6e6;
+}
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+/* Checked state */
+.control input:checked ~ .control__indicator {
+  background: #2aa1c0;
+}
+/* Check mark */
+.control__indicator:after {
+  position: absolute;
+  display: none;
+  content: '';
+}
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+/* Radio button inner circle */
+.control--radio .control__indicator:after {
+  top: 5px;
+  left: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+/* Disabled circle colour */
+.control--radio input:disabled ~ .control__indicator:after {
+  background: #7b7b7b;
+}
 
-
-
-
+/*ACCORDIN TOGGL*/
+.according-wrap .panel-title > a:before {
+  float: right !important;
+  font-family: FontAwesome;
+  content: "-";
+  font-size: 16px;
+  font-weight: 900;
+  /*content: "\f068";*/
+  padding-right: 5px;
+}
+.according-wrap .panel-title > a.collapsed:before {
+  float: right !important;
+  content: "+";
+  font-size: 16px;
+  font-weight: 900;
+  /*content: "\f067";*/
+}
+.according-wrap .panel-title > a:hover,
+.according-wrap .panel-title > a:active,
+.according-wrap .panel-title > a:focus {
+  text-decoration: none;
+}
+.according-wrap .panel-default>.panel-heading{
+  background: transparent;
+}
+.according-wrap .panel-title{
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+}
+.according-wrap .panel-default{
+  border: 0px;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+}
+.sub-cat-list ul{
+  margin: 0px;
+  padding: 0;
+}
+.sub-cat-list ul li{
+  list-style-type: none;
+}
+.sub-cat-list ul li a{
+  color: #000000;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  line-height:  23px;
+}
+.sub-cat-list ul li a:hover{
+  color: #52bbd5;
+}
+.according-wrap .panel-title a:hover{
+  color: #52bbd5;
+}
+.panel-body{
+  padding: 8px 15px;
+}
 
 
 
