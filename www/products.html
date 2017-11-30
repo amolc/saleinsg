@@ -19,7 +19,7 @@
 
         
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="allproducts()">
         <!-- Start Header -->
 
          
@@ -115,13 +115,13 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav" ng-if="CountryId>0" ng-init="getCategories()">
+                          <ul class="nav navbar-nav" ng-if="CountryId!=null" ng-init="getCategories()">
                           <li ng-repeat='cat in categorieslist'>
                           <a href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
                           {{cat.CategoryTitle}}
                           </a></li>
                           </ul>
-                          <ul class="nav navbar-nav" ng-if="CountryId==0" ng-init="getCategories()">
+                          <ul class="nav navbar-nav" ng-if="CountryId==null" ng-init="getCategories()">
                           <li ng-repeat='cat in categorieslist'>
                           <a href="products.html?category={{cat.CategoryId}}">
                           {{cat.CategoryTitle}}
@@ -201,7 +201,7 @@
               </div>
             </div>
         </header>
-        <section id="pakeges-wrap" ng-init="allproducts()">
+        <section id="pakeges-wrap">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -217,35 +217,16 @@
                             <div class="panle-footer">
                                 <div class="cuntry-cate-list">
                                     <div class="main-cat">
-                                        <div class="control-group">
-                                            <label class="control control--radio">India
+                                        <div class="control-group" ng-init="getCountries()">
+                                            <!-- <label class="control control--radio">India
                                                 <input type="radio" name="radio" checked="checked"/>
                                                 <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Malaysia
-                                                <input type="radio" name="radio"/>
+                                            </label> -->
+                                            <label class="control control--radio" ng-repeat="cn in countrylist">{{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="filter.CountryId" ng-value="CountryId"/>
                                                 <div class="control__indicator"></div>
                                             </label>
-                                            <label class="control control--radio">Thailand
-                                                <input type="radio" name="radio"/>
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Indonesia
-                                                <input type="radio" name="radio"/>
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Bangladesh
-                                                <input type="radio" name="radio"/>
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Singapore
-                                                <input type="radio" name="radio"/>
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <label class="control control--radio">Vietnam
-                                                <input type="radio" name="radio"/>
-                                                <div class="control__indicator"></div>
-                                            </label>
+                                            
                                         </div>
                                     </div>
                                 </div>

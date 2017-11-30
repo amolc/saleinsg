@@ -405,7 +405,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
 
              $scope.productslist = data;  
-             window.localStorage.setItem('filter_category',id[1]);  
+             window.localStorage.setItem('filter_category',id[1]); 
+             $scope.CategoryId = id[1]; 
         });
 
       }
@@ -416,18 +417,18 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
              $scope.productslist = data;
              window.localStorage.setItem('filter_country',id[1]);
+             $scope.CountryId = id[1];
                      
         });
 
       }
+
        if (window.localStorage.getItem('filter_country')>0) 
            $scope.CountryId = id[1];
-       else 
-           $scope.CountryId = 0;
        if (window.localStorage.getItem('filter_category')>0) 
            $scope.CategoryId = id[1];
-       else 
-           $scope.CategoryId = 0;
+
+          
 
        console.log($scope.CountryId);
 
