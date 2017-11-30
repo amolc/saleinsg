@@ -30,29 +30,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class=" col-sm-9 txt-logo">
+                            <div class=" col-sm-3 txt-logo">
                                  <a href="index.html">
-                                    <img src="assets/img/logo.jpg" alt="" title="">
+                                    <img src="assets/img/logo.png" alt="" title="">
                                 </a>
 
                             </div>
-                            <div class=" col-sm-3  pull-right">
-                                <a href="register.html" class="txt-bcsup">Become Supplier
-                                   <!--  <img src="assets/img/logo.jpg" alt="" title=""> -->
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="navigation-strip">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="top-nav">
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
                                 <nav class="navbar navbar-default">
-                                  <div class="container-fluid pd0">
+                                  <div class="container-fluid">
                                     <!-- Brand and toggle get grouped for better mobile display -->
                                     <div class="navbar-header">
                                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -65,22 +52,146 @@
                                     </div>
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
-                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                                       <ul class="nav navbar-nav">
-                                        <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
-                                        <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
-                                       <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
-                                        <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
-                                        <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
-                                        <li><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <!-- <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                          <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">One more separated link</a></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                      <form class="navbar-form navbar-left">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" placeholder="Search">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                      </form> -->
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                        <li><a href="#">Seller</a></li>
+                                        <li><a href="#">Buyer</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+                                        <li><a href="#">Contact Us</a></li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
                                 </nav>
+                              </div>
                             </div>
-                        </div >
+                           <!--  <div class=" col-sm-3  pull-right">
+                                <a href="register.html" class="txt-bcsup">Become Supplier
+                                    
+                                </a>
+
+                            </div> -->
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <!-- <a class="navbar-brand" href="#">Go quickly to <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav" ng-init="getCategories()">
+                         <!--  <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li> -->
+                            <!-- <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Appliances</a></li>
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Baby & Kids</a></li>
+                            <li><a href="#">Home & Furniture</a></li> -->
+                            <!-- <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">India <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Malaysia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thailand <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> 
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Indonesia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bangladesh <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> -->
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                  </div>
+                </div>
+              </div>
             </div>
         </header>
     <!-- End Header -->
@@ -159,16 +270,13 @@
   <section id="book-now">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 text-center">
+        <div class=" ">
+          <div class="login-form-wrap">
+            <div class="col-md-12 text-center">
            <h2 class="section-title">Login</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <form name="formLogin"  ng-controller="contactcontroller" data-ng-submit="login(logininfo,formLogin)" id="formLogin" method="post">
-            <div class="col-md-4">
-            </div>
-             <div class="col-md-4">
+           </div>
+            <form name="formLogin"  ng-controller="contactcontroller" data-ng-submit="login(logininfo,formLogin)" id="formLogin" method="post">
+             <div class=" ">
               
              <div class="form-group">
               <label for="email">Email Id :</label>
@@ -188,8 +296,9 @@
               <div class="clearfix"></div>
           
              
-            <button class="btn btn-success orenge-btn wpcf7-form-control wpcf7-submit" type="submit" value="Apply">Login</button>
+            <button class="btn btn-success small-btn mr-t30 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">Login</button>
           </form>
+          </div>
           
         </div>
 
@@ -198,62 +307,45 @@
       <div class="clearfix"></div>
   </section>
 
+<div w3-include-html="footer.html"></div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
 
 
 
 
 
+ 
 
- <section id="footer">
-            <div class="container">
-                <div class="row">
-                    <!-- <div class="col-sm-4 col-md-4">
-                        <div class="foot-text">
-                            <h4>About us</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        </div>
-                    </div> -->
-                    <div class="col-sm-4 col-md-4 pd-l80">
-                        <div class="foot-text">
-                              <h4>Contact Us</h4>
-                              <h5>tradeexchange.co</h5>
-                              <p>06-32 Paya Lebar Square</p>
-                              <p>Singapore 409051</p>
-
-                       </div>
-                    </div>
-                    <div class="col-sm-4 col-md-4 pd-l80">
-                        <div class="foot-text">
-                            <!-- <h4>select Hotels</h4>
-                            <ul>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            </ul> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer  id="bottom-strip">
-            <p>Copyright 2017- tradeexchange.co - All Rights Reserved</p>
-        </footer>
-
-  <script  type="text/javascript"  src="assets/js/jquery.min.js"></script>
+ <!--  <script  type="text/javascript"  src="assets/js/jquery.min.js"></script>
   <script   type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <script  type="text/javascript"  src="assets/js/main.js"></script>
 
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <script src="assets/js/custom.js"></script>
 <script>
     $(function(){
          // Find any date inputs and override their functionality
          $('input[type="date"]').datepicker();
     });
-</script>
+</script> -->
 
-</div>
+ 
 </body>
 
 </html>

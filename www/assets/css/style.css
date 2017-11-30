@@ -312,8 +312,10 @@ section#footer {
 .section-title{
     font-size: 28px;
     /*text-align: left;*/
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     color: #000000;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
 }
 .package-box{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
@@ -354,7 +356,7 @@ section#footer {
      border-color: #18a7e2;
 }
 #book-now{padding: 60px;}
-.form-control{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; height: 35px; border-color: #171717;}
+.form-control{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; height: 44px; border-color: #171717;}
 .form-control:focus, .form-control:hover, .form-control:active{box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none; border-color: #18a7e2;}
 .btn-success{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; display: block; margin: 40px auto 0px; padding: 10px 45px; background-color: #18a7e2;
     border-color: #18a7e2;}
@@ -596,8 +598,9 @@ section#footer {
 }*/
 #book-now label{
   color: #280f0a;
-  ont-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
+  
 }
 .form-control:focus, .form-control:hover, .form-control:active{
   border-color: transparent;
@@ -1560,8 +1563,22 @@ section#footer {
 #pro-details-wrap{
   padding: 100px 0px;
 }
-.pl50{
-  padding-left: 50px;
+.login-form-wrap{
+  width: 40%;
+  margin: 0 auto;
+  background: #e8e8e8;
+  padding: 50px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.login-form-wrap{
+
+}
+.form-control:hover, .form-control:focus, .form-control:active{
+  border-color: #000000;
 }
 
 
@@ -1580,10 +1597,10 @@ section#footer {
 
 
 
+.mr-t50{margin-top: 50px;}
+.mr-t30{margin-top: 30px;}
+.pl50{padding-left: 50px;}
 
-.mr-t50{
-  margin-top: 50px;
-}
 .pd0{padding: 0px;}
 .mb30{margin-bottom: 30px;}
 .mr20{margin-right: 20px;}
