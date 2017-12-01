@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-       <meta charset="utf-8">
+   <head>
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,16 +15,12 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-        <script type="text/javascript">
-         if (window.sessionStorage.getItem('User_Id')<=0) 
-                {
-                   window.location.href="login.html";
-                }
-    </script>
+
+        
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
+    <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
-       <header id="top-header">
+        <header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
@@ -195,7 +191,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller" data-ng-init="initfunc()">
 <!--
   <section id="header">
     <div class="container">
@@ -271,110 +267,44 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">Place Order</h2>
+           <h2 class="section-title">Contact Us</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
-           <div class="col-md-6">
-            <div class="form-group">
-            <img src="uploads/{{product.Image1}}" class="img-responsive">
-          
-            </div>
-           
-                </div>
+          <form name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
              <div class="col-md-6"><div class="form-group">
-              <label for="fullname">Name : {{product.fullname}}</label>
+              <label for="">Name :</label>
+              <input type="name" class="form-control" ng-model="fullname" name="fullname" id="fullname" required>
             </div>
             <div class="form-group">
-              <label for="phoneno">Phone Number : {{product.phonenumber}}</label>
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" ng-model="phonenumber" name="phonenumber" id="phonenumber" required>
             </div>
             <div class="form-group">
-              <label for="email">Email Address : {{product.email}}</label>
-            </div>
-            <div class="form-group">
-              <label for="productname">Product Name : {{product.ProductName}}</label>
-            </div>
-              <div class="form-group">
-              <label for="productprice">Product Price : SGD ${{product.Price}}</label>
-            </div>
-              <div class="form-group">
-             <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
-               <label for="productprice">Quantity :</label>
-               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:1:product.Quantity"></select>
-            </div>
-            <div class="form-group">
-              <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
-            </div>
-             <div class="form-group">
-              <label for="shippingaddress">Shipping Address : </label>
-              <textarea class="form-control mb19" id="address" name="address" ng-model="product.address" rows="6" required="">
-                
-              </textarea>
-            </div>
-
-             <div class="form-group" >
-              <label for="paymenttype">Payment Type : </label>
-                  <select ng-model="product.paymenttype" class="form-control" id="paymenttype" required="">
-                      <option value="Credit Card">Credit Card</option>
-                      <option value="Bank Transfer">Bank Transfer</option>
-                  </select>
-            
+              <label for="email">Email Address:</label>
+              <input type="email" class="form-control" ng-model="email" name="email" id="email" required>
+            </div>            
+           <!--  <div class="form-group">
+              <label for="pwd">Travel Date :</label>
+              <input type="date" class="form-control" ng-model="travelDate" name="travelDate" id="travelDate" required>
+            </div> -->
               </div>
-
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <textarea class="form-control mb19" name="message" ng-model="message" id="message" cols="30" rows="9"></textarea>
+            </div>
+            </div>
               <div class="clearfix"></div>
-              </div>
-       
-          <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
+           <!--  <input type="text" class="form-control" ng-model="packageName" name="packageName" id="packageName"> -->
+             <input type="hidden" class="form-control" ng-model="packagename" value="{{packagename}}" name="packageName" id="packageName">
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
           </form>
-           <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
-
-                      <div class="col-sm-10" >
-                          <p style="color:red;">{{paymessage}}</p>
-                      </div>
-
-                        <div class="col-sm-12 text-center" >
-                           <h3>Product Name : {{product.ProductName}}</h3>
-                           <h3>Total : SGD {{product.Price * product.orderqty | currency }}</h3>
-                          </div>  
-
-                    
-                        <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="control-label">Name</label>
-                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="cardname" value="Humty Dumty">
-                        </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="control-label">Card Number</label>
-                                <input type="text"  class="form-control"  ng-model="number" payments-validate="card" payments-type-model="type" />
-                        </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="control-label">Expiry MM/YYYY</label>
-                              <input type="text"  class="form-control"  ng-model="expiry" payments-format="expiry"  />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="control-label">CVV</label>
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="cvc" maxlength="3" payments-format="cvc" >
-                        </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-12 text-center m-t-40">
-                                <button type="submit" class="btn btn-warning" >Pay</button>
-                            </div>
-                        </div>
-                    </form>
-          <div id="thankyou" hidden="">
+          <div id="thankyou">
             <div class="thankyou">
                 <div class="item">
-                    <span><h4><b><font>Order Placed Successfully!</font></b></h4></span>
+                    <span><h4><b><font>Submitted Successfully!</font></b></h4></span>
                 </div>
             </div>
         </div>
@@ -399,7 +329,6 @@
   <script type="text/javascript" src="assets/js/app.js"></script>
   <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
       <script src="https://js.stripe.com/v2/"></script>
-      <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
@@ -409,6 +338,15 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
         <script src="assets/js/custom.js"></script>
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script>
 
 </div>
 </body>

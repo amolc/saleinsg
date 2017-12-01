@@ -11,28 +11,12 @@
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <link href="assets/css/responsive.css" rel="stylesheet">
-        
-        <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/164071/drift-basic.css'>
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-
-        <!-- Owl Stylesheets -->
-        <link rel="stylesheet" href="OwlCarousel/docs.theme.min.css">
-
-
-    <link rel="stylesheet" href="OwlCarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="OwlCarousel/owl.theme.default.min.css">
-
-    <script type="text/javascript" src="assets/js/angular.min.js"></script>
-      <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
-      <script type="text/javascript" src="assets/js/app.js"></script>
-      <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
-      <script src="https://js.stripe.com/v2/"></script>
-      <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
-
+        
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller" ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
         <!-- Start Header -->
@@ -86,13 +70,14 @@
                                         </div>
                                         <button type="submit" class="btn btn-default">Submit</button>
                                       </form> -->
-                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
-                                        <li><a href="#">Seller</a></li>
-                                        <li><a href="#">Buyer</a></li>
+                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                        <!-- <li><a href="#">Seller</a></li>
+                                        <li><a href="#">Buyer</a></li> -->
+                                        <li ng-if="User_Id>0"><a href="#">Dashboard</a></li>
                                         <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
                                         <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
                                         <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
-                                        <li><a href="#">Contact Us</a></li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
@@ -225,7 +210,7 @@
                                                     </p>
                                                     <div class="category-title mb30">
                                                         <span>Category : {{product.CategoryTitle}}</span>
-                                                        <span>Subcategory : {{product.SubCatTitle}}</span>
+                                                        <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
                                                     </div>
                                                     <div class="category-title mb30">
                                                         <span>Country : {{product.CountryTitle}}</span>
@@ -471,44 +456,24 @@
         </section> -->
 
 
-        <section id="footer">
-            <div class="container">
-                <div class="row">
-                   <!--  <div class="col-sm-4 col-md-4">
-                        <div class="foot-text">
-                            <h4>About us</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        </div>
-                    </div> -->
-                    <div class="col-sm-4 col-md-4 pd-l80">
-                        <div class="foot-text">
-                              <h4>Contact Us</h4>
-                              <h5>tradeexchange.co</h5>
-                              <p>06-32 Paya Lebar Square</p>
-                              <p>Singapore 409051</p>
+         <div w3-include-html="footer.html"></div>
 
-                       </div>
-                    </div>
-                    <div class="col-sm-4 col-md-4 pd-l80">
-                        <div class="foot-text">
-                            <!-- <h4>select Hotels</h4>
-                            <ul>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            </ul>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <footer  id="bottom-strip">
-            <p>Copyright 2017- tradeexchange.co - All Rights Reserved.</p>
-        </footer>
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
+
 
     <!--     <script src="assets/js/custom.js"></script> -->
 
