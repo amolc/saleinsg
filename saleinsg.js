@@ -60,6 +60,8 @@ app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.get('/api/filterbycategory/:id', contact.filterbycategory);
 app.get('/api/filterbycountry/:id', contact.filterbycountry);
 app.post('/api/filterbyCouCat', contact.filterbyCouCat);
+app.post('/api/filterbyCatSub', contact.filterbyCatSub);
+app.post('/api/filterbyall', contact.filterbyall);
 
 app.post('/api/submitenquiry', contact.submitenquiry);
 app.post('/api/addorder', contact.addorder);

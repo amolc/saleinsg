@@ -257,6 +257,28 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
    }
 
+     $scope.getSubCatlist = function(CategoryId) {
+
+      $scope.catId = CategoryId;
+    $http.get(baseurl + 'getsubcategories/'+$scope.catId).success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.subcatlist = res;
+                console.log($scope.subcatlist);
+               // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+               //console.log($scope.categorieslist);
+            }
+
+        }).error(function () {
+
+        });
+
+   }
+
     var attachmentfile1 = [];
     var filelength;
 
@@ -428,7 +450,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       }
 
-
        if (window.localStorage.getItem('filter_country')) 
            $scope.CountryId = window.localStorage.getItem('filter_country');
        if (window.localStorage.getItem('filter_category')) 
@@ -440,6 +461,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       }
        else if(urlpart.length==2){
+
+        //alert('hi');
         var urlparams = parts[1];
 
         var urlpart = urlparams.split('&');
@@ -464,10 +487,71 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
            if (window.localStorage.getItem('filter_country')) 
            $scope.CountryId = window.localStorage.getItem('filter_country');
-       if (window.localStorage.getItem('filter_category')) 
+           if (window.localStorage.getItem('filter_category')) 
            $scope.CategoryId = window.localStorage.getItem('filter_category');
 
+        } 
+
+         if (id1[0]=='category' && id2[0]=='subcategory') 
+        {
+
+           $scope.filter.CategoryId = id1[1];
+           $scope.filter.SubCatId = id2[1];
+           $http.post(baseurl + 'filterbyCatSub',$scope.filter).success(function(data, status) {
+
+               $scope.productslist = data;  
+               window.localStorage.setItem('filter_category',id1[1]);
+               window.localStorage.setItem('filter_subcat',id2[1]);  
+               $scope.CategoryId = id1[1];
+               $scope.SubCatId = id2[1];
+          });
+
+           if (window.localStorage.getItem('filter_category')) 
+              $scope.CategoryId = window.localStorage.getItem('filter_category');
+           if (window.localStorage.getItem('filter_subcat')) 
+              $scope.SubCatId = window.localStorage.getItem('filter_subcat');
+
         }          
+
+     }
+
+
+     else if(urlpart.length==3){
+       //alert('hii');
+        var urlparams = parts[1];
+
+        var urlpart = urlparams.split('&');
+        //alert(urlpart);
+        var id1 = urlpart[0].split('=');
+        var id2 = urlpart[1].split('=');
+        var id3 = urlpart[2].split('=');
+        //alert(type[1]);
+        //alert(id1[0]);
+        if (id1[0]=='country' && id2[0]=='category' && id3[0]=='subcategory') 
+        {
+
+           $scope.filter.CountryId = id1[1];
+           $scope.filter.CategoryId = id2[1];
+           $scope.filter.SubCatId = id3[1];
+           $http.post(baseurl + 'filterbyall',$scope.filter).success(function(data, status) {
+
+               $scope.productslist = data;  
+               window.localStorage.setItem('filter_country',id1[1]);
+               window.localStorage.setItem('filter_category',id2[1]);
+               window.localStorage.setItem('filter_subcat',id3[1]);    
+               $scope.CountryId = id1[1];
+               $scope.CategoryId = id2[1];
+               $scope.SubCatId = id3[1];
+          });
+
+           if (window.localStorage.getItem('filter_country')) 
+           $scope.CountryId = window.localStorage.getItem('filter_country');
+           if (window.localStorage.getItem('filter_category')) 
+           $scope.CategoryId = window.localStorage.getItem('filter_category');
+           if (window.localStorage.getItem('filter_subcat')) 
+           $scope.SubCatId = window.localStorage.getItem('filter_subcat');
+
+        }           
 
      }
       

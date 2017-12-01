@@ -268,14 +268,21 @@
                                       </h4>
 
                                           </div>
-                                          <div id="collapseOne_{{cat.CategoryId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}">
+                                          <div id="collapseOne_{{cat.CategoryId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}" ng-style="{'display': CategoryId==cat.CategoryId ? 'block' : 'none'}">
                                             <div class="panel-body">
                                                 <div class="sub-cat-list">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                    <ul  ng-init="getSubCatlist(CategoryId)">
+                                                       <li ng-repeat="sc in subcatlist">
+                                                       <a ng-if="CountryId==null" href="products.html?category={{cat.CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       <a ng-if="CountryId!=null" href="products.html?country={{CountryId}}&category={{CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       </li>
+
+                                                       <!--  <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
                                                         <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
                                                         <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li> -->
                                                     </ul>
                                                 </div>
                                             </div>
