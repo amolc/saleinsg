@@ -230,8 +230,16 @@
                                                 <div class="select-country"></div>
                                             </a>
                                             </label>
-                                            <label ng-if="CategoryId!=null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <label ng-if="CategoryId!=null && SubCatId==null" class="control control--radio" ng-repeat="cn in countrylist">
                                             <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
+                                                <div class="select-country"></div>
+                                            </a>
+                                            </label>
+
+                                              <label ng-if="CategoryId!=null && SubCatId!=null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}&subcategory={{SubCatId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
                                                 {{cn.CountryTitle}}
                                                 <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
                                                 <div class="select-country"></div>
