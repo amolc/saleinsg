@@ -224,14 +224,14 @@
                                                 <div class="control__indicator"></div>
                                             </label> -->
                                             <label ng-if="CategoryId==null" class="control control--radio" ng-repeat="cn in countrylist">
-                                            <a href="products.html?country={{cn.CountryId}}">
+                                            <a href="products.html?country={{cn.CountryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
                                                 {{cn.CountryTitle}}
                                                 <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
                                                 <div class="select-country"></div>
                                             </a>
                                             </label>
                                             <label ng-if="CategoryId!=null" class="control control--radio" ng-repeat="cn in countrylist">
-                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}">
+                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
                                                 {{cn.CountryTitle}}
                                                 <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
                                                 <div class="select-country"></div>
@@ -259,10 +259,10 @@
                                     <div class="panel panel-default" ng-repeat="cat in categorieslist">
                                           <div class="panel-heading" role="tab" id="headingOne_{{cat.CategoryId}}">
                                             <h4 class="panel-title">
-                                        <a ng-if="CountryId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}">
+                                        <a ng-if="CountryId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
                                           {{cat.CategoryTitle}}
                                         </a>
-                                         <a ng-if="CountryId!=null" data-parent="#accordion" href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
+                                         <a ng-if="CountryId!=null" data-parent="#accordion" href="products.html?country={{CountryId}}&category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
                                           {{cat.CategoryTitle}}
                                         </a>
                                       </h4>
