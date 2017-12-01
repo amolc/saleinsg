@@ -199,28 +199,35 @@
                         <!-- <h1>What is tradeexchange.co</h1> -->
                         <div class="clearfix"></div>
                         <h4>Tradeexchange is a 100% International export<br> platform for asian countries.</h4>
-                        <form>
+                        <form ng-init="getCountries()">
                           <div class="form-fild">
                             <div>Sell from 
                               <div class="cos-select-box">
+                               <!-- <select class="form-control" id="country" name="country" ng-options="cou.CountryId as cou.CountryTitle for cou in countrylist" ng-model="fromCountryId" required="" ng-init="fromCountryId=1" ng-style="{'color': fromCountryId==cou.CountryId ? 'white' : 'black'">
+                              </select> -->
                                 <select class="form-control effect-7">
                                   <option class="color-black">India</option>
                                   <option class="color-black">Malaysia</option>
                                   <option class="color-black">Thailand</option>
                                   <option class="color-black">Indonesia</option>
                                   <option class="color-black">Bangladesh</option>
-                                </select>
-        
+                                  <option class="color-black">Singapore</option>
+                                  <option class="color-black">Vietnam</option>
+                                </select>        
                               <span class="focus-border"><i></i></span>
                               </div>
                               <span>to </span> 
                               <div class="cos-select-box">
+                              <!-- <select class="form-control" id="country" name="country" ng-options="cou.CountryId as cou.CountryTitle for cou in countrylist" ng-model="toCountryId" required="" ng-init="toCountryId=7" ng-style="{'color': tofromCountryId==cou.CountryId ? 'white' : 'black'">
+                              </select> -->
                                 <select class="form-control effect-7">
                                    <option class="color-black">Singapore</option>
                                   <option class="color-black">Malaysia</option>
                                   <option class="color-black">Thailand</option>
                                   <option class="color-black">Indonesia</option>
                                   <option class="color-black">Bangladesh</option>
+                                   <option class="color-black">India</option>
+                                   <option class="color-black">Vietnam</option>
                                 </select>
                                 <span class="focus-border"><i></i></span>
                                 </div>
