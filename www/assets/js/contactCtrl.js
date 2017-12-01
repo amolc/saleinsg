@@ -407,7 +407,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       {
           window.localStorage.removeItem('filter_country');
           window.localStorage.removeItem('filter_category');
-          window.localStorage.removeItem('filter_subcategory');
+          window.localStorage.removeItem('filter_subcat');
       }
 
       $scope.filter = {};
