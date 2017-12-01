@@ -302,7 +302,7 @@
               <div class="form-group">
              <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
                <label for="productprice">Quantity :</label>
-               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:1:product.Quantity"></select>
+               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity"></select>
             </div>
             <div class="form-group">
               <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>

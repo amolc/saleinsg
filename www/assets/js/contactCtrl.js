@@ -1,9 +1,15 @@
  app.filter('range', function() {
-      return function(input, min, max) {
+      return function(input, min, max,step) {
         min = parseInt(min); //Make string input int
         max = parseInt(max);
-        for (var i=min; i<max; i++)
+        // for (var i=min; i<max; i++)
+        //   input.push(i);
+        var i=min;
+        while(i<=max)
+        {
           input.push(i);
+          i=i+min;
+        }
         return input;
       };
     });
@@ -681,7 +687,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
-            $scope.product.orderqty = 1;
+            $scope.product.orderqty = $scope.product.MinOrderQty;
             $scope.product.paymenttype = 'Credit Card';
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {

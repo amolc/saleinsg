@@ -192,13 +192,7 @@
               <textarea class="form-control" ng-model="product.description" name="description" id="description" rows="6" required></textarea>
             </div> 
             </div>
-             <div class="col-md-6">
-             <div class="form-group">
-              <label for="quantity">Product Quantity:</label>
-              <input type="text" class="form-control" ng-model="product.quantity" name="quantity" id="quantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
-            </div>
-            </div>
-             <div class="col-md-6">
+            <div class="col-md-4">
             <div class="form-group">
               <label for="image">Image:</label>
               <input id="file_browse1" class="form-control" type='file' name="productimage" onchange="angular.element(this).scope().updateattachment('file_browse1');   $('#imagepreview').children().remove();" accept="image/*" required=""/ required="">
@@ -206,10 +200,22 @@
               <input type="hidden" name="imagename" ng-model="product.imagename">
             </div>
             </div>
-            <div class="col-md-6">
-              
+
+             <div class="col-md-4">
+             <div class="form-group">
+              <label for="quantity">Product Quantity:</label>
+              <input type="text" class="form-control" ng-model="product.quantity" name="quantity" id="quantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
             </div>
-            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-4">
+             <div class="form-group">
+              <label for="quantity">Min Order Quantity:</label>
+              <input type="text" class="form-control" ng-model="product.minquantity" name="minquantity" id="minquantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
+            </div>
+            </div>
+
+            <div class="col-md-12">
               <div id="imagepreview"></div>
             </div>
              <div class="col-md-6">

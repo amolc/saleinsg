@@ -390,6 +390,7 @@ exports.addproduct = function (req, res) {
         "CountryId" : req.body.CountryId,
         "CategoryId" : req.body.CategoryId,
         "SubCatId" : req.body.SubCatId,
+        "MinOrderQty" : req.body.minquantity,
         // "Category": req.body.category || "",
         // "SubCategory": req.body.subcat || "",
         "SupplierId": req.body.UserId || "",      
