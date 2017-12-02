@@ -390,7 +390,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                   
                   document.addproduct.reset(); 
                   $("#addproduct").hide();
-                  $("#thankyoudiv").show('slow');
+                  $scope.spec = {};
+                  $scope.spec.ProductId = res.value;
+                  $("#specification").show('slow');
 
 
                 }).error(function() {
@@ -400,6 +402,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
 
     }  
+
+
+    $scope.savespecification = function(spec) {             
+
+
+            $http.post(baseurl + 'addspecification/',$scope.spec).success(function(res) {
+
+                 
+                  document.addproduct2.reset(); 
+
+             var rowCount = $('#specificationtable >tr').length+1;
+
+             var rowappend = "<tr><td>"+rowCount+"</td><td>"+$scope.spec.Title+"</td><td>"+$scope.spec.Description+"</td></tr>";
+
+             $("#specificationtable").append(rowappend);
+
+
+
+                }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+                });
+
+             }
 
 
      $scope.allproducts = function (req, res) {

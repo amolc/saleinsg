@@ -272,10 +272,51 @@
              
             <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add Product</button>
           </form>
+
+        <div id="specification" hidden="">
+         <span><h4><b><font>Product Specification</font></b></h4></span>
+            <form name="addproduct2" ng-submit="savespecification(spec)" id="addproduct2" method="post">
+            <input type="hidden" name="ProductId" ng-model="spec.ProductId">
+             <div class="col-md-12">
+              <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" ng-model="spec.Title" name="title" id="title" required>
+            </div> 
+             </div>  
+             <div class="col-md-12">
+            <div class="form-group">
+              <label for="desc">Description:</label>
+              <textarea class="form-control" ng-model="spec.Description" name="desc" id="desc" rows="6" required></textarea>
+            </div> 
+            </div>             
+        
+              <div class="clearfix"></div>
+          
+             
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add</button>
+          </form><br/><br/>
+            <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody id="specificationtable">
+               
+              </tbody>
+            </table>
+            </div>
+            <br/><br/>
+            <button class="btn btn-success orenge-btn" type="button" value="Apply" class="wpcf7-form-control wpcf7-submit" onclick="$('#specification').hide();$('#thankyoudiv').show('slow');">Save</button>
+        </div>
+
           <div id="thankyoudiv" hidden="">
             <div class="thankyou">
                 <div class="item">
-                    <span><h4><b><font>Product Added Successfully.</font></b></h4></span>
+                    <span><h4><b><font>Product Information Added Successfully.</font></b></h4></span>
                 </div>
             </div>
         </div>

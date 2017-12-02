@@ -14,6 +14,7 @@ fs = require('fs-extra');
 var contact = require('./api/contact.js');
 var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
+var seller = require('./api/seller.js');
 
 /*app.use(function(req, res, next){
 	var url_parts = url.parse(req.url, true);
@@ -50,7 +51,6 @@ app.post('/api/login', contact.login);
 
 app.get('/api/allcategories', contact.allcategories);
 app.get('/api/getsubcategories/:id', contact.getsubcategories);
-app.post('/api/addproduct', contact.addproduct);
 
 app.get('/api/allproducts', contact.allproducts);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
@@ -66,6 +66,10 @@ app.post('/api/filterbyall', contact.filterbyall);
 app.post('/api/submitenquiry', contact.submitenquiry);
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
+
+
+app.post('/api/addproduct', seller.addproduct);
+app.post('/api/addspecification', seller.addspecification);
 
 
 app.listen(9888, function () {
