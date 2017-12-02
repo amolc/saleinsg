@@ -751,6 +751,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
        
       });
+
+        $http.get(baseurl + 'getProductSpecification/'+$scope.product.productId).success(function(data, status) {
+
+            $scope.specification = data;
+            
+      });
     }
     else
     {
@@ -758,6 +764,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
     }
+
+    $scope.submitenquiry = function (enquiryform) {
+
+      $http.post(baseurl + 'submitenquiry',$scope.enquiry).success(function(data, status) {
+
+        if (data.status == true) 
+        {
+             document.enquiryform.reset(); 
+             $("#enquiryform").hide();
+             $("#thankyou").show('slow');
+
+        }
+       
+      });
+  
+  }
 
   $scope.submitenquiry = function (enquiryform) {
 

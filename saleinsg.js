@@ -54,6 +54,7 @@ app.get('/api/getsubcategories/:id', contact.getsubcategories);
 
 app.get('/api/allproducts', contact.allproducts);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
+app.get('/api/getProductSpecification/:id', contact.getProductSpecification);
 app.post('/api/getrecentprod', contact.getrecentprod);
 
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);

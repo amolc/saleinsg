@@ -446,6 +446,19 @@ exports.getProductDetails = function (req, res) {
     
 };
 
+exports.getProductSpecification = function (req, res) {
+
+  var ProductId = req.params.id;
+   var sql = "SELECT `Title`,`Description` FROM `tbl_ProductSpecification` WHERE `ProductId`= "+ProductId;
+   // console.log(sql);
+  // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+    
+};
+
+
 
 exports.submitenquiry = function (req, res) {
 

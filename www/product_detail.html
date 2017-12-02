@@ -208,10 +208,18 @@
                                                     <p class="description-para mb30">
                                                         {{product.Description}}
                                                     </p>
-                                                    <div class="category-title mb30">
+                                                    <p>
+                                                    <ul>
+                                                      <li ng-repeat="s in specification">
+                                                       {{s.Title}} :  {{s.Description}}
+                                                      </li>
+                                                    </ul>
+                                                      
+                                                    </p>
+                                                    <!-- <div class="category-title mb30">
                                                         <span>Category : {{product.CategoryTitle}}</span>
                                                         <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="category-title mb30">
                                                         <span>Country : {{product.CountryTitle}}</span>
                                                         <span>Seller : {{product.CompanyName}}</span>
