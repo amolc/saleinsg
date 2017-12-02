@@ -52,7 +52,6 @@ exports.shortlistedproducts = function (req, res) {
     });
 };
 
-
 exports.removefromwishlist = function (req, res) {
     var BuyerId = req.body.BuyerId;
     var ProductId = req.body.ProductId;
@@ -64,7 +63,6 @@ exports.removefromwishlist = function (req, res) {
 };
 
 exports.addtowishlist = function (req, res) {
-
 
     var createObj = {
         "ProductId" :  req.body.ProductId,
