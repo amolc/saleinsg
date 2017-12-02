@@ -645,6 +645,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+    $scope.shortlistedproducts = function(){
+
+
+        $scope.BuyerId =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.get(baseurl + 'shortlistedproducts/'+$scope.BuyerId).success(function(data, status) {
+
+            //console.log(data);
+
+            $scope.productslist = data;
+        });
+
+    }
+
 
     $scope.getrecentproducts = function (req, res) {
         //alert("1");

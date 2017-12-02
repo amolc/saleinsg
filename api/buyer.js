@@ -42,6 +42,15 @@ exports.buyerorders = function (req, res) {
     });
 };
 
+exports.shortlistedproducts = function (req, res) {
+    var BuyerId = req.params.id;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_ShortlistedProducts` as sl LEFT JOIN `tbl_Products` as p ON p.`ProductId` = sl.`ProductId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE sl.`BuyerId` = "+BuyerId+" GROUP BY sl.`SpId` ORDER BY sl.`SpId` DESC";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 
 
 function send_mail(usermail, subject, mailbody) {
