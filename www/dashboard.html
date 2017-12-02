@@ -195,87 +195,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">Add Product</h2>
+           <h2 class="section-title">Dashboard</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="addproduct" ng-submit="saveproduct(product)" id="addproduct" method="post" ng-init="fileinit()">
-             <div class="col-md-6">
-              <div class="form-group">
-              <label for="name">Product Name:</label>
-              <input type="text" class="form-control" ng-model="product.name" name="name" id="name" required>
-            </div> 
-             </div>  
-              <div class="col-md-6">        
-            <div class="form-group">
-              <label for="price">Product Price:</label>
-              <input type="text" class="form-control" ng-model="product.price" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
-              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
-            </div>
-            </div>
-             <div class="col-md-12">
-            <div class="form-group">
-              <label for="description">Product Description:</label>
-              <textarea class="form-control" ng-model="product.description" name="description" id="description" rows="6" required></textarea>
-            </div> 
-            </div>
-            <div class="col-md-4">
-            <div class="form-group">
-              <label for="image">Image:</label>
-              <input id="file_browse1" class="form-control" type='file' name="productimage" onchange="angular.element(this).scope().updateattachment('file_browse1');   $('#imagepreview').children().remove();" accept="image/*" required=""/ required="">
-             <!--  <input type="text" class="form-control" ng-model="product.image" name="image" id="image" required> -->
-              <input type="hidden" name="imagename" ng-model="product.imagename">
-            </div>
-            </div>
 
-             <div class="col-md-4">
-             <div class="form-group">
-              <label for="quantity">Product Quantity:</label>
-              <input type="text" class="form-control" ng-model="product.quantity" name="quantity" id="quantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
-            </div>
-            </div>
-
-            <div class="col-md-4">
-             <div class="form-group">
-              <label for="quantity">Min Order Quantity:</label>
-              <input type="text" class="form-control" ng-model="product.minquantity" name="minquantity" id="minquantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
-            </div>
-            </div>
-
-            <div class="col-md-12">
-              <div id="imagepreview"></div>
-            </div>
-             <div class="col-md-6">
-            <div class="form-group">
-              <label for="category">Category:</label>
-              <!-- <input type="text" class="form-control" ng-model="product.category" name="category" id="category" required> -->
-              <select class="form-control" ng-init="getCategories()" ng-change="getSubCat()" id="category" name="category" ng-options="cat.CategoryId as cat.CategoryTitle for cat in categorieslist" ng-model="product.CategoryId" required="">
-              </select>
-            </div>  
-            </div>
-             <div class="col-md-6">
-            <div class="form-group">
-              <label for="subcat">Subcategory:</label>
-               <select class="form-control" id="subcat" name="subcat" ng-options="sc.SubCatId as sc.SubCatTitle for sc in subcatlist" ng-model="product.SubCatId" required="">
-              </select>
-            </div> 
-            </div>
-            <div class="form-group" id="alertmessage" hidden="">
-              <label>{{alertmessage}}</label>
-            </div> 
-           
-             
-        
-              <div class="clearfix"></div>
-          
-             
-            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add Product</button>
-          </form>
-          <div id="thankyoudiv" hidden="">
+          <div id="thankyoudiv">
             <div class="thankyou">
                 <div class="item">
-                    <span><h4><b><font>Product Added Successfully.</font></b></h4></span>
+                    <span><h4><b><font>Welcome to tradeexchange.</font></b></h4></span>
                 </div>
             </div>
         </div>
