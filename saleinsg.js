@@ -71,6 +71,7 @@ app.post('/api/addbankorder', contact.addbankorder);
 
 app.post('/api/addproduct', seller.addproduct);
 app.post('/api/addspecification', seller.addspecification);
+app.get('/api/userproducts/:id', seller.userproducts);
 
 
 app.listen(9888, function () {

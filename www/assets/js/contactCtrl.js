@@ -609,6 +609,26 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+     $scope.userproducts = function(){
+
+        $scope.userid =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.get(baseurl + 'userproducts/'+$scope.userid).success(function(data, status) {
+
+            console.log(data);
+
+            $scope.productslist = data;
+
+          //  document.addStartupForm.reset(); 
+          //  $('.form-group select').val('');
+          //  console.log(data);
+
+        });
+
+    }
+
     $scope.getrecentproducts = function (req, res) {
         //alert("1");
           if (window.localStorage.getItem('Recent_Products')==null) 
@@ -755,7 +775,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         $http.get(baseurl + 'getProductSpecification/'+$scope.product.productId).success(function(data, status) {
 
             $scope.specification = data;
-            
+
       });
     }
     else
@@ -765,21 +785,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-    $scope.submitenquiry = function (enquiryform) {
-
-      $http.post(baseurl + 'submitenquiry',$scope.enquiry).success(function(data, status) {
-
-        if (data.status == true) 
-        {
-             document.enquiryform.reset(); 
-             $("#enquiryform").hide();
-             $("#thankyou").show('slow');
-
-        }
-       
-      });
-  
-  }
 
   $scope.submitenquiry = function (enquiryform) {
 
