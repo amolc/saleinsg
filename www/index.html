@@ -19,7 +19,7 @@
 
         
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="shortlistedproducts();">
         <!-- Start Header -->
 
          
@@ -527,7 +527,8 @@
                                <!--  <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
-                                <h4><span>From SGD</span>${{product.Price}}</h4>
+                                <h4><span>From SGD</span>${{product.Price}}
+                                </h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
                                         <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>

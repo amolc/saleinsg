@@ -169,9 +169,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         window.sessionStorage.setItem('User_Phone', data.value.Phone);
                         window.sessionStorage.setItem('User_Location', data.value.CountryId);
                         //console.log(window.sessionStorage.getItem('UserId'));
-                        //console.log(window.sessionStorage.getItem('UserId'));
-                        
-
+                        //console.log(window.sessionStorage.getItem('UserId'));                        
 
                        // window.location = "../index.html";
                         window.location = "index.html";
@@ -215,6 +213,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           window.sessionStorage.removeItem('User_Name');
           window.sessionStorage.removeItem('User_Phone');
           window.sessionStorage.removeItem('User_Location');
+          window.sessionStorage.removeItem('wishlist');
           location.href = "index.html"
     }  
 
@@ -645,6 +644,57 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+    $scope.addtowishlist = function(){
+
+      $('#addtowishlist').hide();
+
+      if (window.sessionStorage.getItem('User_Id')<=0) 
+      {
+          window.location.href = "login.html";
+      }
+      else
+      {
+         $scope.wish = {}
+         $scope.wish.ProductId = $scope.product.ProductId;
+         $scope.wish.BuyerId =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.post(baseurl + 'addtowishlist/',$scope.wish).success(function(data, status) {
+
+            //console.log(data);
+            $scope.added = 1;
+            var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+            wishlist.push( $scope.product.ProductId);
+            window.sessionStorage.setItem('wishlist',JSON.stringify(wishlist));
+            $('#removefromwishlist').show();
+        });
+
+      }       
+
+    }
+
+    $scope.removefromwishlist = function(){
+
+       $('#removefromwishlist').hide();
+       $scope.wish = {}
+         $scope.wish.ProductId = $scope.product.ProductId;
+         $scope.wish.BuyerId =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.post(baseurl + 'removefromwishlist/',$scope.wish).success(function(data, status) {
+
+            //console.log(data);
+            $scope.added = 0;
+            var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+            var index = wishlist.indexOf($scope.product.ProductId);
+            wishlist.splice(index, 1);
+            window.sessionStorage.setItem('wishlist',JSON.stringify(wishlist));
+            $('#addtowishlist').show();
+        });
+    }
+
     $scope.shortlistedproducts = function(){
 
 
@@ -657,6 +707,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             //console.log(data);
 
             $scope.productslist = data;
+            $scope.wishlist = [] ;
+            for(var i = 0; i < $scope.productslist.length; i++){
+                var ProductId = $scope.productslist[i].ProductId;
+                $scope.wishlist.push(ProductId);
+            }
+            window.sessionStorage.setItem('wishlist',JSON.stringify($scope.wishlist));
         });
 
     }
@@ -810,6 +866,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.specification = data;
 
       });
+
+      $scope.added = 0;
+      var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+      for (i = 0; i < wishlist.length; i++) {
+         if (wishlist[i]==$scope.product.productId) 
+         {
+            $scope.added = 1;
+         }
+       }
     }
     else
     {
@@ -817,6 +882,23 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
     }
+
+  //    $scope.IsInWishlist = function (PId) {
+
+  //     alert( $scope.ProductId);
+  //     $scope.PId = PId;
+  //     alert($scope.PId);
+  //     $scope.added = 0
+  //     var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+  //     for (i = 0; i < wishlist.length; i++) {
+  //        alert(ProductId);
+  //        if (wishlist[i]==ProductId) 
+  //        {
+  //           $scope.added = 1;
+  //        }
+  //   }
+  
+  // }
 
 
   $scope.submitenquiry = function (enquiryform) {

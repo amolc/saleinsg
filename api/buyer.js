@@ -17,6 +17,7 @@ var consultCRUD = CRUD(db, 'contact');
 var userCRUD = CRUD(db, 'tbl_Suppliers');
 var productCRUD = CRUD(db, 'tbl_Products');
 var specificationCrud = CRUD(db, 'tbl_ProductSpecification');
+var wishlistCrud = CRUD(db, 'tbl_ShortlistedProducts');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
 
@@ -52,6 +53,49 @@ exports.shortlistedproducts = function (req, res) {
 };
 
 
+exports.removefromwishlist = function (req, res) {
+    var BuyerId = req.body.BuyerId;
+    var ProductId = req.body.ProductId;
+    var sql = "DELETE FROM `tbl_ShortlistedProducts` WHERE ProductId = "+ProductId+" AND BuyerId = "+BuyerId;
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.addtowishlist = function (req, res) {
+
+
+    var createObj = {
+        "ProductId" :  req.body.ProductId,
+        "BuyerId" : req.body.BuyerId,    
+    };
+    // console.log("after", createObj);
+
+    wishlistCrud.create(createObj, function (err, data) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:data.insertId,
+                message: 'Details successfully added'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully added. '
+            };
+
+            res.jsonp(resdata);
+        }
+    });
+};
 
 function send_mail(usermail, subject, mailbody) {
 

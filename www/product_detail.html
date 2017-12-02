@@ -225,9 +225,14 @@
                                                         <span>Seller : {{product.CompanyName}}</span>
                                                     </div>
                                                     <div class="clearfix"></div>
+                                                    <div class="category-title mb30">
+                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" class="red-btn small-btn" ng-click="addtowishlist()">Add To Wishlist</a>
+                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" class="red-btn small-btn" ng-click="removefromwishlist()">Remove from Wishlist</a>
+                                                    </div>
+                                                    <div class="clearfix"></div>
                                                     <div class="detail-btn">
                                                          <a href="order.html?id={{product.ProductId}}" class="red-btn small-btn mr20">Order Now</a>
-                                                         <a href="enquiry.html?id={{product.ProductId}}" class="red-btn small-btn">Enquiry</a>
+                                                         <a href="enquiry.html?id={{product.ProductId}}" class="red-btn small-btn mr20">Enquiry</a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -76,6 +76,8 @@ app.get('/api/userproducts/:id', seller.userproducts);
 
 app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
+app.post('/api/addtowishlist', buyer.addtowishlist);
+app.post('/api/removefromwishlist', buyer.removefromwishlist);
 
 app.listen(9888, function () {
   console.log('CORS-enabled web server listening on port 9888')
