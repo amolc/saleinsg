@@ -15,6 +15,7 @@ var contact = require('./api/contact.js');
 var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
 var seller = require('./api/seller.js');
+var buyer = require('./api/buyer.js');
 
 /*app.use(function(req, res, next){
 	var url_parts = url.parse(req.url, true);
@@ -73,6 +74,7 @@ app.post('/api/addproduct', seller.addproduct);
 app.post('/api/addspecification', seller.addspecification);
 app.get('/api/userproducts/:id', seller.userproducts);
 
+app.get('/api/buyerorders/:id', buyer.buyerorders);
 
 app.listen(9888, function () {
   console.log('CORS-enabled web server listening on port 9888')

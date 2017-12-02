@@ -629,6 +629,23 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+     $scope.buyerorders = function(){
+
+
+        $scope.BuyerId =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.get(baseurl + 'buyerorders/'+$scope.BuyerId).success(function(data, status) {
+
+            //console.log(data);
+
+            $scope.orderlist = data;
+        });
+
+    }
+
+
     $scope.getrecentproducts = function (req, res) {
         //alert("1");
           if (window.localStorage.getItem('Recent_Products')==null) 
