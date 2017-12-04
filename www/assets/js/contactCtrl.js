@@ -1027,31 +1027,46 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var id = urlpart[0].split('=');
                    //alert(id);
                    window.sessionStorage.setItem('Other_User_Id',id[1]);
-                    $scope.conversation = {};
-                    $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
-                    $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                    $scope.conv = {};
+                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
                    // console.log($scope.conversation);
                      
-                    $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+                    $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
 
                           $scope.conversation = data;
                          // console.log($scope.conversation);
-                    });
+                         setTimeout(function(){
+
+      //alert('hi');
+                      var wtf    = $('.chat_area');
+                      var height = wtf[0].scrollHeight;
+                      wtf.scrollTop(height);
+                   }, 100);
+                                    });
                    
             }
             else
             {
               $scope.conversationlist = data;
               window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
-              $scope.conversation = {};
-                    $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
-                    $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+              $scope.conv = {};
+                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
                    // console.log($scope.conversation);
                      
-                    $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+                    $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
 
                           $scope.conversation = data;
                          // console.log($scope.conversation);
+                         setTimeout(function(){
+
+      //alert('hi');
+                      var wtf    = $('.chat_area');
+                      var height = wtf[0].scrollHeight;
+                      wtf.scrollTop(height);
+                   }, 100);
+
                     });
             }
 
