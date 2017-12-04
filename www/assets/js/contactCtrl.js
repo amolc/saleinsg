@@ -945,8 +945,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             $scope.conversation = data;
            // console.log($scope.conversation);
+            
       });
-  
   }
 
    $scope.conversationlist = function () {
@@ -1042,9 +1042,42 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
     }
 
-    
-
     }, 30000)
+
+   $scope.conversation = function () {
+
+      $scope.conversation = {};
+      $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
+      $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+     // console.log($scope.conversation);
+       
+      $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+
+            $scope.conversation = data;
+           // console.log($scope.conversation);
+            
+      });
+  }
+
+   setInterval(function(){
+
+                  
+      var url = window.location.href;
+      var parts = url.split("?");
+      var pageurl = parts[0].split("/");
+      var filename = pageurl.pop();
+     // console.log(filename);
+      if (filename == 'dashboard.html') 
+      {
+
+            var wtf    = $('.chat_area');
+            var height = wtf[0].scrollHeight;
+            wtf.scrollTop(height);
+         
+      }
+
+    }, 1000)
+
 
 
   $scope.sendmessage = function (message) {
