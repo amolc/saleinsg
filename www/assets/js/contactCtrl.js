@@ -938,7 +938,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.conversation = {};
       $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
       $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-      console.log($scope.conversation);
+     // console.log($scope.conversation);
        
       $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
 
@@ -982,6 +982,69 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
   
   }
+
+   setInterval(function(){
+
+                  
+      var url = window.location.href;
+      var parts = url.split("?");
+      var pageurl = parts[0].split("/");
+      var filename = pageurl.pop();
+      console.log(filename);
+      if (filename == 'dashboard.html') 
+      {
+          $scope.userid =  window.sessionStorage.getItem('User_Id');
+       
+      $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
+
+           
+           // console.log($scope.conversationlist);
+
+           
+           if(parts.length>1){
+
+                   $scope.conversationlist = data;
+                   var urlparams = parts[1];
+                   var urlpart = urlparams.split('&');
+                   var id = urlpart[0].split('=');
+                   //alert(id);
+                   window.sessionStorage.setItem('Other_User_Id',id[1]);
+                    $scope.conversation = {};
+                    $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                   // console.log($scope.conversation);
+                     
+                    $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+
+                          $scope.conversation = data;
+                         // console.log($scope.conversation);
+                    });
+                   
+            }
+            else
+            {
+              $scope.conversationlist = data;
+              window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+              $scope.conversation = {};
+                    $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                   // console.log($scope.conversation);
+                     
+                    $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+
+                          $scope.conversation = data;
+                         // console.log($scope.conversation);
+                    });
+            }
+
+           // console.log($scope.OtherUserId);
+      });
+    }
+
+    
+
+    }, 30000)
+
 
   $scope.sendmessage = function (message) {
 
