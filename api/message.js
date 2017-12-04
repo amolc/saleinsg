@@ -181,7 +181,20 @@ exports.conversation = function (req, res) {
     var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId GROUP BY Mid ORDER By Mid";
     //console.log(sql);
     db.query(sql, function (err, data) {
-        res.json(data);
+
+        //console.log(data.length);
+        var mid = '';
+        var q = '';
+         for (i = 0; i < data.length; i++) { 
+            mid += q+data[i].Mid;
+            q=',';
+        }
+        //console.log(mid);
+        var sql = "UPDATE `tbl_Messages` SET IsRead = '1' WHERE MessageId IN ("+mid+") AND IsRead = '0' ";
+        //console.log(sql);
+        db.query(sql, function (err1, data1) {
+         res.json(data);
+      });
     });
 };
 

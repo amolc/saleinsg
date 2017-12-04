@@ -934,14 +934,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   
   }
 
-  setTimeout(function(){
+  $scope.getunread = function (OtherUserId) {
 
-      //alert('hi');
-      var wtf    = $('.chat_area');
-      var height = wtf[0].scrollHeight;
-      wtf.scrollTop(height);
-   }, 1000);
-
+      alert(OtherUserId);
+  
+  }
+  
   
 
   $scope.conversation = function () {
@@ -957,6 +955,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.conversation = data;
             
       });
+       setTimeout(function(){
+
+      //alert('hi');
+      var wtf    = $('.chat_area');
+      var height = wtf[0].scrollHeight;
+      wtf.scrollTop(height);
+   }, 1000);
 
   }
 
@@ -968,7 +973,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
 
            
-           // console.log($scope.conversationlist);
+            //console.log(data);
             
            var url = window.location.href;
            var parts = url.split("?");
@@ -988,9 +993,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.conversationlist = data;
               window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
               //$scope.conversation();
-              $scope.conversation().then(function() {
-                 $scope.scrolldiv();
-              });
+              $scope.conversation();
             }
 
            // console.log($scope.OtherUserId);
