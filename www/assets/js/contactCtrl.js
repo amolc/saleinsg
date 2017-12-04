@@ -1059,26 +1059,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
   }
 
-   setInterval(function(){
-
-                  
-      var url = window.location.href;
-      var parts = url.split("?");
-      var pageurl = parts[0].split("/");
-      var filename = pageurl.pop();
-     // console.log(filename);
-      if (filename == 'dashboard.html') 
-      {
-
-            var wtf    = $('.chat_area');
-            var height = wtf[0].scrollHeight;
-            wtf.scrollTop(height);
-         
-      }
-
-    }, 1000)
-
-
 
   $scope.sendmessage = function (message) {
 
