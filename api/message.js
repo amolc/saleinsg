@@ -128,6 +128,44 @@ exports.submitenquiry = function (req, res) {
     
 };
 
+
+exports.sendmessage = function (req, res) {
+
+    dateToday = now.format("DD/MM/YYYY hh:mm a");
+    var createObj = {
+                                "SenderId" :  req.body.userid,
+                                "ReceiverId": req.body.OtherUserId || "",
+                                "Message":req.body.message,
+                                "MessageTime": dateToday || "",      
+                            };
+                            // console.log("after", createObj);
+
+                            messagesCRUD.create(createObj, function (err, data) {
+
+                                if (!err) 
+                                {
+                                    var resdata = {
+                                        status: true,
+                                        value:data.insertId,
+                                        message: 'Details successfully added',
+                                        date : dateToday
+                                    };
+
+                                    res.jsonp(resdata);
+                                }
+                                else
+                                {
+                                    var resdata = {
+                                        status: false,
+                                        error: err,
+                                        message: 'Error: Details not successfully added. '
+                                    };
+
+                                    res.jsonp(resdata);
+                                }
+                            });
+};
+
 exports.conversationlist = function (req, res) {
     var UserId = req.params.id;
     var sql = "select Max(m.MessageId) as Mid,s.`FirstName`,s.`LastName`,s.`SupId` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND s.SupId != "+UserId+" GROUP BY s.`SupId` ORDER By Mid DESC";
@@ -146,6 +184,8 @@ exports.conversation = function (req, res) {
         res.json(data);
     });
 };
+
+
 
 ///____________________END______________________
 

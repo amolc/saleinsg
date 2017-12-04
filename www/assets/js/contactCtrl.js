@@ -983,6 +983,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   
   }
 
+  $scope.sendmessage = function (message) {
+
+      $scope.message.userid = window.sessionStorage.getItem('User_Id');
+      $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+     // console.log($scope.conversation);
+       
+      $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
+
+           document.sendmsg.reset();
+           var username = window.sessionStorage.getItem('User_Name');
+           var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
+           $('#chat_area').append(content);
+      });
+  
+  }
+
    $scope.order = function (enquiryform) {
 
       if($scope.product.paymenttype=="Bank Transfer"){
