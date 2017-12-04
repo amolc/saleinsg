@@ -644,6 +644,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+     $scope.sellerorders = function(){
+
+
+        $scope.SellerId =  window.sessionStorage.getItem('User_Id');
+
+        //console.log($scope.userid);
+
+        $http.get(baseurl + 'sellerorders/'+$scope.SellerId).success(function(data, status) {
+
+            //console.log(data);
+
+            $scope.orderlist = data;
+        });
+
+    }
+
     $scope.addtowishlist = function(){
 
       $('#addtowishlist').hide();

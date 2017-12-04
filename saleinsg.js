@@ -69,7 +69,7 @@ app.post('/api/submitenquiry', contact.submitenquiry);
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
 
-
+app.get('/api/sellerorders/:id', seller.sellerorders);
 app.post('/api/addproduct', seller.addproduct);
 app.post('/api/addspecification', seller.addspecification);
 app.get('/api/userproducts/:id', seller.userproducts);
