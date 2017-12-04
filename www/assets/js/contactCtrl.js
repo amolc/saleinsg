@@ -933,6 +933,36 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   
   }
 
+   $scope.conversationlist = function () {
+
+      $scope.userid =  window.sessionStorage.getItem('User_Id');
+       
+      $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
+
+            $scope.conversationlist = data;
+           // console.log($scope.conversationlist);
+            window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+           // console.log($scope.OtherUserId);
+      });
+  
+  }
+
+
+   $scope.conversation = function (OtherUserId) {
+
+      $scope.conversation = {};
+      $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
+      $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+      console.log($scope.conversation);
+       
+      // $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
+
+      //       $scope.conversation = data;
+      //      // console.log($scope.conversationlist);
+      // });
+  
+  }
+
    $scope.order = function (enquiryform) {
 
       if($scope.product.paymenttype=="Bank Transfer"){

@@ -18,6 +18,7 @@ var userCRUD = CRUD(db, 'tbl_Suppliers');
 var productCRUD = CRUD(db, 'tbl_Products');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
+var messagesCRUD = CRUD(db, 'tbl_Messages');
 
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -458,78 +459,6 @@ exports.getProductSpecification = function (req, res) {
     
 };
 
-
-
-exports.submitenquiry = function (req, res) {
-
- // console.log(req.body);
-  dateToday = now.format("YYYY-MM-DD H:mm:ss");
-  enquiryCRUD.create({
-                            'SupId': req.body.SupId,
-                            'BuyerId': req.body.BuyerId,
-                            'ProductId' : req.body.productId,
-                            'Name': req.body.fullname,
-                            'Email': req.body.email,
-                            'PhoneNo': req.body.phonenumber,
-                            'Enquiry':req.body.message,
-                            'EnquiryDate':dateToday,
-
-                        }, function(err2, val2) {
-
-                            if (!err2) 
-                            {
-                               // console.log(val2.insertId);
-                               //  var regId = val2.insertId;
-                               // // console.log(req.body.SupEmail);
-                               //  var recipientEmail = req.body.Email; 
-                               //  var subject = "[80STARTUPS.COM] saleinsg.com verification email";
-                               //  var mailbody = '<table>\
-                               //                      <tr>\
-                               //                        <td><h1>Dear '+req.body.SupName+',</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>You have new enquiry for your product.</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Product Name : '+req.body.productname+'</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Best wishes,</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td><h2>saleinsg.com</h2></td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                               //                      </tr>\
-                               //                    </table>';
-
-                               //  send_mail(recipientEmail, subject, mailbody);
-                                var resdata = {
-                                    status: true,
-                                    value:val2,
-                                    message: 'Enquiry submitted successfully'
-                                };
-
-                                res.jsonp(resdata);
-                            }
-                            else
-                            {
-                                var resdata = {
-                                    status: false,
-                                    error: err2,
-                                    message: 'Enquiry not submitted'
-                                };
-
-                                res.jsonp(resdata);
-                            }
-
-
-               });
-    
-};
 
 exports.addbankorder = function (req, res) {
 

@@ -16,6 +16,7 @@ var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
 var seller = require('./api/seller.js');
 var buyer = require('./api/buyer.js');
+var message = require('./api/message.js');
 
 /*app.use(function(req, res, next){
 	var url_parts = url.parse(req.url, true);
@@ -65,7 +66,6 @@ app.post('/api/filterbyCouCat', contact.filterbyCouCat);
 app.post('/api/filterbyCatSub', contact.filterbyCatSub);
 app.post('/api/filterbyall', contact.filterbyall);
 
-app.post('/api/submitenquiry', contact.submitenquiry);
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
 
@@ -78,6 +78,11 @@ app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
 app.post('/api/addtowishlist', buyer.addtowishlist);
 app.post('/api/removefromwishlist', buyer.removefromwishlist);
+
+app.post('/api/submitenquiry', message.submitenquiry);
+app.get('/api/conversationlist/:id', message.conversationlist);
+app.get('/api/conversation/', message.conversation);
+
 
 app.listen(9888, function () {
   console.log('CORS-enabled web server listening on port 9888')
