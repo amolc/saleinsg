@@ -172,7 +172,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         //console.log(window.sessionStorage.getItem('UserId'));                        
 
                        // window.location = "../index.html";
-                        window.location = "index.html";
+                        window.location = "dashboard.html";
                     }
                     else
                     {
@@ -214,6 +214,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           window.sessionStorage.removeItem('User_Phone');
           window.sessionStorage.removeItem('User_Location');
           window.sessionStorage.removeItem('wishlist');
+          window.sessionStorage.removeItem('Other_User_Id');
           location.href = "index.html"
     }  
 
@@ -990,12 +991,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var parts = url.split("?");
       var pageurl = parts[0].split("/");
       var filename = pageurl.pop();
-      console.log(filename);
+     // console.log(filename);
       if (filename == 'dashboard.html') 
       {
           $scope.userid =  window.sessionStorage.getItem('User_Id');
        
-      $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
+          $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
 
            
            // console.log($scope.conversationlist);
