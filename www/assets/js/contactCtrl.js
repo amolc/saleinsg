@@ -1074,7 +1074,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
     }
 
-    }, 30000)
+    }, 10000)
 
 
   $scope.sendmessage = function (message) {
