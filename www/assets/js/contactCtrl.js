@@ -1086,12 +1086,30 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
 
            document.sendmsg.reset();
-           var username = window.sessionStorage.getItem('User_Name');
-           var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
-           $('#chat_area').append(content);
-          var wtf    = $('.chat_area');
-          var height = wtf[0].scrollHeight;
-          wtf.scrollTop(height);
+          //  var username = window.sessionStorage.getItem('User_Name');
+          //  var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
+          //  $('#chat_area').append(content);
+          // var wtf    = $('.chat_area');
+          // var height = wtf[0].scrollHeight;
+          // wtf.scrollTop(height);
+
+           $scope.conv = {};
+                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                   // console.log($scope.conversation);
+                     
+                    $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
+
+                          $scope.conversation = data;
+                         // console.log($scope.conversation);
+                         setTimeout(function(){
+
+      //alert('hi');
+                      var wtf    = $('.chat_area');
+                      var height = wtf[0].scrollHeight;
+                      wtf.scrollTop(height);
+                   }, 100);
+                                    });
       });
   
   }
