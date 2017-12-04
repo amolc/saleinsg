@@ -54,7 +54,7 @@ exports.submitenquiry = function (req, res) {
                               var createObj = {
                                 "SenderId" :  req.body.BuyerId,
                                 "ReceiverId": req.body.SupId || "",
-                                "Message":"<a target='_blank' href='https://www.tradeexchange.co/seller_product_detail.html?id="+req.body.productId+"'>"+req.body.message+"</a>",
+                                "Message":req.body.message,
                                 "MessageTime": dateToday || "",      
                             };
                             // console.log("after", createObj);
@@ -130,7 +130,17 @@ exports.submitenquiry = function (req, res) {
 
 exports.conversationlist = function (req, res) {
     var UserId = req.params.id;
-    var sql = "select m.MessageId,s.`FirstName`,s.`LastName`,s.`SupId` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND s.SupId != "+UserId+" GROUP BY s.`SupId` ORDER By m.`MessageId` DESC";
+    var sql = "select Max(m.MessageId) as Mid,s.`FirstName`,s.`LastName`,s.`SupId` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND s.SupId != "+UserId+" GROUP BY s.`SupId` ORDER By Mid DESC";
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.conversation = function (req, res) {
+    var UserId = req.body.userid;
+    var OtherUserId = req.body.OtherUserId;
+    var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId GROUP BY Mid ORDER By Mid";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);

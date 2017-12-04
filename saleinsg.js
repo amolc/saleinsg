@@ -81,7 +81,7 @@ app.post('/api/removefromwishlist', buyer.removefromwishlist);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
-app.get('/api/conversation/', message.conversation);
+app.post('/api/conversation/', message.conversation);
 
 
 app.listen(9888, function () {

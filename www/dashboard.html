@@ -228,6 +228,7 @@
             <div class="member_list">
                <ul class="list-unstyled">
                   <li class="left clearfix" ng-repeat="c in conversationlist">
+                  <a href="dashboard.html?id={{c.SupId}}" >
                      <span class="chat-img pull-left">
                      <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
                      </span>
@@ -240,91 +241,8 @@
                            <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
                         </div> -->
                      </div>
+                     </a>
                   </li>
-                  <!-- <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right ">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li>
-                  <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li>
-                          <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li>
-                          <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li>
-                          <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li>
-                          <li class="left clearfix">
-                     <span class="chat-img pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body clearfix">
-                        <div class="header_sec">
-                           <strong class="primary-font">Jack Sparrow</strong> <strong class="pull-right">
-                           09:45AM</strong>
-                        </div>
-                        <div class="contact_sec">
-                           <strong class="primary-font">(123) 123-456</strong> <span class="badge pull-right">3</span>
-                        </div>
-                     </div>
-                  </li> -->
                </ul>
             </div></div>
          </div>
@@ -348,55 +266,17 @@
      </div><!--new_message_head-->
      
      <div class="chat_area">
-     <ul class="list-unstyled" ng-init="conversation()">
-     <li class="left clearfix">
+     <ul class="list-unstyled">
+     <li class="left clearfix" ng-repeat="msg in conversation">
                      <span class="chat-img1 pull-left">
                      <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
                      </span>
                      <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
-            <div class="chat_time pull-right">09:40PM</div>
+                        <h6>{{msg.FirstName}} {{msg.LastName}}</h6>
+                        <p>{{msg.Message}}</p>
+            <div class="chat_time pull-right">{{msg.MessageTime}}</div>
                      </div>
-                  </li>
-          <!--  <li class="left clearfix">
-                     <span class="chat-img1 pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
-            <div class="chat_time pull-right">09:40PM</div>
-                     </div>
-                  </li>
-                     <li class="left clearfix">
-                     <span class="chat-img1 pull-left">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
-              <div class="chat_time pull-right">09:40PM</div>
-                     </div>
-                  </li>
-          <li class="left clearfix admin_chat">
-                     <span class="chat-img1 pull-right">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
-            <div class="chat_time pull-left">09:40PM</div>
-                     </div>
-                  </li>
-                  <li class="left clearfix admin_chat">
-                     <span class="chat-img1 pull-right">
-                     <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
-                     </span>
-                     <div class="chat-body1 clearfix">
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia.</p>
-              <div class="chat_time pull-left">09:40PM</div>
-                     </div>
-                  </li> -->
-          
-        
-     
+                  </li>     
      
      </ul>
      </div><!--chat_area-->
