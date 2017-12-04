@@ -936,7 +936,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   setTimeout(function(){
 
-      alert('hi');
+      //alert('hi');
       var wtf    = $('.chat_area');
       var height = wtf[0].scrollHeight;
       wtf.scrollTop(height);
