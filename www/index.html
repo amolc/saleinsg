@@ -514,7 +514,7 @@
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
                   <div class="carousel-inner" ng-init="allproducts()">
-                  <div class="item active" ng-repeat="product in productslist">
+                  <div class="item active" ng-repeat="product in productslist |limitTo:4">
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
@@ -742,7 +742,7 @@
                 <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
                   <div class="carousel-inner">
 
-                  <div class="item active" ng-repeat="product in recentproducts">
+                  <div class="item active" ng-repeat="product in recentproducts |limitTo:4">
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
