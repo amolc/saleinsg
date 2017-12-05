@@ -1036,14 +1036,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
                           $scope.conversation = data;
                          // console.log($scope.conversation);
-                         setTimeout(function(){
-
-      //alert('hi');
-                      var wtf    = $('.chat_area');
-                      var height = wtf[0].scrollHeight;
-                      wtf.scrollTop(height);
-                   }, 100);
-                                    });
+                    });
                    
             }
             else
@@ -1059,13 +1052,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
                           $scope.conversation = data;
                          // console.log($scope.conversation);
-                         setTimeout(function(){
-
-      //alert('hi');
-                      var wtf    = $('.chat_area');
-                      var height = wtf[0].scrollHeight;
-                      wtf.scrollTop(height);
-                   }, 100);
 
                     });
             }
