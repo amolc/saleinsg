@@ -236,10 +236,15 @@
                                                     </div> -->
                                                     <div class="clearfix"></div>
                                                     <div class="productshare mb30">
-                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()"><i class="fa fa-heart-o" aria-hidden="true" style="font-size: 25px;color:red"></i></a>
-                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true" style="font-size: 25px;color: red"></i></a>
-                                                          <!-- <a><i class="fa fa-facebook" aria-hidden="true" style="font-size: 25px;"></i></a>
-                                                          <a><i class="fa fa-twitter" aria-hidden="true" style="font-size: 25px;"></i></a> -->
+                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()" title="Add To Wishlist"><i class="fa fa-heart-o" aria-hidden="true" style="font-size: 25px;color:red"></i></a>
+                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true" style="font-size: 25px;color: red" title="Remove From Wishlist"></i></a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.tradeexchange.co&t=tradeexchange"
+   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+   target="_blank" title="Share on Facebook"><i class="fa fa-facebook" aria-hidden="true" style="font-size: 25px;"></i></a>
+
+    <a href="https://twitter.com/share?url=https://www.tradeexchange.co&via=TWITTER_HANDLE&text=tradeexchange"
+   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+   target="_blank" title="Share on Twitter"><i class="fa fa-twitter" aria-hidden="true" style="font-size: 25px;"></i></a>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                     <div class="detail-btn">
