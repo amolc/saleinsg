@@ -204,11 +204,21 @@
                                                <div class="pro-right-text">
                                                 <div>
                                                     <h2 class="pro-title mb30">{{product.ProductName}}</h2>
-                                                    <h4 class="pro-price mb30">Pice SGD : ${{product.Price}}</h4>
-                                                    <p class="description-para mb30">
-                                                        {{product.Description}}
-                                                    </p>
                                                     <p>
+                                                        <span>Country : {{product.CountryTitle}}, </span>
+                                                        <span>Seller : {{product.CompanyName}}</span>
+                                                    </p>
+                                                    <h4 class="pro-price mb30">Pice SGD : ${{product.Price}}</h4>
+                                                    <h4>Product Description</h4>
+                                                    <ul>
+                                                      <liclass="description-para mb30">
+                                                        {{product.Description}}</li>
+                                                    </ul>
+                                                   <!--  <p class="description-para mb30">
+                                                        {{product.Description}}
+                                                    </p> -->
+                                                    <p>
+                                                    <h4>Product Specification</h4>
                                                     <ul>
                                                       <li ng-repeat="s in specification">
                                                        {{s.Title}} :  {{s.Description}}
@@ -220,10 +230,10 @@
                                                         <span>Category : {{product.CategoryTitle}}</span>
                                                         <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
                                                     </div> -->
-                                                    <div class="category-title mb30">
+                                                   <!--  <div class="category-title mb30">
                                                         <span>Country : {{product.CountryTitle}}</span>
                                                         <span>Seller : {{product.CompanyName}}</span>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="clearfix"></div>
                                                     <div class="category-title mb30">
                                                          <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" class="red-btn small-btn" ng-click="addtowishlist()">Add To Wishlist</a>
