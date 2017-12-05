@@ -190,7 +190,7 @@ exports.conversation = function (req, res) {
             q=',';
         }
         //console.log(mid);
-        var sql = "UPDATE `tbl_Messages` SET IsRead = '1' WHERE MessageId IN ("+mid+") AND IsRead = '0' ";
+        var sql = "UPDATE `tbl_Messages` SET IsRead = '1' WHERE MessageId IN ("+mid+") AND IsRead = '0' AND ReceiverId = "+UserId;
         //console.log(sql);
         db.query(sql, function (err1, data1) {
          res.json(data);
