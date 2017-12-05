@@ -504,9 +504,9 @@ exports.addbankorder = function (req, res) {
 
                              + "Thanks, tradeexchange";
 
-                             // send_mail( agentemail, subject, mailbody );
-                             // send_mail( officeremail, subject, mailbody );
-                             // send_mail( req.body.Email, subject, mailbody );
+                             send_mail( agentemail, subject, mailbody );
+                             send_mail( officeremail, subject, mailbody );
+                             send_mail( req.body.Email, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,
@@ -594,9 +594,9 @@ exports.addorder = function(req, res){
                              + "</br><p><b> Token:</b> " + stripetoken + "</p>"
                              + "Thanks, tradeexchange";
 
-                             // send_mail( agentemail, subject, mailbody );
-                             // send_mail( officeremail, subject, mailbody );
-                             // send_mail( req.body.Email, subject, mailbody );
+                             send_mail( agentemail, subject, mailbody );
+                             send_mail( officeremail, subject, mailbody );
+                             send_mail( req.body.Email, subject, mailbody );
                              //mail to ordering customer
                              //send_mail( data.orderemail, subject, mailbody );
 
