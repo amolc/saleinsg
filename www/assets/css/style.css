@@ -764,7 +764,7 @@ section#footer {
 .breadcrumb{
   background: transparent;
   padding: 0px;
-  ont-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
 }
 /*.form-group{
@@ -1803,4 +1803,53 @@ section#footer {
   background: #428bca none repeat scroll 0 0;
   color: #fff;
   cursor:pointer;
+}
+.pro-saler-name span{
+  display: inline-block;
+  margin-right: 10px;
+  color: #000000;
+}
+.color-blue{
+  color: #52bad5;
+}
+h4.pro-price{
+  color: #000000;
+}
+h4.pro-price span{
+  color: #887476;
+}
+.pro-note ul{
+  padding: 0px;
+  margin: 0px;
+}
+.pro-note ul li{
+  list-style-type: none;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #887476;
+  text-align: justify;
+}
+.pro-note{
+  margin: 20px 0px;
+}
+.pro-note h4{
+  margin: 10px 0px;
+}
+.productshare a{
+  display: inline-block;
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #887476;
+  text-align: center;
+  line-height: 35px;
+  border: 1px solid #887476;
+  color: #ffffff;
+  font-size: 20px;
+}
+.productshare a:hover{
+  background-color: transparent;
+  border: 1px solid #52bad5;
+  color: #52bad5;
 }
