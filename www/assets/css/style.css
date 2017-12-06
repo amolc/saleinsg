@@ -1871,6 +1871,7 @@ h4.pro-price span{
   -o-border-bottom-right-radius: 9px;
 }
 .register-img img{
+  border: 1px solid #e8e8e8;
   width: 100%;
   height: auto;
   border-top-left-radius: 9px;
