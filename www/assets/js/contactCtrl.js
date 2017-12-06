@@ -940,13 +940,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   
   }
   
-  
-
   $scope.conversation = function () {
 
       $scope.conversation = {};
       $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
       $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+      $scope.conversation.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
      // console.log($scope.conversation);
        
       $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
@@ -967,7 +966,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
    $scope.conversationlist = function () {
 
-
       $scope.userid =  window.sessionStorage.getItem('User_Id');
        
       $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
@@ -983,8 +981,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var urlparams = parts[1];
                    var urlpart = urlparams.split('&');
                    var id = urlpart[0].split('=');
+                   var productid = urlpart[1].split('=');
                    //alert(id);
                    window.sessionStorage.setItem('Other_User_Id',id[1]);
+                   window.sessionStorage.setItem('Conversation_Product_Id',productid[1]);
                    $scope.conversation();
                    
             }
@@ -992,6 +992,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             {
               $scope.conversationlist = data;
               window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+              window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
               //$scope.conversation();
               $scope.conversation();
             }
@@ -1027,9 +1028,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var id = urlpart[0].split('=');
                    //alert(id);
                    window.sessionStorage.setItem('Other_User_Id',id[1]);
+                   window.sessionStorage.setItem('Conversation_Product_Id',productid[1]);
                     $scope.conv = {};
                     $scope.conv.userid = window.sessionStorage.getItem('User_Id');
                     $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                    $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+                      window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
                    // console.log($scope.conversation);
                      
                     $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
@@ -1043,9 +1047,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             {
               $scope.conversationlist = data;
               window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+              window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
               $scope.conv = {};
-                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
-                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+              $scope.conv.userid = window.sessionStorage.getItem('User_Id');
+              $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+              $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
                    // console.log($scope.conversation);
                      
                     $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
@@ -1067,6 +1073,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       $scope.message.userid = window.sessionStorage.getItem('User_Id');
       $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+      $scope.message.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
      // console.log($scope.conversation);
        
       $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
@@ -1082,6 +1089,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            $scope.conv = {};
                     $scope.conv.userid = window.sessionStorage.getItem('User_Id');
                     $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                    $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+
                    // console.log($scope.conversation);
                      
                     $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {

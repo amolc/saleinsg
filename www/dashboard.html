@@ -228,7 +228,7 @@
             <div class="member_list">
                <ul class="list-unstyled">
                   <li class="left clearfix" ng-repeat="c in conversationlist">
-                  <a href="dashboard.html?id={{c.SupId}}">
+                  <a href="dashboard.html?id={{c.SupId}}&product={{c.ProductId}}">
                      <span class="chat-img pull-left">
                      <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar" class="img-circle">
                      </span>
@@ -239,6 +239,7 @@
                            <!-- <span class="badge pull-right">3</span> -->
                         </div>
                         <div class="contact_sec">
+                            {{c.ProductName}}
                            <!-- <strong class="primary-font">(123) 123-456</strong> --> 
                         </div>
                      </div>
