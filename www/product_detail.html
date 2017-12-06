@@ -203,29 +203,31 @@
                                     <div class="detail">
                                                <div class="pro-right-text">
                                                 <div>
-                                                    <h2 class="pro-title mb30">{{product.ProductName}}</h2>
-                                                    <p>
-                                                        <span>Country : {{product.CountryTitle}}, </span>
-                                                        <span>Seller : {{product.CompanyName}}</span>
+                                                    <h2 class="pro-title">{{product.ProductName}}</h2>
+                                                    <p class="pro-saler-name">
+                                                        <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
+                                                        <span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span>
                                                     </p>
-                                                    <h4 class="pro-price mb30">Pice SGD : ${{product.Price}}</h4>
-                                                    <h4>Product Description</h4>
+                                                    <h4 class="pro-price">Price SGD : <span>${{product.Price}}</span> </h4>
+                                                    <div class="pro-note">
+                                                      <h4>Product Description</h4>
                                                     <ul>
                                                       <li>
                                                         {{product.Description}}</li>
                                                     </ul>
+                                                    </div>
                                                    <!--  <p class="description-para mb30">
                                                         {{product.Description}}
                                                     </p> -->
-                                                    <p>
-                                                    <h4>Product Specification</h4>
-                                                    <ul>
-                                                      <li ng-repeat="s in specification">
-                                                       {{s.Title}} :  {{s.Description}}
-                                                      </li>
-                                                    </ul>
-                                                      
-                                                    </p>
+                                                    <div class="pro-note">
+                                                      <h4>Product Specification</h4>
+                                                      <ul>
+                                                        <li ng-repeat="s in specification">
+                                                         <strong class="color-blue">{{s.Title}} : </strong> {{s.Description}}
+                                                        </li>
+                                                      </ul>
+                                                    </div>
+                                                     
                                                     <!-- <div class="category-title mb30">
                                                         <span>Category : {{product.CategoryTitle}}</span>
                                                         <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
@@ -236,15 +238,17 @@
                                                     </div> -->
                                                     <div class="clearfix"></div>
                                                     <div class="productshare mb30">
-                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()" title="Add To Wishlist"><i class="fa fa-heart-o" aria-hidden="true" style="font-size: 25px;color:red"></i></a>
-                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true" style="font-size: 25px;color: red" title="Remove From Wishlist"></i></a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.tradeexchange.co&t=tradeexchange"
-   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-   target="_blank" title="Share on Facebook"><i class="fa fa-facebook" aria-hidden="true" style="font-size: 25px;"></i></a>
+                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()" title="Add To Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 
-    <a href="https://twitter.com/share?url=https://www.tradeexchange.co&via=TWITTER_HANDLE&text=tradeexchange"
-   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-   target="_blank" title="Share on Twitter"><i class="fa fa-twitter" aria-hidden="true" style="font-size: 25px;"></i></a>
+                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true"  title="Remove From Wishlist" style="color: red;"></i></a>
+
+                                                          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.tradeexchange.co&t=tradeexchange"
+                                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                         target="_blank" title="Share on Facebook"><i class="fa fa-facebook" aria-hidden="true"  ></i></a>
+
+                                                          <a href="https://twitter.com/share?url=https://www.tradeexchange.co&via=TWITTER_HANDLE&text=tradeexchange"
+                                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                                                         target="_blank" title="Share on Twitter"><i class="fa fa-twitter" aria-hidden="true" ></i></a>
                                                     </div>
                                                     <div class="clearfix"></div>
                                                     <div class="detail-btn">
