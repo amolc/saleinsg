@@ -920,6 +920,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.submitenquiry = function (enquiryform) {
 
+    var date = new Date();
+    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+    dateToday = messagedate+' '+messagetime;
+    $scope.enquiry.date = dateToday ; 
+
       $http.post(baseurl + 'submitenquiry',$scope.enquiry).success(function(data, status) {
 
         if (data.status == true) 
@@ -1070,56 +1076,47 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.sendmessage = function (message) {
 
-       var d = new Date();
-            localTime = d.getTime();
-            localOffset = d.getTimezoneOffset() * 60000;
+    var date = new Date();
+    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+    dateToday = messagedate+' '+messagetime;
+    //console.log(dateToday);
 
-            // obtain UTC time in msec
-            utc = localTime + localOffset;
-            // create new Date object for different city
-            // using supplied offset
-            var nd = new Date(utc + (3600000*offset));
-            //nd = 3600000 + nd;
-            utc = new Date(utc);
-            // return time as a string
-            //$("#local").html(nd.toLocaleString());
-            //$("#utc").html(utc.toLocaleString());
-            console.log(nd.toLocaleString());
-            console.log(utc.toLocaleString());
-
-     //  $scope.message.userid = window.sessionStorage.getItem('User_Id');
-     //  $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-     //  $scope.message.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
-     // // console.log($scope.conversation);
+          
+      $scope.message.userid = window.sessionStorage.getItem('User_Id');
+      $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+      $scope.message.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+      $scope.message.date = dateToday;
+     // console.log($scope.conversation);
        
-     //  $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
+      $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
 
-     //       document.sendmsg.reset();
-     //      //  var username = window.sessionStorage.getItem('User_Name');
-     //      //  var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
-     //      //  $('#chat_area').append(content);
-     //      // var wtf    = $('.chat_area');
-     //      // var height = wtf[0].scrollHeight;
-     //      // wtf.scrollTop(height);
+           document.sendmsg.reset();
+          //  var username = window.sessionStorage.getItem('User_Name');
+          //  var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
+          //  $('#chat_area').append(content);
+          // var wtf    = $('.chat_area');
+          // var height = wtf[0].scrollHeight;
+          // wtf.scrollTop(height);
 
-     //       $scope.conv = {};
-     //                $scope.conv.userid = window.sessionStorage.getItem('User_Id');
-     //                $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-     //                $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+           $scope.conv = {};
+                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
+                    $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
 
-     //               // console.log($scope.conversation);
+                   // console.log($scope.conversation);
                      
-     //                $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
+                    $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
 
-     //                      $scope.conversation = data;
-     //                     // console.log($scope.conversation);
-     //                     setTimeout(function(){
-     //                    var wtf    = $('.chat_area');
-     //                    var height = wtf[0].scrollHeight;
-     //                    wtf.scrollTop(height);
-     //                 }, 100);
-     //                                });
-     //  });
+                          $scope.conversation = data;
+                         // console.log($scope.conversation);
+                         setTimeout(function(){
+                        var wtf    = $('.chat_area');
+                        var height = wtf[0].scrollHeight;
+                        wtf.scrollTop(height);
+                     }, 100);
+                                    });
+      });
   
   }
 
