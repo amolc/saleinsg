@@ -1015,11 +1015,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $scope.userid =  window.sessionStorage.getItem('User_Id');
        
           $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
-
            
            // console.log($scope.conversationlist);
-
-           
+          
            if(parts.length>1){
 
                    $scope.conversationlist = data;
