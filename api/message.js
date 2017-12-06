@@ -56,7 +56,7 @@ exports.submitenquiry = function (req, res) {
                                 "ReceiverId": req.body.SupId || "",
                                 "ProductId" : req.body.productId,
                                 "Message":req.body.message,
-                                "MessageTime": dateToday || "",      
+                                "MessageTime": req.body.date,      
                             };
                             // console.log("after", createObj);
 
@@ -133,12 +133,14 @@ exports.submitenquiry = function (req, res) {
 exports.sendmessage = function (req, res) {
 
     dateToday = now.format("DD/MM/YYYY hh:mm a");
+    
+
     var createObj = {
                                 "SenderId" :  req.body.userid,
                                 "ReceiverId": req.body.OtherUserId || "",
                                 "ProductId" : req.body.ProductId,
                                 "Message":req.body.message,
-                                "MessageTime": dateToday || "",      
+                                "MessageTime": req.body.date || "",      
                             };
                             // console.log("after", createObj);
 
