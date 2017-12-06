@@ -173,9 +173,9 @@ exports.placeorder = function (req, res) {
 
                              + "Thanks, tradeexchange";
 
-                             // send_mail( agentemail, subject, mailbody );
-                             // send_mail( officeremail, subject, mailbody );
-                             // send_mail( req.body.Email, subject, mailbody );
+                             send_mail( agentemail, subject, mailbody );
+                             send_mail( officeremail, subject, mailbody );
+                             send_mail( req.body.Email, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,
