@@ -1024,6 +1024,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var urlparams = parts[1];
                    var urlpart = urlparams.split('&');
                    var id = urlpart[0].split('=');
+                   var productid = urlpart[1].split('=');
                    //alert(id);
                    window.sessionStorage.setItem('Other_User_Id',id[1]);
                    window.sessionStorage.setItem('Conversation_Product_Id',productid[1]);
