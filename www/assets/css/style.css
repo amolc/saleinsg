@@ -1857,7 +1857,7 @@ h4.pro-price span{
   color: #52bad5;
 }
 .register-form{
- /* background-color: #f5f5f5;*/
+  background-color: #f5f5f5;
   padding: 40px 29px;
   border-top-right-radius: 9px;
   -webkit-border-top-right-radius: 9px;
@@ -1871,7 +1871,7 @@ h4.pro-price span{
   -o-border-bottom-right-radius: 9px;
 }
 .register-img img{
-  /*border: 3px solid #f5f5f5;*/
+  border: 3px solid #f5f5f5;
   width: 100%;
   height: auto;
   border-top-left-radius: 9px;
