@@ -472,7 +472,7 @@ exports.addbankorder = function (req, res) {
                             TotalAmount: req.body.total,
                             BuyerId: req.body.BuyerId,
                             OrderDate: dateToday,
-                         //   ShippingAddress: req.body.address,
+                         // ShippingAddress: req.body.address,
                             Address1: req.body.address1,
                             Address2: req.body.address2,
                             PostalCode: req.body.postalcode,

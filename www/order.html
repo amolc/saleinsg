@@ -285,7 +285,13 @@
            
                 </div>
            <div class="col-md-6">
-            <!--  <div class="form-group">
+            <div class="form-group">
+              <h3>{{product.ProductName}}</h3>
+            </div>
+             <div class="form-group">
+              <h4>Product Price : SGD ${{product.Price}}</h4>
+            </div>
+             <div class="form-group">
               <label for="fullname">Name : {{product.fullname}}</label>
             </div>
             <div class="form-group">
@@ -293,18 +299,12 @@
             </div>
             <div class="form-group">
               <label for="email">Email Address : {{product.email}}</label>
-            </div> -->
-            <div class="form-group">
-              <h3>{{product.ProductName}}</h3>
             </div>
              <div class="form-group">
              <p>
               <span>Country : {{product.CountryTitle}}, </span>
               <span>Seller : {{product.CompanyName}}</span>
             </p>
-            </div>
-              <div class="form-group">
-              <h4>Product Price : SGD ${{product.Price}}</h4>
             </div>
               <div class="form-group">
              <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
@@ -314,6 +314,47 @@
             <div class="form-group">
               <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
             </div>
+            <div class="form-group">
+             <label>Terms</label>
+              <button class="btn" type="button" ng-click="showterms()">Add</button>
+            </div>
+            <div id="termsdiv" class="form-group">
+            <div id="label" hidden>
+            <div class='col-md-4'>
+                <label>Title</label>
+              </div>
+              <div class='col-md-4'>
+                 <label>Type</label>
+              </div>
+              <div class='col-md-2'>
+                 <label>%</label>
+              </div>
+              <div class='col-md-2'>
+                 <label>Amount</label>
+              </div>
+              </div>
+              <div ng-repeat="n in [].constructor(5) track by $index">
+              <div id="termsdiv{{$index}}" hidden="">
+              <div class='col-md-4'>
+                <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
+              </div>
+              <div class='col-md-4'>
+                 <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                  <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                  <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                 </Select> 
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.percentage[$index]'>
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.amount[$index]'>
+              </div>
+              </div> 
+              </div>            
+            </div>
+            <br/>
              <div class="form-group">
               <label for="shippingaddress">Shipping Address : </label>
              <!--  <textarea class="form-control mb19" id="address" name="address" ng-model="product.address" rows="6" required="">
@@ -324,22 +365,24 @@
                <input class="form-group form-control" ng-model="product.postalcode" type="text" name="postalcode" placeholder="Postal Code" required="">
                <input class="form-group form-control" ng-model="product.country" type="text" name="country" placeholder="Country" required="">
             </div>
+            
+            
 
-             <div class="form-group" >
+            <!--  <div class="form-group" >
               <label for="paymenttype">Payment Type : </label>
                   <select ng-model="product.paymenttype" class="form-control" id="paymenttype" required="">
                       <option value="Credit Card">Credit Card</option>
                       <option value="Bank Transfer">Bank Transfer</option>
                   </select>
             
-              </div>
+              </div> -->
 
               <div class="clearfix"></div>
               </div>
-       
+                   
           <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
           </form>
-           <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
+          <!--  <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
 
                       <div class="col-sm-10" >
                           <p style="color:red;">{{paymessage}}</p>
@@ -381,7 +424,7 @@
                                 <button type="submit" class="btn btn-warning" >Pay</button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
           <div id="thankyou" hidden="">
             <div class="thankyou">
                 <div class="item">
