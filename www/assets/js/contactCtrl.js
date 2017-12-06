@@ -1070,22 +1070,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.sendmessage = function (message) {
 
-       var d = new Date();
-            localTime = d.getTime();
-            localOffset = d.getTimezoneOffset() * 60000;
-
-            // obtain UTC time in msec
-            utc = localTime + localOffset;
-            // create new Date object for different city
-            // using supplied offset
-            var nd = new Date(utc + (3600000*offset));
-            //nd = 3600000 + nd;
-            utc = new Date(utc);
-            // return time as a string
-            //$("#local").html(nd.toLocaleString());
-            //$("#utc").html(utc.toLocaleString());
-            console.log(nd.toLocaleString());
-            console.log(utc.toLocaleString());
+    var d = new Date()
+    var gmtHours = -d.getTimezoneOffset()/60;
+    document.write("The local time zone is: GMT " + gmtHours);
 
      //  $scope.message.userid = window.sessionStorage.getItem('User_Id');
      //  $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
