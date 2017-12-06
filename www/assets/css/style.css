@@ -1885,7 +1885,15 @@ h4.pro-price span{
   -ms-border-bottom-left-radius: 9px;
   -o-border-bottom-left-radius: 9px;
 }
-
+#faq-wrap.according-wrap .panel-title{
+  font-size: 15px;
+  text-transform: uppercase;
+}
+#faq-wrap.according-wrap  .faq-ans{
+  font-size: 15px;
+  line-height: 26px;
+  color: #292929;
+}
 
 
 
