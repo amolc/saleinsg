@@ -935,7 +935,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              $("#thankyou").show('slow');
 
         }
-       
+               
       });
   
   }
