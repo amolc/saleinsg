@@ -1807,16 +1807,18 @@ section#footer {
 .pro-saler-name span{
   display: inline-block;
   margin-right: 10px;
-  color: #000000;
+  color: #887476;
 }
 .color-blue{
   color: #52bad5;
 }
 h4.pro-price{
-  color: #000000;
+  color: #887476;
 }
 h4.pro-price span{
-  color: #887476;
+  color: #000000;
+  font-weight: 600;
+  font-size: 25px;
 }
 .pro-note ul{
   padding: 0px;
@@ -1828,6 +1830,7 @@ h4.pro-price span{
   font-family: 'Open Sans', sans-serif;
   color: #887476;
   text-align: justify;
+  margin-bottom: 6px;
 }
 .pro-note{
   margin: 20px 0px;

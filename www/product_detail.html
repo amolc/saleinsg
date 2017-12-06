@@ -208,7 +208,7 @@
                                                         <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
                                                         <span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span>
                                                     </p>
-                                                    <h4 class="pro-price"><span>Price SGD :</span> ${{product.Price}}</h4>
+                                                    <h4 class="pro-price">Price SGD : <span>${{product.Price}}</span> </h4>
                                                     <div class="pro-note">
                                                       <h4>Product Description</h4>
                                                     <ul>
@@ -240,7 +240,7 @@
                                                     <div class="productshare mb30">
                                                          <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()" title="Add To Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 
-                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true"  title="Remove From Wishlist"></i></a>
+                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true"  title="Remove From Wishlist" style="color: red;"></i></a>
 
                                                           <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.tradeexchange.co&t=tradeexchange"
                                                          onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
