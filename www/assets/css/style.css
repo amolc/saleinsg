@@ -1894,7 +1894,16 @@ h4.pro-price span{
   line-height: 26px;
   color: #292929;
 }
-
+.policy-text p{
+  text-align: center;
+  font-size: 15px;
+  color: #000000;
+  line-height: 25px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto 20px;
+  font-family: 'Open Sans', sans-serif;
+}
 
 
 
