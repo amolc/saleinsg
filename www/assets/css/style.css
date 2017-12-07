@@ -1092,7 +1092,9 @@ section#footer {
 }
 .navigation-wrap .navbar-default .navbar-nav>li>a,
 .cuntry-nav-strip .navbar-default .navbar-nav>li>a,
-.cuntry-nav-strip .dropdown-menu>li>a{
+.cuntry-nav-strip .dropdown-menu>li>a,
+.dropdown-menu>li>a
+{
   color: #000000;
   font-weight: 600;
   font-size: 14px;
@@ -1894,9 +1896,39 @@ h4.pro-price span{
   line-height: 26px;
   color: #292929;
 }
-
-
-
+.policy-text p{
+  text-align: center;
+  font-size: 15px;
+  color: #000000;
+  line-height: 25px;
+  width: 80%;
+  text-align: center;
+  margin: 0 auto 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+.orenge-logo-strip a.profile-img{
+  padding: 7px !important;
+}
+.orenge-logo-strip a.profile-img img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  display: inline-block;
+  margin: 0px 5px;
+}
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus, 
+.navbar-default .navbar-nav > .open > a:active,
+.navbar-default .navbar-nav > li.open > a{
+  background-color: transparent;
+}
+.profile-wrap .fa{
+  float: right;
+}
 
 
 
