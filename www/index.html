@@ -496,7 +496,7 @@
             </div>
           </section>
 
-          <section id="offers-wrap">
+          <section id="offers-wrap" ng-init="getAllcurrency()">
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
@@ -509,7 +509,7 @@
 
             
           </div>
-          <div class="container">
+          <div class="container" >
             <div class="row">
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
@@ -527,7 +527,11 @@
                                <!--  <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
-                                <h4><span>{{product.Currency}}</span>{{product.Price}}
+                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                <h4><span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}
                                 </h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
@@ -755,7 +759,11 @@
                                 <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
-                                <h4><span>{{product.Currency}}</span>{{product.Price}}
+                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                <h4><span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}
                                 </h4>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
