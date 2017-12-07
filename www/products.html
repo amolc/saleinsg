@@ -429,9 +429,12 @@
                                 <p>Seller : {{product.CompanyName}}</p> -->
                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
                                 <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
-                                <h4><span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                                <h4 class="pull-right">
+                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
                                                     <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
                                                     </select></span>{{product.changePrice}}</h4>
+                                                    <div class="clearfix"></div>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
                                         <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
