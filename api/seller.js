@@ -74,7 +74,8 @@ exports.addproduct = function (req, res) {
         "MinOrderQty" : req.body.minquantity,
         // "Category": req.body.category || "",
         // "SubCategory": req.body.subcat || "",
-        "SupplierId": req.body.UserId || "",      
+        "SupplierId": req.body.UserId || "",  
+        "Currency" : req.body.currency    
     };
     // console.log("after", createObj);
 

@@ -246,7 +246,6 @@ exports.register = function(req, res){
 
 
 exports.verifyAccount = function(req, res){
-
     //console.log(req.params.id);
     var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
     //console.log(sql);
@@ -254,7 +253,6 @@ exports.verifyAccount = function(req, res){
         res.json(data);
     });
 };
-
 
 exports.login = function (req, res) {
 
@@ -455,6 +453,18 @@ exports.getProductSpecification = function (req, res) {
   // console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
+    });
+    
+};
+
+exports.getcurrency = function (req, res) {
+
+  var CountryId = req.params.id;
+   var sql = "SELECT `CountryCurrency` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
+   // console.log(sql);
+  // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
     });
     
 };

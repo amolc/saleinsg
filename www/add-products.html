@@ -201,14 +201,21 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form name="addproduct" ng-submit="saveproduct(product)" id="addproduct" method="post" ng-init="fileinit()">
+          <form name="addproduct" ng-submit="saveproduct(product)" id="addproduct" method="post" ng-init="fileinit();getcurrency();">
              <div class="col-md-6">
               <div class="form-group">
               <label for="name">Product Name:</label>
               <input type="text" class="form-control" ng-model="product.name" name="name" id="name" required>
             </div> 
-             </div>  
-              <div class="col-md-6">        
+             </div> 
+             <div class="col-md-2">        
+            <div class="form-group">
+              <label for="price">Currency:</label>
+              <input type="text" class="form-control" ng-model="product.currency" Disabled>
+              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+            </div>
+            </div> 
+              <div class="col-md-4">        
             <div class="form-group">
               <label for="price">Product Price:</label>
               <input type="text" class="form-control" ng-model="product.price" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
