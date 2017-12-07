@@ -78,6 +78,8 @@ app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
 app.post('/api/addtowishlist', buyer.addtowishlist);
 app.post('/api/removefromwishlist', buyer.removefromwishlist);
+app.post('/api/placeorder', buyer.placeorder);
+app.post('/api/addTerms', buyer.addTerms);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
