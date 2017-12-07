@@ -57,27 +57,17 @@
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
-                                        <!-- <li><a href="#">Seller</a></li>
-                                        <li><a href="#">Buyer</a></li> -->
-                                        <!-- <li><a href="dashboard.html">Messages</a></li>
+                                        <!-- <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li> -->
+                                        <li><a href="contact.html">Contact</a></li>
                                         <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
-                                            <span class="caret"></span></a>
-                                            <ul class="dropdown-menu" id="nav1">
-                                              <li><a href="add-products.html">Add Products</a></li>
-                                              <li><a href="seller-products.html">Products</a></li>
-                                              <li><a href="seller-orders.html">Orders</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                              Welcome <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar"> Pravin Shelar
                                             <span class="caret"></span></a>
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
                                             </ul>
-                                        </li> -->
-                                        <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+                                        </li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
@@ -109,10 +99,12 @@
                                       </button>
                                       <!-- <a class="navbar-brand" href="#">Brand</a> -->
                                     </div>
-
+                                    <ul class="nav navbar-nav">
+                                      <li><a href="products.html">Market Place</a></li>
+                                    </ul>
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                                      <ul class="nav navbar-nav" ng-init="isLoggedin()">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                         <!-- <li><a href="#">Seller</a></li>
                                         <li><a href="#">Buyer</a></li> -->
                                         <li><a href="dashboard.html">Messages</a></li>
