@@ -821,12 +821,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.productinit = function (req, res) {
 
       $scope.product = {};
-      window.sessionStorage.setItem('index',0);
+      window.sessionStorage.setItem('index',1);
+      $scope.index = 0;
       $scope.product.term = {};
       $scope.product.type = {};
       $scope.product.percentage = {};
       $scope.product.amount = {};
-      
+      $scope.term = "50% In Advance";
+    
       var url = window.location.href;
 
       var parts = url.split("?");
@@ -898,7 +900,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          {
             $scope.added = 1;
          }
-       }
+       }     
     }
     else
     {
@@ -969,6 +971,40 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        {
          $scope.product.changePrice =  $scope.product.Price;
        }             
+     }
+
+     $scope.calculate = function(product,index){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product; 
+       if (typeof $scope.product.amount === 'undefined' ) 
+       {
+         $scope.product.amount = {};
+       }
+       $scope.product.amount[index] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[index] / 100).toFixed(2);
+      if ( $scope.product.amount[index] == 0) 
+      {
+         $scope.product.amount[index] = '';
+      }
+      // $scope.product.percentage[index] = '';
+      // alert('hi');
+
+            
+     }
+
+     $scope.getvalues = function(product){
+
+         
+         // $scope.term = {};
+         // $scope.type = {};
+         // $scope.percentage = {};
+         // $scope.amount = {};
+         $scope.term = "50% In Advance";
+         $scope.type = "Trade Exchange Escrow (TEE)";
+         $scope.percentage = 50;
+         $scope.amount = parseFloat(product.Price * product.orderqty *  $scope.percentage / 100).toFixed(2);
+     
+            
      }
 
   //    $scope.IsInWishlist = function (PId) {
@@ -1194,7 +1230,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
    $scope.order = function (enquiryform) {
 
 
-           // console.log($scope.product.terms);
+          console.log($scope.product);
 
           // if($scope.product.paymenttype=="Bank Transfer"){
           //             //console.log($scope.data.paymenttype);

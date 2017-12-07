@@ -195,7 +195,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+  <div>
 <!--
   <section id="header">
     <div class="container">
@@ -317,7 +317,7 @@
               <button class="btn" type="button" ng-click="showterms()">Add</button>
             </div>
             <div id="termsdiv" class="form-group">
-            <div id="label" hidden>
+            <div id="label">
             <div class='col-md-4'>
                 <label>Title</label>
               </div>
@@ -331,20 +331,40 @@
                  <label>Amount</label>
               </div>
               </div>
-              <div ng-repeat="n in [].constructor(5) track by $index">
-              <div id="termsdiv{{$index}}" hidden="">
+              <div>
+              <div id="termsdiv0">
               <div class='col-md-4'>
-                <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
+                <input class=" form-group form-control" type='text' ng-model='product.term[0]'>
               </div>
               <div class='col-md-4'>
-                 <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
-                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                 <Select class="form-group form-control" type='text' ng-model='product.type[0]'>
+                  <option value="Trade Exchange Escrow (TEE)" ng-selected="true">Trade Exchange Escrow (TEE)</option>
                   <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                   <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
                  </Select> 
               </div>
               <div class='col-md-2'>
-                 <input class="form-group form-control" type='text' ng-model='product.percentage[$index]'>
+                 <input class="form-group form-control" type='text' ng-model='product.percentage[0]' ng-change="calculate(product,0)" ng-value="product.Price">
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.amount[0]'>
+              </div>
+              </div> 
+              </div>
+              <div ng-repeat="n in [].constructor(5) track by $index">
+              <div id="termsdiv{{$index}}" ng-show="!$first" ng-style="{'display': $index == index ? 'block' : 'none'}">
+              <div class='col-md-4'>
+                <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
+              </div>
+              <div class='col-md-4'>
+                 <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                  <option value="Trade Exchange Escrow (TEE)" ng-selected="true">Trade Exchange Escrow (TEE)</option>
+                  <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                  <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                 </Select> 
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.percentage[$index]' ng-change="calculate(product,$index)">
               </div>
               <div class='col-md-2'>
                  <input class="form-group form-control" type='text' ng-model='product.amount[$index]'>
