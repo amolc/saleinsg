@@ -365,7 +365,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.saveproduct = function(product) {             
 
-             // console.log($scope.product);
+            // console.log($scope.product);
 
 
              if(typeof $scope.product.CategoryId === 'undefined'){
@@ -913,6 +913,20 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $("#termsdiv"+index).show();
           index = index+1;
           window.sessionStorage.setItem('index',index);      
+     }
+
+
+     $scope.getcurrency = function(){
+
+          $scope.product = {};
+          $scope.product.CountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcurrency/'+$scope.product.CountryId).success(function(data, status) {
+
+            console.log(data);
+            $scope.product.currency = data.CountryCurrency
+
+      });
+              
      }
 
   //    $scope.IsInWishlist = function (PId) {

@@ -289,7 +289,7 @@
               <h3>{{product.ProductName}}</h3>
             </div>
              <div class="form-group">
-              <h4>Product Price : SGD ${{product.Price}}</h4>
+              <h4>Product Price : {{product.Currency}} {{product.Price}}</h4>
             </div>
              <div class="form-group">
               <label for="fullname">Name : {{product.fullname}}</label>
@@ -312,7 +312,7 @@
                <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity"></select>
             </div>
             <div class="form-group">
-              <label for="productprice">Total Amount : SGD ${{product.Price * product.orderqty}}</label>
+              <label for="productprice">Total Amount : {{product.Currency}} {{product.Price * product.orderqty}}</label>
             </div>
             <div class="form-group">
              <label>Terms</label>
@@ -394,7 +394,7 @@
                           </div>  
 
                     
-                    
+
                         <div class="col-sm-6">
                         <div class="form-group">
                             <label for="inputEmail3" class="control-label">Name</label>
