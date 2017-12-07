@@ -258,16 +258,12 @@
         </div>
 
 
-
-
-
-
       </div>
     </div>
   </section>
 -->
 <div class="clearfix"></div>
-  <section id="book-now">
+  <section id="book-now" ng-init="getAllcurrency()">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
@@ -289,7 +285,9 @@
               <h3>{{product.ProductName}}</h3>
             </div>
              <div class="form-group">
-              <h4>Product Price : {{product.Currency}} {{product.Price}}</h4>
+              <h4>Product Price : {{product.Currency}} {{product.Price}} <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+              <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+              </select> : <span>{{product.changePrice}}</span> </h4>
             </div>
              <div class="form-group">
               <label for="fullname">Name : {{product.fullname}}</label>
