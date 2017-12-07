@@ -1092,7 +1092,9 @@ section#footer {
 }
 .navigation-wrap .navbar-default .navbar-nav>li>a,
 .cuntry-nav-strip .navbar-default .navbar-nav>li>a,
-.cuntry-nav-strip .dropdown-menu>li>a{
+.cuntry-nav-strip .dropdown-menu>li>a,
+.dropdown-menu>li>a
+{
   color: #000000;
   font-weight: 600;
   font-size: 14px;
@@ -1923,6 +1925,9 @@ h4.pro-price span{
 .navbar-default .navbar-nav > .open > a:active,
 .navbar-default .navbar-nav > li.open > a{
   background-color: transparent;
+}
+.profile-wrap .fa{
+  float: right;
 }
 
 
