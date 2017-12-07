@@ -1940,6 +1940,16 @@ h4.pro-price span{
 .profile-wrap ul li a .fa{
   float: right;
 }
+.orenge-logo-strip .user-drop-icon a img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  display: inline-block;
+}
 
 
 
