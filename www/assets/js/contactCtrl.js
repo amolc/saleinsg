@@ -946,7 +946,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.changeCurrency = function(product){
 
-       //console.log(product);
+      // console.log(product);
        $scope.product = product;
        $scope.currency = {};
        $scope.currency.amount = $scope.product.Price;
@@ -961,13 +961,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          //  });
          $http.post(baseurl + 'changeCurrency/',$scope.currency).then(function(data,status){          
             // console.log(data.data.converted);
-              $scope.product.changePrice = data.data.converted;
+              $scope.product.changePrice = data.data.converted.toFixed(2);
             //$scope.product.changePrice = parseFloat($scope.amount) * res.data.rates[$scope.product.changeCurrency];         
           });
        }
        else
        {
-         $scope.product.changePrice = $scope.amount;
+         $scope.product.changePrice =  $scope.product.Price;
        }             
      }
 
