@@ -1907,7 +1907,7 @@ h4.pro-price span{
   font-family: 'Open Sans', sans-serif;
 }
 .orenge-logo-strip a.profile-img{
-  padding: 7px !important;
+  padding: 0px !important;
 }
 .orenge-logo-strip a.profile-img img{
   width: 40px;
@@ -1926,10 +1926,20 @@ h4.pro-price span{
 .navbar-default .navbar-nav > li.open > a{
   background-color: transparent;
 }
-.profile-wrap .fa{
+.profile-icon{
+  width: 70px;
+  text-align: center;
+}
+.profile-icon a{
+  color: #000000;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+}
+.profile-wrap ul li a .fa{
   float: right;
 }
-
 
 
 
