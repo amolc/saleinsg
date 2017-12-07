@@ -1138,79 +1138,51 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
    $scope.order = function (enquiryform) {
 
 
-       // console.log($scope.product.terms);
+           // console.log($scope.product.terms);
 
-      // if($scope.product.paymenttype=="Bank Transfer"){
-      //             //console.log($scope.data.paymenttype);
+          // if($scope.product.paymenttype=="Bank Transfer"){
+          //             //console.log($scope.data.paymenttype);
 
-      //             $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+          //             $scope.product.total = $scope.product.orderqty*$scope.product.Price;
 
-      //             $http.post(baseurl + 'addbankorder/',$scope.product).success(function(res) {
+          //             $http.post(baseurl + 'addbankorder/',$scope.product).success(function(res) {
 
-      //                  $("#orderform").hide();
-      //                  $("#payform").hide();
-      //                  $("#thankyou").show("slow");
+          //                  $("#orderform").hide();
+          //                  $("#payform").hide();
+          //                  $("#thankyou").show("slow");
 
 
-      //             }).error(function() {
-      //                   // alert("Please check your internet connection or data source..");
-      //             });
-                   
-      //           }else {
-      //               $("#orderform").hide();
-      //               $("#payform").show("slow");
-      //               $("#thankyou").hide();
-      //             }
+          //             }).error(function() {
+          //                   // alert("Please check your internet connection or data source..");
+          //             });
+                       
+          //           }else {
+          //               $("#orderform").hide();
+          //               $("#payform").show("slow");
+          //               $("#thankyou").hide();
+          //             }
 
-    var date = new Date();
-    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
-    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
-    dateToday = messagedate+' '+messagetime;
-    $scope.product.date = dateToday ; 
-    $scope.product.total = $scope.product.orderqty*$scope.product.Price;
-                     if (typeof $scope.product.term === 'undefined') 
-                      {
-                        $scope.product.terms = 0;
-                      } 
-                      else
-                      {
-                        $scope.product.terms = 1; 
-                      }
+          var date = new Date();
+          var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+          var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+          dateToday = messagedate+' '+messagetime;
+          $scope.product.date = dateToday ; 
+          $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+                           if (typeof $scope.product.term === 'undefined') 
+                            {
+                              $scope.product.terms = 0;
+                            } 
+                            else
+                            {
+                              $scope.product.terms = 1; 
+                            }
      
-      $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
-
-
-                      if (typeof $scope.product.term === 'undefined') 
-                      {
+        $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
+                     
                            $("#orderform").hide();
                            $("#payform").hide();
                            $("#thankyou").show("slow");
-                      } 
-                      else
-                      { 
-                  //        $scope.term = {};
-                  //        $scope.term.OrderId = res.val2.insertId;
-                  //        for(var i=0;i<=$scope.product.term.length;i++)
-                  //        {
-                             
-                  //             $scope.term.Terms = $scope.product.term[i];
-                  //             $scope.term.Type = $scope.product.type[i];
-                  //             $scope.term.Percentage = $scope.product.percentage[i];
-                  //             $scope.term.Amount = $scope.product.amount[i];
-                  //             $http.post(baseurl + 'addTerms/',$scope.term).success(function(res) {
-
-                     
-                  // }).error(function() {
-                  //       // alert("Please check your internet connection or data source..");
-                  // });
-                  //        }
-
-                         $("#orderform").hide();
-                           $("#payform").hide();
-                           $("#thankyou").show("slow");
-                         
-                      }
-
+                      
                   }).error(function() {
                         // alert("Please check your internet connection or data source..");
                   });
