@@ -1,0 +1,65 @@
+<!DOCUMENT html>
+<html>
+<head>
+    <title>Angular DEMO</title>
+    <script src="https://code.angularjs.org/1.5.7/angular.min.js"></script>
+</head>
+<body ng-app="app">
+<div ng-controller="ctrl">
+    <select ng-model="currencyIndex">
+        <option>INR</option>
+        <option>USD</option>
+        <option>GBP</option>
+    </select>
+    <input type="text" ng-model="amount"  />
+    <p>{{ amtInr | inr }}</p>
+    <p>{{ amtUsd | usd }}</p>
+    <p>{{ amtGbp | gbp }}</p>
+</div>
+<script>
+var app = angular.module("app",[]);
+app.controller('ctrl',function($scope,$http){
+    $scope.amount = 1;
+    $scope.currencyIndex= 'INR';
+    $scope.change = function(){
+        $http.get('http://api.fixer.io/latest?base='+$scope.currencyIndex).then(function(res){
+            if($scope.currencyIndex == 'INR')
+                $scope.amtInr = parseFloat($scope.amount);
+            else
+                $scope.amtInr = parseFloat($scope.amount) * res.data.rates.INR;
+
+            if($scope.currencyIndex == 'USD')
+                $scope.amtUsd = parseFloat($scope.amount);
+            else
+                $scope.amtUsd = parseFloat($scope.amount) * res.data.rates.USD;
+
+            if($scope.currencyIndex == 'GBP')
+                $scope.amtGbp = parseFloat($scope.amount);
+            else
+                $scope.amtGbp = parseFloat($scope.amount) * res.data.rates.GBP;
+
+            console.log(res);
+        });
+    }
+    $scope.$watch('amount',function(){ $scope.change(); });
+    $scope.$watch('currencyIndex',function(){ $scope.change(); });
+});
+
+app.filter('inr',function(){
+    return function(val){
+    return ('₹ '+val);
+    };
+});
+app.filter('usd',function(){
+    return function(val){
+    return ('$ '+val);
+    };
+});
+app.filter('gbp',function(){
+    return function(val){
+    return ('£ '+val);
+    };
+});
+</script>
+</body>
+</html>
