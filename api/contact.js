@@ -19,7 +19,7 @@ var productCRUD = CRUD(db, 'tbl_Products');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
 var messagesCRUD = CRUD(db, 'tbl_Messages');
-
+const converter = require('google-currency')
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var transporter = nodemailer.createTransport({
@@ -97,6 +97,18 @@ exports.allcountries = function (req, res) {
     db.query(sql, function (err, data) {
         res.json(data);
     });
+};
+
+exports.changeCurrency = function (req, res) {    
+    const options = {
+        from: req.body.baseCurrency,
+        to: req.body.changeCurrency,
+        amount: req.body.amount
+      }
+      converter(options).then(value => {
+        //console.log(value[0])
+        res.json(value); // Return object
+      })
 };
 
 exports.allcategories = function (req, res) {
@@ -468,6 +480,17 @@ exports.getcurrency = function (req, res) {
     });
     
 };
+
+
+exports.getAllcurrency = function (req, res) {
+
+   var sql = "SELECT `CountryCurrency` FROM `tbl_Countries`";
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+    
+};
+
 
 
 exports.addbankorder = function (req, res) {

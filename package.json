@@ -9,6 +9,7 @@
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "fs-extra": "^4.0.2",
+    "google-currency": "^1.0.7",
     "moment": "^2.19.2",
     "mysql": "^2.13.0",
     "mysql-crud": "^0.1.4",

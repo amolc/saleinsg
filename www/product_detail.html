@@ -190,7 +190,7 @@
               </div>
             </div>
         </header>
-        <section id="pro-details-wrap">
+        <section id="pro-details-wrap" ng-init="getAllcurrency()">
             <div class="container">
                 <div class="row">
                     <div>
@@ -208,7 +208,11 @@
                                                         <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
                                                         <span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span>
                                                     </p>
-                                                    <h4 class="pro-price">Price {{product.Currency}} : <span>{{product.Price}}</span> </h4>
+                                                    <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                                    <input type="hidden" name="baseprice" ng-model="product.Price">
+                                                    <h4 class="pro-price">Price  <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select> : <span>{{product.changePrice}}</span> </h4>
                                                     <div class="pro-note">
                                                       <h4>Product Description</h4>
                                                     <ul>

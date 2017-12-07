@@ -837,12 +837,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var urlpart = urlparams.split('&');
       var productId = urlpart[0].split('=');
 
-      $scope.product.productId= productId[1];
+      $scope.product.productId = productId[1];
+    
 
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
             $scope.product.orderqty = $scope.product.MinOrderQty;
+            $scope.product.changePrice = data.Price
+            $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
@@ -922,11 +925,50 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $scope.product.CountryId = parseInt(window.sessionStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcurrency/'+$scope.product.CountryId).success(function(data, status) {
 
-            console.log(data);
-            $scope.product.currency = data.CountryCurrency
+           // console.log(data);
+            $scope.product.currency = data.CountryCurrency;
 
       });
               
+     }
+
+      $scope.getAllcurrency = function(){
+
+          $http.get(baseurl + 'getAllcurrency/').success(function(data, status) {
+
+           // console.log(data);
+
+            $scope.currencylist = data;
+
+         });
+              
+     }
+
+     $scope.changeCurrency = function(product){
+
+       //console.log(product);
+       $scope.product = product;
+       $scope.currency = {};
+       $scope.currency.amount = $scope.product.Price;
+       $scope.currency.baseCurrency = $scope.product.Currency;
+       $scope.currency.changeCurrency = $scope.product.changeCurrency;
+       if ($scope.product.Currency!=$scope.product.changeCurrency) 
+       {
+         // $http.get('http://api.fixer.io/latest?base='+$scope.currencyIndex).then(function(res){
+
+         //    console.log(res.data.rates);
+         //    $scope.product.changePrice = parseFloat($scope.amount) * res.data.rates[$scope.product.changeCurrency];
+         //  });
+         $http.post(baseurl + 'changeCurrency/',$scope.currency).then(function(data,status){          
+            // console.log(data.data.converted);
+              $scope.product.changePrice = data.data.converted;
+            //$scope.product.changePrice = parseFloat($scope.amount) * res.data.rates[$scope.product.changeCurrency];         
+          });
+       }
+       else
+       {
+         $scope.product.changePrice = $scope.amount;
+       }             
      }
 
   //    $scope.IsInWishlist = function (PId) {

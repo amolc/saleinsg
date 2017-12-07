@@ -11,12 +11,14 @@ var cors = require('cors');
 var http = require("http").createServer(app);
 fs = require('fs-extra');
 
+
 var contact = require('./api/contact.js');
 var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
 var seller = require('./api/seller.js');
 var buyer = require('./api/buyer.js');
 var message = require('./api/message.js');
+
 
 /*app.use(function(req, res, next){
 	var url_parts = url.parse(req.url, true);
@@ -60,6 +62,8 @@ app.get('/api/getProductSpecification/:id', contact.getProductSpecification);
 app.post('/api/getrecentprod', contact.getrecentprod);
 
 app.get('/api/getcurrency/:id', contact.getcurrency);
+app.get('/api/getAllcurrency/', contact.getAllcurrency);
+app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.get('/api/filterbycategory/:id', contact.filterbycategory);
 app.get('/api/filterbycountry/:id', contact.filterbycountry);
@@ -86,6 +90,7 @@ app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
 app.post('/api/conversation/', message.conversation);
 app.post('/api/sendmessage/', message.sendmessage);
+
 
 
 app.listen(9888, function () {
