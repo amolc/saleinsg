@@ -55,20 +55,20 @@
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
                                         <!--  -->
                                         <!-- <li><a href="contact.html">Contact</a></li> -->
                                         <li class="dropdown profile-wrap">
                                             <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
                                               <div class="profile-icon">
-                                                <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar">
+                                                <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
                                                 Me <span class="caret"></span></a>
                                               </div>
                                             <ul class="dropdown-menu" id="nav2">
                                               <li class="user-drop-icon">
                                                 <a href="my-profile.html">
-                                                  <img src="uploads/ProfilePic/no-img.jpg" alt="User Avatar"> 
-                                                  <span>Pravin Shelar</span>
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <span>{{User_Name}}</span>
                                                 </a>
                                               </li>
                                               <li role="separator" class="divider"></li>

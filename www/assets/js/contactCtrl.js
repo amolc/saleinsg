@@ -168,6 +168,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         window.sessionStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
                         window.sessionStorage.setItem('User_Phone', data.value.Phone);
                         window.sessionStorage.setItem('User_Location', data.value.CountryId);
+                        window.sessionStorage.setItem('User_Image', data.value.ProfilePic);
                         //console.log(window.sessionStorage.getItem('UserId'));
                         //console.log(window.sessionStorage.getItem('UserId'));                        
 
@@ -196,7 +197,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-
      $scope.isLoggedin = function() {
 
                 $scope.User_Id = 0;
@@ -206,6 +206,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 if (window.sessionStorage.getItem('User_Id')>0) 
                 {
                     $scope.User_Id =window.sessionStorage.getItem('User_Id');
+                    $scope.User_Name =window.sessionStorage.getItem('User_Name');
+                    $scope.User_Image =window.sessionStorage.getItem('User_Image');
+                    if ($scope.User_Image == null) 
+                    {
+                        $scope.User_Image = "no-img.jpg"
+                    }
                 }
                // console.log($scope.User_Id);
                //alert($scope.User_Id);
