@@ -242,6 +242,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.info.AccountNo = res.AccountNo;
                 $scope.info.IFSCcode = res.IFSCcode;
                 $scope.info.ProfilePic = res.ProfilePic;
+                $scope.info.Password = res.Password;
                  if ($scope.User.AccountName==null) 
                 {
                   $scope.User.AccountName = '-';
@@ -297,6 +298,77 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                                 
                         //console.log('data',data)
                     });  
+          
+    } 
+
+    $scope.updatebankdetails = function(info) {      
+
+          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+
+          $http.post(baseurl + 'updatebankdetails', $scope.info).success(function(data, status) {
+
+                  //      console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                            // $scope.alertmessage=data.message;
+                            // $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            document.editbankdetails.reset(); 
+                            window.location.href = "my-profile.html";
+                            //$("#formRegistration").hide();
+                            //$("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+          
+    } 
+
+    $scope.updatepassword = function(info) {      
+
+          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+
+           if (info.Password!=info.opassword) 
+          {
+              //$scope.alertmessage='Old Password Is Incorrect';
+               $("#alertmessage").html('Old Password Is Incorrect');
+              $("#alertmessage").show('slow');
+          }
+          else if (info.npassword!=info.cpassword) 
+          {
+             // $scope.alertmessage='Password And Confirm Password Should Be Same';
+             $("#alertmessage").html('Password And Confirm Password Should Be Same');
+              $("#alertmessage").show('slow');
+          }
+          else
+          {
+
+                   $http.post(baseurl + 'updatepassword', $scope.info).success(function(data, status) {
+
+                  //      console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                            // $scope.alertmessage=data.message;
+                            // $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            document.editpassword.reset(); 
+                            window.location.href = "my-profile.html";
+                            //$("#formRegistration").hide();
+                            //$("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+
+          }     
+
+        
           
     } 
 

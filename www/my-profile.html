@@ -324,27 +324,35 @@
                         <h4>Change Password</h4>
                         <div class="tab-info">
                           <div class="edit-form">
-                            <form>
+                            <form id="editpassword" name="editpassword" ng-submit="updatepassword(info)">
                               <div class="col-md-offset-3 col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Old Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword1" ng-model="info.opassword">
+                                  <input type="hidden" ng-model="info.Password">
+                                  <input type="password" class="form-control" id="exampleInputPassword1" ng-model="info.opassword" required="">
                                 </div> 
                               </div>
                               <div class="col-md-offset-3 col-md-6">
                                 <div class="form-group">
                                   <label for="fname">New Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword2" ng-model="info.password">
+                                  <input type="password" class="form-control" id="exampleInputPassword2" ng-model="info.npassword" required="">
                                 </div> 
                               </div>
                               <div class="col-md-offset-3 col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Confirm Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword3" ng-model="info.cpassword">
+                                  <input type="password" class="form-control" id="exampleInputPassword3" ng-model="info.cpassword" required="">
+                                </div> 
+                              </div>
+                               <div class="col-md-offset-3 col-md-6">
+                                <div class="form-group">
+                                  <label id="alertmessage"></label>
+                                
                                 </div> 
                               </div>
                               <div class="col-sm-12 mr-t20  text-center">
-                                <a href="#" class="red-btn small-btn">UPDATE</a>
+                                <!-- <a href="#" class="red-btn small-btn">UPDATE</a> -->
+                                <input type="submit" name="update" class="red-btn small-btn" value="UPDATE">
                               </div>
                             </form>
                           </div>
@@ -355,7 +363,7 @@
                         <h4>Add Your Bank Details</h4>
                         <div class="tab-info">
                           <div class="edit-form">
-                            <form>
+                            <form id="editbankdetails" name="editbankdetails" ng-submit="updatebankdetails(info)">
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Account Name :</label>
@@ -381,7 +389,8 @@
                                 </div> 
                               </div>
                               <div class="col-sm-12 mr-t20  text-center">
-                                <a href="#" class="red-btn small-btn">UPDATE</a>
+                                <!-- <a href="#" class="red-btn small-btn">UPDATE</a> -->
+                                <input type="submit" name="update" class="red-btn small-btn" value="UPDATE">
                               </div>
                             </form>
                           </div>

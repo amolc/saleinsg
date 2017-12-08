@@ -328,6 +328,81 @@ exports.updateprofile = function(req, res){
 };
 
 
+exports.updatebankdetails = function(req, res){
+  
+
+     var updateObj = {
+
+              'AccountName': req.body.AccountName,
+              'AccountNo': req.body.AccountNo,
+              'BankName': req.body.BankName,
+              'IFSCcode':req.body.IFSCcode,
+
+      };
+
+    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    
+};
+
+
+exports.updatepassword = function(req, res){
+
+     var updateObj = {
+
+              'Password': req.body.npassword,
+
+      };
+
+    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    
+};
+
 exports.verifyAccount = function(req, res){
     //console.log(req.params.id);
     var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";

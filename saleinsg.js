@@ -81,6 +81,8 @@ app.post('/api/addspecification', seller.addspecification);
 app.get('/api/userproducts/:id', seller.userproducts);
 app.get('/api/userinfo/:id', contact.userinfo);
 app.post('/api/updateprofile', contact.updateprofile);
+app.post('/api/updatebankdetails', contact.updatebankdetails);
+app.post('/api/updatepassword', contact.updatepassword);
 
 app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
