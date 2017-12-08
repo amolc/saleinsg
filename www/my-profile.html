@@ -222,8 +222,8 @@
                     <div class="filter-panle">
                       <div class="panle-head mr-b20">
                         <div class="user-img">
-                          <img src="uploads/ProfilePic/no-img.jpg" alt="my-profile" title="my-profile">
-                          <h3>Pravin Shelar</h3>
+                          <img src="uploads/ProfilePic/{{User_Image}}" alt="my-profile" title="my-profile">
+                          <h3>{{User_Name}}</h3>
                          <!--  <h5>My Profile</h5> -->
                          
                         </div>
@@ -237,25 +237,25 @@
                 <li><a href="#change-password" data-toggle="pill">Change Password</a></li>
                 <li><a href="#bank-details" data-toggle="pill">Add Your Bank Details</a></li>
               </ul>
-              <div class="tab-content col-md-9 profile-tebal">
+              <div class="tab-content col-md-9 profile-tebal" ng-init="getUserInfo();">
                       <div class="tab-pane active" id="my-profile">
                           <h4>My Profile</h4>
                           <div class="tab-info">
                             <h5>My Profile</h5>
                             <div class="align-info">
-                              <p><span><b>First Name : </b></span><span>Pravin</span></p>
-                              <p><span><b>Last Name : </b></span><span>Shelar</span></p>
-                              <p><span><b>Contact No : </b></span><span>+65 98457548</span></p>
-                              <p><span><b>Email Id : </b></span><span>pravin@fountaintechies.com</span></p>
-                              <p><span><b>Company Name : </b></span><span>Fountain Techies</span></p>
-                              <p><span><b>Country : </b></span><span>Singapore</span></p>
+                              <p><span><b>First Name : </b></span><span>{{User.FirstName}}</span></p>
+                              <p><span><b>Last Name : </b></span><span>{{User.LastName}}</span></p>
+                              <p><span><b>Contact No : </b></span><span>{{User.Phone}}</span></p>
+                              <p><span><b>Email Id : </b></span><span>{{User.Email}}</span></p>
+                              <p><span><b>Company Name : </b></span><span>{{User.CompanyName}}</span></p>
+                              <p><span><b>Country : </b></span><span>{{User.CountryTitle}}</span></p>
                             </div>
                             <h5 class="mr-t30">My Bank Details</h5>
                             <div class="align-info">
-                              <p><span><b>Account Name : </b></span><span>Pravin Shelar</span></p>
-                              <p><span><b>Bank Name : </b></span><span>Sate Bank</span></p>
-                              <p><span><b>Account No : </b></span><span>6054845213546</span></p>
-                              <p><span><b>IFSC Code : </b></span><span>8548451</span></p>
+                              <p><span><b>Account Name : </b></span><span>{{User.AccountName}}</span></p>
+                              <p><span><b>Bank Name : </b></span><span>{{User.AccountNo}}</span></p>
+                              <p><span><b>Account No : </b></span><span>{{User.BankName}}</span></p>
+                              <p><span><b>IFSC Code : </b></span><span>{{User.IFSCcode}}</span></p>
                             </div>
                           </div>
                       </div>
@@ -263,54 +263,57 @@
                         <h4>Edit Profile</h4>
                         <div class="tab-info">
                             <div class="edit-form">
-                              <form>
+                              <form id="editprofile" name="editprofile" ng-submit="updateprofile(info,attachment);" ng-init="fileinit();">
                                 <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="fname">First Name :</label>
-                                    <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required="">
+                                    <input type="text" class="form-control" ng-model="info.FirstName" name="fname" id="fname" required="">
                                   </div> 
                                  </div>
                                  <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="fname">Last Name :</label>
-                                    <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required="">
+                                    <input type="text" class="form-control" ng-model="info.LastName" name="fname" id="lname" required="">
                                   </div> 
                                  </div>
                                  <div class="col-md-6">
                                   <div class="form-group">
-                                    <label for="fname">Eamil Id :</label>
-                                    <input type="email" class="form-control" name="email" id="email" required="">
-                                  </div> 
-                                 </div>
-                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label for="fname">Contact No :</label>
-                                    <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required="">
+                                    <label for="fname">Email Id :</label>
+                                    <input type="email" class="form-control" name="email" id="email" ng-model="info.Email" disabled="">
                                   </div> 
                                  </div>
                                  <div class="col-md-6">
                                   <div class="form-group">
                                     <label for="fname">Contact No :</label>
-                                    <input type="text" class="form-control" ng-model="registration.fname" name="fname" id="fname" required="">
+                                    <input type="text" class="form-control" ng-model="info.Phone" name="fname" id="contact" required="">
                                   </div> 
                                  </div>
                                  <div class="col-md-6">
                                   <div class="form-group">
-                                    <label for="fname">Select Country :</label>
-                                    <select class="form-control"> 
-                                      <option selected="selected" label=""></option>
-                                      <option label="India">India</option>
-                                      <option label="Malaysia">Malaysia</option>
-                                      <option label="Thailand">Thailand</option>
-                                      <option label="Indonesia">Indonesia</option>
-                                      <option label="Bangladesh">Bangladesh</option>
-                                      <option label="Singapore">Singapore</option>
-                                      <option label="Vietnam">Vietnam</option>
+                                    <label for="fname">Company Name :</label>
+                                    <input type="text" class="form-control" ng-model="info.CompanyName" name="fname" id="company" required="">
+                                  </div> 
+                                 </div>
+                                 <div class="col-md-6">
+                                  <div class="form-group" ng-init="getCountries();">
+                                    <label for="fname">Country :</label>
+                                     <select class="form-control" id="country" name="country" ng-options="cou.CountryId as cou.CountryTitle for cou in countrylist" ng-model="info.CountryId" required="">
                                     </select>
                                   </div> 
                                  </div>
+                                 <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="image">Image:</label>
+                                    <input id="file_browse1" class="form-control" type='file' name="productimage" onchange="angular.element(this).scope().updateattachment('file_browse1');   $('#imagepreview').children().remove();" accept="image/*" />
+                                    <input type="hidden" name="imagename" ng-model="info.ProfilePic">
+                                  </div> 
+                                 </div>
+                                  <div class="col-md-12">
+                                    <div id="imagepreview"></div>
+                                  </div>
                                  <div class="col-sm-12 mr-t20  text-center">
-                                  <a href="#" class="red-btn small-btn">UPDATE</a>
+                                  <!-- <a href="#" class="red-btn small-btn">UPDATE</a> -->
+                                  <input type="submit" name="update" class="red-btn small-btn" value="UPDATE">
                                  </div>
                               </form>
                             </div>
@@ -324,20 +327,20 @@
                             <form>
                               <div class="col-md-offset-3 col-md-6">
                                 <div class="form-group">
-                                  <label for="fname">Current Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword1">
-                                </div> 
-                              </div>
-                              <div class="col-md-offset-3 col-md-6">
-                                <div class="form-group">
                                   <label for="fname">Old Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword2">
+                                  <input type="password" class="form-control" id="exampleInputPassword1" ng-model="info.opassword">
                                 </div> 
                               </div>
                               <div class="col-md-offset-3 col-md-6">
                                 <div class="form-group">
                                   <label for="fname">New Password :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword3">
+                                  <input type="password" class="form-control" id="exampleInputPassword2" ng-model="info.password">
+                                </div> 
+                              </div>
+                              <div class="col-md-offset-3 col-md-6">
+                                <div class="form-group">
+                                  <label for="fname">Confirm Password :</label>
+                                  <input type="password" class="form-control" id="exampleInputPassword3" ng-model="info.cpassword">
                                 </div> 
                               </div>
                               <div class="col-sm-12 mr-t20  text-center">
@@ -356,25 +359,25 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Account Name :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword1">
+                                  <input type="text" class="form-control" id="exampleInputPassword4" ng-model="info.AccountName">
                                 </div> 
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Bank Name :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword2">
+                                  <input type="text" class="form-control" id="exampleInputPassword5" ng-model="info.BankName">
                                 </div> 
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="fname">Account No :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword3">
+                                  <input type="text" class="form-control" id="exampleInputPassword6" ng-model="info.AccountNo">
                                 </div> 
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="fname">IFSC Code :</label>
-                                  <input type="password" class="form-control" id="exampleInputPassword3">
+                                  <input type="text" class="form-control" id="exampleInputPassword7" ng-model="info.IFSCcode">
                                 </div> 
                               </div>
                               <div class="col-sm-12 mr-t20  text-center">
@@ -420,12 +423,12 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
         <script src="assets/js/custom.js"></script>
-<script>
+<!-- <script>
     $(function(){
          // Find any date inputs and override their functionality
          $('input[type="date"]').datepicker();
     });
-</script>
+</script> -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQD-LT4-VzlsdNpf33yNDeT38EaF3Kz-g&libraries=places"></script>
 <script>
 
