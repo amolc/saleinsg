@@ -123,9 +123,9 @@ exports.placeorder = function (req, res) {
 
                               if (req.body.terms == 1) 
                               {
-                                // console.log(orderID);
+                                //console.log(orderID);
 
-                                // console.log(Object.keys(req.body.term).length);
+                               console.log(Object.keys(req.body.term).length);
                                 for(var i=0;i<Object.keys(req.body.term).length;i++)
                                  {
 
@@ -143,18 +143,18 @@ exports.placeorder = function (req, res) {
                                         "Percentage" : Percentage,    
                                         "Amount" : Amount, 
                                     };
-                                     console.log("after", createObj);
+                                    // console.log("after", createObj);
 
                                     termsCRUD.create(createObj, function (err, data) {
 
                                         
                                     });
                                       
-                                 }
+                                }
                               }
                             
-                              var agentemail = "ceo@80startups.com";
-                              var officeremail = "shital.talole@fountaintechies.com";
+                              // var agentemail = "ceo@80startups.com";
+                              // var officeremail = "shital.talole@fountaintechies.com";
                               var subject = "New Order - "+orderID;
                               var mailbody = "Hello,</br><p>New Order  : </p>"
 
@@ -162,7 +162,7 @@ exports.placeorder = function (req, res) {
                              + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
                              + "</br><p><b> Email:</b> " + req.body.email + "</p>"
                              + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
-                             + "</br><p><b> Address :</b> " + req.body.address + "</p>"
+                             + "</br><p><b> Address :</b> " + req.body.address1+","+ req.body.address2+","+ req.body.country+","+ req.body.postalcode+ "</p>"
                              + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
                              + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
                              + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
@@ -173,9 +173,10 @@ exports.placeorder = function (req, res) {
 
                              + "Thanks, tradeexchange";
 
-                             send_mail( agentemail, subject, mailbody );
-                             send_mail( officeremail, subject, mailbody );
+                             // send_mail( agentemail, subject, mailbody );
+                             // send_mail( officeremail, subject, mailbody );
                              send_mail( req.body.Email, subject, mailbody );
+                             send_mail( req.body.SupEmail, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,
