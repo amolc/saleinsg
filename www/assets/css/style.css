@@ -9,7 +9,7 @@
     float: left;
     margin-right: 15px;
 }
-.alignright {
+.alignright {   
     float: right;
     margin-left: 15px;
 }
@@ -38,7 +38,8 @@ h6 {
 body {
   font-family: 'Open Sans', sans-serif;
 }
-a:hover { text-decoration: none }
+a:hover { text-decoration: none}
+label{font-weight: normal;}
 
 
 .jumbotron p {
@@ -1397,9 +1398,11 @@ section#footer {
   top:10px;
   right: 10px;
 }
+.panle-head{
+  background: #52bbd5;
+}
 .panle-head h4{
   text-align: center;
-  background: #52bbd5;
   text-transform: uppercase;
   color: #ffffff;
   padding: 15px 10px;
@@ -1581,7 +1584,7 @@ section#footer {
 
 }
 .form-control:hover, .form-control:focus, .form-control:active{
-  border-color: #000000;
+  border-color: #52bcd5;
 }
 
 
@@ -1981,6 +1984,80 @@ h4.pro-price span{
 .chat_bottom .btn-success{
   margin-top: -11px;
 }
+.user-img{
+  padding: 20px 15px 11px;
+  text-align: center;
+}
+.user-img img{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+}
+.user-img h3{
+  font-size: 22px;
+  color: #ffffff;
+  margin: 10px;
+  font-weight: 600;
+}
+.hor-tabs .nav-pills>li>a{
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  color: #000000;
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
+.hor-tabs .nav-pills>li>a:hover,
+.hor-tabs .nav-pills>li.active>a, 
+.hor-tabs .nav-pills>li.active>a:focus,
+.hor-tabs .nav-pills>li.active>a:active, 
+.hor-tabs .nav-pills>li.active>a:hover{
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  background-color: #52bbd5;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+.hor-tabs .nav-stacked>li+li{
+  margin: 0px;
+}
+.hor-tabs .tab-content {
+  border: 1px solid #52bcd5;
+  padding: 0px;
+}
+.hor-tabs .tab-pane h4{
+  margin: 0px;
+  padding: 15px 30px;
+  background-color: #52bcd5;
+  color: #ffffff; 
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+}
+.hor-tabs .tab-info{
+  padding: 30px;
+}
+.hor-tabs .align-info p{
+  font-size: 15px;
+  display: table;
+  width: 100%;
+  text-align: left;
+  margin: 15px;
+}
+.hor-tabs .align-info p span:first-child{
+  width: 201px;
+}
+.hor-tabs .align-info p span{
+  display: table-cell;
+}
+  
 
 
 
@@ -1990,14 +2067,9 @@ h4.pro-price span{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+.mr-t20{
+  margin-top: 20px;
+}
+.mr-b20{
+  margin-bottom: 20px;
+}
