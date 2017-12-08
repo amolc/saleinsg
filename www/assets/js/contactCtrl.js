@@ -924,9 +924,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           if (typeof $scope.product.remove === 'undefined' ) 
          {
            $scope.product.remove = {};
-
+           $scope.product.type = {};
          }
-         $scope.product.remove[index] = 0;
+          $scope.product.remove[index] = 0;
+          $scope.product.type[index] = "Trade Exchange Escrow (TEE)";
           index = index+1;
           window.sessionStorage.setItem('index',index);                
      }
@@ -1008,11 +1009,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $scope.product = product; 
        $scope.per = per;
        $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
-      if ( $scope.amt == 0) 
-        {
-           $scope.amt = '';
-        }     
-     }
+        if ( $scope.amt == 0) 
+          {
+             $scope.amt = '';
+          } 
+         if (typeof $scope.product.percentage !== 'undefined' ) 
+         {
+            $.each($scope.product.percentage, function( key, value ) {
+              $scope.product.amount[key] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[key] / 100).toFixed(2);
+
+            });
+          }
+
+         }    
 
       $scope.remove = function(product,index){
 
@@ -1298,28 +1307,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $scope.product.date = dateToday ;
           if (typeof $scope.product.term === 'undefined' ) 
          {
-           $scope.product.term = {};
-           $scope.product.term[0] = $scope.terms;
-
+           $scope.product.term = {};           
          }
           if (typeof $scope.product.type === 'undefined' ) 
          {
            $scope.product.type = {};
-           $scope.product.type[0] = $scope.types;
-
          }
           if (typeof $scope.product.percentage === 'undefined' ) 
          {
            $scope.product.percentage = {};
-           $scope.product.percentage[0] = $scope.per;
-
          }
-          if (typeof $scope.product.amount === 'undefined' ) 
+         if (typeof $scope.product.amount === 'undefined' ) 
          {
            $scope.product.amount = {};
-            $scope.product.amount[0] = $scope.amt;
-
          }
+         if (typeof $scope.product.remove === 'undefined' ) 
+         {
+            $scope.product.remove = {};
+         }
+         $scope.product.term[0] = $scope.terms;
+           $scope.product.type[0] = $scope.types;
+           $scope.product.percentage[0] = $scope.per;
+           $scope.product.amount[0] = $scope.amt;
+           $scope.product.remove[0] = 0;
                    
           $scope.product.total = $scope.product.orderqty*$scope.product.Price;
           if (typeof $scope.product.term === 'undefined') 

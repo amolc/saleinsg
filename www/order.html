@@ -334,17 +334,17 @@
               <div>
               <div id="termsdiv">
               <div class='col-md-3'>
-                <input class=" form-group form-control" type='text' ng-model='terms'>
+                <input class=" form-group form-control" type='text' ng-model='terms' required="">
               </div>
               <div class='col-md-4'>
-                 <Select class="form-group form-control" type='text' ng-model='types'>
-                  <option value="Trade Exchange Escrow (TEE)" ng-selected="true">Trade Exchange Escrow (TEE)</option>
+                 <Select class="form-group form-control" type='text' ng-model='types' required="">
+                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                   <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                   <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
                  </Select> 
               </div>
               <div class='col-md-2'>
-                 <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)'>
+                 <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)' required="">
               </div>
               <div class='col-md-2'>
                  <input class="form-group form-control" type='text' ng-model='amt'>
@@ -358,7 +358,7 @@
               </div>
               <div class='col-md-4'>
                  <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
-                  <option value="Trade Exchange Escrow (TEE)" ng-selected="true">Trade Exchange Escrow (TEE)</option>
+                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                   <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                   <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
                  </Select> 
