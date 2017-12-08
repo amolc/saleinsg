@@ -280,7 +280,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
           $http.post(baseurl + 'updateprofile', $scope.info).success(function(data, status) {
 
-                  //      console.log('data',data)
+                       console.log('data',data)
 
                         if (data.status == false) 
                         {
@@ -290,8 +290,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         else
                         {
                             document.editprofile.reset(); 
+                            window.sessionStorage.setItem('User_Image',data.value)
                             window.location.href = "my-profile.html";
-                            window.sessionStorage.setItem('User_Image',data.filename)
+                            
                             //$("#formRegistration").hide();
                             //$("#thankyoudiv").show('slow');
                         }
