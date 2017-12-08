@@ -1758,7 +1758,7 @@ section#footer {
   border: medium none;
 }
 .new_message_head {
-  background: #bbbbbb  none repeat scroll 0 0;
+  background: #52bcd5 none repeat scroll 0 0;
   float: left;
   font-size: 13px;
   font-weight: 600;
@@ -1766,6 +1766,10 @@ section#footer {
   width: 100%;
 }
 .message_section {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+}
+.messege-box{
   border: 1px solid #bbbbbb;
 }
 .chat_area {
@@ -1805,9 +1809,9 @@ section#footer {
 }
 .message_write {
   /*background: #52bdd5 none repeat scroll 0 0;*/
-  background: #bbbbbb none repeat scroll 0 0;
+  background: transparent none repeat scroll 0 0;
   float: left;
-  padding: 15px;
+ /* padding: 15px;*/
   width: 100%;
 }
 
@@ -2065,7 +2069,9 @@ h4.pro-price span{
   background-color: #f2f2f2;
   padding: 0px;
 }
-
+.navbar-nav>li>.dropdown-menu{
+  width: 210px;
+}
 
 
 
