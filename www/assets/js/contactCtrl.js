@@ -818,16 +818,17 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-      $scope.productinit = function (req, res) {
+    $scope.productinit = function (req, res) {
 
       $scope.product = {};
       window.sessionStorage.setItem('index',1);
-      $scope.index = 0;
-      $scope.product.term ={};
+      $scope.index = 1;
+      $scope.product.term = {};
       $scope.product.type = {};
       $scope.product.percentage = {};
       $scope.product.amount = {};
-      $scope.term = "50% In Advance";
+      $scope.product.remove = {};
+     
     
       var url = window.location.href;
 
@@ -849,6 +850,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.product.changePrice = data.Price
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
+            $scope.terms = "50% In Advance";
+            $scope.types = "Trade Exchange Escrow (TEE)";
+            $scope.per = 50;
+            $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
                $scope.qty.push(i);
@@ -916,8 +921,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           //alert(index);
          // var content = "<div class='form-group'><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.term["+index+"]'></div><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.type["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.percentage["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.amount["+index+"]'></div></div>";
           $("#termsdiv"+index).show();
+          if (typeof $scope.product.remove === 'undefined' ) 
+         {
+           $scope.product.remove = {};
+
+         }
+         $scope.product.remove[index] = 0;
           index = index+1;
-          window.sessionStorage.setItem('index',index);      
+          window.sessionStorage.setItem('index',index);                
      }
 
 
@@ -980,6 +991,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        if (typeof $scope.product.amount === 'undefined' ) 
        {
          $scope.product.amount = {};
+
        }
        $scope.product.amount[index] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[index] / 100).toFixed(2);
       if ( $scope.product.amount[index] == 0) 
@@ -987,10 +999,35 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          $scope.product.amount[index] = '';
       }
       // $scope.product.percentage[index] = '';
-      // alert('hi');
+      // alert('hi');           
+     }
 
+      $scope.cal = function(product,per){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product; 
+       $scope.per = per;
+       $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
+      if ( $scope.amt == 0) 
+        {
+           $scope.amt = '';
+        }     
+     }
+
+      $scope.remove = function(product,index){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product;
+       $("#termsdiv"+index).hide();
+       if (typeof $scope.product.remove === 'undefined' ) 
+       {
+         $scope.product.remove = {};
+
+       }
+       $scope.product.remove[index] = 1;
             
      }
+
 
      $scope.getvalues = function(product){
 
@@ -1230,7 +1267,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
    $scope.order = function (enquiryform) {
 
 
-          console.log($scope.product);
+         // console.log($scope.product);
 
           // if($scope.product.paymenttype=="Bank Transfer"){
           //             //console.log($scope.data.paymenttype);
@@ -1258,16 +1295,41 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
           var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
           dateToday = messagedate+' '+messagetime;
-          $scope.product.date = dateToday ; 
+          $scope.product.date = dateToday ;
+          if (typeof $scope.product.term === 'undefined' ) 
+         {
+           $scope.product.term = {};
+           $scope.product.term[0] = $scope.terms;
+
+         }
+          if (typeof $scope.product.type === 'undefined' ) 
+         {
+           $scope.product.type = {};
+           $scope.product.type[0] = $scope.types;
+
+         }
+          if (typeof $scope.product.percentage === 'undefined' ) 
+         {
+           $scope.product.percentage = {};
+           $scope.product.percentage[0] = $scope.per;
+
+         }
+          if (typeof $scope.product.amount === 'undefined' ) 
+         {
+           $scope.product.amount = {};
+            $scope.product.amount[0] = $scope.amt;
+
+         }
+                   
           $scope.product.total = $scope.product.orderqty*$scope.product.Price;
-                           if (typeof $scope.product.term === 'undefined') 
-                            {
-                              $scope.product.terms = 0;
-                            } 
-                            else
-                            {
-                              $scope.product.terms = 1; 
-                            }
+          if (typeof $scope.product.term === 'undefined') 
+          {
+                $scope.product.termsadded = 0;
+          } 
+          else
+          {
+                $scope.product.termsadded = 1; 
+          }
      
         $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
                      

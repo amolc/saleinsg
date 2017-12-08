@@ -99,105 +99,103 @@ exports.addtowishlist = function (req, res) {
 
 exports.placeorder = function (req, res) {
 
-  //console.log(req.body);
+  console.log(req.body);
 
-  orderCRUD.create({
-                            SuplierId:req.body.SupplierId,
-                            ProductId:req.body.ProductId,
-                            Quantity:req.body.orderqty,
-                            Price:req.body.Price,
-                            TotalAmount: req.body.total,
-                            BuyerId: req.body.BuyerId,
-                            OrderDate: req.body.date,
-                         // ShippingAddress: req.body.address,
-                            Address1: req.body.address1,
-                            Address2: req.body.address2,
-                            PostalCode: req.body.postalcode,
-                            Country: req.body.country,
+  // orderCRUD.create({
+  //                           SuplierId:req.body.SupplierId,
+  //                           ProductId:req.body.ProductId,
+  //                           Quantity:req.body.orderqty,
+  //                           Price:req.body.Price,
+  //                           TotalAmount: req.body.total,
+  //                           BuyerId: req.body.BuyerId,
+  //                           OrderDate: req.body.date,
+  //                        // ShippingAddress: req.body.address,
+  //                           Address1: req.body.address1,
+  //                           Address2: req.body.address2,
+  //                           PostalCode: req.body.postalcode,
+  //                           Country: req.body.country,
 
-                        }, function(err2, val2) {
+  //                       }, function(err2, val2) {
 
-                            if (!err2) 
-                            {
-                                var orderID = val2.insertId ;
+  //                           if (!err2) 
+  //                           {
+  //                               var orderID = val2.insertId ;
 
-                              if (req.body.terms == 1) 
-                              {
-                                //console.log(orderID);
+  //                             if (req.body.termsadded == 1) 
+  //                             {
+  //                               //console.log(orderID);
 
-                               console.log(Object.keys(req.body.term).length);
-                                for(var i=0;i<Object.keys(req.body.term).length;i++)
-                                 {
+  //                              console.log(Object.keys(req.body.term).length);
+  //                               for(var i=0;i<Object.keys(req.body.term).length;i++)
+  //                                {   
 
+  //                                     var Terms = req.body.term[i];
+  //                                     var Type = req.body.type[i];
+  //                                     var Percentage = req.body.percentage[i];
+  //                                     var Amount = req.body.amount[i];
 
-                                     
-                                      var Terms = req.body.term[i];
-                                      var Type = req.body.type[i];
-                                      var Percentage = req.body.percentage[i];
-                                      var Amount = req.body.amount[i];
+  //                                      var createObj = {
+  //                                       "OrderId" :  orderID,
+  //                                       "Terms" : Terms, 
+  //                                       "Type" : Type, 
+  //                                       "Percentage" : Percentage,    
+  //                                       "Amount" : Amount, 
+  //                                   };
+  //                                   // console.log("after", createObj);
 
-                                       var createObj = {
-                                        "OrderId" :  orderID,
-                                        "Terms" : Terms, 
-                                        "Type" : Type, 
-                                        "Percentage" : Percentage,    
-                                        "Amount" : Amount, 
-                                    };
-                                    // console.log("after", createObj);
-
-                                    termsCRUD.create(createObj, function (err, data) {
+  //                                   termsCRUD.create(createObj, function (err, data) {
 
                                         
-                                    });
+  //                                   });
                                       
-                                }
-                              }
+  //                               }
+  //                             }
                             
-                              // var agentemail = "ceo@80startups.com";
-                              // var officeremail = "shital.talole@fountaintechies.com";
-                              var subject = "New Order - "+orderID;
-                              var mailbody = "Hello,</br><p>New Order  : </p>"
+  //                             // var agentemail = "ceo@80startups.com";
+  //                             // var officeremail = "shital.talole@fountaintechies.com";
+  //                             var subject = "New Order - "+orderID;
+  //                             var mailbody = "Hello,</br><p>New Order  : </p>"
 
 
-                             + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
-                             + "</br><p><b> Email:</b> " + req.body.email + "</p>"
-                             + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
-                             + "</br><p><b> Address :</b> " + req.body.address1+","+ req.body.address2+","+ req.body.country+","+ req.body.postalcode+ "</p>"
-                             + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
-                             + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
-                             + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
-                             + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
-                             // + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
+  //                            + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
+  //                            + "</br><p><b> Email:</b> " + req.body.email + "</p>"
+  //                            + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
+  //                            + "</br><p><b> Address :</b> " + req.body.address1+","+ req.body.address2+","+ req.body.country+","+ req.body.postalcode+ "</p>"
+  //                            + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
+  //                            + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
+  //                            + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
+  //                            + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
+  //                            // + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
 
-                             + "<p></br><p><b></p>"
+  //                            + "<p></br><p><b></p>"
 
-                             + "Thanks, tradeexchange";
+  //                            + "Thanks, tradeexchange";
 
-                             // send_mail( agentemail, subject, mailbody );
-                             // send_mail( officeremail, subject, mailbody );
-                             send_mail( req.body.Email, subject, mailbody );
-                             send_mail( req.body.SupEmail, subject, mailbody );
-                                var resdata = {
-                                    status: true,
-                                    value:val2,
-                                    message: 'Order Placed successfully'
-                                };
+  //                            // send_mail( agentemail, subject, mailbody );
+  //                            // send_mail( officeremail, subject, mailbody );
+  //                            send_mail( req.body.Email, subject, mailbody );
+  //                            send_mail( req.body.SupEmail, subject, mailbody );
+  //                               var resdata = {
+  //                                   status: true,
+  //                                   value:val2,
+  //                                   message: 'Order Placed successfully'
+  //                               };
 
-                                res.jsonp(resdata);
-                            }
-                            else
-                            {
-                                var resdata = {
-                                    status: false,
-                                    error: err2,
-                                    message: 'Order Not Placed'
-                                };
+  //                               res.jsonp(resdata);
+  //                           }
+  //                           else
+  //                           {
+  //                               var resdata = {
+  //                                   status: false,
+  //                                   error: err2,
+  //                                   message: 'Order Not Placed'
+  //                               };
 
-                                res.jsonp(resdata);
-                            }
+  //                               res.jsonp(resdata);
+  //                           }
 
 
-               });
+  //              });
     
 };
 

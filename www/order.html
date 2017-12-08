@@ -307,7 +307,7 @@
               <div class="form-group">
              <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
                <label for="productprice">Quantity :</label>
-               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity"></select>
+               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
             </div>
             <div class="form-group">
               <label for="productprice">Total Amount : {{product.Currency}} {{product.Price * product.orderqty}}</label>
@@ -318,7 +318,7 @@
             </div>
             <div id="termsdiv" class="form-group">
             <div id="label">
-            <div class='col-md-4'>
+            <div class='col-md-3'>
                 <label>Title</label>
               </div>
               <div class='col-md-4'>
@@ -332,28 +332,28 @@
               </div>
               </div>
               <div>
-              <div id="termsdiv0">
-              <div class='col-md-4'>
-                <input class=" form-group form-control" type='text' ng-model='product.term[0]'>
+              <div id="termsdiv">
+              <div class='col-md-3'>
+                <input class=" form-group form-control" type='text' ng-model='terms'>
               </div>
               <div class='col-md-4'>
-                 <Select class="form-group form-control" type='text' ng-model='product.type[0]'>
+                 <Select class="form-group form-control" type='text' ng-model='types'>
                   <option value="Trade Exchange Escrow (TEE)" ng-selected="true">Trade Exchange Escrow (TEE)</option>
                   <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                   <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
                  </Select> 
               </div>
               <div class='col-md-2'>
-                 <input class="form-group form-control" type='text' ng-model='product.percentage[0]' ng-change="calculate(product,0)" ng-value="product.Price">
+                 <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)'>
               </div>
               <div class='col-md-2'>
-                 <input class="form-group form-control" type='text' ng-model='product.amount[0]'>
+                 <input class="form-group form-control" type='text' ng-model='amt'>
               </div>
               </div> 
               </div>
-              <div ng-repeat="n in [].constructor(5) track by $index">
-              <div id="termsdiv{{$index}}" ng-if="!$first" hidden="">
-              <div class='col-md-4'>
+              <div ng-repeat="n in [].constructor(10) track by $index">
+              <div id="termsdiv{{$index}}" hidden="">
+              <div class='col-md-3'>
                 <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
               </div>
               <div class='col-md-4'>
@@ -368,6 +368,10 @@
               </div>
               <div class='col-md-2'>
                  <input class="form-group form-control" type='text' ng-model='product.amount[$index]'>
+              </div>
+              <div class='col-md-1'>
+                <input type="hidden" ng-model='product.remove[$index]'>
+                <label ng-click="remove(product,$index)">&#10008</label>
               </div>
               </div> 
               </div>            
