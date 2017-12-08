@@ -922,7 +922,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          // var content = "<div class='form-group'><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.term["+index+"]'></div><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.type["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.percentage["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.amount["+index+"]'></div></div>";
           $("#termsdiv"+index).show();
           index = index+1;
-          window.sessionStorage.setItem('index',index);      
+          window.sessionStorage.setItem('index',index);                
      }
 
 
@@ -985,6 +985,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        if (typeof $scope.product.amount === 'undefined' ) 
        {
          $scope.product.amount = {};
+
        }
        $scope.product.amount[index] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[index] / 100).toFixed(2);
       if ( $scope.product.amount[index] == 0) 
@@ -1006,6 +1007,21 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            $scope.amt = '';
         }     
      }
+
+      $scope.remove = function(product,index){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product;
+       $("#termsdiv"+index).hide();
+       if (typeof $scope.product.remove === 'undefined' ) 
+       {
+         $scope.product.remove = {};
+
+       }
+       $scope.product.remove[index] = 1;
+            
+     }
+
 
      $scope.getvalues = function(product){
 
