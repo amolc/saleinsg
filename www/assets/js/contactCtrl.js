@@ -818,16 +818,17 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
-      $scope.productinit = function (req, res) {
+    $scope.productinit = function (req, res) {
 
       $scope.product = {};
       window.sessionStorage.setItem('index',1);
       $scope.index = 0;
-      $scope.product.term ={};
+      $scope.product.term = {};
       $scope.product.type = {};
       $scope.product.percentage = {};
       $scope.product.amount = {};
-      $scope.term = "50% In Advance";
+      $scope.product.remove = {};
+     
     
       var url = window.location.href;
 
@@ -849,6 +850,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.product.changePrice = data.Price
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
+            $scope.terms = "50% In Advance";
+            $scope.types = "Trade Exchange Escrow (TEE)";
+            $scope.per = 50;
+            $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
                $scope.qty.push(i);
@@ -987,9 +992,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          $scope.product.amount[index] = '';
       }
       // $scope.product.percentage[index] = '';
-      // alert('hi');
+      // alert('hi');           
+     }
 
-            
+      $scope.cal = function(product,per){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product; 
+       $scope.per = per;
+       $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
+      if ( $scope.amt == 0) 
+        {
+           $scope.amt = '';
+        }     
      }
 
      $scope.getvalues = function(product){
@@ -1254,30 +1269,30 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           //               $("#thankyou").hide();
           //             }
 
-          var date = new Date();
-          var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
-          var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
-          dateToday = messagedate+' '+messagetime;
-          $scope.product.date = dateToday ; 
-          $scope.product.total = $scope.product.orderqty*$scope.product.Price;
-                           if (typeof $scope.product.term === 'undefined') 
-                            {
-                              $scope.product.terms = 0;
-                            } 
-                            else
-                            {
-                              $scope.product.terms = 1; 
-                            }
+        //   var date = new Date();
+        //   var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+        //   var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+        //   dateToday = messagedate+' '+messagetime;
+        //   $scope.product.date = dateToday ; 
+        //   $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+        //                    if (typeof $scope.product.term === 'undefined') 
+        //                     {
+        //                       $scope.product.terms = 0;
+        //                     } 
+        //                     else
+        //                     {
+        //                       $scope.product.terms = 1; 
+        //                     }
      
-        $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
+        // $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
                      
-                           $("#orderform").hide();
-                           $("#payform").hide();
-                           $("#thankyou").show("slow");
+        //                    $("#orderform").hide();
+        //                    $("#payform").hide();
+        //                    $("#thankyou").show("slow");
                       
-                  }).error(function() {
-                        // alert("Please check your internet connection or data source..");
-                  });
+        //           }).error(function() {
+        //                 // alert("Please check your internet connection or data source..");
+        //           });
   
   }
 
