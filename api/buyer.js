@@ -37,7 +37,7 @@ var transporter = nodemailer.createTransport({
 exports.buyerorders = function (req, res) {
 
     var BuyerId = req.params.id;
-    var sql = "SELECT `OrderId`,p.`ProductName`,s.`CompanyName`,o.`TotalAmount`,o.`OrderDate`,o.`PaymentStatus` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE o.`BuyerId` = "+BuyerId+" GROUP BY o.`OrderId` ORDER BY o.`OrderId` DESC";    //console.log(sql);
+    var sql = "SELECT `OrderId`,p.`ProductName`,s.`CompanyName`,o.`TotalAmount`,o.`OrderDate`,o.`PaymentStatus`,o.`OrderStatus` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` WHERE o.`BuyerId` = "+BuyerId+" GROUP BY o.`OrderId` ORDER BY o.`OrderId` DESC";    //console.log(sql);
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
