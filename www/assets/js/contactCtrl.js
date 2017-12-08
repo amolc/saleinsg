@@ -823,7 +823,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.product = {};
       window.sessionStorage.setItem('index',1);
       $scope.index = 0;
-      $scope.product.term = {};
+      $scope.product.term ={};
       $scope.product.type = {};
       $scope.product.percentage = {};
       $scope.product.amount = {};

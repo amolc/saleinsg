@@ -352,7 +352,7 @@
               </div> 
               </div>
               <div ng-repeat="n in [].constructor(5) track by $index">
-              <div id="termsdiv{{$index}}" ng-show="!$first" ng-style="{'display': $index == index ? 'block' : 'none'}">
+              <div id="termsdiv{{$index}}" ng-if="!$first" ng-style="{'display': $index == index ? 'block' : 'none'}">
               <div class='col-md-4'>
                 <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
               </div>
