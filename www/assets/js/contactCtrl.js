@@ -172,7 +172,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         //console.log(window.sessionStorage.getItem('UserId'));                        
 
                        // window.location = "../index.html";
-                        window.location = "dashboard.html";
+                       if (window.sessionStorage.getItem("GoToPage") === null) {
+                                 window.location = "dashboard.html";
+                        }
+                        else
+                        {
+                           window.location = window.sessionStorage.getItem("GoToPage")
+                        }
+                       
                     }
                     else
                     {

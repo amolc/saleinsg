@@ -22,6 +22,12 @@
                    window.location.href="login.html";
 
                 }
+                else
+                {
+                   if (window.sessionStorage.getItem("GoToPage") !== null) {
+                                window.sessionStorage.removeItem('GoToPage');
+                        }
+                }
     </script>
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
