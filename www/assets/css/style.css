@@ -2069,7 +2069,9 @@ h4.pro-price span{
   background-color: #f2f2f2;
   padding: 0px;
 }
-
+.navbar-nav>li>.dropdown-menu{
+  width: 210px;
+}
 
 
 
