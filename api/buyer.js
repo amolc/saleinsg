@@ -158,6 +158,8 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
+                              var buyer = req.body.Email;
+                              var seller = req.body.SupEmail;
                               var subject = "New Order - "+orderID;
                               var mailbody = "Hello,</br><p>New Order  : </p>"
 
@@ -178,8 +180,8 @@ exports.placeorder = function (req, res) {
 
                              // send_mail( agentemail, subject, mailbody );
                              // send_mail( officeremail, subject, mailbody );
-                             send_mail( req.body.Email, subject, mailbody );
-                             send_mail( req.body.SupEmail, subject, mailbody );
+                             send_mail( buyer, subject, mailbody );
+                             send_mail( seller, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,
