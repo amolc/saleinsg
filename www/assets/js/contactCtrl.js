@@ -208,7 +208,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                     $scope.User_Id =window.sessionStorage.getItem('User_Id');
                     $scope.User_Name =window.sessionStorage.getItem('User_Name');
                     $scope.User_Image =window.sessionStorage.getItem('User_Image');
-                    if ($scope.User_Image == null) 
+                    if ($scope.User_Image == 'null') 
                     {
                         $scope.User_Image = "no-img.jpg"
                     }
@@ -228,6 +228,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           window.sessionStorage.removeItem('User_Location');
           window.sessionStorage.removeItem('wishlist');
           window.sessionStorage.removeItem('Other_User_Id');
+          window.sessionStorage.removeItem('User_Image');
           location.href = "index.html"
     }  
 
