@@ -239,6 +239,7 @@
                 <th>Order Status</th>
                 <th>Payment Status</th>
                 <th>View</th>
+                <th>Deposite</th>
               </tr>
             </thead>
             <tbody>
@@ -251,6 +252,7 @@
                 <td>{{o.OrderStatus}}</td>
                 <td>{{o.PaymentStatus}}</td>
                 <td><i class="fa fa-eye"></i></td>
+                <td><a href="javascript:void(0)" ng-if="o.OrderStatus=='Approved'">Pay Now</a></td>
               </tr>
             </tbody>
           </table>
