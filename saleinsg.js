@@ -53,6 +53,7 @@ app.get('/api/allcountries', contact.allcountries);
 app.get('/api/verify-account/:id', contact.verifyAccount);
 app.post('/api/login', contact.login);
 
+
 app.get('/api/allcategories', contact.allcategories);
 app.get('/api/getsubcategories/:id', contact.getsubcategories);
 
@@ -78,6 +79,10 @@ app.get('/api/sellerorders/:id', seller.sellerorders);
 app.post('/api/addproduct', seller.addproduct);
 app.post('/api/addspecification', seller.addspecification);
 app.get('/api/userproducts/:id', seller.userproducts);
+app.get('/api/userinfo/:id', contact.userinfo);
+app.post('/api/updateprofile', contact.updateprofile);
+app.post('/api/updatebankdetails', contact.updatebankdetails);
+app.post('/api/updatepassword', contact.updatepassword);
 
 app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);

@@ -257,6 +257,152 @@ exports.register = function(req, res){
 };
 
 
+exports.updateprofile = function(req, res){
+
+   //  console.log(req.body);
+
+     if (req.body.image) {
+         var imagedata = req.body.image;
+         var matches = "";
+
+         function decodeBase64Image(dataString) {
+             var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                 response = {};
+             if (matches.length !== 3) {
+                 return new Error('Invalid input string');
+             }
+             response.type = matches[1];
+             response.data = new Buffer(matches[2], 'base64');
+             return response;
+         }
+         var decodedImg = decodeBase64Image(imagedata);
+         var imageBuffer = decodedImg.data;
+         var type = decodedImg.type;
+         fileName = req.body.User_Id+'_'+req.body.ProfilePic;
+         fs.writeFileSync('www/uploads/ProfilePic/' + fileName, imageBuffer, 'utf8');
+     }else {
+         fileName = req.body.ProfilePic;
+     }
+
+     var updateObj = {
+
+              'FirstName': req.body.FirstName,
+              'LastName': req.body.LastName,
+              'Phone': req.body.Phone,
+              'CompanyName':req.body.CompanyName,
+              'CountryId' :req.body.CountryId,
+              'ProfilePic' : fileName
+
+      };
+
+    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var sql = "UPDATE `tbl_Products` SET CountryId = "+req.body.CountryId+" WHERE SupplierId = '"+req.body.User_Id+"'";
+            //console.log(sql);
+            db.query(sql, function (err1, data1) {
+               
+            });
+            var resdata = {
+                status: true,
+                value:fileName,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    
+};
+
+
+exports.updatebankdetails = function(req, res){
+  
+
+     var updateObj = {
+
+              'AccountName': req.body.AccountName,
+              'AccountNo': req.body.AccountNo,
+              'BankName': req.body.BankName,
+              'IFSCcode':req.body.IFSCcode,
+
+      };
+
+    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    
+};
+
+
+exports.updatepassword = function(req, res){
+
+     var updateObj = {
+
+              'Password': req.body.npassword,
+
+      };
+
+    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    
+};
+
 exports.verifyAccount = function(req, res){
     //console.log(req.params.id);
     var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
@@ -360,6 +506,17 @@ exports.login = function (req, res) {
 
     });
 };
+
+
+
+exports.userinfo = function (req, res) {
+    var UserId = req.params.id;
+    var sql = "select s.*,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
 
 
 exports.allproducts = function (req, res) {

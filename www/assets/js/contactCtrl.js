@@ -218,6 +218,161 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             } 
 
+
+    $scope.getUserInfo = function() {
+
+       $scope.User_Id =window.sessionStorage.getItem('User_Id');
+      $http.get(baseurl + 'userinfo/'+$scope.User_Id).success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+                //console.log(res);
+                $scope.User = res;
+                $scope.info = {};
+                $scope.info.FirstName = res.FirstName;
+                $scope.info.LastName = res.LastName;
+                $scope.info.Email = res.Email;
+                $scope.info.Phone = res.Phone;
+                $scope.info.CompanyName = res.CompanyName;
+                $scope.info.CountryId = res.CountryId;
+                $scope.info.AccountName = res.AccountName;
+                $scope.info.BankName = res.BankName;
+                $scope.info.AccountNo = res.AccountNo;
+                $scope.info.IFSCcode = res.IFSCcode;
+                $scope.info.ProfilePic = res.ProfilePic;
+                $scope.info.Password = res.Password;
+                 if ($scope.User.AccountName==null) 
+                {
+                  $scope.User.AccountName = '-';
+                  $scope.User.AccountNo  = '-';
+                  $scope.User.BankName  = '-';
+                  $scope.User.IFSCcode  = '-';
+                }
+            }
+
+        }).error(function () {
+
+        });
+
+          
+    } 
+
+   $scope.updateprofile = function(info,attachment) {      
+
+           $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+           $scope.info.attachment = attachment;
+          // console.log($scope.info.attachment);
+          // $scope.info.FirstName = $scope.FirstName;
+          // $scope.info.LastName = $scope.LastName;
+          // $scope.info.Email = $scope.Email;
+          // $scope.info.Phone = $scope.Phone;
+          // $scope.info.CompanyName = $scope.CompanyName;
+          // $scope.info.CountryId = $scope.CountryId;
+          // $scope.info.ProfilePic = $scope.ProfilePic;
+          if (Object.keys($scope.info.attachment).length>0) {
+                $scope.info.image = $scope.info.attachment.images[0];
+              }else{
+                $scope.info.image = '';
+              }
+         // //console.log($scope.info);
+
+          $http.post(baseurl + 'updateprofile', $scope.info).success(function(data, status) {
+
+                       console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                            // $scope.alertmessage=data.message;
+                            // $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            document.editprofile.reset(); 
+                            window.sessionStorage.setItem('User_Image',data.value)
+                            window.location.href = "my-profile.html";
+                            
+                            //$("#formRegistration").hide();
+                            //$("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+          
+    } 
+
+    $scope.updatebankdetails = function(info) {      
+
+          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+
+          $http.post(baseurl + 'updatebankdetails', $scope.info).success(function(data, status) {
+
+                  //      console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                            // $scope.alertmessage=data.message;
+                            // $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            document.editbankdetails.reset(); 
+                            window.location.href = "my-profile.html";
+                            //$("#formRegistration").hide();
+                            //$("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+          
+    } 
+
+    $scope.updatepassword = function(info) {      
+
+          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+
+           if (info.Password!=info.opassword) 
+          {
+              //$scope.alertmessage='Old Password Is Incorrect';
+              $("#alertmessage").html('Old Password Is Incorrect');
+              $("#alertmessage").show('slow');
+          }
+          else if (info.npassword!=info.cpassword) 
+          {
+             // $scope.alertmessage='Password And Confirm Password Should Be Same';
+             $("#alertmessage").html('Password And Confirm Password Should Be Same');
+             $("#alertmessage").show('slow');
+          }
+          else
+          {
+
+                   $http.post(baseurl + 'updatepassword', $scope.info).success(function(data, status) {
+
+                  //      console.log('data',data)
+
+                        if (data.status == false) 
+                        {
+                            // $scope.alertmessage=data.message;
+                            // $("#alertmessage").show('slow');
+                        }
+                        else
+                        {
+                            document.editpassword.reset(); 
+                            window.location.href = "my-profile.html";
+                            //$("#formRegistration").hide();
+                            //$("#thankyoudiv").show('slow');
+                        }
+                                
+                        //console.log('data',data)
+                    });  
+
+          }     
+
+        
+          
+    } 
+
     $scope.logout = function() {             
 
           //window.sessionStorage.clear();
@@ -304,7 +459,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.fileinit = function(ele) {
 
-
+        $scope.info = {};
         $scope.product = {};
         $scope.attachmentCount = {};
         $scope.attachment = {};
@@ -336,6 +491,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               //attachmentfile1.push(this.result); 
               attachmentfile1[0] = this.result;
               $scope.product.imagename = file.name;
+              $scope.info.ProfilePic = file.name;
               
               /*if(filelength==index){
                 callback(attachmentfile1);
@@ -394,7 +550,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             if (Object.keys($scope.attachment).length>0) {
                 $scope.product.image = $scope.attachment.images[0];
               }else{
-                $scope.product.iamge = '';
+                $scope.product.image = '';
               }
 
             $http.post(baseurl + 'addproduct/',$scope.product).success(function(res) {
