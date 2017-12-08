@@ -1403,6 +1403,7 @@ section#footer {
 }*/
 .panle-head h4{
   text-align: center;
+  background: #52bbd5;
   text-transform: uppercase;
   color: #ffffff;
   padding: 15px 10px;
@@ -1845,6 +1846,7 @@ section#footer {
 }
 h4.pro-price{
   color: #887476;
+  line-height: 45px;
 }
 h4.pro-price span{
   color: #000000;
@@ -2081,6 +2083,64 @@ h4.pro-price span{
   color: #52bbd5;
   font-weight: 600;
 }
+.pro-price select{
+  border: 0px;
+  background: #eaeaea;
+  font-size: 19px;
+  padding: 5px 10px;
+}
+#pleacr-order-wrap h6 label{
+  color: #887476;
+  font-size: 15px;
+  line-height: 22px;
+}
+#pleacr-order-wrap h6 label span{ 
+  color: #52bad5;
+  font-weight: normal;
+}
+#pleacr-order-wrap .table>tbody>tr>td, 
+#pleacr-order-wrap .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+  #pleacr-order-wrap  table#cart tbody td .form-control{
+    width:20%;
+    display: inline !important;
+  }
+  #pleacr-order-wrap table#cart thead { display: none; }
+  #pleacr-order-wrap table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+  #pleacr-order-wrap table#cart tbody tr td:first-child { background: #333; color: #fff; }
+  #pleacr-order-wrap table#cart tbody td:before {
+    content: attr(data-th); font-weight: bold;
+    display: inline-block; width: 8rem;
+  }
+  #pleacr-order-wrap table#cart tfoot td{display:block; }  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

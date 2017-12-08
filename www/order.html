@@ -203,73 +203,81 @@
             </div>
         </header>
     <!-- End Header -->
+        <section id="pleacr-order-wrap"  id="book-now" ng-init="getAllcurrency()">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 text-center">
+                <h2 class="section-title">Place Order</h2>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="seller-details">
+                  <h4>Buyer Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> {{product.fullname}}</label><br>
+                    <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label><br>
+                    <label for="email"><span>Email Address : </span>{{product.email}}</label><br>
+                    <label> <span>Country : </span> {{product.CountryTitle}} </label><br>
+                    <label><span>Seller : </span> {{product.CompanyName}} </label>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="cart-table">
+                  <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
+                  <table id="cart" class="table table-hover table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:28%">Title</th>
+                        <th style="width:25%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>12656809</td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{{product.ProductName}}</p>
+                        </td>
+                        <td data-th="Price">
+                          <p>{{product.Currency}} {{product.Price}} 
+                            <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                            <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                            </select> : {{product.changePrice}} 
+                          </p>
+                        </td>
+                        <td data-th="Quantity">
+                          <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          {{product.Currency}} {{product.Price * product.orderqty}}
+                        </td>
+                        <!-- <td class="actions" data-th="">
+                          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
   <div>
-<!--
-  <section id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="jumbotron">
-            <h3>Bonne Route Travels</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
-
-
-<!--
-  <section id="context">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 box-context">
-          <div class="context-head text-center">
-            <h3>Book Now</h3>
-          </div>
-
-          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="name" class="form-control" id="name">
-            </div>
-            <div class="form-group">
-              <label for="phoneno">Phone Number:</label>
-              <input type="phoneno" class="form-control" id="phoneno">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Travel Date</label>
-              <div class="input-append date">
-              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Special Request</label>
-              <div class="input-append date">
-                <textarea rows="4" cols="50">
-
-                  </textarea>
-            </div>
-            </div>
-
-            <button type="submit" class="btn btn-default">Submit</button>
-            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
-          </form>
-
-        </div>
-
-        <div class="col-md-6 box-context">
-
-        </div>
-
-
-      </div>
-    </div>
-  </section>
--->
+ 
 <div class="clearfix"></div>
   <section id="book-now" ng-init="getAllcurrency()">
     <div class="container">
@@ -279,7 +287,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-offset-2 col-sm-9">
           <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
            <div class="col-md-6">
             <div class="form-group">
@@ -293,32 +301,32 @@
               <h3>{{product.ProductName}}</h3>
             </div>
              <div class="form-group">
-              <h4>Product Price : {{product.Currency}} {{product.Price}} <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+              <h4 class="pro-price">Product Price : <span>{{product.Currency}} {{product.Price}}</span><br><select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
               <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
               </select> : <span>{{product.changePrice}}</span> </h4>
             </div>
              <div class="form-group">
-              <label for="fullname">Name : {{product.fullname}}</label>
+              <label for="fullname"><span>Name : </span> {{product.fullname}}</label>
             </div>
             <div class="form-group">
-              <label for="phoneno">Phone Number : {{product.phonenumber}}</label>
+              <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label>
             </div>
             <div class="form-group">
-              <label for="email">Email Address : {{product.email}}</label>
+              <label for="email"><span>Email Address : </span>{{product.email}}</label>
             </div>
              <div class="form-group">
-             <p>
-              <span>Country : {{product.CountryTitle}}, </span>
-              <span>Seller : {{product.CompanyName}}</span>
-            </p>
-            </div>
+               <label> <span>Country : </span> {{product.CountryTitle}} </label>
+             </div>
+             <div class="form-group">
+                <label><span>Seller : </span> {{product.CompanyName}} </label>
+             </div>
               <div class="form-group">
              <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
-               <label for="productprice">Quantity :</label>
+               <label for="productprice"><span>Quantity :</span></label>
                <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
             </div>
             <div class="form-group">
-              <label for="productprice">Total Amount : {{product.Currency}} {{product.Price * product.orderqty}}</label>
+              <label for="productprice"><span>Total Amount : </span>{{product.Currency}} {{product.Price * product.orderqty}}</label>
             </div>
             <div class="form-group">
              <label>Terms</label>
