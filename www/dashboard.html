@@ -277,7 +277,7 @@
          <!--chat_sidebar-->
      
      
-         <div class="col-sm-9 message_section">
+         <div class="col-sm-9">
      <div class="row">
      <div class="new_message_head">
     <!--  <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button></div><div class="pull-right"><div class="dropdown">
@@ -308,19 +308,21 @@
      
      </ul>
      </div><!--chat_area-->
+     <div class="message_section">
           <div class="message_write">
-          <form id="sendmsg" name="sendmsg" ng-submit="sendmessage(message)">
-          <div class="col-sm-12 col-md-12">
-            <textarea class="form-control" rows="3" placeholder="type a message" required="" ng-model="message.message"></textarea>
+       </div>
+       <div class="clearfix"></div>
+     </div>
+     <form id="sendmsg" name="sendmsg" ng-submit="sendmessage(message)">
+          <div class="col-sm-12 col-md-12 pd0">
+            <textarea class="form-control messege-box" rows="3" placeholder="type a message" required="" ng-model="message.message"></textarea>
           </div>
-            <div class="col-sm-12 col-md-12 mr-t30">
+            <div class="col-sm-12 col-md-12 pd0 mr-t30">
               <div class="chat_bottom">
                 <input class="pull-right btn btn-success" type="submit" name="submit" value="Send">
               </div>
             </div>            
           </form>
-       
-     </div>
      </div>
          </div> <!--message_section-->
       </div>
