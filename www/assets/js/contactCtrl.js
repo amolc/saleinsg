@@ -291,7 +291,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         {
                             document.editprofile.reset(); 
                             window.location.href = "my-profile.html";
-                            window.sessionStorage.setItem('User_Image',$scope.info.ProfilePic)
+                            window.sessionStorage.setItem('User_Image',data.filename)
                             //$("#formRegistration").hide();
                             //$("#thankyoudiv").show('slow');
                         }
@@ -334,14 +334,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            if (info.Password!=info.opassword) 
           {
               //$scope.alertmessage='Old Password Is Incorrect';
-               $("#alertmessage").html('Old Password Is Incorrect');
+              $("#alertmessage").html('Old Password Is Incorrect');
               $("#alertmessage").show('slow');
           }
           else if (info.npassword!=info.cpassword) 
           {
              // $scope.alertmessage='Password And Confirm Password Should Be Same';
              $("#alertmessage").html('Password And Confirm Password Should Be Same');
-              $("#alertmessage").show('slow');
+             $("#alertmessage").show('slow');
           }
           else
           {

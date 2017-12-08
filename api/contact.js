@@ -306,7 +306,7 @@ exports.updateprofile = function(req, res){
             });
             var resdata = {
                 status: true,
-                value:val,
+                value:fileName,
                 message: 'Details successfully updated'
             };
 
