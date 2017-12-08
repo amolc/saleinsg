@@ -822,7 +822,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       $scope.product = {};
       window.sessionStorage.setItem('index',1);
-      $scope.index = 0;
+      $scope.index = 1;
       $scope.product.term = {};
       $scope.product.type = {};
       $scope.product.percentage = {};
@@ -921,6 +921,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           //alert(index);
          // var content = "<div class='form-group'><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.term["+index+"]'></div><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.type["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.percentage["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.amount["+index+"]'></div></div>";
           $("#termsdiv"+index).show();
+          if (typeof $scope.product.remove === 'undefined' ) 
+         {
+           $scope.product.remove = {};
+
+         }
+         $scope.product.remove[index] = 0;
           index = index+1;
           window.sessionStorage.setItem('index',index);                
      }
@@ -1261,7 +1267,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
    $scope.order = function (enquiryform) {
 
 
-          console.log($scope.product);
+         // console.log($scope.product);
 
           // if($scope.product.paymenttype=="Bank Transfer"){
           //             //console.log($scope.data.paymenttype);
@@ -1285,30 +1291,55 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           //               $("#thankyou").hide();
           //             }
 
-        //   var date = new Date();
-        //   var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
-        //   var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
-        //   dateToday = messagedate+' '+messagetime;
-        //   $scope.product.date = dateToday ; 
-        //   $scope.product.total = $scope.product.orderqty*$scope.product.Price;
-        //                    if (typeof $scope.product.term === 'undefined') 
-        //                     {
-        //                       $scope.product.terms = 0;
-        //                     } 
-        //                     else
-        //                     {
-        //                       $scope.product.terms = 1; 
-        //                     }
+          var date = new Date();
+          var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+          var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+          dateToday = messagedate+' '+messagetime;
+          $scope.product.date = dateToday ;
+          if (typeof $scope.product.term === 'undefined' ) 
+         {
+           $scope.product.term = {};
+           $scope.product.term[0] = $scope.terms;
+
+         }
+          if (typeof $scope.product.type === 'undefined' ) 
+         {
+           $scope.product.type = {};
+           $scope.product.type[0] = $scope.types;
+
+         }
+          if (typeof $scope.product.percentage === 'undefined' ) 
+         {
+           $scope.product.percentage = {};
+           $scope.product.percentage[0] = $scope.per;
+
+         }
+          if (typeof $scope.product.amount === 'undefined' ) 
+         {
+           $scope.product.amount = {};
+            $scope.product.amount[0] = $scope.amt;
+
+         }
+                   
+          $scope.product.total = $scope.product.orderqty*$scope.product.Price;
+          if (typeof $scope.product.term === 'undefined') 
+          {
+                $scope.product.termsadded = 0;
+          } 
+          else
+          {
+                $scope.product.termsadded = 1; 
+          }
      
-        // $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
+        $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
                      
-        //                    $("#orderform").hide();
-        //                    $("#payform").hide();
-        //                    $("#thankyou").show("slow");
+                           $("#orderform").hide();
+                           $("#payform").hide();
+                           $("#thankyou").show("slow");
                       
-        //           }).error(function() {
-        //                 // alert("Please check your internet connection or data source..");
-        //           });
+                  }).error(function() {
+                        // alert("Please check your internet connection or data source..");
+                  });
   
   }
 
