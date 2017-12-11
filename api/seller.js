@@ -367,6 +367,23 @@ exports.sellerorders = function (req, res) {
     });
 };
 
+exports.getOrderDetails = function (req, res) {
+    var OrderId = req.params.id;
+    var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`SuplierId` = s.`SupId` WHERE o.`OrderId` = "+OrderId;    
+   // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
+exports.getTerms = function (req, res) {
+    var OrderId = req.params.id;
+    var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId;
+  //  console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
 
 
 function send_mail(usermail, subject, mailbody) {

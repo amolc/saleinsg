@@ -85,6 +85,9 @@ app.post('/api/specedit', seller.specedit);
 app.get('/api/showSpecification/:id', seller.showSpecification);
 app.get('/api/deleteSpecification/:id', seller.deleteSpecification);
 app.get('/api/userproducts/:id', seller.userproducts);
+app.get('/api/getOrderDetails/:id', seller.getOrderDetails);
+app.get('/api/getTerms/:id', seller.getTerms);
+
 app.get('/api/userinfo/:id', contact.userinfo);
 app.post('/api/updateprofile', contact.updateprofile);
 app.post('/api/updatebankdetails', contact.updatebankdetails);

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    </head>
+
+<body ng-app="80consult" ng-controller="contactcontroller">
+<!-- Start Header -->
+       
+<header id="top-header">
+            <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <!-- <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                          <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">One more separated link</a></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                      <form class="navbar-form navbar-left">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" placeholder="Search">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                      </form> -->
+                                        <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                        <!-- <li><a href="#">Seller</a></li>
+                                        <li><a href="#">Buyer</a></li> -->
+                                        <li ng-if="User_Id>0"><a href="#">Dashboard</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+                                      </ul>
+                                    </div><!-- /.navbar-collapse -->
+                                  </div><!-- /.container-fluid -->
+                                </nav>
+                              </div>
+                            </div>
+                           <!--  <div class=" col-sm-3  pull-right">
+                                <a href="register.html" class="txt-bcsup">Become Supplier
+                                    
+                                </a>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <!-- <a class="navbar-brand" href="#">Go quickly to <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                          <!-- <ul class="nav navbar-nav" ng-if="CountryId!=null" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li>
+                          </ul>
+                          <ul class="nav navbar-nav" ng-if="CountryId==null" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li> -->
+                            <!-- <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Appliances</a></li>
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Baby & Kids</a></li>
+                            <li><a href="#">Home & Furniture</a></li> -->
+                            <!-- <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">India <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Malaysia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thailand <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> 
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Indonesia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bangladesh <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> -->
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </header>
+    <!-- End Header -->
+  <div>
+<!--
+  <section id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Bonne Route Travels</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+
+<!--
+  <section id="context">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 box-context">
+          <div class="context-head text-center">
+            <h3>Book Now</h3>
+          </div>
+
+          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" id="phoneno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Travel Date</label>
+              <div class="input-append date">
+              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <div class="input-append date">
+                <textarea rows="4" cols="50">
+
+                  </textarea>
+            </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
+          </form>
+
+        </div>
+
+        <div class="col-md-6 box-context">
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+-->
+ <section id="pleacr-order-wrap"  id="book-now">
+          <div class="container">
+            <div class="row">
+               
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="seller-details">
+                  <h4>Shipping Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> Kavyaanjali fashion</label><br>
+                    <label for="phoneno"><span>Address :</span> #123, sadg Road sfhxcnks, 412416</label><br>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <form id="orderform">
+                <div class="cart-table">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:38%">Title</th>
+                        <th style="width:15%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p>12656809</p>
+                        </td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="assets/img/img-2.png" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p> Leather jacket from Dharavi leather city of India  </p>
+                        </td>
+                        <td data-th="Price">
+                          <p>150</p>
+                        </td>
+                        <td data-th="Quantity">
+                          <p>3</p>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          <p>450</p>
+                        </td>
+                        <!-- <td class="actions" data-th="">
+                          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="order-add-form">
+                  <div class="top-strip">
+                    <div class="col-sm-6 col-md-6">
+                      <h5>Terms</h5>                      
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="button" class="red-btn small-btn" value="Edit">
+                       <!-- <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="order-form-foot">
+                    <div class="col-sm-4">
+                      <label>Title</label>
+                      <input class=" form-group form-control" type='text' required="">
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Type</label>
+                      <Select class="form-group form-control" type='text' required="">
+                        <option value="Select">Select</option>
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>%</label>
+                      <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Amount</label>
+                      <input class="form-group form-control" type='text' ng-model='amt'>
+                    </div>
+                      <div class="col-sm-6 mr-t20">
+                        <div class="form-group">
+                          
+                          <!-- <label><input type="checkbox" value="">Option 3</label> -->
+                          <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
+                          <label for="styled-checkbox-1">I Agree</label>
+                        </div>
+                        <div class="detail-btn">
+                          <a href="order.html?id=18" class="red-btn small-btn mr20">Approve</a>
+                          <a href="enquiry.html?id=18" class="red-btn small-btn mr20">Send To Buyer</a>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6 text-right  mr-t20">
+                        <h5>History</h5>
+                        <p><span class="color-blue">Sent proposal to buyer : </span>5-12-2017</p>
+                        <p><span class="color-blue">You have received proposal from buyer : </span> 8-12-2017</p>
+                      </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+ <div w3-include-html="footer.html"></div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQD-LT4-VzlsdNpf33yNDeT38EaF3Kz-g&libraries=places"></script>
+<script>
+
+
+google.maps.event.addDomListener(window, 'load', function () 
+{
+
+  var options = { types: ['(cities)']};
+
+ // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
+ // };
+            var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
+            google.maps.event.addListener(places, 'place_changed', function () { 
+             
+
+            });
+                
+});
+
+</script>
+
+</div>
+</body>
+
+</html>

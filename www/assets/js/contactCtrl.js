@@ -641,7 +641,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.specedit = function(spec,product){
 
         $scope.spec.ProductId = $scope.product.ProductId;
-    
+
         $http.post(baseurl + 'specedit', $scope.spec).success(function(data, status) {
 
            if (data.status==true) 
@@ -1229,6 +1229,45 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     else
     {
         location.href = "products.html";
+    }
+
+    }
+
+    $scope.sellerorder = function (req, res) {
+
+      $scope.order = {};
+    
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var OrderId = urlpart[0].split('=');
+
+      $scope.order.OrderId = OrderId[1];
+    
+      //console.log($scope.order.OrderId);
+      $http.get(baseurl + 'getOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
+
+        console.log(data);
+
+            $scope.order = data;
+       
+      });
+
+        $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
+
+            $scope.termslist = data;
+
+      });
+     
+    }
+    else
+    {
+        location.href = "seller-orders.html";
     }
 
     }
