@@ -1180,7 +1180,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $scope.product = product; 
        $scope.per = per;
        $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
-        if ( $scope.amt == 0) 
+       if ( $scope.amt == 0) 
           {
              $scope.amt = '';
           } 
