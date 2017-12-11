@@ -544,8 +544,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
              else{
 
-              $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
+             $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
              $scope.product.UserId = window.sessionStorage.getItem('User_Id');
+             $scope.product.SupEmail = window.sessionStorage.getItem('User_Email');
            // console.log($scope.attachment.images);
             if (Object.keys($scope.attachment).length>0) {
                 $scope.product.image = $scope.attachment.images[0];
@@ -572,6 +573,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
 
     }  
+
 
 
     $scope.savespecification = function(spec) {             
@@ -796,6 +798,46 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           //  console.log(data);
 
         });
+
+    }
+
+
+
+    $scope.disableProduct = function (ProductId) {
+
+     // alert(ProductId);
+      var url =  document.location.href;
+      var fullpath = url.split("?");
+      var pageurl = fullpath[0].split("/");
+      var filename = pageurl.pop();
+      //console.log(filename);
+      $scope.ProductId = ProductId;
+       $http.get(baseurl + 'disableProduct/'+$scope.ProductId).success(function(data, status) {
+
+            if (filename==='seller-products.html')
+              $scope.userproducts();
+            else
+              location.reload();
+        });
+     
+
+    }
+
+     $scope.enableProduct = function (ProductId) {
+
+     // alert(ProductId);
+      var url =  document.location.href;
+      var fullpath = url.split("?");
+      var pageurl = fullpath[0].split("/");
+      var filename = pageurl.pop();
+      $scope.ProductId = ProductId;
+       $http.get(baseurl + 'enableProduct/'+$scope.ProductId).success(function(data, status) {
+             if (filename==='seller-products.html')
+              $scope.userproducts();
+             else
+              location.reload();
+        });
+     
 
     }
 

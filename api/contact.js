@@ -218,6 +218,276 @@ exports.register = function(req, res){
                                                     </tr>\
                                                   </table>';
 
+                              //   var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">\
+                              //                     <head>\
+                              //                   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
+                              //                   <meta name="viewport" content="width=device-width">\
+                              //                   <meta http-equiv="X-UA-Compatible" content="IE=edge">\
+                              //                   <title></title>\
+                              //                   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">\
+                              //                   <style type="text/css" id="media-query">\
+                              //                     body {\
+                              //                 margin: 0;\
+                              //                 padding: 0; }\
+                              //               table, tr, td {\
+                              //                 vertical-align: top;\
+                              //                 border-collapse: collapse; }\
+                              //               .ie-browser table, .mso-container table {\
+                              //                 table-layout: fixed; }\
+                              //               * {\
+                              //                 line-height: inherit; }\
+                              //               a[x-apple-data-detectors=true] {\
+                              //                 color: inherit !important;\
+                              //                 text-decoration: none !important; }\
+                              //               [owa] .img-container div, [owa] .img-container button {\
+                              //                 display: block !important; }\
+                              //               [owa] .fullwidth button {\
+                              //                 width: 100% !important; }\
+                              //               [owa] .block-grid .col {\
+                              //                 display: table-cell;\
+                              //                 float: none !important;\
+                              //                 vertical-align: top; }\
+                              //               .ie-browser .num12, .ie-browser .block-grid, [owa] .num12, [owa] .block-grid {\
+                              //   width: 500px !important; }\
+                              // .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {\
+                              //   line-height: 100%; }\
+                              // .ie-browser .mixed-two-up .num4, [owa] .mixed-two-up .num4 {\
+                              //   width: 164px !important; }\
+                              // .ie-browser .mixed-two-up .num8, [owa] .mixed-two-up .num8 {\
+                              //   width: 328px !important; }\
+                              // .ie-browser .block-grid.two-up .col, [owa] .block-grid.two-up .col {\
+                              //   width: 250px !important; }\
+                              // .ie-browser .block-grid.three-up .col, [owa] .block-grid.three-up .col {\
+                              //   width: 166px !important; }\
+                              // .ie-browser .block-grid.four-up .col, [owa] .block-grid.four-up .col {\
+                              //   width: 125px !important; }\
+                              // .ie-browser .block-grid.five-up .col, [owa] .block-grid.five-up .col {\
+                              //   width: 100px !important; }\
+                              // .ie-browser .block-grid.six-up .col, [owa] .block-grid.six-up .col {\
+                              //   width: 83px !important; }\
+                              // .ie-browser .block-grid.seven-up .col, [owa] .block-grid.seven-up .col {\
+                              //   width: 71px !important; }\
+                              // .ie-browser .block-grid.eight-up .col, [owa] .block-grid.eight-up .col {\
+                              //   width: 62px !important; }\
+                              // .ie-browser .block-grid.nine-up .col, [owa] .block-grid.nine-up .col {\
+                              //   width: 55px !important; }\
+                              // .ie-browser .block-grid.ten-up .col, [owa] .block-grid.ten-up .col {\
+                              //   width: 50px !important; }\
+                              // .ie-browser .block-grid.eleven-up .col, [owa] .block-grid.eleven-up .col {\
+                              //   width: 45px !important; }\
+                              // .ie-browser .block-grid.twelve-up .col, [owa] .block-grid.twelve-up .col {\
+                              //   width: 41px !important; }\
+                              // .aSK{\
+                              //   display: none !important;\
+                              // }\
+                              // @media only screen and (min-width: 520px) {\
+                              //   .block-grid {\
+                              //     width: 500px !important; }\
+                              //   .block-grid .col {\
+                              //     vertical-align: top; }\
+                              //     .block-grid .col.num12 {\
+                              //       width: 500px !important; }\
+                              //   .block-grid.mixed-two-up .col.num4 {\
+                              //     width: 164px !important; }\
+                              //   .block-grid.mixed-two-up .col.num8 {\
+                              //     width: 328px !important; }\
+                              //   .block-grid.two-up .col {\
+                              //     width: 250px !important; }\
+                              //   .block-grid.three-up .col {\
+                              //     width: 166px !important; }\
+                              //   .block-grid.four-up .col {\
+                              //     width: 125px !important; }\
+                              //   .block-grid.five-up .col {\
+                              //     width: 100px !important; }\
+                              //   .block-grid.six-up .col {\
+                              //     width: 83px !important; }\
+                              //   .block-grid.seven-up .col {\
+                              //     width: 71px !important; }\
+                              //   .block-grid.eight-up .col {\
+                              //     width: 62px !important; }\
+                              //   .block-grid.nine-up .col {\
+                              //     width: 55px !important; }\
+                              //   .block-grid.ten-up .col {\
+                              //     width: 50px !important; }\
+                              //   .block-grid.eleven-up .col {\
+                              //     width: 45px !important; }\
+                              //   .block-grid.twelve-up .col {\
+                              //     width: 41px !important; } }\
+                              // @media (max-width: 520px) {\
+                              //   .block-grid, .col {\
+                              //     min-width: 320px !important;\
+                              //     max-width: 100% !important;\
+                              //     display: block !important; }\
+                              //   .block-grid {\
+                              //     width: calc(100% - 40px) !important; }\
+                              //   .col {\
+                              //     width: 100% !important; }\
+                              //     .col > div {\
+                              //       margin: 0 auto; }\
+                              //   img.fullwidth, img.fullwidthOnMobile {\
+                              //     max-width: 100% !important; }\
+                              //   .no-stack .col {\
+                              //     min-width: 0 !important;\
+                              //     display: table-cell !important; }\
+                              //   .no-stack.two-up .col {\
+                              //     width: 50% !important; }\
+                              //   .no-stack.mixed-two-up .col.num4 {\
+                              //     width: 33% !important; }\
+                              //   .no-stack.mixed-two-up .col.num8 {\
+                              //     width: 66% !important; }\
+                              //   .no-stack.three-up .col.num4 {\
+                              //     width: 33% !important; }\
+                              //   .no-stack.four-up .col.num3 {\
+                              //     width: 25% !important; } }\
+                              //     table.m_7777672817583617732gmail-nl-container{\
+                              //       width: 600px !important;\
+                              //     }\
+                              //     </style>\
+                              // </head>\
+                              // <body class="clean-body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #FFFFFF">\
+                              //   <style type="text/css" id="media-query-bodytag">\
+                              //     @media (max-width: 520px) {\
+                              //       .block-grid {\
+                              //         min-width: 320px!important;\
+                              //         max-width: 100%!important;\
+                              //         width: 100%!important;\
+                              //         display: block!important;\
+                              //       }\
+                              //       .col {\
+                              //         min-width: 320px!important;\
+                              //         max-width: 100%!important;\
+                              //         width: 100%!important;\
+                              //         display: block!important;\
+                              //       }\
+                              //         .col > div {\
+                              //           margin: 0 auto;\
+                              //         }\
+                              //       img.fullwidth {\
+                              //         max-width: 100%!important;\
+                              //       }\
+                              //       img.fullwidthOnMobile {\
+                              //         max-width: 100%!important;\
+                              //       }\
+                              //       .no-stack .col {\
+                              //         min-width: 0!important;\
+                              //         display: table-cell!important;\
+                              //       }\
+                              //       .no-stack.two-up .col {\
+                              //         width: 50%!important;\
+                              //       }\
+                              //       .no-stack.mixed-two-up .col.num4 {\
+                              //         width: 33%!important;\
+                              //       }\
+                              //       .no-stack.mixed-two-up .col.num8 {\
+                              //         width: 66%!important;\
+                              //       }\
+                              //       .no-stack.three-up .col.num4 {\
+                              //         width: 33%!important\
+                              //       }\
+                              //       .no-stack.four-up .col.num3 {\
+                              //         width: 25%!important\
+                              //       }\
+                              //     }\
+                              //   </style>\
+                              //   <table class="nl-container" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #FFFFFF;width: 600p;  border: 1px solid #52bbd5;" cellpadding="0" cellspacing="0">\
+                              //   <tbody>\
+                              //   <tr style="vertical-align: top">\
+                              //     <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">\
+                              //     <div style="background-color:#FFFBFB;">\
+                              //       <div style="Margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #FFFFFF;" class="block-grid ">\
+                              //         <div style="border-collapse: collapse;display: table;width: 100%;background-color:#FFFFFF;">\
+                              //             <div class="col num12" style="min-width: 320px;max-width: 500px;display: table-cell;vertical-align: top;">\
+                              //               <div style="background-color: #FFFFFF; width: 100% !important;">\
+                              //               <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
+                              //                     <div align="center" class="img-container center fixedwidth" style="padding-right: 0px;  padding-left: 0px;">\
+                              // <div style="line-height:25px;font-size:1px">&#160;</div>  <img class="center fixedwidth" align="center" border="0" src="https://www.tradeexchange.co/assets/img/logo.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 100%;max-width: 225px" width="225">\
+                              // </div>\                 
+                              //               <div align="center" class="img-container center  autowidth  fullwidth" style="padding-right: 30px;  padding-left: 30px;">\
+                              // <div style="line-height:30px;font-size:1px">&#160;</div>  <img class="center  autowidth  fullwidth" align="center" border="0" src="https://www.tradeexchange.co/assets/img/thanks.jpg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 100%;max-width: 440px" width="440">\
+                              // <div style="line-height:30px;font-size:1px">&#160;</div>\
+                              // </div>\
+                              //                     <div align="center" class="img-container center  autowidth  fullwidth" style="padding-right: 0px;  padding-left: 0px;">\
+                              //   <img class="center  autowidth  fullwidth" align="center" border="0" src="https://www.tradeexchange.co/assets/img/gift-gifanimated.gif" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 100%;max-width: 500px" width="500">\
+                              // </div>\
+                              // <div style="font-family:\'Montserrat\', \'Trebuchet MS\', \'Lucida Grande\', \'Lucida Sans Unicode\', \'Lucida Sans\', Tahoma, sans-serif;line-height:120%;color:#555555; padding-right: 30px; padding-left: 30px; padding-top: 30px; padding-bottom: 15px;">\
+                              //   <div style="font-family:Montserrat, \'Trebuchet MS\', \'Lucida Grande\', \'Lucida Sans Unicode\', \'Lucida Sans\', Tahoma, sans-serif;font-size:12px;line-height:14px;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 24px; line-height: 28px;"><strong>Thank you for registering with us!</strong></span></p></div>\  
+                              // </div>\
+                              // <div style="font-family:\'Montserrat\', \'Trebuchet MS\', \'Lucida Grande\', \'Lucida Sans Unicode\', \'Lucida Sans\', Tahoma, sans-serif;line-height:120%;color:#5ACEE1; padding-right: 0px; padding-left: 0px; padding-top: 0px; padding-bottom: 5px;">\
+                              //   <div style="font-size:12px;line-height:14px;color:#5ACEE1;font-family:\'Montserrat\', \'Trebuchet MS\', \'Lucida Grande\', \'Lucida Sans Unicode\', \'Lucida Sans\', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 16px; line-height: 19px; text-decoration: none;"><strong>www.tradeexchange.co</strong></span></p></div>\ 
+                              // </div>\                               
+                              // <div align="center" class="button-container center" style="padding-right: 10px; padding-left: 10px; padding-top:10px; padding-bottom:10px;">\
+                              //     <div >\   
+                              //       <a style="color: #ffffff; background-color: #3AAEE0; max-width: 124px; width: 84px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 12px; padding-right: 20px; padding-bottom: 12px; padding-left: 20px; font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif; text-align: center; text-decoration: none; mso-border-alt: none; display:block;" target="_blank" href="https://www.tradeexchange.co/login.html">Continue</a>\
+                              //     </div>\
+                              // </div>\
+                              // </div>\
+                              //               </div>\
+                              //             </div>\
+                              //         </div>\
+                              //       </div>\
+                              //     </div>\    
+                              //     <div style="background-color:#18a7e2;">\
+                              //       <div style="Margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
+                              //         <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
+                              //             <div class="col num12" style="min-width: 320px;max-width: 500px;display: table-cell;vertical-align: top;">\
+                              //               <div style="background-color: transparent; width: 100% !important;">\
+                              //              <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">\
+                              //                     <div style="padding-right: 0px; padding-left: 0px; padding-top: 0px; padding-bottom: 0px;">\
+                              //   <div align="center"><div style="border-top: 0px solid transparent; width:100%; line-height:0px; height:0px; font-size:0px;">&#160;</div></div>\
+                              // </div>\
+                              // </div>\
+                              //               </div>\
+                              //             </div>\
+                              //         </div>\
+                              //       </div>\
+                              //     </div>    <div style="background-color:#f2f2f2;">\
+                              //       <div style="Margin: 0 auto;min-width: 320px;max-width: 500px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #f2f2f2;" class="block-grid ">\
+                              //         <div style="border-collapse: collapse;display: table;width: 100%;background-color:#f2f2f2;">\
+                              //             <div class="col num12" style="min-width: 320px;max-width: 500px;display: table-cell;vertical-align: top;">\
+                              //               <div style="background-color: transparent; width: 100% !important;">\
+                              //               <div style="border-top: 0px solid #5ACEE1; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
+                              // <div align="center" style="padding-right: 25px; padding-left: 25px; padding-bottom: 25px;">\
+                              //   <div style="line-height:25px;font-size:1px">&#160;</div>\
+                              //   <div style="display: table; max-width:191px;">\
+                              //     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 10px">\
+                              //       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">\
+                              //         <a href="https://www.facebook.com/" title="Facebook" target="_blank">\
+                              //           <img src="https://www.tradeexchange.co/assets/img/facebook@2x.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">\
+                              //         </a>\
+                              //       <div style="line-height:5px;font-size:1px">&#160;</div>\
+                              //       </td></tr>\
+                              //     </tbody></table>\
+                              //     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 10px">\
+                              //       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">\
+                              //         <a href="https://twitter.com/" title="Twitter" target="_blank">\
+                              //           <img src="https://www.tradeexchange.co/assets/img/twitter@2x.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">\
+                              //         </a>\
+                              //       <div style="line-height:5px;font-size:1px">&#160;</div>\
+                              //       </td></tr>\
+                              //     </tbody></table>\
+                              //     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">\
+                              //       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">\
+                              //         <a href="https://plus.google.com/" title="Google+" target="_blank">\
+                              //           <img src="https://www.tradeexchange.co/assets/img/googleplus@2x.png" alt="Google+" title="Google+" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">\
+                              //         </a>\
+                              //       <div style="line-height:5px;font-size:1px">&#160;</div>\
+                              //       </td></tr>\
+                              //     </tbody></table>\
+                              //   </div>\
+                              // </div></div>\
+                              //               </div>\
+                              //             </div>\
+                              //         </div>\
+                              //       </div>\
+                              //     </div>\   
+                              //     </td>\
+                              //   </tr>\
+                              //   </tbody>\
+                              //   </table>\
+                              //   </body></html>';
+
+                             // var mailbody = '';
+
                                 send_mail(recipientEmail, subject, mailbody);
                                 var resdata = {
                                     status: true,
@@ -540,7 +810,7 @@ exports.userinfo = function (req, res) {
 
 
 exports.allproducts = function (req, res) {
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -559,7 +829,7 @@ exports.getproductsbylocation = function (req, res) {
 
 exports.getrecentprod = function (req, res) {  
   //  console.log("product ids "+req.body.recentProducts);
-  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`ProductId` IN ("+req.body.recentProducts+") GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`ProductId` IN ("+req.body.recentProducts+") AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
  // console.log(sql);
     db.query(sql, function (err, data) {
         res.jsonp(data);
@@ -570,7 +840,7 @@ exports.getrecentprod = function (req, res) {
 exports.filterbycategory = function (req, res) {
 
     var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+id+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -580,7 +850,7 @@ exports.filterbycategory = function (req, res) {
 exports.filterbycountry = function (req, res) {
 
     var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CountryId` = "+id+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CountryId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -591,7 +861,7 @@ exports.filterbyCouCat = function (req, res) {
 
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -603,7 +873,7 @@ exports.filterbyCatSub = function (req, res) {
 
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -615,7 +885,7 @@ exports.filterbyall = function (req, res) {
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
     var SubCatId = req.body.SubCatId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);

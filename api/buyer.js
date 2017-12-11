@@ -100,7 +100,6 @@ exports.addtowishlist = function (req, res) {
 exports.placeorder = function (req, res) {
 
   // console.log(req.body);
-
   orderCRUD.create({
                             SuplierId:req.body.SupplierId,
                             ProductId:req.body.ProductId,

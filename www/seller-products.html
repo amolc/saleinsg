@@ -240,15 +240,16 @@
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
                                 <h4><span>From SGD</span>${{product.Price}}</h4>
-                                <!-- <div class="bottom-btn">
+                                <div class="bottom-btn">
                                     <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                        <a href="#" class="red-btn">Edit</a>
                                     </div>
                                     <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                        <a href="javascript:void(0)" class="red-btn" ng-click="disableProduct(product.ProductId)" ng-if="product.IsDisabled=='0'">Disable</a>
+                                         <a href="javascript:void(0)" class="red-btn" ng-click="enableProduct(product.ProductId)" ng-if="product.IsDisabled=='1'">Enable</a>
                                     </div>
                                     <div class="clearfix"></div>
-                                </div> -->
+                                </div>
                             </div>
                            <!--  <div class="box-flag-img">
                                 <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">

@@ -83,6 +83,28 @@ exports.addproduct = function (req, res) {
 
         if (!err) 
         {
+
+                              var seller = req.body.SupEmail;
+                              var subject = "Tradeexchange.co - New Product";
+                              var mailbody = "Hello,</br><p>New Product Details: </p>"
+
+
+                             + "<p></br><p><b>Product Name: </b> " + req.body.name + "</p>"
+                             + "</br><p><b> Product Price:</b> " + req.body.currency +' '+ req.body.price + "</p>"
+                             + "</br><p><b> In Stock: </b> " + req.body.quantity + "</p>"
+                             + "</br><p><b> Description :</b> " + req.body.description + "</p>"
+                             // + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
+
+                             + "<p></br><p><b></p>"
+
+                             + "Thanks, tradeexchange";
+
+                             // send_mail( agentemail, subject, mailbody );
+                             // send_mail( officeremail, subject, mailbody );
+                             // console.log('buyer-'+buyer);
+                             // console.log('seller-'+seller);
+                             send_mail( seller, subject, mailbody );
+
             var resdata = {
                 status: true,
                 value:data.insertId,
@@ -140,9 +162,29 @@ exports.addspecification = function (req, res) {
 };
 
 
+exports.disableProduct = function (req, res) {
+    var ProductId = req.params.id;
+    var sql = "UPDATE `tbl_Products` SET IsDisabled = '1' WHERE ProductId = "+ProductId;
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+
+exports.enableProduct = function (req, res) {
+    var ProductId = req.params.id;
+    var sql = "UPDATE `tbl_Products` SET IsDisabled = '0' WHERE ProductId = "+ProductId;
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+
 exports.userproducts = function (req, res) {
     var SupId = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`SupplierId` = "+SupId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,p.`IsDisabled`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`SupplierId` = "+SupId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -150,7 +192,6 @@ exports.userproducts = function (req, res) {
 };
 
 exports.sellerorders = function (req, res) {
-
     var SellerId = req.params.id;
     var sql = "SELECT `OrderId`,p.`ProductName`,s.`FirstName`,s.`LastName`,o.`TotalAmount`,o.`OrderDate`,o.`PaymentStatus`,o.`OrderStatus` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`BuyerId` = s.`SupId` WHERE o.`SuplierId` = "+SellerId+" GROUP BY o.`OrderId` ORDER BY o.`OrderId` DESC";    //console.log(sql);
    // console.log(sql);
