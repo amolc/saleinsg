@@ -77,6 +77,7 @@ app.post('/api/addbankorder', contact.addbankorder);
 
 app.get('/api/sellerorders/:id', seller.sellerorders);
 app.post('/api/addproduct', seller.addproduct);
+app.post('/api/updateproduct', seller.updateproduct);
 app.get('/api/disableProduct/:id', seller.disableProduct);
 app.get('/api/enableProduct/:id', seller.enableProduct);
 app.post('/api/addspecification', seller.addspecification);

@@ -435,6 +435,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      $scope.getSubCatlist = function(CategoryId) {
 
       $scope.catId = CategoryId;
+      //alert(CategoryId);
     $http.get(baseurl + 'getsubcategories/'+$scope.catId).success(function (res) {
 
             if (res.status == 'false') {
@@ -539,7 +540,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
 
              if(typeof $scope.product.CategoryId === 'undefined'){
-              $scope.alertmessage="Please Select Country";
+              $scope.alertmessage="Please Select Category";
               $("#alertmessage").show('slow');
              }
              else{
@@ -574,7 +575,38 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }  
 
+    $scope.updateproduct = function(product) {             
 
+            // console.log($scope.product);
+
+
+           //   if(typeof $scope.product.CategoryId === 'undefined'){
+           //    $scope.alertmessage="Please Select Country";
+           //    $("#alertmessage").show('slow');
+           //   }
+           //   else{
+
+           //   $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
+           //   $scope.product.UserId = window.sessionStorage.getItem('User_Id');
+           //   $scope.product.SupEmail = window.sessionStorage.getItem('User_Email');
+           // // console.log($scope.attachment.images);
+            if (Object.keys($scope.attachment).length>0) {
+                $scope.product.image = $scope.attachment.images[0];
+              }else{
+                $scope.product.image = '';
+              }
+
+            $http.post(baseurl + 'updateproduct/',$scope.product).success(function(res) {
+                  
+                 $scope.alertmessage="Saved Successfully";
+                 $("#alertmessage").show('slow');
+
+
+                }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+                });
+
+    }  
 
     $scope.savespecification = function(spec) {             
 
@@ -1072,6 +1104,24 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                $scope.qty.push(i);
             }
           //  console.log($scope.qty);
+            //console.log($scope.product.CategoryId);
+            $http.get(baseurl + 'getsubcategories/'+$scope.product.CategoryId).success(function (res) {
+
+                if (res.status == 'false') {
+
+                }
+                else {
+                   // console.log(res);
+                    $scope.subcatlist = res;
+                   // console.log($scope.subcatlist);
+                   // $scope.registration.CountryId = $scope.countrylist[0].CountryId;
+                   //console.log($scope.categorieslist);
+                }
+
+            }).error(function () {
+
+            });
+
           
             if (window.sessionStorage.getItem('User_Id')>0) 
             {
@@ -1110,6 +1160,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.specification = data;
 
       });
+
 
       $scope.added = 0;
       var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));

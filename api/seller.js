@@ -126,6 +126,75 @@ exports.addproduct = function (req, res) {
     });
 };
 
+exports.updateproduct = function (req, res) {
+
+    // console.log(req.body.imagename)
+    verifycode = randomString();
+     if (req.body.image) {
+         var imagedata = req.body.image;
+         var matches = "";
+
+         function decodeBase64Image(dataString) {
+             var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                 response = {};
+             if (matches.length !== 3) {
+                 return new Error('Invalid input string');
+             }
+             response.type = matches[1];
+             response.data = new Buffer(matches[2], 'base64');
+             return response;
+         }
+         var decodedImg = decodeBase64Image(imagedata);
+         var imageBuffer = decodedImg.data;
+         var type = decodedImg.type;
+         fileName = verifycode+'_'+req.body.imagename;
+         fs.writeFileSync('www/uploads/' + fileName, imageBuffer, 'utf8');
+     }else {
+         fileName = req.body.Image1;
+         console.log("image not present");
+     }
+    
+    //console.log(req.body.TypeId.TypeId);
+
+    var updateObj = {
+        "ProductName" :  req.body.ProductName,
+        "Description": req.body.Description || "",
+        "Price":req.body.Price || "",
+        "Quantity": req.body.Quantity || "",
+        "Image1": fileName || "",
+        "CountryId" : req.body.CountryId,
+        "CategoryId" : req.body.CategoryId,
+        "SubCatId" : req.body.SubCatId,
+        "MinOrderQty" : req.body. MinOrderQty, 
+        "Currency" : req.body.Currency    
+    };
+    // console.log("after", createObj);
+    productCRUD.update({ProductId: req.body.ProductId}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+    });
+};
+
 exports.addspecification = function (req, res) {
 
 
