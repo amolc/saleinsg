@@ -220,7 +220,7 @@ function send_mail(usermail, subject, mailbody) {
   var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
   nodemailerMailgun.sendMail({
-    from: 'operations@80startups.com',
+    from: 'support@tradeexchange.co',
     to: usermail, // An array if you have multiple recipients.
     subject: subject,
     'h:Reply-To': 'operations@80startups.com',

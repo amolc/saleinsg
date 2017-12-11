@@ -99,7 +99,7 @@ exports.addtowishlist = function (req, res) {
 
 exports.placeorder = function (req, res) {
 
-  console.log(req.body);
+  // console.log(req.body);
 
   orderCRUD.create({
                             SuplierId:req.body.SupplierId,
@@ -128,10 +128,10 @@ exports.placeorder = function (req, res) {
                                console.log(Object.keys(req.body.term).length);
                                 for(var i=0;i<Object.keys(req.body.term).length;i++)
                                  {
-                                         console.log('In for '+i);
+                                         // console.log('In for '+i);
                                       if (req.body.remove[i] == 0) 
                                       {
-                                        console.log('In if '+i);
+                                        // console.log('In if '+i);
                                         var Terms = req.body.term[i];
                                         var Type = req.body.type[i];
                                         var Percentage = req.body.percentage[i];
@@ -144,7 +144,7 @@ exports.placeorder = function (req, res) {
                                           "Percentage" : Percentage,    
                                           "Amount" : Amount, 
                                         };
-                                       console.log("after", createObj);
+                                       // console.log("after", createObj);
 
                                       termsCRUD.create(createObj, function (err, data) {
 
@@ -158,7 +158,7 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
-                              var buyer = req.body.Email;
+                              var buyer = req.body.email;
                               var seller = req.body.SupEmail;
                               var subject = "New Order - "+orderID;
                               var mailbody = "Hello,</br><p>New Order  : </p>"
@@ -180,6 +180,8 @@ exports.placeorder = function (req, res) {
 
                              // send_mail( agentemail, subject, mailbody );
                              // send_mail( officeremail, subject, mailbody );
+                             // console.log('buyer-'+buyer);
+                             // console.log('seller-'+seller);
                              send_mail( buyer, subject, mailbody );
                              send_mail( seller, subject, mailbody );
                                 var resdata = {
@@ -256,7 +258,7 @@ function send_mail(usermail, subject, mailbody) {
   var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
   nodemailerMailgun.sendMail({
-    from: 'operations@80startups.com',
+    from: 'support@tradeexchange.co',
     to: usermail, // An array if you have multiple recipients.
     subject: subject,
     'h:Reply-To': 'operations@80startups.com',
