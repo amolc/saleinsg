@@ -928,7 +928,6 @@ exports.getcurrency = function (req, res) {
     
 };
 
-
 exports.getAllcurrency = function (req, res) {
 
    var sql = "SELECT `CountryCurrency` FROM `tbl_Currency`";
