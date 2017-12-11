@@ -110,7 +110,7 @@ exports.addspecification = function (req, res) {
     var createObj = {
         "ProductId" :  req.body.ProductId,
         "Title" : req.body.Title,
-        "Description": req.body.description || ""      
+        "Description": req.body.Description || ""      
     };
     // console.log("after", createObj);
 
