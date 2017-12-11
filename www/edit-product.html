@@ -317,7 +317,7 @@
     </div>
     <div id="menu1" class="tab-pane fade">
     <br><br>
-      <form name="addproduct2" ng-submit="savespecification(spec)" id="addproduct2" method="post">
+      <form name="addproduct2" ng-submit="specedit(spec,product)" id="addproduct2" method="post">
             <input type="hidden" name="ProductId" ng-model="spec.ProductId">
              <div class="col-md-12">
               <div class="form-group">
@@ -335,7 +335,7 @@
               <div class="clearfix"></div>
           
              
-            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add</button>
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Save</button>
           </form><br/><br/>
             <div class="table-responsive">          
             <table class="table">
@@ -347,7 +347,13 @@
                 </tr>
               </thead>
               <tbody id="specificationtable">
-               
+              <tr ng-show="specification.length > 0" ng-repeat="s in specification">
+                 <td>{{$index+1}}</td>
+                 <td>{{ s.Title }}</td> 
+                 <td>{{ s.Description}}</td>
+                 <td ng-click="showSpecification($index,s.SpecificationId)"><i class="fa fa-pencil"></i></td>
+                <td ng-click="deleteSpecification($index,s.SpecificationId)"><i class="fa fa-trash"></i></td>
+              </tr>             
               </tbody>
             </table>
             </div>

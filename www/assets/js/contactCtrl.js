@@ -608,6 +608,61 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }  
 
+     $scope.showSpecification = function(index,SpecificationId){
+
+        //console.log(revenueindex);
+        $scope.index = index;
+        $scope.SpecificationId = SpecificationId;
+        $http.get(baseurl + 'showSpecification/'+$scope.SpecificationId).success(function(data, status) {
+
+            $scope.spec = data;
+
+        });
+      }
+
+      $scope.deleteSpecification = function(index,SpecificationId){
+
+        //console.log(revenueindex);
+        var r = confirm("Are You Sure You want to Delete It?");
+        if (r == true) 
+        {
+           // console.log(id);
+         $scope.index = index;
+         $scope.SpecificationId = SpecificationId;
+         $http.get(baseurl + 'deleteSpecification/'+$scope.SpecificationId).success(function(data, status) {
+                $scope.specification.splice(index, 1);             
+           });
+            
+        }
+        
+      }
+
+
+      $scope.specedit = function(spec,product){
+
+        $scope.spec.ProductId = $scope.product.ProductId;
+    
+        $http.post(baseurl + 'specedit', $scope.spec).success(function(data, status) {
+
+           if (data.status==true) 
+            {
+              document.addproduct2.reset();
+              if (data.message == 'update') 
+                $scope.specification[$scope.index] = $scope.spec;
+              if (data.message == 'add') 
+                $scope.specification.push($scope.spec);
+                 
+              $scope.spec = {}; 
+
+            }
+            else
+            {
+               console.log('could not update details');
+            }
+        });
+
+    }
+
     $scope.savespecification = function(spec) {             
 
 

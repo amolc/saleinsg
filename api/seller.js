@@ -231,6 +231,104 @@ exports.addspecification = function (req, res) {
 };
 
 
+exports.specedit = function(req, res) {
+
+
+    console.log('req.body',req.body);
+
+    var now = moment();
+    dateToday = now.format("YYYY-MM-DD H:mm:ss");
+
+     var updateObj = {
+                'ProductId': req.body.ProductId,
+                'Title':  req.body.Title,
+                'Description': req.body.Description,
+    };
+
+
+
+    if (req.body.SpecificationId)
+     {       
+
+         specificationCrud.update({SpecificationId: req.body.SpecificationId}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'update'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Could Not Update Details'
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+
+     }else{
+        specificationCrud.create(updateObj, function(err, val) {
+
+                console.log('return',val) ;
+
+                if (!err) 
+                {
+                    var resdata = {
+                        status: true,
+                        value:val,
+                        message: 'add'
+                    };
+
+                    res.jsonp(resdata);
+                }
+                else
+                {
+                    var resdata = {
+                        status: false,
+                        error: err,
+                        message: 'Error: Details not successfully added. '
+                    };
+
+                    res.jsonp(resdata);
+                }
+
+            });
+        }
+
+   
+    
+};
+
+
+exports.showSpecification = function (req, res) {
+    var SpecificationId = req.params.id;
+    console.log(SpecificationId);
+    var sql = "SELECT * FROM `tbl_ProductSpecification` WHERE SpecificationId = "+SpecificationId;
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
+exports.deleteSpecification = function (req, res) {
+    var SpecificationId = req.params.id;
+    var sql = "DELETE FROM `tbl_ProductSpecification` WHERE SpecificationId = "+SpecificationId;
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+
 exports.disableProduct = function (req, res) {
     var ProductId = req.params.id;
     var sql = "UPDATE `tbl_Products` SET IsDisabled = '1' WHERE ProductId = "+ProductId;
