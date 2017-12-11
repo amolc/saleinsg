@@ -1016,7 +1016,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
-            $scope.product.orderqty = $scope.product.MinOrderQty;
+            //$scope.product.orderqty = $scope.product.MinOrderQty;
+            $scope.product.orderqty = 1;
             $scope.product.changePrice = data.Price
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';

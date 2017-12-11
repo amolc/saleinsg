@@ -256,7 +256,8 @@
                           </p>
                         </td>
                         <td data-th="Quantity">
-                          <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
+                         <!--  <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select> -->
+                         <input type="number" name="orderqty" id="orderqty" ng-model="product.orderqty" ng-change="cal(product,per)" required="" min="0">
                         </td>
                         <td data-th="Subtotal" class="text-right">
                           <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
