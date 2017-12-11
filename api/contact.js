@@ -159,7 +159,7 @@ exports.register = function(req, res){
                             'LastName': req.body.lname,
                             'Phone': req.body.phone,
                             'CompanyName':req.body.company,
-                          //  'Location':req.body.location,
+                          //'Location':req.body.location,
                             'CountryId' :req.body.CountryId,
                             'VerificationCode':'',
                             'CreateDate':dateToday,
@@ -170,39 +170,59 @@ exports.register = function(req, res){
 
                             if (!err2) 
                             {
-                               // console.log(val2.insertId);
-                               //  var regId = val2.insertId;
-                               // // console.log(req.body.Email);
-                               //  var recipientEmail = req.body.Email; 
-                               //  var subject = "[80STARTUPS.COM] saleinsg.com verification email";
-                               //  var mailbody = '<table>\
-                               //                      <tr>\
-                               //                        <td><h1>Dear '+fullname+',</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Please click on the following link to verify your email account to complete registration process.</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td>Best wishes,</td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td><h2>saleinsg.com</h2></td>\
-                               //                      </tr>\
-                               //                      <tr>\
-                               //                        <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                               //                      </tr>\
-                               //                    </table>';
+                               console.log(val2.insertId);
+                                var regId = val2.insertId;
+                               // console.log(req.body.Email);
+                                var recipientEmail = req.body.email; 
+                                var subject = "Tradeexchange.co - Registration confirmation mail";
+                                // var mailbody = '<table>\
+                                //                     <tr>\
+                                //                       <td><h1>Dear '+fullname+',</td>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                       <td>Please click on the following link to verify your email account to complete registration process.</td>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                       <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                       <td>Best wishes,</td>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                       <td><h2>saleinsg.com</h2></td>\
+                                //                     </tr>\
+                                //                     <tr>\
+                                //                       <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                                //                     </tr>\
+                                //                   </table>';
 
-                               //  send_mail(recipientEmail, subject, mailbody);
+                                 var mailbody = '<table>\
+                                                    <tr>\
+                                                      <td><h1>Dear '+fullname+',</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td>You are successfully registered with tradeexchange.co</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td>Best wishes,</td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td><h2>tradeexchange.co</h2></td>\
+                                                    </tr>\
+                                                    <tr>\
+                                                      <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                                                    </tr>\
+                                                  </table>';
+
+                                send_mail(recipientEmail, subject, mailbody);
                                 var resdata = {
                                     status: true,
                                     value:val2,
-                                    message: 'A verification link has been sent to your email account'
+                                    message: 'A confirmation has been sent to your email account'
                                 };
 
                                 res.jsonp(resdata);
@@ -815,7 +835,7 @@ function send_mail(usermail, subject, mailbody) {
   var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
   nodemailerMailgun.sendMail({
-    from: 'operations@80startups.com',
+    from: 'support@tradeexchange.co',
     to: usermail, // An array if you have multiple recipients.
     subject: subject,
     'h:Reply-To': 'operations@80startups.com',
