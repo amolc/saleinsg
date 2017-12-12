@@ -175,10 +175,11 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
-                              var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-                              var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-                              var subject = "Tradeexchange New Order - "+orderID;
-                             //  var mailbody = "Hello,</br><p>New Order  : </p>"
+                               var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+                               var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+                              // var buyer = req.body.email;
+                              // var seller = req.body.SupEmail;
+                               var subject = "Tradeexchange New Order - "+orderID;
 
 
                              // + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
@@ -374,7 +375,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <tbody>\
 <tr style="border-top: 1px solid #c1c1c1">\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.orderID+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.ProductId+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
@@ -621,7 +622,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <tbody>\
 <tr style="border-top: 1px solid #c1c1c1">\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.orderID+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.ProductId+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
