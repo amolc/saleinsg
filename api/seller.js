@@ -19,6 +19,7 @@ var productCRUD = CRUD(db, 'tbl_Products');
 var specificationCrud = CRUD(db, 'tbl_ProductSpecification');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
+var termsCRUD = CRUD(db, 'tbl_Terms');
 
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -378,13 +379,67 @@ exports.getOrderDetails = function (req, res) {
 
 exports.getTerms = function (req, res) {
     var OrderId = req.params.id;
-    var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId;
+    var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId+" AND IsEdited = '0' ORDER BY TermId";
   //  console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
 };
 
+exports.sellerTerms = function (req, res) {
+  //console.log(req.body.date);
+   var updateObj = {
+                 "IsEdited" : '1',
+            };
+   for(var i=0;i<Object.keys(req.body.terms).length;i++)
+      {
+        //console.log(req.body[i].TermId);
+       // if (req.body.remove[i] == 0) 
+       //  {
+             var orderID = req.body.terms[i].OrderId;                        
+             var Terms = req.body.terms[i].Terms;
+             var Type = req.body.terms[i].Type;
+             var Percentage = req.body.terms[i].Percentage;
+             var Amount = req.body.terms[i].Amount;
+
+             var createObj = {
+                 "OrderId" :  orderID,
+                 "Terms" : Terms, 
+                 "Type" : Type, 
+                 "Percentage" : Percentage,    
+                 "Amount" : Amount, 
+                 "SellerMessage" : 'You have sent proposal to buyer',
+                 "BuyerMesssage" : 'You have received proposal from seller',
+                 "TermDate" : req.body.date,
+                 "TermDateTime" : req.body.datetime,
+            };
+                                             // console.log("after", createObj);
+            termsCRUD.create(createObj, function (err, data) {
+                                                  
+             });
+
+          termsCRUD.update({TermId: req.body.terms[i].TermId}, updateObj,function(err, val) {
+             });
+
+      // }                                         
+                                      
+    }
+     var resdata = {
+                        status: true,
+                        message: 'Terms Updated. '
+                    };
+
+    res.jsonp(resdata);
+};
+
+exports.getHistory = function (req, res) {
+    var OrderId = req.params.id;
+    var sql = "SELECT  `SellerMessage`,`BuyerMesssage`,`TermDate` FROM `tbl_Terms` WHERE OrderId = "+OrderId +" GROUP BY TermDateTime ORDER BY TermId DESC";
+   // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
 
 function send_mail(usermail, subject, mailbody) {
 

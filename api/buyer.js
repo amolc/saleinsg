@@ -33,7 +33,6 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-
 exports.buyerorders = function (req, res) {
 
     var BuyerId = req.params.id;
@@ -143,6 +142,10 @@ exports.placeorder = function (req, res) {
                                           "Type" : Type, 
                                           "Percentage" : Percentage,    
                                           "Amount" : Amount, 
+                                          "SellerMessage" : 'You have received proposal from buyer',
+                                          "BuyerMesssage" : 'You have sent proposal to seller',
+                                          "TermDate" : req.body.date,
+                                          "TermDateTime" : req.body.datetime,
                                         };
                                        // console.log("after", createObj);
 
@@ -447,7 +450,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </tbody>\
 </table>\
 </body></html>';
-                             send_mail( buyer, subject, mailbody );
+                             //send_mail( buyer, subject, mailbody );
 
 
                              var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
@@ -696,7 +699,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </body></html>';
 
 
-                             send_mail( seller, subject, mailbody );
+                           //  send_mail( seller, subject, mailbody );
                                 var resdata = {
                                     status: true,
                                     value:val2,

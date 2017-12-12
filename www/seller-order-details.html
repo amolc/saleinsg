@@ -6,7 +6,6 @@
                 {
                    window.sessionStorage.setItem('GoToPage',window.location.href); 
                    window.location.href="login.html";
-
                 }
                 else
                 {
@@ -301,7 +300,7 @@
                 </div>
               </div>
               <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
-                <form id="orderform">
+                <form name="termsform" id="termsform" ng-submit="sellerterms()">
                 <div class="cart-table">
                   <table id="cart" class="table table-bordered table-condensed">
                       <thead>
@@ -317,7 +316,7 @@
                     <tbody>
                       <tr>
                         <td>
-                          <p>{{order.OrderId}}</p>
+                          <p>{{order.ProductId}}</p>
                         </td>
                         <td data-th="Product">
                           <div class="">
@@ -350,8 +349,8 @@
                       <h5>Terms</h5>                      
                     </div>
                     <div class="col-sm-6 col-md-6">
-                      <!-- <input type="button" class="red-btn small-btn" value="Edit">
-                       <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show()" ng-if="order.OrderStatus == 'Pending'">
+                       <!--  <button class="btn" type="button" ng-click="showterms()">Add</button> -->
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -389,32 +388,74 @@
                 </tr>
               </thead>
               <tbody id="specificationtable">
-              <tr ng-show="termslist.length > 0" ng-repeat="t in termslist">
+              <tr ng-show="termslist.length > 0" ng-repeat="ts in termslist">
                  <td>{{$index+1}}</td>
-                 <td>{{ t.Terms }}</td> 
-                 <td>{{ t.Type}}</td>
-                 <td>{{ t.Percentage}}</td>
-                <td>{{order.Currency}} {{ t.Amount}}</td>
+                 <td>{{ ts.Terms }}</td> 
+                 <td>{{ ts.Type}}</td>
+                 <td>{{ ts.Percentage}}</td>
+                <td>{{order.Currency}} {{ ts.Amount}}</td>
               </tr>             
               </tbody>
             </table>
             </div>
+             <div id="terms" hidden="" ng-if="order.OrderStatus == 'Pending'">
+            <div class="row">
+              <div class="col-sm-4">
+                      <label>Title</label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Type</label>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>%</label>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Amount</label>
+                    </div>
+            </div>
+            <div class="row"  ng-repeat="t in termsli">
+            <div class="col-sm-4">
+                      <input class=" form-group form-control" type='text' required="" ng-model="t.Terms">
+                    </div>
+                    <div class="col-sm-4">
+                      <Select class="form-group form-control" type='text' required="" ng-model='t.Type' >
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='t.Percentage' ng-change='calterm(order,t)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='t.Amount'>
+                    </div>
+            </div>
+
+              
+            </div>
+            
                       <div class="col-sm-6 mr-t20">
                         <div class="form-group">
                           
                           <!-- <label><input type="checkbox" value="">Option 3</label> -->
-                          <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1">
-                          <label for="styled-checkbox-1">I Agree</label>
+                          <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" ng-if="order.OrderStatus == 'Pending'">
+                          <label for="styled-checkbox-1" ng-if="order.OrderStatus == 'Pending'">I Agree</label>
                         </div>
                         <div class="detail-btn">
-                          <a href="#" class="red-btn small-btn mr20">Approve</a>
-                          <a href="#" class="red-btn small-btn mr20">Send To Buyer</a>
+                          <a href="#" class="red-btn small-btn mr20" ng-if="order.OrderStatus == 'Pending'">Approve</a>
+                          <!-- <a href="#" class="red-btn small-btn mr20">Send To Buyer</a> -->
+                          <input type="submit" name="" class="red-btn small-btn mr20" value="Send To Buyer" name="submit" id="proposal" style="display: none;" ng-if="order.OrderStatus == 'Pending'">
                         </div>
                       </div>
-                      <div class="col-sm-6 col-md-6 text-right  mr-t20">
+                      <div class="col-sm-12 col-md-12 mr-t20">
                         <h5>History</h5>
-                        <p><span class="color-blue">Sent proposal to buyer : </span>5-12-2017</p>
-                        <p><span class="color-blue">You have received proposal from buyer : </span> 8-12-2017</p>
+                        <!-- <p><span class="color-blue">Sent proposal to buyer : </span>5-12-2017</p>
+                        <p><span class="color-blue">You have received proposal from buyer : </span> 8-12-2017</p> -->
+                        <p ng-repeat="history in historylist">
+                        <span class="color-blue">{{history.SellerMessage}} : </span>
+                       {{history.TermDate}}
+                        </p>
                       </div>
                     <div class="clearfix"></div>
                   </div>

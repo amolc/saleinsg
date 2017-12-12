@@ -1162,7 +1162,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
-            
+
               $scope.product.buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
            // console.log(data);
@@ -1276,7 +1276,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       //console.log($scope.order.OrderId);
       $http.get(baseurl + 'getOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
 
-        console.log(data);
+       // console.log(data);
 
             $scope.order = data;
        
@@ -1285,6 +1285,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
 
             $scope.termslist = data;
+            $scope.termsli = {};
+            $scope.termsli = $scope.termslist;
+          //  console.log($scope.termslist);
+
+      });
+
+        $http.get(baseurl + 'getHistory/'+$scope.order.OrderId).success(function(data, status) {
+
+           // console.log(data);
+            $scope.historylist = data;
 
       });
      
@@ -1313,6 +1323,31 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           index = index+1;
           window.sessionStorage.setItem('index',index);                
      }
+
+     $scope.sellerterms = function(){
+
+      //alert('hi');
+      //console.log($scope.termsli); 
+      var orderId = $scope.order.OrderId;
+      var date = new Date();
+      var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+      var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+      dateToday = messagedate+' '+messagetime;
+      $scope.data = {};
+      $scope.data.terms = $scope.termsli;
+      $scope.data.datetime = dateToday ;
+      $scope.data.date = messagedate ;
+     // console.log($scope.data);
+      $http.post(baseurl + 'sellerTerms/',$scope.data).success(function(data, status) {
+
+        console.log(data);
+
+              window.location.href = 'seller-order-details.html?id='+orderId;  
+
+      });    
+       
+     }
+
 
 
      $scope.getcurrency = function(){
@@ -1385,6 +1420,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       // alert('hi');           
      }
 
+
+  
+
       $scope.cal = function(product,per){
 
        //console.log(product.percentage[index]);
@@ -1403,7 +1441,32 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             });
           }
 
-         }    
+         } 
+
+
+    $scope.calterm = function(order,t){
+
+
+        //console.log(t);
+        $scope.t = t;
+        $scope.t.Amount = parseFloat(order.TotalAmount * order.Quantity *  t.Percentage / 100).toFixed(2)
+       //console.log(product.percentage[index]);
+       // $scope.product = product; 
+       // $scope.per = per;
+       // $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
+       // if ( $scope.amt == 0) 
+       //    {
+       //       $scope.amt = '';
+       //    } 
+       //   if (typeof $scope.product.percentage !== 'undefined' ) 
+       //   {
+       //      $.each($scope.product.percentage, function( key, value ) {
+       //        $scope.product.amount[key] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[key] / 100).toFixed(2);
+
+       //      });
+       //    }
+
+         }      
 
       $scope.remove = function(product,index){
 
