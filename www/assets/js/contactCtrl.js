@@ -60,6 +60,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
              else
              {
+
+                  var date = new Date();
+                  var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+                  var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+                  $scope.registration.datetime = messagedate+' '+messagetime;
+                  $scope.registration.date =  messagedate;
                // console.log("register IN");
                     $http.post(baseurl + 'register', $scope.registration).success(function(data, status) {
 
