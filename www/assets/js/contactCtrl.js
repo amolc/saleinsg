@@ -1072,6 +1072,17 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+      $scope.featuredseller = function (req, res) {
+
+
+            $http.get(baseurl + 'featuredseller').success(function(data, status) {    
+                 // console.log(data); 
+                   $scope.sellerlist = data;  
+
+            });
+
+     }
+
 
   $scope.enquiryinit = function (req, res) {
        

@@ -938,6 +938,16 @@ exports.getAllcurrency = function (req, res) {
 };
 
 
+exports.featuredseller = function (req, res) {
+
+   var sql = "SELECT * FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Products` as p ON s.`SupId` = p.`SupplierId` GROUP BY p.`SupplierId` ORDER BY p.`ProductId` DESC";
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+    
+};
+
+
 
 exports.addbankorder = function (req, res) {
 

@@ -732,44 +732,45 @@
             </div>
           </div>
          </section>
-         <section id="viewed-wrap" ng-init="getrecentproducts()">
-          <div ng-if="recentcount==1" class="container">
+         <section id="viewed-wrap" ng-init="featuredseller()">
+          <div class="container">
             <div class="row">
               <div class="col-sm-12">
                 <h2 class="section-title">
-                  Recently Viewed
+                  Featured Seller
                 </h2>
               </div>
             </div>
           </div>
-          <div ng-if="recentcount==1" class="container">
+          <div class="container">
             <div class="row">
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
                   <div class="carousel-inner">
 
-                  <div class="item active" ng-repeat="product in recentproducts |limitTo:4">
+                  <div class="item active" ng-repeat="seller in sellerlist |limitTo:4">
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
-                            <a href="product_detail.html?id={{product.ProductId}}">
-                                <img src="uploads/{{product.Image1}}" alt="" title="">
-                              </a>
+                          <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
+                                <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
+                                <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
+                              <!-- </a> -->
                             </div>
                             <div class="product-footer">
-                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                                <h3><a href="#">{{seller.FirstName}} {{seller.LastName}}</h3>
                                 <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
-                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <!--  <input type="hidden" name="basecurrency" ng-model="product.Currency">
                                 <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
                                  <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
                                 <h4 class="pull-right">
                                 <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
                                                     <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select></span>{{product.changePrice}}</h4>
+                                                    </select></span>{{product.changePrice}}</h4> -->
                                                     <div class="clearfix"></div>
-                                <div class="bottom-btn">
+                                <!-- <div class="bottom-btn">
                                     <div class="order-btn">
                                         <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
                                     </div>
@@ -777,11 +778,11 @@
                                         <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
                                     </div>
                                     <div class="clearfix"></div>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="box-flag-img">
+                           <!--  <div class="box-flag-img">
                                 <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
-                            </div>
+                            </div> -->
                             <div class="cat-text">
                                 <span>Footwears</span>
                             </div>
