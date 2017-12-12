@@ -388,12 +388,12 @@
                 </tr>
               </thead>
               <tbody id="specificationtable">
-              <tr ng-show="termslist.length > 0" ng-repeat="ts in termslist">
+              <tr ng-show="termslist.length > 0" ng-repeat="t in termslist">
                  <td>{{$index+1}}</td>
-                 <td>{{ ts.Terms }}</td> 
-                 <td>{{ ts.Type}}</td>
-                 <td>{{ ts.Percentage}}</td>
-                <td>{{order.Currency}} {{ ts.Amount}}</td>
+                 <td>{{ t.Terms }}</td> 
+                 <td>{{ t.Type}}</td>
+                 <td>{{ t.Percentage}}</td>
+                <td>{{order.Currency}} {{ t.Amount}}</td>
               </tr>             
               </tbody>
             </table>
