@@ -374,7 +374,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <tbody>\
 <tr style="border-top: 1px solid #c1c1c1">\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.OrderID+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.orderID+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
@@ -621,7 +621,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <tbody>\
 <tr style="border-top: 1px solid #c1c1c1">\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.OrderID+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.orderID+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
