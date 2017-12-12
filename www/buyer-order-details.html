@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <script type="text/javascript">
+         if (window.sessionStorage.getItem('User_Id')<=0) 
+                {
+                   window.sessionStorage.setItem('GoToPage',window.location.href); 
+                   window.location.href="login.html";
+
+                }
+                else
+                {
+                   if (window.sessionStorage.getItem("GoToPage") !== null) {
+                                window.sessionStorage.removeItem('GoToPage');
+                        }
+                }
+    </script>
+
  <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -272,7 +287,7 @@
     </div>
   </section>
 -->
- <section id="pleacr-order-wrap"  id="book-now">
+ <section id="pleacr-order-wrap"  id="book-now" ng-init="sellerorder()">
           <div class="container">
             <div class="row">
                
@@ -280,8 +295,8 @@
                 <div class="seller-details">
                   <h4>Shipping Details</h4>
                   <h6>
-                    <label for="fullname"><span>Name : </span> Kavyaanjali fashion</label><br>
-                    <label for="phoneno"><span>Address :</span> #123, sadg Road sfhxcnks, 412416</label><br>
+                    <label for="fullname"><span>Name : </span>{{order.CompanyName}}</label><br>
+                    <label for="phoneno"><span>Address :</span>{{order.Address1}},{{order.Address2}},{{order.PostalCode}},{{order.Country}}</label><br>
                   </h6>
                 </div>
               </div>
@@ -302,24 +317,24 @@
                     <tbody>
                       <tr>
                         <td>
-                          <p>12656809</p>
+                          <p>{{order.OrderId}}</p>
                         </td>
                         <td data-th="Product">
                           <div class="">
-                            <img src="assets/img/img-2.png" class="img-responsive"></div>
+                            <img src="uploads/{{order.Image1}}" class="img-responsive"></div>
                           </div>
                         </td>
                         <td>
-                          <p> Leather jacket from Dharavi leather city of India  </p>
+                          <p>{{order.ProductName}}</p>
                         </td>
                         <td data-th="Price">
-                          <p>150</p>
+                          <p>{{order.Currency}} {{order.Price}}</p>
                         </td>
                         <td data-th="Quantity">
-                          <p>3</p>
+                          <p>{{order.Quantity}}</p>
                         </td>
                         <td data-th="Subtotal" class="text-right">
-                          <p>450</p>
+                          <p>{{order.Currency}} {{order.TotalAmount}}</p>
                         </td>
                         <!-- <td class="actions" data-th="">
                           <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
@@ -335,13 +350,13 @@
                       <h5>Terms</h5>                      
                     </div>
                     <div class="col-sm-6 col-md-6">
-                      <input type="button" class="red-btn small-btn" value="Edit">
-                       <!-- <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                      <!-- <input type="button" class="red-btn small-btn" value="Edit">
+                       <button class="btn" type="button" ng-click="showterms()">Add</button> -->
                     </div>
                     <div class="clearfix"></div>
                   </div>
                   <div class="order-form-foot">
-                    <div class="col-sm-4">
+                    <!-- <div class="col-sm-4">
                       <label>Title</label>
                       <input class=" form-group form-control" type='text' required="">
                     </div>
@@ -361,7 +376,29 @@
                     <div class="col-sm-2">
                       <label>Amount</label>
                       <input class="form-group form-control" type='text' ng-model='amt'>
-                    </div>
+                    </div> -->
+                    <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <td>Title</td>
+                  <th>Type</th>
+                  <th>%</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="specificationtable">
+              <tr ng-show="termslist.length > 0" ng-repeat="t in termslist">
+                 <td>{{$index+1}}</td>
+                 <td>{{ t.Terms }}</td> 
+                 <td>{{ t.Type}}</td>
+                 <td>{{ t.Percentage}}</td>
+                <td>{{order.Currency}} {{ t.Amount}}</td>
+              </tr>             
+              </tbody>
+            </table>
+            </div>
                       <div class="col-sm-6 mr-t20">
                         <div class="form-group">
                           
@@ -370,8 +407,8 @@
                           <label for="styled-checkbox-1">I Agree</label>
                         </div>
                         <div class="detail-btn">
-                          <a href="order.html?id=18" class="red-btn small-btn mr20">Approve</a>
-                          <a href="enquiry.html?id=18" class="red-btn small-btn mr20">Send To Buyer</a>
+                          <a href="#" class="red-btn small-btn mr20">Approve</a>
+                          <a href="#" class="red-btn small-btn mr20">Send To Buyer</a>
                         </div>
                       </div>
                       <div class="col-sm-6 col-md-6 text-right  mr-t20">

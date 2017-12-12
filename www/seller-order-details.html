@@ -4,7 +4,15 @@
     <script type="text/javascript">
          if (window.sessionStorage.getItem('User_Id')<=0) 
                 {
+                   window.sessionStorage.setItem('GoToPage',window.location.href); 
                    window.location.href="login.html";
+
+                }
+                else
+                {
+                   if (window.sessionStorage.getItem("GoToPage") !== null) {
+                                window.sessionStorage.removeItem('GoToPage');
+                        }
                 }
     </script>
 
