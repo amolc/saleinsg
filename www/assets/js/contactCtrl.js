@@ -1203,6 +1203,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.product.phonenumber = window.sessionStorage.getItem('User_Phone');
             }
 
+              $scope.product.buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.product.buyercountry = data.CountryTitle;
+
+         });
+
 
             if (window.localStorage.getItem('Recent_Products')==null) 
             {
