@@ -1679,7 +1679,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
           var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
           dateToday = messagedate+' '+messagetime;
-          $scope.product.date = dateToday ;
+          $scope.product.datetime = dateToday ;
+          $scope.product.date = messagedate ;
           if (typeof $scope.product.term === 'undefined' ) 
          {
            $scope.product.term = {};           
@@ -1700,7 +1701,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          {
             $scope.product.remove = {};
          }
-         $scope.product.term[0] = $scope.terms;
+           $scope.product.term[0] = $scope.terms;
            $scope.product.type[0] = $scope.types;
            $scope.product.percentage[0] = $scope.per;
            $scope.product.amount[0] = $scope.amt;
@@ -1715,6 +1716,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           {
                 $scope.product.termsadded = 1; 
           }
+
+
+          $scope.product.buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.product.buyercountry = data.CountryTitle;
+
+         });
      
         $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
                      

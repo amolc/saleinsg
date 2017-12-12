@@ -64,6 +64,7 @@ app.post('/api/getrecentprod', contact.getrecentprod);
 app.get('/api/featuredseller', contact.featuredseller);
 
 app.get('/api/getcurrency/:id', contact.getcurrency);
+app.get('/api/getcountry/:id', contact.getcountry);
 app.get('/api/getAllcurrency/', contact.getAllcurrency);
 app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);

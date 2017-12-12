@@ -776,7 +776,7 @@ exports.filterbyall = function (req, res) {
 exports.getProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
+   var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
    // console.log(sql);
   // console.log(sql);
     db.query(sql, function (err, data) {
@@ -801,6 +801,18 @@ exports.getcurrency = function (req, res) {
 
   var CountryId = req.params.id;
    var sql = "SELECT `CountryCurrency` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
+   // console.log(sql);
+  // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+    
+};
+
+exports.getcountry = function (req, res) {
+
+  var CountryId = req.params.id;
+   var sql = "SELECT `CountryTitle` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
    // console.log(sql);
   // console.log(sql);
     db.query(sql, function (err, data) {
