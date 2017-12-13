@@ -1337,6 +1337,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.data.terms = $scope.termsli;
       $scope.data.datetime = dateToday ;
       $scope.data.date = messagedate ;
+      $scope.data.date = messagedate ;
+      $scope.data.OrderId = orderId;
      // console.log($scope.data);
       $http.post(baseurl + 'sellerTerms/',$scope.data).success(function(data, status) {
 
@@ -1445,28 +1447,20 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
 
     $scope.calterm = function(order,t){
-
-
-        //console.log(t);
         $scope.t = t;
         $scope.t.Amount = parseFloat(order.TotalAmount * order.Quantity *  t.Percentage / 100).toFixed(2)
-       //console.log(product.percentage[index]);
-       // $scope.product = product; 
-       // $scope.per = per;
-       // $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
-       // if ( $scope.amt == 0) 
-       //    {
-       //       $scope.amt = '';
-       //    } 
-       //   if (typeof $scope.product.percentage !== 'undefined' ) 
-       //   {
-       //      $.each($scope.product.percentage, function( key, value ) {
-       //        $scope.product.amount[key] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[key] / 100).toFixed(2);
 
-       //      });
-       //    }
+         } 
 
-         }      
+    $scope.addterm = function(termsli){
+       //console.log($scope.termsli);
+       var newterm = {TermsId:0,Type:'Trade Exchange Escrow (TEE)'};
+       $scope.termsli.push(newterm);
+    }  
+
+    $scope.removeterm = function(t){
+       $scope.termsli.splice(t,1);
+    }          
 
       $scope.remove = function(product,index){
 

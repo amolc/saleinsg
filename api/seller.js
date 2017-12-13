@@ -387,23 +387,27 @@ exports.getTerms = function (req, res) {
 };
 
 exports.sellerTerms = function (req, res) {
-  //console.log(req.body.date);
+ // console.log(req.body.date);
    var updateObj = {
                  "IsEdited" : '1',
             };
+
+   termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+             });
+
    for(var i=0;i<Object.keys(req.body.terms).length;i++)
       {
         //console.log(req.body[i].TermId);
        // if (req.body.remove[i] == 0) 
        //  {
-             var orderID = req.body.terms[i].OrderId;                        
+           //  var orderID = req.body.terms[i].OrderId;                        
              var Terms = req.body.terms[i].Terms;
              var Type = req.body.terms[i].Type;
              var Percentage = req.body.terms[i].Percentage;
              var Amount = req.body.terms[i].Amount;
 
              var createObj = {
-                 "OrderId" :  orderID,
+                 "OrderId" :  req.body.OrderId,
                  "Terms" : Terms, 
                  "Type" : Type, 
                  "Percentage" : Percentage,    
@@ -418,18 +422,45 @@ exports.sellerTerms = function (req, res) {
                                                   
              });
 
-          termsCRUD.update({TermId: req.body.terms[i].TermId}, updateObj,function(err, val) {
-             });
-
       // }                                         
                                       
     }
-     var resdata = {
-                        status: true,
-                        message: 'Terms Updated. '
-                    };
 
-    res.jsonp(resdata);
+    var updateObj = {
+                 "BuyerApproval" : 'Pending',
+            };
+
+    orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+
+        if (!err) 
+        {
+            
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    });
+    //  var resdata = {
+    //                     status: true,
+    //                     message: 'Terms Updated. '
+    //                 };
+
+    // res.jsonp(resdata);
 };
 
 exports.getHistory = function (req, res) {
