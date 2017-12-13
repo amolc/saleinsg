@@ -388,6 +388,7 @@ exports.getTerms = function (req, res) {
 
 exports.sellerTerms = function (req, res) {
   //console.log(req.body);
+   var dateToday = now.format("YYYY-MM-DD H:mm:ss");
    var updateObj = {
                  "IsEdited" : '1',
             };
@@ -415,7 +416,7 @@ exports.sellerTerms = function (req, res) {
                  "SellerMessage" : 'You have sent proposal to buyer',
                  "BuyerMesssage" : 'You have received proposal from seller',
                  "TermDate" : req.body.date,
-                 "TermDateTime" : req.body.datetime,
+                 "TermDateTime" : dateToday,
             };
                                              // console.log("after", createObj);
             termsCRUD.create(createObj, function (err, data) {
@@ -423,6 +424,7 @@ exports.sellerTerms = function (req, res) {
              });
             var updateObj = {
                    "BuyerApproval" : 'Pending',
+                   "SellerApproval" : 'Approved',
               };
 
             orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
@@ -448,12 +450,14 @@ exports.sellerapprove = function (req, res) {
    var sellercountry = req.body.order.sellercountry;
    var buyername = req.body.order.FirstName+' '+req.body.order.LastName;
    var buyercountry = req.body.order.CountryTitle;
+   var dateToday = now.format("YYYY-MM-DD H:mm:ss");
    // console.log(sellername);
    // console.log(sellercountry);
    // console.log(buyername);
    // console.log(buyercountry);
    var updateObj = {
                  "OrderStatus" : 'Approved',
+                 "SellerApproval" : 'Approved',
                  "ConfimationDate" : req.body.datetime
             };
 
@@ -488,7 +492,7 @@ exports.sellerapprove = function (req, res) {
                    "SellerMessage" : 'You have approved the order',
                    "BuyerMesssage" : 'Order approved by seller',
                    "TermDate" : req.body.date,
-                   "TermDateTime" : req.body.datetime,
+                   "TermDateTime" : dateToday,
               };
                                                // console.log("after", createObj);
               termsCRUD.create(createObj, function (err2, data2) {
@@ -520,7 +524,8 @@ exports.sellerapprove = function (req, res) {
 
   var buyer = req.body.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
   var seller = req.body.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-                               
+   console.log(buyer);
+   console.log(seller);                            
 
                //var buyer = 'komal.gaikwad@fountaintechies.com';
                //var seller = 'komal.gaikwad@fountaintechies.com';

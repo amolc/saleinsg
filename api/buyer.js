@@ -737,6 +737,7 @@ exports.getbuyerOrderDetails = function (req, res) {
 
 exports.buyerTerms = function (req, res) {
   //console.log(req.body);
+  var dateToday = now.format("YYYY-MM-DD H:mm:ss");
    var updateObj = {
                  "IsEdited" : '1',
             };
@@ -764,7 +765,7 @@ exports.buyerTerms = function (req, res) {
                  "SellerMessage" : 'You have received proposal from buyer',
                  "BuyerMesssage" : 'You have sent proposal to seller',
                  "TermDate" : req.body.date,
-                 "TermDateTime" : req.body.datetime,
+                 "TermDateTime" : dateToday,
             };
                                              // console.log("after", createObj);
             termsCRUD.create(createObj, function (err, data) {
@@ -772,6 +773,7 @@ exports.buyerTerms = function (req, res) {
              });
             var updateObj = {
                    "BuyerApproval" : 'Approved',
+                   "SellerApproval" : 'Pending',
               };
 
             orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
@@ -792,6 +794,7 @@ exports.buyerTerms = function (req, res) {
 
 
 exports.buyerapprove = function (req, res) {
+  var dateToday = now.format("YYYY-MM-DD H:mm:ss");
    // console.log(req.body.order.sellername);
    // console.log(req.body.order.sellercountry);
    var buyername = req.body.order.sellername;
@@ -837,7 +840,7 @@ exports.buyerapprove = function (req, res) {
                    "SellerMessage" : 'Your proposal accepted by buyer',
                    "BuyerMesssage" : 'You have accepted seller\'s proposal',
                    "TermDate" : req.body.date,
-                   "TermDateTime" : req.body.datetime,
+                   "TermDateTime" : dateToday,
               };
                                                // console.log("after", createObj);
               termsCRUD.create(createObj, function (err2, data2) {

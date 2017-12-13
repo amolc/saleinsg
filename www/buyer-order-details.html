@@ -287,7 +287,7 @@
                       <h5>Terms</h5>                      
                     </div>
                     <div class="col-sm-6 col-md-6">
-                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show();$('#approve').hide()" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Pending'">
+                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show();$('#approve').hide()" ng-if="order.SellerApproval == 'Approved' && order.BuyerApproval == 'Pending'">
                        <!--  <button class="btn" type="button" ng-click="showterms()">Add</button> -->
                     </div>
                     <div class="clearfix"></div>
@@ -389,9 +389,9 @@
                           <label for="styled-checkbox-1" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'">I Agree</label> -->
                         </div>
                         <div class="detail-btn">
-                          <a href="#" class="red-btn small-btn mr20" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Pending'" id="approve" ng-click="buyerapprove();">Accept Proposal</a>
+                          <a href="#" class="red-btn small-btn mr20" ng-if="order.SellerApproval == 'Approved' && order.BuyerApproval == 'Pending'" id="approve" ng-click="buyerapprove();">Accept Proposal</a>
                           <!-- <a href="#" class="red-btn small-btn mr20">Send To Buyer</a> -->
-                          <input type="submit" name="" class="red-btn small-btn mr20" value="Send To Buyer" name="submit" id="proposal" style="display: none;" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Pending'">
+                          <input type="submit" name="" class="red-btn small-btn mr20" value="Send To Seller" name="submit" id="proposal" style="display: none;" ng-if="order.SellerApproval == 'Approved' && order.BuyerApproval == 'Pending'">
                         </div>
                       </div>
                       <div class="col-sm-12 col-md-12 mr-t20">
