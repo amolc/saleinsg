@@ -387,14 +387,22 @@ exports.getTerms = function (req, res) {
 };
 
 exports.sellerTerms = function (req, res) {
-  //console.log(req.body);
+  // console.log(req.body);
    var dateToday = now.format("YYYY-MM-DD H:mm:ss");
-   var updateObj = {
+   
+     var updateObj = {
+                   "BuyerApproval" : 'Pending',
+                   "SellerApproval" : 'Approved',
+              };
+
+    orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+
+              var updateObj = {
                  "IsEdited" : '1',
             };
 
-   termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
-             });
+   termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err1, val1) {
+           
 
    for(var i=0;i<Object.keys(req.body.terms).length;i++)
       {
@@ -418,21 +426,17 @@ exports.sellerTerms = function (req, res) {
                  "TermDate" : req.body.date,
                  "TermDateTime" : dateToday,
             };
-                                             // console.log("after", createObj);
-            termsCRUD.create(createObj, function (err, data) {
+             //console.log("after", createObj);
+            termsCRUD.create(createObj, function (err2, data2) {
                                                   
              });
-            var updateObj = {
-                   "BuyerApproval" : 'Pending',
-                   "SellerApproval" : 'Approved',
-              };
+                                                                   
+              }
 
-            orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+          });
 
-            });
-                                   
-                                      
-    }
+      });
+                 
 
   
      var resdata = {
@@ -444,6 +448,7 @@ exports.sellerTerms = function (req, res) {
 };
 
 exports.sellerapprove = function (req, res) {
+    //console.log(req.body);
    // console.log(req.body.order.sellername);
    // console.log(req.body.order.sellercountry);
    var sellername = req.body.order.sellername;
@@ -522,10 +527,10 @@ exports.sellerapprove = function (req, res) {
 
 
 
-  var buyer = req.body.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-  var seller = req.body.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-   console.log(buyer);
-   console.log(seller);                            
+  var buyer = req.body.order.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+  var seller = req.body.order.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+   // console.log(buyer);
+   // console.log(seller);                            
 
                //var buyer = 'komal.gaikwad@fountaintechies.com';
                //var seller = 'komal.gaikwad@fountaintechies.com';
@@ -780,7 +785,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 
 
 
-                             send_mail( buyer, subject, mailbody );
+                  send_mail( buyer, subject, mailbody );
 
 
                     var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
@@ -1027,7 +1032,8 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </tbody>\
 </table>\
 </body></html>';
-                             send_mail( seller, subject, mailbody );
+            
+            send_mail( seller, subject, mailbody );
 
             var resdata = {
                 status: true,

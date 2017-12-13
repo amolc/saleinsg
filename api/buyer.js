@@ -738,14 +738,21 @@ exports.getbuyerOrderDetails = function (req, res) {
 exports.buyerTerms = function (req, res) {
   //console.log(req.body);
   var dateToday = now.format("YYYY-MM-DD H:mm:ss");
+
    var updateObj = {
+                   "BuyerApproval" : 'Approved',
+                   "SellerApproval" : 'Pending',
+              };
+
+            orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+
+              var updateObj = {
                  "IsEdited" : '1',
             };
 
-   termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
-             });
+          termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err1, val1) {
 
-   for(var i=0;i<Object.keys(req.body.terms).length;i++)
+              for(var i=0;i<Object.keys(req.body.terms).length;i++)
       {
         //console.log(req.body[i].TermId);
        // if (req.body.remove[i] == 0) 
@@ -768,20 +775,21 @@ exports.buyerTerms = function (req, res) {
                  "TermDateTime" : dateToday,
             };
                                              // console.log("after", createObj);
-            termsCRUD.create(createObj, function (err, data) {
+            termsCRUD.create(createObj, function (err2, data2) {
                                                   
              });
-            var updateObj = {
-                   "BuyerApproval" : 'Approved',
-                   "SellerApproval" : 'Pending',
-              };
-
-            orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
-
-            });
-                                   
+                              
                                       
     }
+
+
+             });
+
+            });
+                
+   
+
+ 
 
   
      var resdata = {
@@ -819,7 +827,7 @@ exports.buyerapprove = function (req, res) {
               };
 
             termsCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err1, val1) {
-                       });  
+                     
 
              var table = '';
 
@@ -848,6 +856,8 @@ exports.buyerapprove = function (req, res) {
                });
                                               
             }
+
+              });  
 
             var resdata = {
                 status: true,
