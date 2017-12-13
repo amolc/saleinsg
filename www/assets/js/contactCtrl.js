@@ -1474,9 +1474,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $scope.termsli.push(newterm);
     }  
 
-    $scope.removeterm = function(t){
+    $scope.removeterm = function(index){
        //console.log(t);
-       $scope.termsli.splice(t,1);
+       $scope.termsli.splice(index,1);
     }          
 
       $scope.remove = function(product,index){
