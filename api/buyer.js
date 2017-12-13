@@ -725,6 +725,152 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 };
 
 
+exports.getbuyerOrderDetails = function (req, res) {
+    var OrderId = req.params.id;
+    var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`SuplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId;    
+   // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
+
+exports.buyerTerms = function (req, res) {
+  //console.log(req.body);
+   var updateObj = {
+                 "IsEdited" : '1',
+            };
+
+   termsCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+             });
+
+   for(var i=0;i<Object.keys(req.body.terms).length;i++)
+      {
+        //console.log(req.body[i].TermId);
+       // if (req.body.remove[i] == 0) 
+       //  {
+           //  var orderID = req.body.terms[i].OrderId;                        
+             var Terms = req.body.terms[i].Terms;
+             var Type = req.body.terms[i].Type;
+             var Percentage = req.body.terms[i].Percentage;
+             var Amount = req.body.terms[i].Amount;
+
+             var createObj = {
+                 "OrderId" :  req.body.OrderId,
+                 "Terms" : Terms, 
+                 "Type" : Type, 
+                 "Percentage" : Percentage,    
+                 "Amount" : Amount, 
+                 "SellerMessage" : 'You have received proposal from buyer',
+                 "BuyerMesssage" : 'You have sent proposal to seller',
+                 "TermDate" : req.body.date,
+                 "TermDateTime" : req.body.datetime,
+            };
+                                             // console.log("after", createObj);
+            termsCRUD.create(createObj, function (err, data) {
+                                                  
+             });
+            var updateObj = {
+                   "BuyerApproval" : 'Approved',
+              };
+
+            orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+
+            });
+                                   
+                                      
+    }
+
+  
+     var resdata = {
+                        status: true,
+                        message: 'Terms Updated. '
+                    };
+
+    res.jsonp(resdata);
+};
+
+
+exports.buyerapprove = function (req, res) {
+   // console.log(req.body.order.sellername);
+   // console.log(req.body.order.sellercountry);
+   var buyername = req.body.order.sellername;
+   var buyercountry = req.body.order.sellercountry;
+   var sellername = req.body.order.FirstName+' '+req.body.order.LastName;
+   var sellercountry = req.body.order.CountryTitle;
+   // console.log(sellername);
+   // console.log(sellercountry);
+   // console.log(buyername);
+   // console.log(buyercountry);
+   var updateObj = {
+                 "BuyerApproval" : 'Approved',
+            };
+
+    orderCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err, val) {     
+
+       if (!err) 
+        {
+
+            var updateObj = {
+                   "IsEdited" : '1',
+              };
+
+            termsCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err1, val1) {
+                       });  
+
+             var table = '';
+
+          for(var i=0;i<Object.keys(req.body.terms).length;i++)
+            {    
+
+               var Terms = req.body.terms[i].Terms;
+               var Type = req.body.terms[i].Type;
+               var Percentage = req.body.terms[i].Percentage;
+               var Amount = req.body.terms[i].Amount;
+
+               var createObj = {
+                   "OrderId" :  req.body.order.OrderId,
+                   "Terms" : Terms, 
+                   "Type" : Type, 
+                   "Percentage" : Percentage,    
+                   "Amount" : Amount, 
+                   "SellerMessage" : 'Your proposal accepted by buyer',
+                   "BuyerMesssage" : 'You have accepted seller\'s proposal',
+                   "TermDate" : req.body.date,
+                   "TermDateTime" : req.body.datetime,
+              };
+                                               // console.log("after", createObj);
+              termsCRUD.create(createObj, function (err2, data2) {
+                                                    
+               });
+                                              
+            }
+
+            var resdata = {
+                status: true,
+                value:val,
+                message: 'Details successfully updated'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: val,
+                message: 'Error: Details not successfully updated. '
+            };
+
+            res.jsonp(resdata);
+        }
+
+    
+    });
+                
+
+};
+
 exports.addTerms = function (req, res) {
 
     var createObj = {

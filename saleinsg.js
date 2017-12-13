@@ -104,6 +104,9 @@ app.post('/api/addtowishlist', buyer.addtowishlist);
 app.post('/api/removefromwishlist', buyer.removefromwishlist);
 app.post('/api/placeorder', buyer.placeorder);
 app.post('/api/addTerms', buyer.addTerms);
+app.get('/api/getbuyerOrderDetails/:id', buyer.getbuyerOrderDetails);
+app.post('/api/buyerTerms', buyer.buyerTerms);
+app.post('/api/buyerapprove', buyer.buyerapprove);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
