@@ -462,12 +462,12 @@ exports.sellerapprove = function (req, res) {
        if (!err) 
         {
 
-            // var updateObj = {
-            //        "IsEdited" : '1',
-            //   };
+            var updateObj = {
+                   "IsEdited" : '1',
+              };
 
-            // termsCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err1, val1) {
-            //            });  
+            termsCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err1, val1) {
+                       });  
 
              var table = '';
 
@@ -491,9 +491,9 @@ exports.sellerapprove = function (req, res) {
                    "TermDateTime" : req.body.datetime,
               };
                                                // console.log("after", createObj);
-              // termsCRUD.create(createObj, function (err2, data2) {
+              termsCRUD.create(createObj, function (err2, data2) {
                                                     
-              //  });
+               });
 
               table += '<tr style="border-top: 1px solid #c1c1c1">\
 <td style="text-align: center; padding: 8px 10px;">\
