@@ -1625,7 +1625,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.calterm = function(order,t){
         $scope.t = t;
-        $scope.t.Amount = parseFloat(order.TotalAmount * order.Quantity *  t.Percentage / 100).toFixed(2)
+        $scope.t.Amount = parseFloat(order.TotalAmount *  t.Percentage / 100).toFixed(2)
 
          } 
 
