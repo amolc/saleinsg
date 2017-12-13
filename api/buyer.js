@@ -178,10 +178,10 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
-                             //  var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-                             //  var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-                               var buyer = req.body.email;
-                               var seller = req.body.SupEmail;
+                               var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+                               var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+                              // var buyer = req.body.email;
+                              // var seller = req.body.SupEmail;
                                var subject = "Tradeexchange New Order - "+orderID;
 
 
