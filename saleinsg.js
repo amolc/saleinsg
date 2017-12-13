@@ -90,6 +90,7 @@ app.get('/api/userproducts/:id', seller.userproducts);
 app.get('/api/getOrderDetails/:id', seller.getOrderDetails);
 app.get('/api/getTerms/:id', seller.getTerms);
 app.post('/api/sellerTerms', seller.sellerTerms);
+app.post('/api/sellerapprove', seller.sellerapprove);
 app.get('/api/getHistory/:id', seller.getHistory);
 
 app.get('/api/userinfo/:id', contact.userinfo);

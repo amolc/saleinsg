@@ -389,7 +389,7 @@
                           <label for="styled-checkbox-1" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'">I Agree</label> -->
                         </div>
                         <div class="detail-btn">
-                          <a href="#" class="red-btn small-btn mr20" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'" id="approve">Approve</a>
+                          <a href="#" class="red-btn small-btn mr20" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'" id="approve" ng-click="sellerapprove();">Approve</a>
                           <!-- <a href="#" class="red-btn small-btn mr20">Send To Buyer</a> -->
                           <input type="submit" name="" class="red-btn small-btn mr20" value="Send To Buyer" name="submit" id="proposal" style="display: none;" ng-if="order.OrderStatus == 'Pending'">
                         </div>

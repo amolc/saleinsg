@@ -964,6 +964,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.orderlist = data;
         });
 
+
+
     }
 
     $scope.addtowishlist = function(){
@@ -1300,6 +1302,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.historylist = data;
 
       });
+
+          var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.order.sellercountry = data.CountryTitle;
+            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
+            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+
+         });
+     
      
     }
     else
@@ -1353,7 +1365,39 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        
      }
 
+     $scope.sellerapprove = function(){
 
+      //alert('hi');
+      //console.log($scope.termsli);
+      var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.order.sellercountry = data.CountryTitle;
+            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
+            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+            var orderId = $scope.order.OrderId;
+            var date = new Date();
+            var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+            var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+            dateToday = messagedate+' '+messagetime;
+            $scope.data = {};
+            $scope.data.terms = $scope.termslist;
+            $scope.data.order = $scope.order;
+            $scope.data.datetime = dateToday ;
+            $scope.data.date = messagedate ;
+            $scope.data.date = messagedate ;
+
+            //console.log($scope.data);
+            $http.post(baseurl + 'sellerapprove/',$scope.data).success(function(data, status) {
+
+                    window.location.href = 'seller-order-details.html?id='+orderId;  
+
+            });    
+
+               }); 
+      
+       
+     }
 
      $scope.getcurrency = function(){
 
