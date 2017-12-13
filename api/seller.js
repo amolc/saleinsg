@@ -424,7 +424,7 @@ exports.sellerTerms = function (req, res) {
                  "SellerMessage" : 'You have sent proposal to buyer',
                  "BuyerMesssage" : 'You have received proposal from seller',
                  "TermDate" : req.body.date,
-                 "TermDateTime" : dateToday,
+                 "TermDateTime" : req.body.datetime,
             };
              //console.log("after", createObj);
             termsCRUD.create(createObj, function (err2, data2) {
@@ -476,9 +476,9 @@ exports.sellerapprove = function (req, res) {
               };
 
             termsCRUD.update({OrderId: req.body.order.OrderId}, updateObj,function(err1, val1) {
-                       });  
 
-             var table = '';
+
+                var table = '';
 
           for(var i=0;i<Object.keys(req.body.terms).length;i++)
             {    
@@ -497,7 +497,7 @@ exports.sellerapprove = function (req, res) {
                    "SellerMessage" : 'You have approved the order',
                    "BuyerMesssage" : 'Order approved by seller',
                    "TermDate" : req.body.date,
-                   "TermDateTime" : dateToday,
+                   "TermDateTime" : req.body.datetime,
               };
                                                // console.log("after", createObj);
               termsCRUD.create(createObj, function (err2, data2) {
@@ -1042,6 +1042,12 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
             };
 
             res.jsonp(resdata);
+                       
+
+
+                       });  
+
+           
         }
         else
         {

@@ -772,7 +772,7 @@ exports.buyerTerms = function (req, res) {
                  "SellerMessage" : 'You have received proposal from buyer',
                  "BuyerMesssage" : 'You have sent proposal to seller',
                  "TermDate" : req.body.date,
-                 "TermDateTime" : dateToday,
+                 "TermDateTime" : req.body.datetime,
             };
                                              // console.log("after", createObj);
             termsCRUD.create(createObj, function (err2, data2) {
@@ -848,7 +848,7 @@ exports.buyerapprove = function (req, res) {
                    "SellerMessage" : 'Your proposal accepted by buyer',
                    "BuyerMesssage" : 'You have accepted seller\'s proposal',
                    "TermDate" : req.body.date,
-                   "TermDateTime" : dateToday,
+                   "TermDateTime" :req.body.datetime,
               };
                                                // console.log("after", createObj);
               termsCRUD.create(createObj, function (err2, data2) {
