@@ -379,7 +379,7 @@ exports.getOrderDetails = function (req, res) {
 
 exports.getTerms = function (req, res) {
     var OrderId = req.params.id;
-    var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId+" AND IsEdited = '0' ORDER BY TermId";
+    var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId+" AND IsEdited = '0' ORDER BY TermId ASC";
   //  console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -387,7 +387,7 @@ exports.getTerms = function (req, res) {
 };
 
 exports.sellerTerms = function (req, res) {
- // console.log(req.body.date);
+  //console.log(req.body);
    var updateObj = {
                  "IsEdited" : '1',
             };
@@ -421,46 +421,24 @@ exports.sellerTerms = function (req, res) {
             termsCRUD.create(createObj, function (err, data) {
                                                   
              });
+            var updateObj = {
+                   "BuyerApproval" : 'Pending',
+              };
 
-      // }                                         
+            orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
+
+            });
+                                   
                                       
     }
 
-    var updateObj = {
-                 "BuyerApproval" : 'Pending',
-            };
+  
+     var resdata = {
+                        status: true,
+                        message: 'Terms Updated. '
+                    };
 
-    orderCRUD.update({OrderId: req.body.OrderId}, updateObj,function(err, val) {
-
-        if (!err) 
-        {
-            
-            var resdata = {
-                status: true,
-                value:val,
-                message: 'Details successfully updated'
-            };
-
-            res.jsonp(resdata);
-        }
-        else
-        {
-            var resdata = {
-                status: false,
-                error: err,
-                message: 'Error: Details not successfully updated. '
-            };
-
-            res.jsonp(resdata);
-        }
-
-    });
-    //  var resdata = {
-    //                     status: true,
-    //                     message: 'Terms Updated. '
-    //                 };
-
-    // res.jsonp(resdata);
+    res.jsonp(resdata);
 };
 
 exports.getHistory = function (req, res) {

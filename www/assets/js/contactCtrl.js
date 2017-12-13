@@ -1137,14 +1137,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     $scope.productinit = function (req, res) {
 
       $scope.product = {};
-      window.sessionStorage.setItem('index',1);
-      $scope.index = 1;
+      window.sessionStorage.setItem('index',2);
+      $scope.index = 2;
       $scope.product.term = {};
       $scope.product.type = {};
       $scope.product.percentage = {};
       $scope.product.amount = {};
-      $scope.product.remove = {};
-     
+      $scope.product.remove = {};     
     
       var url = window.location.href;
 
@@ -1179,6 +1178,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.types = "Trade Exchange Escrow (TEE)";
             $scope.per = 50;
             $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
+            $scope.terms1 = "50% Against Delivery";
+            $scope.types1 = "Trade Exchange Escrow (TEE)";
+            $scope.per1 = 50;
+            $scope.amt1 =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
                $scope.qty.push(i);
@@ -1445,6 +1448,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
          } 
 
+      $scope.cal1= function(product,per1){
+
+       //console.log(product.percentage[index]);
+       $scope.product = product; 
+       $scope.per1 = per1;
+       $scope.amt1 = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per1 / 100).toFixed(2);
+       if ( $scope.amt1 == 0) 
+          {
+             $scope.amt1 = '';
+          } 
+
+         } 
+
 
     $scope.calterm = function(order,t){
         $scope.t = t;
@@ -1459,6 +1475,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }  
 
     $scope.removeterm = function(t){
+       //console.log(t);
        $scope.termsli.splice(t,1);
     }          
 
@@ -1770,6 +1787,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            $scope.product.percentage[0] = $scope.per;
            $scope.product.amount[0] = $scope.amt;
            $scope.product.remove[0] = 0;
+           $scope.product.term[1] = $scope.terms1;
+           $scope.product.type[1] = $scope.types1;
+           $scope.product.percentage[1] = $scope.per1;
+           $scope.product.amount[1] = $scope.amt1;
+           $scope.product.remove[1] = 0;
                    
           $scope.product.total = $scope.product.orderqty*$scope.product.Price;
           if (typeof $scope.product.term === 'undefined') 
