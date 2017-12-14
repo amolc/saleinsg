@@ -1814,9 +1814,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    //alert(id);
                    window.localStorage.setItem('Other_User_Id',id[1]);
                    window.localStorage.setItem('Conversation_Product_Id',productid[1]);
-                   var ProductId = productid[1];
+                   $scope.ProductId = productid[1];
 
-                   $http.get(baseurl + 'getProductName/'+ProductId).success(function(data, status) {
+                   $http.get(baseurl + 'getProductName/'+$scope.ProductId).success(function(data, status) {
                      // console.log(data);
                       $scope.ProductName = data.ProductName;
 
@@ -1829,9 +1829,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.conversationlist = data;
               window.localStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
               window.localStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
-               var ProductId = $scope.conversationlist[0].ProductId;
+              $scope.ProductId = $scope.conversationlist[0].ProductId;
 
-                   $http.get(baseurl + 'getProductName/'+ProductId).success(function(data, status) {
+                   $http.get(baseurl + 'getProductName/'+$scope.ProductId).success(function(data, status) {
                      // console.log(data);
                       $scope.ProductName = data.ProductName;
 
