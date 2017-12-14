@@ -113,6 +113,7 @@ app.get('/api/getbuyerOrderDetails/:id', buyer.getbuyerOrderDetails);
 app.post('/api/buyerTerms', buyer.buyerTerms);
 app.post('/api/buyerapprove', buyer.buyerapprove);
 app.post('/api/buyerdelete', buyer.buyerdelete);
+app.get('/api/getBankDetails/:id', buyer.getBankDetails);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);

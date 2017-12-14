@@ -571,7 +571,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.product.image = '';
               }
 
-              console.log($scope.product);
+             // console.log($scope.product);
 
             $http.post(baseurl + 'requestproduct/',$scope.product).success(function(res) {
 
@@ -1404,10 +1404,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        // console.log(data);
 
             $scope.order = data;
-       
-      });
-
-        $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
+            $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
 
             $scope.termslist = data;
             $scope.termsli = {};
@@ -1431,6 +1428,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.order.selleremail = window.localStorage.getItem('User_Email');
 
          });
+       
+      });
+
+        
      
      
     }
@@ -1463,21 +1464,37 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        // console.log(data);
 
             $scope.order = data;
-       
-      });
-
-        $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
+             $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data, status) {
 
             $scope.termslist = data;
             $scope.termsli = {};
             $scope.termsli = $scope.termslist;
+            $scope.bankdetails = 0;
           //  console.log($scope.termslist);
+            $.each( $scope.termslist,function (index,value) { 
+
+                  //console.log(value.Type);
+                  if (value.Type == "Telegraphic Transfer (TT)" || value.Type == "Letter Of Credit (LOC)") 
+                  {
+                    $scope.bankdetails = 1;
+                  }                        
+           });
+
+           if ($scope.bankdetails == 1) 
+           {
+
+              $http.get(baseurl + 'getBankDetails/'+$scope.order.SuplierId).success(function(data, status) {
+
+                      console.log(data);
+                      $scope.bank = data;
+               });
+           }
 
       });
 
-        $http.get(baseurl + 'getHistory/'+$scope.order.OrderId).success(function(data, status) {
+             $http.get(baseurl + 'getHistory/'+$scope.order.OrderId).success(function(data, status) {
 
-           console.log(data);
+           //console.log(data);
             $scope.historylist = data;
 
       });
@@ -1489,7 +1506,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.order.buyername = window.localStorage.getItem('User_Name');
             $scope.order.buyeremail = window.localStorage.getItem('User_Email');
 
-         });     
+         });
+       
+      });
+     
     }
     else
     {

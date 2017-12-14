@@ -1022,6 +1022,14 @@ exports.getbuyerOrderDetails = function (req, res) {
     });
 };
 
+exports.getBankDetails = function (req, res) {
+    var UserId = req.params.id;
+    var sql = "select s.`AccountName`,s.`BankName`,s.`AccountNo`,s.`IFSCcode` from `tbl_Suppliers` as s WHERE SupId = "+UserId;
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
 
 exports.buyerTerms = function (req, res) {
   //console.log(req.body);
