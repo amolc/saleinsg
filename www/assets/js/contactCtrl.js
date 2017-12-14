@@ -554,6 +554,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              $scope.product.CountryId = window.localStorage.getItem('User_Location');
              $scope.product.UserId = window.localStorage.getItem('User_Id');
              $scope.product.BuyerEmail = window.localStorage.getItem('User_Email');
+             var date = new Date();
+             var date1 = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+             var datetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+             dateToday = date1+' '+datetime;
+             $scope.product.date = date1 ;
            // console.log($scope.attachment.images);
             if (Object.keys($scope.attachment).length>0) {
                 $scope.product.image = $scope.attachment.images[0];

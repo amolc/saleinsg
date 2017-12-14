@@ -104,7 +104,7 @@ exports.addproduct = function (req, res) {
                              // send_mail( officeremail, subject, mailbody );
                              // console.log('buyer-'+buyer);
                              // console.log('seller-'+seller);
-                             send_mail( seller, subject, mailbody );
+                            // send_mail( seller, subject, mailbody );
 
             var resdata = {
                 status: true,
