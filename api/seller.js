@@ -54,7 +54,7 @@ exports.addproduct = function (req, res) {
          var decodedImg = decodeBase64Image(imagedata);
          var imageBuffer = decodedImg.data;
          var type = decodedImg.type;
-         fileName = verifycode+'_'+req.body.imagename;
+         fileName = req.body.UserId+'_'+verifycode+'_'+req.body.imagename;
          fs.writeFileSync('www/uploads/' + fileName, imageBuffer, 'utf8');
      }else {
          fileName = '';

@@ -102,6 +102,7 @@ app.post('/api/updateprofile', contact.updateprofile);
 app.post('/api/updatebankdetails', contact.updatebankdetails);
 app.post('/api/updatepassword', contact.updatepassword);
 
+app.post('/api/requestproduct', buyer.requestproduct);
 app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
 app.post('/api/addtowishlist', buyer.addtowishlist);

@@ -540,6 +540,49 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
 
+    $scope.requestproduct = function(product) {             
+
+            // console.log($scope.product);
+
+
+             if(typeof $scope.product.CategoryId === 'undefined'){
+              $scope.alertmessage="Please Select Category";
+              $("#alertmessage").show('slow');
+             }
+             else{
+
+             $scope.product.CountryId = window.localStorage.getItem('User_Location');
+             $scope.product.UserId = window.localStorage.getItem('User_Id');
+             $scope.product.BuyerEmail = window.localStorage.getItem('User_Email');
+           // console.log($scope.attachment.images);
+            if (Object.keys($scope.attachment).length>0) {
+                $scope.product.image = $scope.attachment.images[0];
+              }else{
+                $scope.product.image = '';
+              }
+
+            $http.post(baseurl + 'requestproduct/',$scope.product).success(function(res) {
+
+                  $('#imagepreview').children().remove();
+                  $('.form-group select').val('');
+                  
+                  document.addproduct.reset(); 
+                  $("#addproduct").hide();
+                  // $scope.spec = {};
+                  // $scope.spec.ProductId = res.value;
+                  $("#thankyoudiv").show('slow');
+
+
+                }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+                });
+
+             }
+
+    }  
+
+
+
     $scope.saveproduct = function(product) {             
 
             // console.log($scope.product);

@@ -16,6 +16,7 @@ var CRUD = require('mysql-crud');
 var consultCRUD = CRUD(db, 'contact');
 var userCRUD = CRUD(db, 'tbl_Suppliers');
 var productCRUD = CRUD(db, 'tbl_Products');
+var reqproductCRUD = CRUD(db, 'tbl_Requested_Products');
 var specificationCrud = CRUD(db, 'tbl_ProductSpecification');
 var wishlistCrud = CRUD(db, 'tbl_ShortlistedProducts');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
@@ -74,6 +75,97 @@ exports.addtowishlist = function (req, res) {
 
         if (!err) 
         {
+            var resdata = {
+                status: true,
+                value:data.insertId,
+                message: 'Details successfully added'
+            };
+
+            res.jsonp(resdata);
+        }
+        else
+        {
+            var resdata = {
+                status: false,
+                error: err,
+                message: 'Error: Details not successfully added. '
+            };
+
+            res.jsonp(resdata);
+        }
+    });
+};
+
+
+exports.requestproduct = function (req, res) {
+
+    // console.log(req.body.imagename)
+    verifycode = randomString();
+     if (req.body.image) {
+         var imagedata = req.body.image;
+         var matches = "";
+
+         function decodeBase64Image(dataString) {
+             var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                 response = {};
+             if (matches.length !== 3) {
+                 return new Error('Invalid input string');
+             }
+             response.type = matches[1];
+             response.data = new Buffer(matches[2], 'base64');
+             return response;
+         }
+         var decodedImg = decodeBase64Image(imagedata);
+         var imageBuffer = decodedImg.data;
+         var type = decodedImg.type;
+         fileName = req.body.UserId+'_'+verifycode+'_'+req.body.imagename;
+         fs.writeFileSync('www/uploads/RequestedProduct/' + fileName, imageBuffer, 'utf8');
+     }else {
+         fileName = '';
+         console.log("image not present");
+     }
+    
+    //console.log(req.body.TypeId.TypeId);
+
+    var createObj = {
+        "ProductName" :  req.body.name,
+        "Description": req.body.description || "",
+        "ExpectedPrice":req.body.price || "",
+        "Image1": fileName || "",
+        "CountryId" : req.body.CountryId,
+        "CategoryId" : req.body.CategoryId,
+        "SubCatId" : req.body.SubCatId,
+        "BuyerId": req.body.UserId || "",  
+        "Currency" : req.body.currency    
+    };
+    // console.log("after", createObj);
+
+    reqproductCRUD.create(createObj, function (err, data) {
+
+        if (!err) 
+        {
+
+                             //  var seller = req.body.SupEmail;
+                             //  var subject = "Tradeexchange.co - New Product";
+                             //  var mailbody = "Hello,</br><p>New Product Details: </p>"
+
+
+                             // + "<p></br><p><b>Product Name: </b> " + req.body.name + "</p>"
+                             // + "</br><p><b> Product Price:</b> " + req.body.currency +' '+ req.body.price + "</p>"
+                             // + "</br><p><b> In Stock: </b> " + req.body.quantity + "</p>"
+                             // + "</br><p><b> Description :</b> " + req.body.description + "</p>"
+                             // // + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
+
+                             // + "<p></br><p><b></p>"
+
+                             // + "Thanks, tradeexchange";
+
+                             // // send_mail( agentemail, subject, mailbody );
+                             // // send_mail( officeremail, subject, mailbody );
+                             // // console.log('buyer-'+buyer);
+                             // // console.log('seller-'+seller);
+                             // send_mail( seller, subject, mailbody );
+
             var resdata = {
                 status: true,
                 value:data.insertId,
