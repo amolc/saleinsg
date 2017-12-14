@@ -1400,12 +1400,20 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       //alert('hi');
       //console.log($scope.termsli); 
+        var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.order.sellercountry = data.CountryTitle;
+            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
+            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+
       var orderId = $scope.order.OrderId;
       var date = new Date();
       var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
       var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
       dateToday = messagedate+' '+messagetime;
       $scope.data = {};
+      $scope.data.order = $scope.order;
       $scope.data.terms = $scope.termsli;
       $scope.data.datetime = dateToday ;
       $scope.data.date = messagedate ;
@@ -1419,19 +1427,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               window.location.href = 'seller-order-details.html?id='+orderId;  
 
       });    
+
+    }); 
        
-     }
+  }
 
      $scope.buyerterms = function(){
 
       //alert('hi');
       //console.log($scope.termsli); 
+      var buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.order.buyercountry = data.CountryTitle;
+            $scope.order.buyername = window.sessionStorage.getItem('User_Name');
+            $scope.order.buyeremail = window.sessionStorage.getItem('User_Email');
+
       var orderId = $scope.order.OrderId;
       var date = new Date();
       var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
       var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
       dateToday = messagedate+' '+messagetime;
       $scope.data = {};
+      $scope.data.order = $scope.order;
       $scope.data.terms = $scope.termsli;
       $scope.data.datetime = dateToday ;
       $scope.data.date = messagedate ;
@@ -1444,7 +1462,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
               window.location.href = 'buyer-order-details.html?id='+orderId;  
 
-      });    
+      });  
+          });   
        
      }
 
