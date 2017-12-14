@@ -1535,6 +1535,40 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        
      }
 
+     $scope.buyerdelete = function(){
+
+      //alert('hi');
+      //console.log($scope.termsli);
+          var buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
+          $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data, status) {
+           // console.log(data);
+            $scope.order.buyercountry = data.CountryTitle;
+            $scope.order.buyername = window.localStorage.getItem('User_Name');
+            $scope.order.buyeremail = window.localStorage.getItem('User_Email');  
+            var orderId = $scope.order.OrderId;
+            var date = new Date();
+            var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+            var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+            dateToday = messagedate+' '+messagetime;
+            $scope.data = {};
+            $scope.data.terms = $scope.termslist;
+            $scope.data.order = $scope.order;
+            $scope.data.datetime = dateToday ;
+            $scope.data.date = messagedate ;
+            $scope.data.date = messagedate ;
+
+            //console.log($scope.data);
+            $http.post(baseurl + 'buyerdelete/',$scope.data).success(function(data, status) {
+
+                    window.location.href = 'buyer-order-details.html?id='+orderId;  
+
+            });    
+
+               }); 
+      
+       
+     }
+
      $scope.getcurrency = function(){
 
           $scope.product = {};
@@ -1780,6 +1814,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    //alert(id);
                    window.localStorage.setItem('Other_User_Id',id[1]);
                    window.localStorage.setItem('Conversation_Product_Id',productid[1]);
+                   var ProductId = productid[1];
+
+                   $http.get(baseurl + 'getProductName/'+ProductId).success(function(data, status) {
+                     // console.log(data);
+                      $scope.ProductName = data.ProductName;
+
+                   });
                    $scope.conversation();
                    
             }
@@ -1788,6 +1829,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.conversationlist = data;
               window.localStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
               window.localStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
+               var ProductId = $scope.conversationlist[0].ProductId;
+
+                   $http.get(baseurl + 'getProductName/'+ProductId).success(function(data, status) {
+                     // console.log(data);
+                      $scope.ProductName = data.ProductName;
+
+                   });
               //$scope.conversation();
               $scope.conversation();
             }

@@ -821,6 +821,18 @@ exports.getcountry = function (req, res) {
     
 };
 
+exports.getProductName = function (req, res) {
+
+  var ProductId = req.params.id;
+   var sql = "SELECT `ProductName` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
+   // console.log(sql);
+  // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+    
+};
+
 exports.getAllcurrency = function (req, res) {
 
    var sql = "SELECT `CountryCurrency` FROM `tbl_Currency`";

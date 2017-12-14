@@ -65,6 +65,7 @@ app.get('/api/featuredseller', contact.featuredseller);
 
 app.get('/api/getcurrency/:id', contact.getcurrency);
 app.get('/api/getcountry/:id', contact.getcountry);
+app.get('/api/getProductName/:id', contact.getProductName);
 app.get('/api/getAllcurrency/', contact.getAllcurrency);
 app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
@@ -73,6 +74,7 @@ app.get('/api/filterbycountry/:id', contact.filterbycountry);
 app.post('/api/filterbyCouCat', contact.filterbyCouCat);
 app.post('/api/filterbyCatSub', contact.filterbyCatSub);
 app.post('/api/filterbyall', contact.filterbyall);
+
 
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
@@ -107,6 +109,7 @@ app.post('/api/addTerms', buyer.addTerms);
 app.get('/api/getbuyerOrderDetails/:id', buyer.getbuyerOrderDetails);
 app.post('/api/buyerTerms', buyer.buyerTerms);
 app.post('/api/buyerapprove', buyer.buyerapprove);
+app.post('/api/buyerdelete', buyer.buyerdelete);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
