@@ -551,9 +551,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
              else{
 
-             $scope.product.CountryId = window.localStorage.getItem('User_Location');
              $scope.product.UserId = window.localStorage.getItem('User_Id');
              $scope.product.BuyerEmail = window.localStorage.getItem('User_Email');
+
+              $scope.product.CountryId = parseInt(window.localStorage.getItem('User_Location'));
+              $http.get(baseurl + 'getcountry/'+$scope.product.CountryId).success(function(data, status) {
+               // console.log(data);
+                $scope.product.buyercountry = data.CountryTitle;
+                $scope.product.fullname = window.localStorage.getItem('User_Name');
              var date = new Date();
              var date1 = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
              var datetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
@@ -565,6 +570,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               }else{
                 $scope.product.image = '';
               }
+
+              console.log($scope.product);
 
             $http.post(baseurl + 'requestproduct/',$scope.product).success(function(res) {
 
@@ -581,6 +588,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 }).error(function() {
                       // alert("Please check your internet connection or data source..");
                 });
+
+             });
+
 
              }
 

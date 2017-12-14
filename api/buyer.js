@@ -99,7 +99,7 @@ exports.addtowishlist = function (req, res) {
 
 exports.requestproduct = function (req, res) {
 
-    // console.log(req.body.imagename)
+    // console.log(req.body)
     verifycode = randomString();
      if (req.body.image) {
          var imagedata = req.body.image;
@@ -121,7 +121,7 @@ exports.requestproduct = function (req, res) {
          fileName = req.body.UserId+'_'+verifycode+'_'+req.body.imagename;
          fs.writeFileSync('www/uploads/RequestedProduct/' + fileName, imageBuffer, 'utf8');
      }else {
-         fileName = '';
+         fileName = 'noimg.png';
          console.log("image not present");
      }
     
@@ -145,7 +145,7 @@ exports.requestproduct = function (req, res) {
         if (!err) 
         {
 
-                               var to = 'komal.gaikwad@fountaintechies.com';
+                               var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
                                var subject = "Tradeexchange.co - Product Request";
                             var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
@@ -234,8 +234,6 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 10px; padding-left: 10px;">\
 <div style="font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;line-height:120%;color:#555555; padding-right: 0px; padding-left: 0px; padding-top: 15px; padding-bottom: 15px;">\
 <div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.date+'</strong></span></p>\
-<p style="margin: 25px 0px 0px; font-size: 13px; line-height: 14px; text-align: right; text-transform: uppercase; font-weight: 600;">Order Status : <span style="color: red;">Pending</span>\
-</p>\
 </div>\
 </div>\
 </div>\
@@ -265,7 +263,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 5px; padding-left: 5px;">\
 <div style="font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;color:#52BAD5; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 5px;">\
-<div style="font-size:12px;line-height:14px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;color:#52BAD5;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 20px; line-height: 24px;"><strong><span style="line-height: 24px; font-size: 20px;">Thank You For Placing Order!</span></strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"></p></div>\
+<div style="font-size:12px;line-height:14px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;color:#52BAD5;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 20px; line-height: 24px;"><strong><span style="line-height: 24px; font-size: 20px;">New Product Request!</span></strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"></p></div>\
 </div>\
 </div>\
 </div>\
@@ -280,16 +278,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="color:#000000;line-height:120%;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
-<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 18px; line-height: 21px;"><strong>Shipping Address</strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Name : </b>'+req.body.fullname+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Address Line 1 : </b>'+req.body.address1+' <br><b>Address Line 2 :</b> '+req.body.address2+' <br><b>Postal Code :</b> '+req.body.postalcode+'<br><b>Country : </b>'+req.body.country+'<br></span></p></div>\
-</div>\
-</div>\
-</div>\
-</div>\
-<div class="col num6" style="max-width: 320px;min-width: 310px;display: table-cell;vertical-align: top;">\
-<div style="background-color: transparent; width: 100% !important;">\
-<div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
-<div style="color:#000000;line-height:120%;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
-<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: right"><strong><span style="font-size: 18px; line-height: 21px;">Seller Details</span></strong><br></p><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><b>Name :</b> '+req.body.SupFirstName+' '+req.body.SupLastName+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: right"><span style="font-size: 14px; line-height: 16px;"> <b>Country :</b> '+req.body.CountryTitle+'<br><br></span></p></div>\
+<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 18px; line-height: 21px;"><strong>Buyer Details</strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Name : </b>'+req.body.fullname+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Country : </b>'+req.body.buyercountry+'<br></span></p></div>\
 </div>\
 </div>\
 </div>\
@@ -323,13 +312,13 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
-<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/RequestedProduct/'+image+'" class="img-responsive"></div>\
+<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/RequestedProduct/'+fileName+'" class="img-responsive"></div>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.name+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.Currency+' '+req.body.ExpectedPrice+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.currency+' '+req.body.price+'</p>\
 </td>\
 </tr>\
 </tbody>\
@@ -349,6 +338,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
 <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
+<p><b>Product Description :</b> <br/>'+req.body.description+'</p>\
 </div>\
 </div>\
 </div>\
