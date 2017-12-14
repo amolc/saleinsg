@@ -738,6 +738,17 @@ exports.filterbycountry = function (req, res) {
     });
 };
 
+exports.filterbyseller = function (req, res) {
+
+    var id = req.params.id;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`SupplierId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+
 exports.filterbyCouCat = function (req, res) {
 
     var CountryId = req.body.CountryId;
@@ -761,12 +772,35 @@ exports.filterbyCatSub = function (req, res) {
     });
 };
 
+exports.filterbySelCat = function (req, res) {
+
+    var SellerId = req.body.SellerId;
+    var CategoryId = req.body.CategoryId;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 exports.filterbyall = function (req, res) {
 
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
     var SubCatId = req.body.SubCatId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
+    //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.filterallbyseller = function (req, res) {
+
+    var SellerId = req.body.SellerId;
+    var CategoryId = req.body.CategoryId;
+    var SubCatId = req.body.SubCatId;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);

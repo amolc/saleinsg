@@ -71,10 +71,12 @@ app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.get('/api/filterbycategory/:id', contact.filterbycategory);
 app.get('/api/filterbycountry/:id', contact.filterbycountry);
+app.get('/api/filterbyseller/:id', contact.filterbyseller);
 app.post('/api/filterbyCouCat', contact.filterbyCouCat);
 app.post('/api/filterbyCatSub', contact.filterbyCatSub);
+app.post('/api/filterbySelCat', contact.filterbySelCat);
 app.post('/api/filterbyall', contact.filterbyall);
-
+app.post('/api/filterallbyseller', contact.filterallbyseller);
 
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);

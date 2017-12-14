@@ -704,6 +704,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           window.localStorage.removeItem('filter_country');
           window.localStorage.removeItem('filter_category');
           window.localStorage.removeItem('filter_subcat');
+          window.localStorage.removeItem('filter_seller');
+          
       }
 
       $scope.filter = {};
@@ -745,11 +747,25 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
         });
 
       }
+      else if (id[0]=='seller') 
+      {
+
+        $http.get(baseurl + 'filterbyseller/'+id[1]).success(function(data, status) {
+
+             $scope.productslist = data;
+             window.localStorage.setItem('filter_seller',id[1]);
+             $scope.SellerId = id[1];
+                     
+        });
+
+      }
 
        if (window.localStorage.getItem('filter_country')) 
            $scope.CountryId = window.localStorage.getItem('filter_country');
        if (window.localStorage.getItem('filter_category')) 
            $scope.CategoryId = window.localStorage.getItem('filter_category');
+       if (window.localStorage.getItem('filter_seller')) 
+            $scope.SellerId = window.localStorage.getItem('filter_seller');
 
           
 
@@ -807,7 +823,28 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            if (window.localStorage.getItem('filter_subcat')) 
               $scope.SubCatId = window.localStorage.getItem('filter_subcat');
 
-        }          
+        }
+
+         if (id1[0]=='seller' && id2[0]=='category') 
+        {
+
+           $scope.filter.SellerId = id1[1];
+           $scope.filter.CategoryId = id2[1];
+           $http.post(baseurl + 'filterbySelCat',$scope.filter).success(function(data, status) {
+
+               $scope.productslist = data;  
+               window.localStorage.setItem('filter_seller',id1[1]);
+               window.localStorage.setItem('filter_category',id2[1]);  
+               $scope.SellerId = id1[1];
+               $scope.CategoryId = id2[1];
+          });
+
+           if (window.localStorage.getItem('filter_seller')) 
+            $scope.SellerId = window.localStorage.getItem('filter_seller');
+           if (window.localStorage.getItem('filter_category')) 
+              $scope.CategoryId = window.localStorage.getItem('filter_category');
+
+        }           
 
      }
 
@@ -842,6 +879,31 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
            if (window.localStorage.getItem('filter_country')) 
            $scope.CountryId = window.localStorage.getItem('filter_country');
+           if (window.localStorage.getItem('filter_category')) 
+           $scope.CategoryId = window.localStorage.getItem('filter_category');
+           if (window.localStorage.getItem('filter_subcat')) 
+           $scope.SubCatId = window.localStorage.getItem('filter_subcat');
+
+        } 
+         if (id1[0]=='seller' && id2[0]=='category' && id3[0]=='subcategory') 
+        {
+
+           $scope.filter.SellerId = id1[1];
+           $scope.filter.CategoryId = id2[1];
+           $scope.filter.SubCatId = id3[1];
+           $http.post(baseurl + 'filterallbyseller',$scope.filter).success(function(data, status) {
+
+               $scope.productslist = data;  
+               window.localStorage.setItem('filter_seller',id1[1]);
+               window.localStorage.setItem('filter_category',id2[1]);
+               window.localStorage.setItem('filter_subcat',id3[1]);    
+               $scope.SellerId = id1[1];
+               $scope.CategoryId = id2[1];
+               $scope.SubCatId = id3[1];
+          });
+
+           if (window.localStorage.getItem('filter_seller')) 
+           $scope.SellerId = window.localStorage.getItem('filter_seller');
            if (window.localStorage.getItem('filter_category')) 
            $scope.CategoryId = window.localStorage.getItem('filter_category');
            if (window.localStorage.getItem('filter_subcat')) 

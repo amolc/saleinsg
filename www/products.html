@@ -211,7 +211,7 @@
                         </h2>
                     </div>
                     <div class="col-sm-3">
-                        <div class="filter-panle">
+                        <div class="filter-panle" ng-if="!SellerId">
                             <div class="panle-head">
                                 <h4>Country</h4>
                             </div>
@@ -268,10 +268,13 @@
                                     <div class="panel panel-default" ng-repeat="cat in categorieslist">
                                           <div class="panel-heading" role="tab" id="headingOne_{{cat.CategoryId}}">
                                             <h4 class="panel-title">
-                                        <a ng-if="CountryId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
+                                        <a ng-if="CountryId==null && SellerId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
                                           {{cat.CategoryTitle}}
                                         </a>
                                          <a ng-if="CountryId!=null" data-parent="#accordion" href="products.html?country={{CountryId}}&category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                        <a ng-if="SellerId!=null" data-parent="#accordion" href="products.html?seller={{SellerId}}&category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
                                           {{cat.CategoryTitle}}
                                         </a>
                                       </h4>
@@ -282,9 +285,11 @@
                                                 <div class="sub-cat-list">
                                                     <ul  ng-init="getSubCatlist(CategoryId)">
                                                        <li ng-repeat="sc in subcatlist">
-                                                       <a ng-if="CountryId==null" href="products.html?category={{cat.CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <a ng-if="CountryId==null && SellerId==null" href="products.html?category={{cat.CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
                                                        <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
                                                        <a ng-if="CountryId!=null" href="products.html?country={{CountryId}}&category={{CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       <a ng-if="SellerId!=null" href="products.html?seller={{SellerId}}&category={{CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
                                                        <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
                                                        </li>
 

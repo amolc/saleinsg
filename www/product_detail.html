@@ -205,7 +205,8 @@
                                                     <h2 class="pro-title">{{product.ProductName}}</h2>
                                                     <p class="pro-saler-name">
                                                         <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
-                                                        <span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span>
+                                                        <a href="products.html?seller={{product.SupplierId}}"><span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span></a>
+                                                        
                                                     </p>
                                                     <input type="hidden" name="basecurrency" ng-model="product.Currency">
                                                     <input type="hidden" name="baseprice" ng-model="product.Price">
