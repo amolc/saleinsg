@@ -169,22 +169,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
                        // console.log(data);
 
-                        window.sessionStorage.setItem('User_Id', data.value.SupId);
-                        window.sessionStorage.setItem('User_Email', data.value.Email);
-                        window.sessionStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
-                        window.sessionStorage.setItem('User_Phone', data.value.Phone);
-                        window.sessionStorage.setItem('User_Location', data.value.CountryId);
-                        window.sessionStorage.setItem('User_Image', data.value.ProfilePic);
-                        //console.log(window.sessionStorage.getItem('UserId'));
-                        //console.log(window.sessionStorage.getItem('UserId'));                        
+                        window.localStorage.setItem('User_Id', data.value.SupId);
+                        window.localStorage.setItem('User_Email', data.value.Email);
+                        window.localStorage.setItem('User_Name', data.value.FirstName+' '+data.value.LastName);
+                        window.localStorage.setItem('User_Phone', data.value.Phone);
+                        window.localStorage.setItem('User_Location', data.value.CountryId);
+                        window.localStorage.setItem('User_Image', data.value.ProfilePic);
+                        //console.log(window.localStorage.getItem('UserId'));
+                        //console.log(window.localStorage.getItem('UserId'));                        
 
                        // window.location = "../index.html";
-                       if (window.sessionStorage.getItem("GoToPage") === null) {
+                       if (window.localStorage.getItem("GoToPage") === null) {
                                  window.location = "dashboard.html";
                         }
                         else
                         {
-                           window.location = window.sessionStorage.getItem("GoToPage")
+                           window.location = window.localStorage.getItem("GoToPage")
                         }
                        
                     }
@@ -208,12 +208,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.User_Id = 0;
                // console.log($scope.User_Id);
 
-                //console.log(window.sessionStorage.getItem('User_Id'));
-                if (window.sessionStorage.getItem('User_Id')>0) 
+                //console.log(window.localStorage.getItem('User_Id'));
+                if (window.localStorage.getItem('User_Id')>0) 
                 {
-                    $scope.User_Id =window.sessionStorage.getItem('User_Id');
-                    $scope.User_Name =window.sessionStorage.getItem('User_Name');
-                    $scope.User_Image =window.sessionStorage.getItem('User_Image');
+                    $scope.User_Id =window.localStorage.getItem('User_Id');
+                    $scope.User_Name =window.localStorage.getItem('User_Name');
+                    $scope.User_Image =window.localStorage.getItem('User_Image');
                     if ($scope.User_Image == 'null') 
                     {
                         $scope.User_Image = "no-img.jpg"
@@ -227,7 +227,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.getUserInfo = function() {
 
-       $scope.User_Id =window.sessionStorage.getItem('User_Id');
+       $scope.User_Id =window.localStorage.getItem('User_Id');
       $http.get(baseurl + 'userinfo/'+$scope.User_Id).success(function (res) {
 
             if (res.status == 'false') {
@@ -267,7 +267,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
    $scope.updateprofile = function(info,attachment) {      
 
-           $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+           $scope.info.User_Id = window.localStorage.getItem('User_Id');
            $scope.info.attachment = attachment;
           // console.log($scope.info.attachment);
           // $scope.info.FirstName = $scope.FirstName;
@@ -296,7 +296,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                         else
                         {
                             document.editprofile.reset(); 
-                            window.sessionStorage.setItem('User_Image',data.value)
+                            window.localStorage.setItem('User_Image',data.value)
                             window.location.href = "my-profile.html";
                             
                             //$("#formRegistration").hide();
@@ -310,7 +310,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.updatebankdetails = function(info) {      
 
-          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+          $scope.info.User_Id = window.localStorage.getItem('User_Id');
 
           $http.post(baseurl + 'updatebankdetails', $scope.info).success(function(data, status) {
 
@@ -336,7 +336,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.updatepassword = function(info) {      
 
-          $scope.info.User_Id = window.sessionStorage.getItem('User_Id');
+          $scope.info.User_Id = window.localStorage.getItem('User_Id');
 
            if (info.Password!=info.opassword) 
           {
@@ -381,15 +381,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.logout = function() {             
 
-          //window.sessionStorage.clear();
-          window.sessionStorage.removeItem('User_Id');
-          window.sessionStorage.removeItem('User_Email');
-          window.sessionStorage.removeItem('User_Name');
-          window.sessionStorage.removeItem('User_Phone');
-          window.sessionStorage.removeItem('User_Location');
-          window.sessionStorage.removeItem('wishlist');
-          window.sessionStorage.removeItem('Other_User_Id');
-          window.sessionStorage.removeItem('User_Image');
+          //window.localStorage.clear();
+          window.localStorage.removeItem('User_Id');
+          window.localStorage.removeItem('User_Email');
+          window.localStorage.removeItem('User_Name');
+          window.localStorage.removeItem('User_Phone');
+          window.localStorage.removeItem('User_Location');
+          window.localStorage.removeItem('wishlist');
+          window.localStorage.removeItem('Other_User_Id');
+          window.localStorage.removeItem('User_Image');
           location.href = "index.html"
     }  
 
@@ -551,9 +551,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              }
              else{
 
-             $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
-             $scope.product.UserId = window.sessionStorage.getItem('User_Id');
-             $scope.product.SupEmail = window.sessionStorage.getItem('User_Email');
+             $scope.product.CountryId = window.localStorage.getItem('User_Location');
+             $scope.product.UserId = window.localStorage.getItem('User_Id');
+             $scope.product.SupEmail = window.localStorage.getItem('User_Email');
            // console.log($scope.attachment.images);
             if (Object.keys($scope.attachment).length>0) {
                 $scope.product.image = $scope.attachment.images[0];
@@ -592,9 +592,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            //   }
            //   else{
 
-           //   $scope.product.CountryId = window.sessionStorage.getItem('User_Location');
-           //   $scope.product.UserId = window.sessionStorage.getItem('User_Id');
-           //   $scope.product.SupEmail = window.sessionStorage.getItem('User_Email');
+           //   $scope.product.CountryId = window.localStorage.getItem('User_Location');
+           //   $scope.product.UserId = window.localStorage.getItem('User_Id');
+           //   $scope.product.SupEmail = window.localStorage.getItem('User_Email');
            // // console.log($scope.attachment.images);
             if (Object.keys($scope.attachment).length>0) {
                 $scope.product.image = $scope.attachment.images[0];
@@ -876,7 +876,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      $scope.userproducts = function(){
 
-        $scope.userid =  window.sessionStorage.getItem('User_Id');
+        $scope.userid =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -937,7 +937,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      $scope.buyerorders = function(){
 
 
-        $scope.BuyerId =  window.sessionStorage.getItem('User_Id');
+        $scope.BuyerId =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -953,7 +953,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      $scope.sellerorders = function(){
 
 
-        $scope.SellerId =  window.sessionStorage.getItem('User_Id');
+        $scope.SellerId =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -972,7 +972,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       $('#addtowishlist').hide();
 
-      if (window.sessionStorage.getItem('User_Id')<=0) 
+      if (window.localStorage.getItem('User_Id')<=0) 
       {
           window.location.href = "login.html";
       }
@@ -980,7 +980,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       {
          $scope.wish = {}
          $scope.wish.ProductId = $scope.product.ProductId;
-         $scope.wish.BuyerId =  window.sessionStorage.getItem('User_Id');
+         $scope.wish.BuyerId =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -988,9 +988,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             //console.log(data);
             $scope.added = 1;
-            var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+            var wishlist =JSON.parse(localStorage.getItem("wishlist"));
             wishlist.push( $scope.product.ProductId);
-            window.sessionStorage.setItem('wishlist',JSON.stringify(wishlist));
+            window.localStorage.setItem('wishlist',JSON.stringify(wishlist));
             $('#removefromwishlist').show();
         });
 
@@ -1003,7 +1003,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $('#removefromwishlist').hide();
        $scope.wish = {}
          $scope.wish.ProductId = $scope.product.ProductId;
-         $scope.wish.BuyerId =  window.sessionStorage.getItem('User_Id');
+         $scope.wish.BuyerId =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -1011,10 +1011,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             //console.log(data);
             $scope.added = 0;
-            var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+            var wishlist =JSON.parse(localStorage.getItem("wishlist"));
             var index = wishlist.indexOf($scope.product.ProductId);
             wishlist.splice(index, 1);
-            window.sessionStorage.setItem('wishlist',JSON.stringify(wishlist));
+            window.localStorage.setItem('wishlist',JSON.stringify(wishlist));
             $('#addtowishlist').show();
         });
     }
@@ -1022,7 +1022,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     $scope.shortlistedproducts = function(){
 
 
-        $scope.BuyerId =  window.sessionStorage.getItem('User_Id');
+        $scope.BuyerId =  window.localStorage.getItem('User_Id');
 
         //console.log($scope.userid);
 
@@ -1036,7 +1036,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 var ProductId = $scope.productslist[i].ProductId;
                 $scope.wishlist.push(ProductId);
             }
-            window.sessionStorage.setItem('wishlist',JSON.stringify($scope.wishlist));
+            window.localStorage.setItem('wishlist',JSON.stringify($scope.wishlist));
         });
 
     }
@@ -1119,12 +1119,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.enquiry.SupId = data.SupplierId;
             $scope.enquiry.SupEmail = data.Email;
             $scope.enquiry.BuyerId = 0;
-            if (window.sessionStorage.getItem('User_Id')>0) 
+            if (window.localStorage.getItem('User_Id')>0) 
             {
-                $scope.enquiry.BuyerId = window.sessionStorage.getItem('User_Id');
-                $scope.enquiry.fullname = window.sessionStorage.getItem('User_Name');
-                $scope.enquiry.email = window.sessionStorage.getItem('User_Email');
-                $scope.enquiry.phonenumber = window.sessionStorage.getItem('User_Phone');
+                $scope.enquiry.BuyerId = window.localStorage.getItem('User_Id');
+                $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
+                $scope.enquiry.email = window.localStorage.getItem('User_Email');
+                $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
             }
        
       });
@@ -1139,7 +1139,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     $scope.productinit = function (req, res) {
 
       $scope.product = {};
-      window.sessionStorage.setItem('index',2);
+      window.localStorage.setItem('index',2);
       $scope.index = 2;
       $scope.product.term = {};
       $scope.product.type = {};
@@ -1164,7 +1164,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             $scope.product = data;
 
-              $scope.product.buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+              $scope.product.buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.product.buyercountry = data.CountryTitle;
@@ -1208,12 +1208,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             });
 
           
-            if (window.sessionStorage.getItem('User_Id')>0) 
+            if (window.localStorage.getItem('User_Id')>0) 
             {
-                $scope.product.BuyerId = window.sessionStorage.getItem('User_Id');
-                $scope.product.fullname = window.sessionStorage.getItem('User_Name');
-                $scope.product.email = window.sessionStorage.getItem('User_Email');
-                $scope.product.phonenumber = window.sessionStorage.getItem('User_Phone');
+                $scope.product.BuyerId = window.localStorage.getItem('User_Id');
+                $scope.product.fullname = window.localStorage.getItem('User_Name');
+                $scope.product.email = window.localStorage.getItem('User_Email');
+                $scope.product.phonenumber = window.localStorage.getItem('User_Phone');
             }
 
             if (window.localStorage.getItem('Recent_Products')==null) 
@@ -1247,7 +1247,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
 
       $scope.added = 0;
-      var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+      var wishlist =JSON.parse(localStorage.getItem("wishlist"));
       for (i = 0; i < wishlist.length; i++) {
          if (wishlist[i]==$scope.product.productId) 
          {
@@ -1303,12 +1303,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       });
 
-          var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          var sellercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.sellercountry = data.CountryTitle;
-            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
-            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+            $scope.order.sellername = window.localStorage.getItem('User_Name');
+            $scope.order.selleremail = window.localStorage.getItem('User_Email');
 
          });
      
@@ -1362,12 +1362,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       });
 
-          var buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          var buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.buyercountry = data.CountryTitle;
-            $scope.order.buyername = window.sessionStorage.getItem('User_Name');
-            $scope.order.buyeremail = window.sessionStorage.getItem('User_Email');
+            $scope.order.buyername = window.localStorage.getItem('User_Name');
+            $scope.order.buyeremail = window.localStorage.getItem('User_Email');
 
          });     
     }
@@ -1381,7 +1381,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      $scope.showterms = function(){
 
           $("#label").show();
-          var index = parseInt(window.sessionStorage.getItem('index'));
+          var index = parseInt(window.localStorage.getItem('index'));
           //alert(index);
          // var content = "<div class='form-group'><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.term["+index+"]'></div><div class='col-md-4'><input class='form-group form-control' type='text' ng-model='product.type["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.percentage["+index+"]'></div><div class='col-md-2'><input class='form-group form-control' type='text' ng-model='product.amount["+index+"]'></div></div>";
           $("#termsdiv"+index).show();
@@ -1393,19 +1393,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $scope.product.remove[index] = 0;
           $scope.product.type[index] = "Trade Exchange Escrow (TEE)";
           index = index+1;
-          window.sessionStorage.setItem('index',index);                
+          window.localStorage.setItem('index',index);                
      }
 
      $scope.sellerterms = function(){
 
       //alert('hi');
       //console.log($scope.termsli); 
-        var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+        var sellercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.sellercountry = data.CountryTitle;
-            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
-            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+            $scope.order.sellername = window.localStorage.getItem('User_Name');
+            $scope.order.selleremail = window.localStorage.getItem('User_Email');
 
       var orderId = $scope.order.OrderId;
       var date = new Date();
@@ -1436,12 +1436,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       //alert('hi');
       //console.log($scope.termsli); 
-      var buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+      var buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.buyercountry = data.CountryTitle;
-            $scope.order.buyername = window.sessionStorage.getItem('User_Name');
-            $scope.order.buyeremail = window.sessionStorage.getItem('User_Email');
+            $scope.order.buyername = window.localStorage.getItem('User_Name');
+            $scope.order.buyeremail = window.localStorage.getItem('User_Email');
 
       var orderId = $scope.order.OrderId;
       var date = new Date();
@@ -1471,12 +1471,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       //alert('hi');
       //console.log($scope.termsli);
-      var sellercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+      var sellercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.sellercountry = data.CountryTitle;
-            $scope.order.sellername = window.sessionStorage.getItem('User_Name');
-            $scope.order.selleremail = window.sessionStorage.getItem('User_Email');
+            $scope.order.sellername = window.localStorage.getItem('User_Name');
+            $scope.order.selleremail = window.localStorage.getItem('User_Email');
             var orderId = $scope.order.OrderId;
             var date = new Date();
             var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -1505,12 +1505,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       //alert('hi');
       //console.log($scope.termsli);
-          var buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          var buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.order.buyercountry = data.CountryTitle;
-            $scope.order.buyername = window.sessionStorage.getItem('User_Name');
-            $scope.order.buyeremail = window.sessionStorage.getItem('User_Email');  
+            $scope.order.buyername = window.localStorage.getItem('User_Name');
+            $scope.order.buyeremail = window.localStorage.getItem('User_Email');  
             var orderId = $scope.order.OrderId;
             var date = new Date();
             var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -1538,7 +1538,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      $scope.getcurrency = function(){
 
           $scope.product = {};
-          $scope.product.CountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $scope.product.CountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcurrency/'+$scope.product.CountryId).success(function(data, status) {
 
            // console.log(data);
@@ -1695,7 +1695,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   //     $scope.PId = PId;
   //     alert($scope.PId);
   //     $scope.added = 0
-  //     var wishlist =JSON.parse(sessionStorage.getItem("wishlist"));
+  //     var wishlist =JSON.parse(localStorage.getItem("wishlist"));
   //     for (i = 0; i < wishlist.length; i++) {
   //        alert(ProductId);
   //        if (wishlist[i]==ProductId) 
@@ -1738,9 +1738,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   $scope.conversation = function () {
 
       $scope.conversation = {};
-      $scope.conversation.userid = window.sessionStorage.getItem('User_Id');
-      $scope.conversation.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-      $scope.conversation.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+      $scope.conversation.userid = window.localStorage.getItem('User_Id');
+      $scope.conversation.OtherUserId = window.localStorage.getItem('Other_User_Id');
+      $scope.conversation.ProductId = window.localStorage.getItem('Conversation_Product_Id');
      // console.log($scope.conversation);
        
       $http.post(baseurl + 'conversation/',$scope.conversation).success(function(data, status) {
@@ -1761,7 +1761,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
    $scope.conversationlist = function () {
 
-      $scope.userid =  window.sessionStorage.getItem('User_Id');
+      $scope.userid =  window.localStorage.getItem('User_Id');
        
       $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
 
@@ -1778,16 +1778,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var id = urlpart[0].split('=');
                    var productid = urlpart[1].split('=');
                    //alert(id);
-                   window.sessionStorage.setItem('Other_User_Id',id[1]);
-                   window.sessionStorage.setItem('Conversation_Product_Id',productid[1]);
+                   window.localStorage.setItem('Other_User_Id',id[1]);
+                   window.localStorage.setItem('Conversation_Product_Id',productid[1]);
                    $scope.conversation();
                    
             }
             else
             {
               $scope.conversationlist = data;
-              window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
-              window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
+              window.localStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+              window.localStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
               //$scope.conversation();
               $scope.conversation();
             }
@@ -1807,7 +1807,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      // console.log(filename);
       if (filename == 'dashboard.html') 
       {
-          $scope.userid =  window.sessionStorage.getItem('User_Id');
+          $scope.userid =  window.localStorage.getItem('User_Id');
        
           $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
            
@@ -1821,13 +1821,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    var id = urlpart[0].split('=');
                    var productid = urlpart[1].split('=');
                    //alert(id);
-                   window.sessionStorage.setItem('Other_User_Id',id[1]);
-                   window.sessionStorage.setItem('Conversation_Product_Id',productid[1]);
+                   window.localStorage.setItem('Other_User_Id',id[1]);
+                   window.localStorage.setItem('Conversation_Product_Id',productid[1]);
                     $scope.conv = {};
-                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
-                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-                    $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
-                      window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
+                    $scope.conv.userid = window.localStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.localStorage.getItem('Other_User_Id');
+                    $scope.conv.ProductId = window.localStorage.getItem('Conversation_Product_Id');
+                      window.localStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
                    // console.log($scope.conversation);
                      
                     $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
@@ -1840,12 +1840,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             else
             {
               $scope.conversationlist = data;
-              window.sessionStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
-              window.sessionStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
+              window.localStorage.setItem('Other_User_Id',$scope.conversationlist[0].SupId);
+              window.localStorage.setItem('Conversation_Product_Id',$scope.conversationlist[0].ProductId);
               $scope.conv = {};
-              $scope.conv.userid = window.sessionStorage.getItem('User_Id');
-              $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-              $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+              $scope.conv.userid = window.localStorage.getItem('User_Id');
+              $scope.conv.OtherUserId = window.localStorage.getItem('Other_User_Id');
+              $scope.conv.ProductId = window.localStorage.getItem('Conversation_Product_Id');
                    // console.log($scope.conversation);
                      
                     $http.post(baseurl + 'conversation/',$scope.conv).success(function(data, status) {
@@ -1872,16 +1872,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     //console.log(dateToday);
 
           
-      $scope.message.userid = window.sessionStorage.getItem('User_Id');
-      $scope.message.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-      $scope.message.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+      $scope.message.userid = window.localStorage.getItem('User_Id');
+      $scope.message.OtherUserId = window.localStorage.getItem('Other_User_Id');
+      $scope.message.ProductId = window.localStorage.getItem('Conversation_Product_Id');
       $scope.message.date = dateToday;
      // console.log($scope.conversation);
        
       $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
 
            document.sendmsg.reset();
-          //  var username = window.sessionStorage.getItem('User_Name');
+          //  var username = window.localStorage.getItem('User_Name');
           //  var content = "<li class='left clearfix'><span class='chat-img1 pull-left'><img src='uploads/ProfilePic/no-img.jpg' alt='User Avatar' class='img-circle'></span><div class='chat-body1 clearfix'><h6>"+username+"</h6><p>"+$scope.message.message+"</p><div class='chat_time pull-right'>"+data.date+"</div></div></li>";
           //  $('#chat_area').append(content);
           // var wtf    = $('.chat_area');
@@ -1889,9 +1889,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           // wtf.scrollTop(height);
 
            $scope.conv = {};
-                    $scope.conv.userid = window.sessionStorage.getItem('User_Id');
-                    $scope.conv.OtherUserId = window.sessionStorage.getItem('Other_User_Id');
-                    $scope.conv.ProductId = window.sessionStorage.getItem('Conversation_Product_Id');
+                    $scope.conv.userid = window.localStorage.getItem('User_Id');
+                    $scope.conv.OtherUserId = window.localStorage.getItem('Other_User_Id');
+                    $scope.conv.ProductId = window.localStorage.getItem('Conversation_Product_Id');
 
                    // console.log($scope.conversation);
                      
@@ -1984,7 +1984,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           }
 
 
-          $scope.product.buyercountryId = parseInt(window.sessionStorage.getItem('User_Location'));
+          $scope.product.buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
           $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.product.buyercountry = data.CountryTitle;
