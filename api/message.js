@@ -40,11 +40,15 @@ exports.submitenquiry = function (req, res) {
   {
         var sender = req.body.BuyerId;
         var receiver = req.body.SupId;
+        var ProductId = req.body.productId;
+        var ReqProductId = 0;
   }
   else
   {
         var sender = req.body.SupId;
         var receiver = req.body.BuyerId;
+        var ProductId = 0;
+        var ReqProductId = req.body.productId;
   }
   dateToday = now.format("DD/MM/YYYY hh:mm a");
   enquiryCRUD.create({
@@ -65,9 +69,11 @@ exports.submitenquiry = function (req, res) {
                               var createObj = {
                                 "SenderId" :  sender,
                                 "ReceiverId": receiver,
-                                "ProductId" : req.body.productId,
+                                "ProductId" : ProductId,
+                                "ReqProductId" : ReqProductId,
                                 "Message":req.body.message,
-                                "MessageTime": req.body.date,      
+                                "MessageTime": req.body.date, 
+                                "EnquiryId" : val2.insertId     
                             };
                             // console.log("after", createObj);
 
@@ -183,7 +189,7 @@ exports.sendmessage = function (req, res) {
 
 exports.conversationlist = function (req, res) {
     var UserId = req.params.id;
-    var sql = "select Max(m.MessageId) as Mid,s.`FirstName`,s.`LastName`,s.`SupId`,p.`ProductId`,p.`ProductName` from `tbl_Messages` as m , `tbl_Suppliers` as s , `tbl_Products` as p WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND m.ProductId = p.ProductId AND s.SupId != "+UserId+" GROUP BY p.`ProductId` ORDER By Mid DESC";
+    var sql = "select Max(m.MessageId) as Mid,s.`ProfilePic`,s.`FirstName`,s.`LastName`,s.`SupId`,p.`ProductId`,p.`ProductName` from `tbl_Messages` as m , `tbl_Suppliers` as s , `tbl_Products` as p WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND m.ProductId = p.ProductId AND s.SupId != "+UserId+" GROUP BY p.`ProductId` ORDER By Mid DESC UNION";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -194,7 +200,7 @@ exports.conversation = function (req, res) {
     var UserId = req.body.userid;
     var OtherUserId = req.body.OtherUserId;
     var ProductId = req.body.ProductId;
-    var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId AND m.ProductId = "+ProductId+" GROUP BY Mid ORDER By Mid";
+    var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`ProfilePic`,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId AND m.ProductId = "+ProductId+" GROUP BY Mid ORDER By Mid";
   //  console.log(sql);
     db.query(sql, function (err, data) {
 

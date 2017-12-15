@@ -974,9 +974,11 @@
                   <table id="cart" class="table table-bordered table-condensed">
                       <thead>
                       <tr>
-                        <th style="width:10%">SKU No</th>
-                        <th style="width:28%">Title</th>
-                        <th style="width:25%">Exected Price</th>
+                        <th style="width:8%">SKU No</th>
+                        <th style="width:10%">Buyer Name</th>
+                        <th style="width:10%">Buyer Country</th>
+                        <th style="width:10%">Buying Request</th>
+                        <th style="width:25%">Expected Price</th>
                         <th style="width:15%">Required Quantity</th>
                         <th style="width:22%">Quote Now</th>
                       </tr>
@@ -984,6 +986,8 @@
                     <tbody>
                     <tr ng-repeat="product in reqlist">
                        <td>{{product.ReqProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
                        <td>{{product.ProductName}}</td>
                        <td>{{product.Currency}} {{product.ExpectedPrice}}</td>
                        <td>{{product.ReqQuanity}}</td>

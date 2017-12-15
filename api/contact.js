@@ -699,7 +699,7 @@ exports.allproducts = function (req, res) {
 };
 
 exports.productrequests = function (req, res) {
-    var sql = "SELECT p.`ReqProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`ReqQuanity` FROM `tbl_Requested_Products` as p WHERE p.IsDisabled = '0' GROUP BY p.`ReqProductId` ORDER BY p.`ReqProductId` DESC";
+    var sql = "SELECT p.`ReqProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`ReqQuanity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Requested_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.IsDisabled = '0' GROUP BY p.`ReqProductId` ORDER BY p.`ReqProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
