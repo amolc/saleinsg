@@ -886,7 +886,15 @@ exports.featuredseller = function (req, res) {
     
 };
 
+exports.getsellerinfo = function (req, res) {
 
+  var UserId = req.params.id;
+    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+    
+};
 
 exports.addbankorder = function (req, res) {
 

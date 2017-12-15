@@ -818,6 +818,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              $scope.productslist = data;
              window.localStorage.setItem('filter_seller',id[1]);
              $scope.SellerId = id[1];
+             $http.get(baseurl + 'getsellerinfo/'+$scope.SellerId).success(function(data, status) {
+                   $scope.seller = data;                                           
+              });
+
                      
         });
 
@@ -900,6 +904,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                window.localStorage.setItem('filter_category',id2[1]);  
                $scope.SellerId = id1[1];
                $scope.CategoryId = id2[1];
+                 $http.get(baseurl + 'getsellerinfo/'+$scope.SellerId).success(function(data, status) {
+                   $scope.seller = data;                                           
+              });
+
           });
 
            if (window.localStorage.getItem('filter_seller')) 
@@ -963,6 +971,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                $scope.SellerId = id1[1];
                $scope.CategoryId = id2[1];
                $scope.SubCatId = id3[1];
+                 $http.get(baseurl + 'getsellerinfo/'+$scope.SellerId).success(function(data, status) {
+                   $scope.seller = data;                                           
+              });
+
           });
 
            if (window.localStorage.getItem('filter_seller')) 

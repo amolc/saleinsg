@@ -211,7 +211,7 @@
                         </h2>
                     </div>
                     <div class="col-sm-3">
-                        <div class="filter-panle" ng-if="!SellerId">
+                       <!--  <div class="filter-panle" ng-if="!SellerId">
                             <div class="panle-head">
                                 <h4>Country</h4>
                             </div>
@@ -219,11 +219,7 @@
                                 <div class="cuntry-cate-list">
                                     <div class="main-cat">
                                         <div class="control-group" ng-init="getCountries()">
-                                            <!-- <label class="control control--radio">India
-                                                <input type="radio" name="radio" checked="checked"/>
-<<<<<<< HEAD
-                                                <div class="control__indicator"></div>
-                                            </label> -->
+    
                                             <label ng-if="CategoryId==null" class="control control--radio" ng-repeat="cn in countrylist">
                                             <a href="products.html?country={{cn.CountryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
                                                 {{cn.CountryTitle}}
@@ -246,17 +242,13 @@
                                                 <div class="select-country"></div>
                                             </a>
                                             </label>
-                                           <!--  <label class="control control--radio">Malaysia
-                                                <input type="radio" name="radio"/>
-                                                <div class="select-country"></div>
-                                            </label> -->
-                                            
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                         </div>
-                       <!--   <div class="filter-panle" ng-if="!CountryId">
+                         </div> -->
+                         <div class="filter-panle" ng-if="!CountryId">
                             <div class="panle-head">
                                 <h4>Seller Details</h4>
                             </div>
@@ -268,8 +260,8 @@
                                               <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
                                           </div>
                                              <div class="align-info">
-                              <p><span><b>Seller Name : </b></span><span>{{seller.FirstName}} {{seller.LastName}}</span></p>
-                              <p><span><b>Company Name : </b></span><span>{{seller.CompanyName}}</span></p>
+                              <p><span><b>Name : </b></span><span>{{seller.FirstName}} {{seller.LastName}}</span></p>
+                              <p><span><b>Company : </b></span><span>{{seller.CompanyName}}</span></p>
                               <p><span><b>Country : </b></span><span>{{seller.CountryTitle}}</span></p>
                               <p><span><b>Email : </b></span><span>{{seller.Email}}</span></p>
                               <p><span><b>Contact No : </b></span><span>{{seller.Phone}}</span></p>
@@ -277,7 +269,7 @@
                                     </div>
                                 </div>
                             </div>
-                         </div>  --> 
+                         </div>  
                          <div class="filter-panle">
                             <div class="panle-head">
                                 <h4>Category</h4>
