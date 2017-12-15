@@ -2088,8 +2088,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                       $scope.ProductName = data.ProductName;
 
                    });
-                   $scope.conversation();
-                   
+                   $scope.conversation();                   
             }
             else
             {
