@@ -1892,7 +1892,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.addterm = function(termsli){
        //console.log($scope.termsli);
-       var newterm = {TermsId:0,Type: $scope.termsli[0].Type};
+       if (typeof $scope.termsli !== 'undefined')
+         var newterm = {TermsId:0,Type: $scope.termsli[0].Type};
+       else
+         var newterm = {TermsId:0,Type: 'Trade Exchange Escrow (TEE)'};
        $scope.termsli.push(newterm);
     }  
 
