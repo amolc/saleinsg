@@ -253,7 +253,8 @@
                 <td>{{o.OrderStatus}}</td>
                 <td>{{o.PaymentStatus}}</td>
                 <td><a href="buyer-order-details.html?id={{o.OrderId}}"><i class="fa fa-eye"></i></a></td>
-                <td><a href="javascript:void(0)" ng-if="o.OrderStatus=='Approved'">Pay Now</a></td>
+                <td ng-if="o.OrderStatus=='Approved' && o.Type=='Trade Exchange Escrow (TEE)'"><a href="javascript:void(0)">Pay Now</a></td>
+                <td ng-if="o.OrderStatus=='Approved' && o.Type!='Trade Exchange Escrow (TEE)'">Bank Transfer</td>
               </tr>
             </tbody>
           </table>

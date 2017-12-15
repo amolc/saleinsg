@@ -362,7 +362,7 @@
             </div>
             <div class="row"  ng-repeat="t in termsli">
             <div class="col-sm-3">
-                      <input class=" form-group form-control" type='text' required="" ng-model="t.Terms">
+                      <input class=" form-group form-control" type='text' required="" ng-model="t.Terms" ng-change="changeType2($index)>
                     </div>
                     <div class="col-sm-4">
                       <Select class="form-group form-control" type='text' required="" ng-model='t.Type' >

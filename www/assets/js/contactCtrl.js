@@ -1536,7 +1536,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            $scope.product.type = {};
          }
           $scope.product.remove[index] = 0;
-          $scope.product.type[index] = "Trade Exchange Escrow (TEE)";
+          $scope.product.type[index] = $scope.types;
           index = index+1;
           window.localStorage.setItem('index',index);                
      }
@@ -1820,6 +1820,57 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
          } 
 
+      $scope.changeType= function(){
+
+        $scope.types1 = $scope.types;
+         if (typeof $scope.product.type !== 'undefined' ) 
+         {
+            $.each($scope.product.type, function( key, value ) {
+
+             $scope.product.type[key] = $scope.types;
+
+            });
+          }
+       } 
+
+       $scope.changeType1= function(){
+
+        $scope.types = $scope.types1;
+         if (typeof $scope.product.type !== 'undefined' ) 
+         {
+            $.each($scope.product.type, function( key, value ) {
+
+             $scope.product.type[key] = $scope.types1;
+
+            });
+          }
+       } 
+
+        $scope.changeType2= function(index){
+
+        
+         if (typeof $scope.product !== 'undefined' && typeof $scope.product.type !== 'undefined' ) 
+         {
+            $.each($scope.product.type, function( key, value ) {
+
+             $scope.product.type[key] = $scope.product.type[index];
+
+            });
+
+            $scope.types = $scope.product.type[index];
+            $scope.types1 = $scope.product.type[index];
+          }
+
+          if (typeof $scope.termsli !== 'undefined' ) 
+         {
+            $.each($scope.termsli, function( key, value ) {
+
+             $scope.termsli[key].Type= $scope.termsli[index].Type;
+
+            });
+          }
+       } 
+
 
     $scope.calterm = function(order,t){
         $scope.t = t;
@@ -1829,7 +1880,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     $scope.addterm = function(termsli){
        //console.log($scope.termsli);
-       var newterm = {TermsId:0,Type:'Trade Exchange Escrow (TEE)'};
+       var newterm = {TermsId:0,Type: $scope.termsli[0].Type};
        $scope.termsli.push(newterm);
     }  
 

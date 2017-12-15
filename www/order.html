@@ -288,7 +288,7 @@
                     </div>
                     <div class="col-sm-4">
                       <label>Type</label>
-                      <Select class="form-group form-control" type='text' ng-model='types' required="">
+                      <Select class="form-group form-control" type='text' ng-model='types' required="" ng-change="changeType()">
                         <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                         <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                         <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
@@ -306,7 +306,7 @@
                       <input class=" form-group form-control" type='text' ng-model='terms1' required="">
                     </div>
                     <div class="col-sm-4">
-                      <Select class="form-group form-control" type='text' ng-model='types1' required="">
+                      <Select class="form-group form-control" type='text' ng-model='types1' required="" ng-change="changeType1()">
                         <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                         <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                         <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
@@ -324,7 +324,7 @@
                             <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
                           </div>
                           <div class='col-md-4'>
-                             <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                             <Select class="form-group form-control" type='text' ng-model='product.type[$index]' ng-change="changeType2($index)">
                               <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                               <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                               <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>

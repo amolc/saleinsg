@@ -293,7 +293,7 @@
                       <h5>Terms</h5>                      
                     </div>
                     <div class="col-sm-6 col-md-6">
-                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show();$('#approve').hide()" ng-if="order.SellerApproval == 'Pending' && order.BuyerApproval == 'Approved'">
+                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show();$('#approve').hide()" ng-if="order.SellerApproval == 'Pending' && order.BuyerApproval == 'Approved' && order.OrderStatus == 'Pending'">
                        <!--  <button class="btn" type="button" ng-click="showterms()">Add</button> -->
                     </div>
                     <div class="clearfix"></div>
@@ -362,7 +362,7 @@
                       <input class=" form-group form-control" type='text' required="" ng-model="t.Terms">
                     </div>
                     <div class="col-sm-4">
-                      <Select class="form-group form-control" type='text' required="" ng-model='t.Type' >
+                      <Select class="form-group form-control" type='text' required="" ng-model='t.Type' ng-change="changeType2($index)">
                         <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                         <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                         <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
