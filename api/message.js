@@ -69,8 +69,8 @@ exports.submitenquiry = function (req, res) {
                               var createObj = {
                                 "SenderId" :  sender,
                                 "ReceiverId": receiver,
-                                "ProductId" : ProductId,
-                                "ReqProductId" : ReqProductId,
+                                "ProductId" : req.body.productId,
+                                "Type" : req.body.Type
                                 "Message":req.body.message,
                                 "MessageTime": req.body.date, 
                                 "EnquiryId" : val2.insertId     
