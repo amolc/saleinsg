@@ -136,7 +136,8 @@ exports.requestproduct = function (req, res) {
         "CategoryId" : req.body.CategoryId,
         "SubCatId" : req.body.SubCatId,
         "BuyerId": req.body.UserId || "",  
-        "Currency" : req.body.currency    
+        "Currency" : req.body.currency,
+        "ReqQuanity" : req.body.reqQuan    
     };
     // console.log("after", createObj);
 
@@ -303,6 +304,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <th style="width:70px; padding: 5px 10px; font-size: 14px;">Image</th>\
 <th style="width:330px; padding: 5px 10px; font-size: 14px;">Title</th>\
 <th style="width:120px; padding: 5px 10px; font-size: 14px;">Expected Price</th>\
+<th style="width:120px; padding: 5px 10px; font-size: 14px;">Required Quantity</th>\
 </tr>\
 </thead>\
 <tbody>\
@@ -319,6 +321,9 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.currency+' '+req.body.price+'</p>\
+</td>\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">'+req.body.reqQuan+'</p>\
 </td>\
 </tr>\
 </tbody>\

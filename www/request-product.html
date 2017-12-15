@@ -242,10 +242,17 @@
               <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
             </div>
             </div> 
-              <div class="col-md-4">        
+              <div class="col-md-2">        
             <div class="form-group">
               <label for="price">Expected Price:</label>
               <input type="text" class="form-control" ng-model="product.price" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
+              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+            </div>
+            </div>
+             <div class="col-md-2">        
+            <div class="form-group">
+              <label for="price">Required Quantity:</label>
+              <input type="text" class="form-control" ng-model="product.reqQuan" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
               <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
             </div>
             </div>
