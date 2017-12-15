@@ -14,7 +14,7 @@ var db = mysql.createPool({
 
 var CRUD = require('mysql-crud');
 var consultCRUD = CRUD(db, 'contact');
-var userCRUD = CRUD(db, 'tbl_Suppliers');
+var userCRUD = CRUD(db, 'tbl_Suppliers');                       
 var productCRUD = CRUD(db, 'tbl_Products');
 var specificationCrud = CRUD(db, 'tbl_ProductSpecification');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');

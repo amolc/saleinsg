@@ -1011,6 +1011,25 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+
+     $scope.productrequests = function(){
+
+        $http.get(baseurl + 'productrequests').success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.reqlist = res;
+            }
+
+        }).error(function () {
+
+        });
+
+    }
+
      $scope.userproducts = function(){
 
         $scope.userid =  window.localStorage.getItem('User_Id');
@@ -1245,6 +1264,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var urlpart = urlparams.split('&');
       var productId = urlpart[0].split('=');
 
+
+
+      if (productId[0]=='id') 
+      {
+
+
       $scope.enquiry.productId= productId[1];
 
        $http.get(baseurl + 'getProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
@@ -1252,9 +1277,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            // console.log(data);
 
             $scope.enquiry.productname = data.ProductName;
-            $scope.enquiry.SupName = data.FirstName+' '+data.LastName;
+            $scope.enquiry.SupName = data.SupFirstName+' '+data.SupLastName;
             $scope.enquiry.SupId = data.SupplierId;
-            $scope.enquiry.SupEmail = data.Email;
+            $scope.enquiry.SupEmail = data.SupEmail;
+            $scope.enquiry.Type = 'Product';
             $scope.enquiry.BuyerId = 0;
             if (window.localStorage.getItem('User_Id')>0) 
             {
@@ -1265,6 +1291,34 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             }
        
       });
+
+      }
+      else if (productId[0]=='reqid') 
+      {
+
+          $scope.enquiry.productId= productId[1];
+
+            //alert($scope.enquiry.productId);
+
+           $http.get(baseurl + 'getReqProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
+
+
+                $scope.enquiry.productname = data.ProductName;
+                $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
+                $scope.enquiry.BuyerId = data.BuyerId;
+                $scope.enquiry.BuyerEmail = data.SupEmail;
+                $scope.enquiry.Type = 'Request';
+                if (window.localStorage.getItem('User_Id')>0) 
+                {
+                    $scope.enquiry.SupId = window.localStorage.getItem('User_Id');
+                    $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
+                    $scope.enquiry.email = window.localStorage.getItem('User_Email');
+                    $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
+                }
+           
+      });
+
+      }
     }
     else
     {
@@ -1953,6 +2007,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
 
   $scope.submitenquiry = function (enquiryform) {
+
+    console.log($scope.enquiry);
 
     var date = new Date();
     var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });

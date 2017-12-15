@@ -36,6 +36,16 @@ exports.submitenquiry = function (req, res) {
 
   // console.log(req.body);
   // dateToday = now.format("YYYY-MM-DD H:mm:ss");
+  if (req.body.Type == 'Product') 
+  {
+        var sender = req.body.BuyerId;
+        var receiver = req.body.SupId;
+  }
+  else
+  {
+        var sender = req.body.SupId;
+        var receiver = req.body.BuyerId;
+  }
   dateToday = now.format("DD/MM/YYYY hh:mm a");
   enquiryCRUD.create({
                             'SupId': req.body.SupId,
@@ -46,14 +56,15 @@ exports.submitenquiry = function (req, res) {
                             'PhoneNo': req.body.phonenumber,
                             'Enquiry':req.body.message,
                             'EnquiryDate':dateToday,
+                            'Type' : req.body.Type
 
                         }, function(err2, val2) {
 
                             if (!err2) 
                             { 
                               var createObj = {
-                                "SenderId" :  req.body.BuyerId,
-                                "ReceiverId": req.body.SupId || "",
+                                "SenderId" :  sender,
+                                "ReceiverId": receiver,
                                 "ProductId" : req.body.productId,
                                 "Message":req.body.message,
                                 "MessageTime": req.body.date,      
