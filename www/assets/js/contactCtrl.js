@@ -2067,7 +2067,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $http.get(baseurl + 'conversationlist/'+$scope.userid).success(function(data, status) {
 
            
-            //console.log(data);
+            console.log(data);
             
            var url = window.location.href;
            var parts = url.split("?");
