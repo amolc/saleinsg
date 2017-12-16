@@ -136,7 +136,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               console.log(data);
 
                 //console.log('data', data.status);
-
                 //console.log('result: ',data.value);
                // console.log(data.value.address);
                 if(data.emailexist === false)
