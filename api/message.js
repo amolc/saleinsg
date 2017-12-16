@@ -40,15 +40,11 @@ exports.submitenquiry = function (req, res) {
   {
         var sender = req.body.BuyerId;
         var receiver = req.body.SupId;
-        var ProductId = req.body.productId;
-        var ReqProductId = 0;
   }
   else
   {
         var sender = req.body.SupId;
         var receiver = req.body.BuyerId;
-        var ProductId = 0;
-        var ReqProductId = req.body.productId;
   }
   dateToday = now.format("DD/MM/YYYY hh:mm a");
   enquiryCRUD.create({
@@ -190,7 +186,7 @@ exports.sendmessage = function (req, res) {
 exports.conversationlist = function (req, res) {
     var UserId = req.params.id;
     var sql = "select Max(m.MessageId) as Mid,s.`ProfilePic`,s.`FirstName`,s.`LastName`,s.`SupId`,p.`ProductId`,p.`ProductName` from `tbl_Messages` as m , `tbl_Suppliers` as s , `tbl_Products` as p WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND m.ProductId = p.ProductId AND s.SupId != "+UserId+" GROUP BY p.`ProductId` ORDER By Mid DESC";
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });

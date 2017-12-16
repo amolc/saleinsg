@@ -77,7 +77,8 @@ exports.addproduct = function (req, res) {
         // "SubCategory": req.body.subcat || "",
         "SupplierId": req.body.UserId || "",  
         "Currency" : req.body.currency  ,
-        "Date"  : req.body.date
+        "Date"  : req.body.date,
+        "ProductType" : "Product",
     };
     // console.log("after", createObj);
 
@@ -545,7 +546,7 @@ exports.enableProduct = function (req, res) {
 
 exports.userproducts = function (req, res) {
     var SupId = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,p.`IsDisabled`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.`SupplierId` = "+SupId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,p.`IsDisabled`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+SupId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);

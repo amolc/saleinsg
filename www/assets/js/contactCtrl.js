@@ -1274,20 +1274,41 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
 
            // console.log(data);
+           $scope.enquiry.Type = data.ProductType;
+           if($scope.enquiry.Type == 'Product')
+           {
+              $scope.enquiry.productname = data.ProductName;
+              $scope.enquiry.SupName = data.SupFirstName+' '+data.SupLastName;
+              $scope.enquiry.SupId = data.SupplierId;
+              $scope.enquiry.SupEmail = data.SupEmail;            
+              $scope.enquiry.BuyerId = 0;
 
-            $scope.enquiry.productname = data.ProductName;
-            $scope.enquiry.SupName = data.SupFirstName+' '+data.SupLastName;
-            $scope.enquiry.SupId = data.SupplierId;
-            $scope.enquiry.SupEmail = data.SupEmail;
-            $scope.enquiry.Type = 'Product';
-            $scope.enquiry.BuyerId = 0;
-            if (window.localStorage.getItem('User_Id')>0) 
-            {
-                $scope.enquiry.BuyerId = window.localStorage.getItem('User_Id');
-                $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
-                $scope.enquiry.email = window.localStorage.getItem('User_Email');
-                $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
-            }
+              if (window.localStorage.getItem('User_Id')>0) 
+              {
+                  $scope.enquiry.BuyerId = window.localStorage.getItem('User_Id');
+                  $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
+                  $scope.enquiry.email = window.localStorage.getItem('User_Email');
+                  $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
+              }
+
+           }
+           if ($scope.enquiry.Type == 'Request'){
+
+                $scope.enquiry.productname = data.ProductName;
+                $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
+                $scope.enquiry.BuyerId = data.BuyerId;
+                $scope.enquiry.BuyerEmail = data.SupEmail;
+                if (window.localStorage.getItem('User_Id')>0) 
+                {
+                    $scope.enquiry.SupId = window.localStorage.getItem('User_Id');
+                    $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
+                    $scope.enquiry.email = window.localStorage.getItem('User_Email');
+                    $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
+                }
+
+           }
+
+            
        
       });
 

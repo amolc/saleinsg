@@ -46,7 +46,7 @@ exports.buyerorders = function (req, res) {
 
 exports.shortlistedproducts = function (req, res) {
     var BuyerId = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_ShortlistedProducts` as sl LEFT JOIN `tbl_Products` as p ON p.`ProductId` = sl.`ProductId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE sl.`BuyerId` = "+BuyerId+" GROUP BY sl.`SpId` ORDER BY sl.`SpId` DESC";
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_ShortlistedProducts` as sl LEFT JOIN `tbl_Products` as p ON p.`ProductId` = sl.`ProductId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND sl.`BuyerId` = "+BuyerId+" GROUP BY sl.`SpId` ORDER BY sl.`SpId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -130,18 +130,19 @@ exports.requestproduct = function (req, res) {
     var createObj = {
         "ProductName" :  req.body.name,
         "Description": req.body.description || "",
-        "ExpectedPrice":req.body.price || "",
+        "Price":req.body.price || "",
         "Image1": fileName || "",
         "CountryId" : req.body.CountryId,
         "CategoryId" : req.body.CategoryId,
         "SubCatId" : req.body.SubCatId,
         "BuyerId": req.body.UserId || "",  
         "Currency" : req.body.currency,
-        "ReqQuanity" : req.body.reqQuan    
+        "Quantity" : req.body.reqQuan,
+        "ProductType" : "Request",   
     };
     // console.log("after", createObj);
 
-    reqproductCRUD.create(createObj, function (err, data) {
+    productCRUD.create(createObj, function (err, data) {
 
         if (!err) 
         {
