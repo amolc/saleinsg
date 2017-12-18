@@ -532,7 +532,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             //$scope.parameters.attachment = JSON.stringify(images); 
             //$scope.addProduct($scope.parameters);
             //console.log(attachmentfile1); 
-          }, 3000);
+          }, 1000);
           
         }
         
@@ -2322,20 +2322,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.product.buyercountry = data.CountryTitle;
+             $("#pleacr-order-wrap").hide();
+             $("#order-wrap").show("slow");
+             console.log($scope.product);
 
          });
-     
+
+  
+  }
+
+
+    $scope.confirmorder = function () {
+
         $http.post(baseurl + 'placeorder/',$scope.product).success(function(res) {
                      
-                           $("#orderform").hide();
-                           $("#payform").hide();
-                           $("#thankyou").show("slow");
+                           // $("#orderform").hide();
+                           // $("#payform").hide();
+                           // $("#thankyou").show("slow");
+                           window.location.href = 'index.html';
                       
                   }).error(function() {
                         // alert("Please check your internet connection or data source..");
                   });
-  
-  }
+   }
 
   $scope.stripeCallback = function (code, result) {
 

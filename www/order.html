@@ -372,6 +372,115 @@
           </div>
         </section>
 
+           <section id="order-wrap" id="book-now" hidden="">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 text-center">
+                <h2 class="section-title">Thank You For placing Order</h2>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="seller-details">
+                  <h4>Shipping Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> {{product.fullname}}</label><br>
+                    <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label><br>
+                    <label for="email"><span>Email Address : </span>{{product.email}}</label><br>
+                    <!-- <label> <span>Country : </span> {{product.buyercountry}} </label><br>
+                    <label><span>Seller : </span> <a href="productsbyseller.html?seller={{product.SupplierId}}">{{product.CompanyName}}</a> </label> -->
+                    <label for="email"><span>Address : </span>{{product.address1}},{{product.address2}},{{product.postalcode}},{{product.country}}</label><br>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="confirmorder()">
+                <div class="cart-table">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:28%">Title</th>
+                        <th style="width:25%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p>{{product.ProductId}}</p>
+                        </td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{{product.ProductName}}</p>
+                        </td>
+                        <td data-th="Price">
+                          <p>{{product.Currency}} {{product.Price}} </p>
+                        </td>
+                        <td data-th="Quantity">
+                          <p>{{product.orderqty}} </p>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="order-add-form">
+                  <div class="top-strip">
+                    <div class="col-sm-6 col-md-6">
+                      <h5>Terms</h5>                      
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                      <!-- <input type="button" class="red-btn small-btn" ng-click="showterms()" value="Add"> -->
+                       <!-- <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="order-form-foot">
+
+                  <div class="table-responsive">          
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Title</td>
+                        <th>Type</th>
+                        <th>%</th>
+                        <th>Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody id="specificationtable">
+                    <tr ng-repeat="n in [].constructor(10) track by $index" ng-if="product.term[$index]">
+                       <td>{{product.term[$index]}}</td> 
+                       <td>{{product.type[$index]}}</td>
+                       <td>{{product.percentage[$index]}}</td>
+                       <td>{{product.Currency}} {{product.amount[$index]}}</td>
+                    </tr>             
+                    </tbody>
+                  </table>
+               </div>
+
+                          <div class="clearfix"></div>
+                          <div class="shipping-wrap mr-t20">
+                           
+                            <div class="col-sm-12 col-md-12 text-center mr-t20">
+                              <button class="red-btn small-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Confirm</button>
+                            </div>
+                          </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
 
 
