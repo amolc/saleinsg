@@ -1028,6 +1028,16 @@ exports.getbuyerOrderDetails = function (req, res) {
     });
 };
 
+exports.GetbuyerOrderDetails = function (req, res) {
+    var OrderId = req.body.OrderId;
+    var BuyerId = req.body.BuyerId;
+    var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`SuplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId+" AND o.`BuyerId` = "+BuyerId;    
+   // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
 exports.getBankDetails = function (req, res) {
     var UserId = req.params.id;
     var sql = "select s.`AccountName`,s.`BankName`,s.`AccountNo`,s.`IFSCcode` from `tbl_Suppliers` as s WHERE SupId = "+UserId;

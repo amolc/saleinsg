@@ -1488,10 +1488,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var OrderId = urlpart[0].split('=');
 
       $scope.order.OrderId = OrderId[1];
-    
+      $scope.order.SupplierId = parseInt(window.localStorage.getItem('User_Id'));
       //console.log($scope.order.OrderId);
-      $http.get(baseurl + 'getOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
-
+      //$http.get(baseurl + 'getOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
+        $http.post(baseurl + 'GetOrderDetails',$scope.order).success(function(data, status) {
        // console.log(data);
 
             $scope.order = data;
@@ -1548,9 +1548,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var OrderId = urlpart[0].split('=');
 
       $scope.order.OrderId = OrderId[1];
-    
+      $scope.order.BuyerId = parseInt(window.localStorage.getItem('User_Id'));
       //console.log($scope.order.OrderId);
-      $http.get(baseurl + 'getbuyerOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
+      //$http.get(baseurl + 'getbuyerOrderDetails/'+$scope.order.OrderId).success(function(data, status) {
+      $http.post(baseurl + 'GetbuyerOrderDetails',$scope.order).success(function(data, status) {
+
 
        // console.log(data);
 

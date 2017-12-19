@@ -571,6 +571,16 @@ exports.getOrderDetails = function (req, res) {
     });
 };
 
+exports.GetOrderDetails = function (req, res) {
+    var OrderId = req.body.OrderId;
+    var SupplierId = req.body.SupplierId;
+    var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId+" AND o.`SuplierId` = "+SupplierId;    
+   // console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+};
+
 exports.getTerms = function (req, res) {
     var OrderId = req.params.id;
     var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId+" AND IsEdited = '0' ORDER BY TermId ASC";
