@@ -38,7 +38,7 @@ exports.buyerorders = function (req, res) {
 
     var BuyerId = req.params.id;
     var sql = "SELECT o.`OrderId`,p.`ProductName`,s.`CompanyName`,o.`TotalAmount`,o.`OrderDate`,o.`PaymentStatus`,o.`OrderStatus`,t.Type FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Terms` as t ON o.`OrderId` = t.`OrderId` WHERE o.`BuyerId` = "+BuyerId+" AND t.`IsEdited` = '0' GROUP BY o.`OrderId` ORDER BY o.`OrderId` DESC";    //console.log(sql);
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -47,7 +47,7 @@ exports.buyerorders = function (req, res) {
 exports.shortlistedproducts = function (req, res) {
     var BuyerId = req.params.id;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_ShortlistedProducts` as sl LEFT JOIN `tbl_Products` as p ON p.`ProductId` = sl.`ProductId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND sl.`BuyerId` = "+BuyerId+" GROUP BY sl.`SpId` ORDER BY sl.`SpId` DESC";
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -57,7 +57,7 @@ exports.removefromwishlist = function (req, res) {
     var BuyerId = req.body.BuyerId;
     var ProductId = req.body.ProductId;
     var sql = "DELETE FROM `tbl_ShortlistedProducts` WHERE ProductId = "+ProductId+" AND BuyerId = "+BuyerId;
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -1022,7 +1022,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 exports.getbuyerOrderDetails = function (req, res) {
     var OrderId = req.params.id;
     var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`SuplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId;    
-   // console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -1032,7 +1032,7 @@ exports.GetbuyerOrderDetails = function (req, res) {
     var OrderId = req.body.OrderId;
     var BuyerId = req.body.BuyerId;
     var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`SuplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId+" AND o.`BuyerId` = "+BuyerId;    
-   // console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -1041,6 +1041,7 @@ exports.GetbuyerOrderDetails = function (req, res) {
 exports.getBankDetails = function (req, res) {
     var UserId = req.params.id;
     var sql = "select s.`AccountName`,s.`BankName`,s.`AccountNo`,s.`IFSCcode` from `tbl_Suppliers` as s WHERE SupId = "+UserId;
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });

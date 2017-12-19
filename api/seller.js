@@ -508,7 +508,7 @@ exports.showSpecification = function (req, res) {
     var SpecificationId = req.params.id;
     console.log(SpecificationId);
     var sql = "SELECT * FROM `tbl_ProductSpecification` WHERE SpecificationId = "+SpecificationId;
-    //console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -527,7 +527,7 @@ exports.deleteSpecification = function (req, res) {
 exports.disableProduct = function (req, res) {
     var ProductId = req.params.id;
     var sql = "UPDATE `tbl_Products` SET IsDisabled = '1' WHERE ProductId = "+ProductId;
-    //console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -537,7 +537,7 @@ exports.disableProduct = function (req, res) {
 exports.enableProduct = function (req, res) {
     var ProductId = req.params.id;
     var sql = "UPDATE `tbl_Products` SET IsDisabled = '0' WHERE ProductId = "+ProductId;
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -547,7 +547,7 @@ exports.enableProduct = function (req, res) {
 exports.userproducts = function (req, res) {
     var SupId = req.params.id;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Image1`,p.`IsDisabled`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+SupId+" GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -556,7 +556,7 @@ exports.userproducts = function (req, res) {
 exports.sellerorders = function (req, res) {
     var SellerId = req.params.id;
     var sql = "SELECT `OrderId`,p.`ProductName`,s.`FirstName`,s.`LastName`,o.`TotalAmount`,o.`OrderDate`,o.`PaymentStatus`,o.`OrderStatus` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`BuyerId` = s.`SupId` WHERE o.`SuplierId` = "+SellerId+" GROUP BY o.`OrderId` ORDER BY o.`OrderId` DESC";    //console.log(sql);
-   // console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -565,7 +565,7 @@ exports.sellerorders = function (req, res) {
 exports.getOrderDetails = function (req, res) {
     var OrderId = req.params.id;
     var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId;    
-   // console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -575,7 +575,7 @@ exports.GetOrderDetails = function (req, res) {
     var OrderId = req.body.OrderId;
     var SupplierId = req.body.SupplierId;
     var sql = "SELECT o.*,p.`ProductName`,p.`Currency`,p.`ProductId`,p.`Image1`,s.`FirstName`,s.`LastName`,s.`Email`,s.`CompanyName`,c.`CountryTitle` FROM `tbl_Orders` as o LEFT JOIN `tbl_Products` as p ON p.`ProductId` = o.`ProductId` LEFT JOIN `tbl_Suppliers` as s ON o.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON s.`CountryId` = c.`CountryId` WHERE o.`OrderId` = "+OrderId+" AND o.`SuplierId` = "+SupplierId;    
-   // console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -584,7 +584,7 @@ exports.GetOrderDetails = function (req, res) {
 exports.getTerms = function (req, res) {
     var OrderId = req.params.id;
     var sql = "SELECT * FROM `tbl_Terms` WHERE OrderId = "+OrderId+" AND IsEdited = '0' ORDER BY TermId ASC";
-  //  console.log(sql);
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -1836,7 +1836,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 exports.getHistory = function (req, res) {
     var OrderId = req.params.id;
     var sql = "SELECT  `SellerMessage`,`BuyerMesssage`,`TermDate` FROM `tbl_Terms` WHERE OrderId = "+OrderId +" GROUP BY TermDateTime ORDER BY TermId DESC";
-   // console.log(sql);
+   console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
