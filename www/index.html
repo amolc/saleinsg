@@ -115,9 +115,9 @@
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                       <!--   <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
                           <ul class="nav navbar-nav" ng-init="getCategories()">
-                         <!--  <li ng-repeat='cat in categorieslist'><a href="products.html?category={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li> -->
+                         <li ng-repeat='cat in categorieslist'><a href="products.html?category={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li> -->
                             <!-- <li><a href="#">Electronics</a></li>
                             <li><a href="#">Appliances</a></li>
                             <li><a href="#">Men</a></li>
@@ -183,9 +183,9 @@
                                 <li><a href="#">Home & Furniture</a></li>
                                 <li><a href="#">Books & More</a></li>
                               </ul>
-                            </li> -->
+                            </li> 
                           </ul>
-                        </div><!-- /.navbar-collapse -->
+                        </div>-->
                       </div><!-- /.container-fluid -->
                     </nav>
                   </div>
@@ -505,11 +505,11 @@
 
             
           </div>
-          <div class="container" >
+          <div class="container">
             <div class="row">
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
-                  <div class="carousel-inner" ng-init="allproducts()">
+                  <div class="carousel-inner">
                   <div class="item active" ng-repeat="product in productslist |limitTo:4">
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
@@ -957,7 +957,7 @@
           </div>
          </section>
 
-          <section id="viewed-wrap" ng-init="featuredseller()">
+          <section id="viewed-wrap">
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
