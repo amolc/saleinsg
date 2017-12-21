@@ -1,7 +1,7 @@
 var http = require('http');
 var mysql = require('mysql');
 var randomString = require('random-string');
-var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7"); 
+//var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7"); 
 var moment = require("moment");
 var verifycode = randomString();
 var now = moment();
@@ -36,6 +36,16 @@ exports.submitenquiry = function (req, res) {
 
   // console.log(req.body);
   // dateToday = now.format("YYYY-MM-DD H:mm:ss");
+  if (req.body.Type == 'Product') 
+  {
+        var sender = req.body.BuyerId;
+        var receiver = req.body.SupId;
+  }
+  else
+  {
+        var sender = req.body.SupId;
+        var receiver = req.body.BuyerId;
+  }
   dateToday = now.format("DD/MM/YYYY hh:mm a");
   enquiryCRUD.create({
                             'SupId': req.body.SupId,
@@ -46,17 +56,20 @@ exports.submitenquiry = function (req, res) {
                             'PhoneNo': req.body.phonenumber,
                             'Enquiry':req.body.message,
                             'EnquiryDate':dateToday,
+                            'Type' : req.body.Type
 
                         }, function(err2, val2) {
 
                             if (!err2) 
                             { 
                               var createObj = {
-                                "SenderId" :  req.body.BuyerId,
-                                "ReceiverId": req.body.SupId || "",
+                                "SenderId" :  sender,
+                                "ReceiverId": receiver,
                                 "ProductId" : req.body.productId,
+                                "Type" : req.body.Type,
                                 "Message":req.body.message,
-                                "MessageTime": req.body.date,      
+                                "MessageTime": req.body.date, 
+                                "EnquiryId" : val2.insertId     
                             };
                             // console.log("after", createObj);
 
@@ -172,8 +185,8 @@ exports.sendmessage = function (req, res) {
 
 exports.conversationlist = function (req, res) {
     var UserId = req.params.id;
-    var sql = "select Max(m.MessageId) as Mid,s.`FirstName`,s.`LastName`,s.`SupId`,p.`ProductId`,p.`ProductName` from `tbl_Messages` as m , `tbl_Suppliers` as s , `tbl_Products` as p WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND m.ProductId = p.ProductId AND s.SupId != "+UserId+" GROUP BY p.`ProductId` ORDER By Mid DESC";
-    //console.log(sql);
+    var sql = "select Max(m.MessageId) as Mid,s.`ProfilePic`,s.`FirstName`,s.`LastName`,s.`SupId`,p.`ProductId`,p.`ProductName` from `tbl_Messages` as m , `tbl_Suppliers` as s , `tbl_Products` as p WHERE (m.`ReceiverId` = s.`SupId` OR m.`SenderId` = s.`SupId`) AND (m.SenderId = "+UserId+" OR m.ReceiverId = "+UserId+") AND m.ProductId = p.ProductId AND s.SupId != "+UserId+" GROUP BY p.`ProductId` ORDER By Mid DESC";
+    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -183,8 +196,8 @@ exports.conversation = function (req, res) {
     var UserId = req.body.userid;
     var OtherUserId = req.body.OtherUserId;
     var ProductId = req.body.ProductId;
-    var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId AND m.ProductId = "+ProductId+" GROUP BY Mid ORDER By Mid";
-  //  console.log(sql);
+    var sql = "select m.MessageId as Mid,m.Message,m.MessageTime,s.`ProfilePic`,s.`FirstName`,s.`LastName` from `tbl_Messages` as m , `tbl_Suppliers` as s WHERE ((m.SenderId = "+UserId+" AND m.ReceiverId="+OtherUserId+") OR(m.SenderId = "+OtherUserId+" AND m.ReceiverId="+UserId+")) AND m.SenderId = s.SupId AND m.ProductId = "+ProductId+" GROUP BY Mid ORDER By Mid";
+   console.log(sql);
     db.query(sql, function (err, data) {
 
         //console.log(data.length);
@@ -220,7 +233,7 @@ function send_mail(usermail, subject, mailbody) {
   var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
   nodemailerMailgun.sendMail({
-    from: 'operations@80startups.com',
+    from: 'support@tradeexchange.co',
     to: usermail, // An array if you have multiple recipients.
     subject: subject,
     'h:Reply-To': 'operations@80startups.com',

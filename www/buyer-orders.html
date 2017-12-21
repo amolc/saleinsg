@@ -2,7 +2,7 @@
 <html lang="en">
 
   <script type="text/javascript">
-         if (window.sessionStorage.getItem('User_Id')<=0) 
+         if (window.localStorage.getItem('User_Id')<=0) 
                 {
                    window.location.href="login.html";
                 }
@@ -133,6 +133,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                               <li><a href="request-product.html">Request Item</a></li>
                                             </ul>
                                         </li>
                                       </ul>
@@ -222,7 +223,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">My Orders</h2>
+           <h2 class="section-title">Buyer Orders</h2>
         </div>
       </div>
       <div class="row">
@@ -251,8 +252,9 @@
                 <td>{{o.CompanyName}}</td>
                 <td>{{o.OrderStatus}}</td>
                 <td>{{o.PaymentStatus}}</td>
-                <td><i class="fa fa-eye"></i></td>
-                <td><a href="javascript:void(0)" ng-if="o.OrderStatus=='Approved'">Pay Now</a></td>
+                <td><a href="buyer-order-details.html?id={{o.OrderId}}"><i class="fa fa-eye"></i></a></td>
+                <td ng-if="o.OrderStatus=='Approved' && o.Type=='Trade Exchange Escrow (TEE)'"><a href="javascript:void(0)">Pay Now</a></td>
+                <td ng-if="o.OrderStatus=='Approved' && o.Type!='Trade Exchange Escrow (TEE)'">Bank Transfer</td>
               </tr>
             </tbody>
           </table>
@@ -285,13 +287,24 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
-        <script src="assets/js/custom.js"></scri
+        <script src="assets/js/custom.js"></script>
 <script>
     $(function(){
          // Find any date inputs and override their functionality
          $('input[type="date"]').datepicker();
     });
 </script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ?"https://secure" : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/" target="_blank">
+<img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 
 </div>
 </body>

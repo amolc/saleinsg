@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,11 +16,14 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
         
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller" ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="allproducts()">
         <!-- Start Header -->
-        <header id="top-header">
+
+         
+<header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
@@ -69,7 +73,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-default">Submit</button>
                                       </form> -->
-                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                        <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                         <!-- <li><a href="#">Seller</a></li>
                                         <li><a href="#">Buyer</a></li> -->
                                         <li ng-if="User_Id>0"><a href="dashboard.html">Dashboard</a></li>
@@ -112,8 +116,17 @@
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
-                          <ul class="nav navbar-nav" ng-init="getCategories()">
-                         <!--  <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li> -->
+                          <!-- <ul class="nav navbar-nav" ng-if="CountryId!=null" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?country={{CountryId}}&category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li>
+                          </ul>
+                          <ul class="nav navbar-nav" ng-if="CountryId==null" ng-init="getCategories()">
+                          <li ng-repeat='cat in categorieslist'>
+                          <a href="products.html?category={{cat.CategoryId}}">
+                          {{cat.CategoryTitle}}
+                          </a></li> -->
                             <!-- <li><a href="#">Electronics</a></li>
                             <li><a href="#">Appliances</a></li>
                             <li><a href="#">Men</a></li>
@@ -189,109 +202,308 @@
               </div>
             </div>
         </header>
-        <section id="pro-details-wrap" ng-init="getAllcurrency()">
+        <section id="pakeges-wrap">
             <div class="container">
                 <div class="row">
-                    <div>
-                        <div class="col-sm-offset-2 col-sm-9">
-                            <div class="demo-area">
-                                <div class="col-sm-4">
-                                    <img class="demo-trigger" src="uploads/{{product.Image1}}" data-zoom="uploads/{{product.Image1}}">
-                                </div>                
-                                  <div class="col-sm-8 pl50">
-                                    <div class="detail">
-                                               <div class="pro-right-text">
-                                                <div>
-                                                    <h2 class="pro-title">{{product.ProductName}}</h2>
-                                                    <p class="pro-saler-name">
-                                                        <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
-                                                        <a href="productsbyseller.html?seller={{product.SupplierId}}"><span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span></a>
-                                                        
-                                                    </p>
-                                                    <input type="hidden" name="basecurrency" ng-model="product.Currency">
-                                                    <input type="hidden" name="baseprice" ng-model="product.Price">
-                                                    <h4 class="pro-price">Price {{product.Currency}} : <span>{{product.Price}}</span> <br> <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
-                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select> : <span>{{product.changePrice}}</span> </h4>
-                                                    <div class="pro-note">
-                                                      <h4>Product Description</h4>
-                                                    <ul>
-                                                      <li>
-                                                        {{product.Description}}</li>
+                    <div class="col-sm-12">
+                        <h2 class="section-title text-center">
+                            Products
+                        </h2>
+                    </div>
+                    <div class="col-sm-3">
+                       <!--  <div class="filter-panle" ng-if="!SellerId">
+                            <div class="panle-head">
+                                <h4>Country</h4>
+                            </div>
+                            <div class="panle-footer">
+                                <div class="cuntry-cate-list">
+                                    <div class="main-cat">
+                                        <div class="control-group" ng-init="getCountries()">
+    
+                                            <label ng-if="CategoryId==null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
+                                                <div class="select-country"></div>
+                                            </a>
+                                            </label>
+                                            <label ng-if="CategoryId!=null && SubCatId==null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
+                                                <div class="select-country"></div>
+                                            </a>
+                                            </label>
+
+                                              <label ng-if="CategoryId!=null && SubCatId!=null" class="control control--radio" ng-repeat="cn in countrylist">
+                                            <a href="products.html?country={{cn.CountryId}}&category={{CategoryId}}&subcategory={{SubCatId}}" ng-style="{'color': CountryId==cn.CountryId ? '#52bbd5' : 'black'}">
+                                                {{cn.CountryTitle}}
+                                                <input type="radio" name="radio" ng-model="$parent.CountryId" ng-value="{{cn.CountryId}}" />
+                                                <div class="select-country"></div>
+                                            </a>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div> -->
+                         <div class="filter-panle" ng-if="!CountryId">
+                            <div class="panle-head">
+                                <h4>Seller Profile</h4>
+                            </div>
+                            <div class="panle-footer">
+                                <div class="cuntry-cate-list">
+                                    <div class="main-cat">
+                                          <div class="pro-img">
+                                              <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
+                                              <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
+                                          </div>
+                                             <div class="align-info">
+                              <p><span><b>Name : </b></span><span>{{seller.FirstName}} {{seller.LastName}}</span></p>
+                              <p><span><b>Company : </b></span><span>{{seller.CompanyName}}</span></p>
+                              <p><span><b>Country : </b></span><span>{{seller.CountryTitle}}</span></p>
+                              <p><span><b>Email : </b></span><span>{{seller.Email}}</span></p>
+                              <p><span><b>Contact No : </b></span><span>{{seller.Phone}}</span></p>
+                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>  
+                         <div class="filter-panle">
+                            <div class="panle-head">
+                                <h4>Category</h4>
+                            </div>
+                            <div class="panle-footer">
+                                <div class="cate-list according-wrap" ng-init="getCategories()">
+                                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+
+                                    <div class="panel panel-default" ng-repeat="cat in categorieslist">
+                                          <div class="panel-heading" role="tab" id="headingOne_{{cat.CategoryId}}">
+                                            <h4 class="panel-title">
+                                        <a ng-if="CountryId==null && SellerId==null" data-parent="#accordion" href="products.html?category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                         <a ng-if="CountryId!=null" data-parent="#accordion" href="products.html?country={{CountryId}}&category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                        <a ng-if="SellerId!=null" data-parent="#accordion" href="productsbyseller.html?seller={{SellerId}}&category={{cat.CategoryId}}" ng-style="{'color': CategoryId==cat.CategoryId ? '#52bbd5' : 'black'}">
+                                          {{cat.CategoryTitle}}
+                                        </a>
+                                      </h4>
+
+                                          </div>
+                                          <div id="collapseOne_{{cat.CategoryId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}" ng-style="{'display': CategoryId==cat.CategoryId ? 'block' : 'none'}">
+                                            <div class="panel-body">
+                                                <div class="sub-cat-list">
+                                                    <ul  ng-init="getSubCatlist(CategoryId)">
+                                                       <li ng-repeat="sc in subcatlist">
+                                                       <a ng-if="CountryId==null && SellerId==null" href="products.html?category={{cat.CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       <a ng-if="CountryId!=null" href="products.html?country={{CountryId}}&category={{CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       <a ng-if="SellerId!=null" href="productsbyseller.html?seller={{SellerId}}&category={{CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
+                                                       <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
+                                                       </li>
+
+                                                       <!--  <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li> -->
                                                     </ul>
-                                                    </div>
-                                                   <!--  <p class="description-para mb30">
-                                                        {{product.Description}}
-                                                    </p> -->
-                                                    <div class="pro-note">
-                                                      <h4>Product Specification</h4>
-                                                      <ul>
-                                                        <li ng-repeat="s in specification">
-                                                         <strong class="color-blue">{{s.Title}} : </strong> {{s.Description}}
-                                                        </li>
-                                                      </ul>
-                                                    </div>
-                                                     
-                                                    <!-- <div class="category-title mb30">
-                                                        <span>Category : {{product.CategoryTitle}}</span>
-                                                        <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
-                                                    </div> -->
-                                                   <!--  <div class="category-title mb30">
-                                                        <span>Country : {{product.CountryTitle}}</span>
-                                                        <span>Seller : {{product.CompanyName}}</span>
-                                                    </div> -->
-                                                    <div class="clearfix"></div>
-                                                    <div class="productshare mb30">
-                                                         <a ng-if="added==0" id="addtowishlist" href="javascript:void(0)" ng-click="addtowishlist()" title="Add To Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-
-                                                         <a ng-if="added==1" id="removefromwishlist" href="javascript:void(0)" ng-click="removefromwishlist()"><i class="fa fa-heart" aria-hidden="true"  title="Remove From Wishlist" style="color: red;"></i></a>
-
-                                                          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.tradeexchange.co&t=tradeexchange"
-                                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                         target="_blank" title="Share on Facebook"><i class="fa fa-facebook" aria-hidden="true"  ></i></a>
-
-                                                          <a href="https://twitter.com/share?url=https://www.tradeexchange.co&via=TWITTER_HANDLE&text=tradeexchange"
-                                                         onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                                                         target="_blank" title="Share on Twitter"><i class="fa fa-twitter" aria-hidden="true" ></i></a>
-                                                    </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="detail-btn">
-                                                         <a href="order.html?id={{product.ProductId}}" class="red-btn small-btn mr20">Order Now</a>
-                                                         <a href="enquiry.html?id={{product.ProductId}}" class="red-btn small-btn mr20">Enquiry</a>
-                                                    </div>
                                                 </div>
                                             </div>
-                                            </div>
-                                    </div>
-                                </div>
+                                          </div>
+                                        </div>
 
-                            
-                          <!--   <div class="col-sm-7">
-                                <div class="pro-right-text">
-                                    <div>
-                                        <h2 class="pro-title mb30">4806 Dark Red Designer Replica Suit</h2>
-                                        <h4 class="pro-price mb30">Pice SGD : $1575</h4>
-                                        <p class="description-para mb30">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                        </p>
-                                        <div class="category-title mb30">
-                                            <span>Country : India</span>
-                                            <span>Saler : Pravin Shelar</span>
+                                      <!--   <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Electronics
+                                        </a>
+                                      </h4>
+
+                                          </div>
+                                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="sub-cat-list">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="detail-btn">
-                                             <a href="register.html" class="red-btn small-btn mr20">Order Now</a>
-                                             <a href="register.html" class="red-btn small-btn">Enquiry</a>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="headingOne">
+                                            <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                          Electronics
+                                        </a>
+                                      </h4>
+
+                                          </div>
+                                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <div class="sub-cat-list">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics1</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics2</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics3</a></li>
+                                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i> Electronics4</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                          </div>
                                         </div>
-                                    </div>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="headingTwo">
+                                            <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                          Men
+                                        </a>
+                                      </h4>
+                                          </div>
+                                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">Men</div>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="headingThree">
+                                            <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                          Women
+                                        </a>
+                                      </h4>
+                                          </div>
+                                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">Women</div>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="baby">
+                                            <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#baby-tab" aria-expanded="false" aria-controls="baby-tab">
+                                          Baby & Kids
+                                        </a>
+                                      </h4>
+                                          </div>
+                                          <div id="baby-tab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="baby">
+                                            <div class="panel-body">Baby & Kids</div>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="furniture">
+                                            <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#furniture-tab" aria-expanded="false" aria-controls="furniture-tab">
+                                          Home & Furniture
+                                        </a>
+                                      </h4>
+                                          </div>
+                                          <div id="furniture-tab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="furniture">
+                                            <div class="panel-body">Home & Furniture</div>
+                                          </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                          <div class="panel-heading" role="tab" id="books">
+                                            <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#books-tab" aria-expanded="false" aria-controls="books-tab">
+                                          Books & More
+                                        </a>
+                                      </h4>
+                                          </div>
+                                          <div id="books-tab" class="panel-collapse collapse" role="tabpanel" aria-labelledby="books">
+                                            <div class="panel-body">Books & more</div>
+                                          </div>
+                                        </div> -->
+
+                                      </div>
                                 </div>
-                            </div> -->
+                            </div>
+                         </div>                       
+                    </div>
+                    <div class="col-sm-9" ng-init="getAllcurrency()">
+                        <div class="col-sm-4" ng-repeat="product in productslist">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <a href="product_detail.html?id={{product.ProductId}}">
+                                    <img src="uploads/{{product.Image1}}" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                            <!--     <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
+                                <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                                <h4 class="pull-right">
+                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}</h4>
+                                                    <div class="clearfix"></div>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
                         </div>
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="col-sm-6" ng-repeat="product in productslist">
+                   
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+
+
+
+                                <div class="place-img">
+                                 <a href="product_detail.html?id={{product.ProductId}}">
+                                    <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h5>
+                                    <p class="packege-para small-height">{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
+                                    <div class="right-blck">
+                                    <p class="gray-small-text"><span>   
+
+
+                    </div>
+                   
+                                -->
+
+                    
                     </div>
                 </div>
             </div>
         </section>
-    
 
 
     <!-- End Header -->
@@ -512,7 +724,6 @@
         <script src="assets/js/star-rating.js"></script>
         <script src="assets/js/custom.js"></script>
 
-
     <!--     <script src="assets/js/custom.js"></script> -->
 
 
@@ -535,15 +746,13 @@
               })
             })
           </script>
-           
            <!-- javascript -->
 
     <script src="OwlCarousel/owl.carousel.js"></script>
         <!-- vendors -->
     <script src="../assets/vendors/highlight.js"></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/164071/Drift.min.js'></script>
+
 <script src="assets/js/star-rating.js"></script>
-<script src="assets/js/pro-slide.js"></script>
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
 var sc_project=11561280; 
@@ -554,7 +763,6 @@ document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.
 </script>
 <noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/" target="_blank">
 <img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
 <!-- End of StatCounter Code for Default Guide -->
     </body>
 </html>

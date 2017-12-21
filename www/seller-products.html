@@ -2,7 +2,7 @@
 <html lang="en">
 
   <script type="text/javascript">
-         if (window.sessionStorage.getItem('User_Id')<=0) 
+         if (window.localStorage.getItem('User_Id')<=0) 
                 {
                    window.location.href="login.html";
                 }
@@ -133,6 +133,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                               <li><a href="request-product.html">Request Item</a></li>
                                             </ul>
                                         </li>
                                       </ul>
@@ -240,15 +241,16 @@
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
                                 <h4><span>From SGD</span>${{product.Price}}</h4>
-                                <!-- <div class="bottom-btn">
+                                <div class="bottom-btn">
                                     <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                        <a href="edit-product.html?id={{product.ProductId}}" class="red-btn">Edit</a>
                                     </div>
                                     <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                        <a href="javascript:void(0)" class="red-btn" ng-click="disableProduct(product.ProductId)" ng-if="product.IsDisabled=='0'">Disable</a>
+                                         <a href="javascript:void(0)" class="red-btn" ng-click="enableProduct(product.ProductId)" ng-if="product.IsDisabled=='1'">Enable</a>
                                     </div>
                                     <div class="clearfix"></div>
-                                </div> -->
+                                </div>
                             </div>
                            <!--  <div class="box-flag-img">
                                 <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
@@ -287,7 +289,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
-        <script src="assets/js/custom.js"></scri
+        <script src="assets/js/custom.js"></script>
 <script>
     $(function(){
          // Find any date inputs and override their functionality
@@ -295,6 +297,17 @@
     });
 </script>
 
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ?"https://secure" : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/" target="_blank">
+<img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 </div>
 </body>
 

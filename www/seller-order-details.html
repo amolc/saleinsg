@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <script type="text/javascript">
+    
+    <script type="text/javascript">
          if (window.localStorage.getItem('User_Id')<=0) 
                 {
+                   window.localStorage.setItem('GoToPage',window.location.href); 
                    window.location.href="login.html";
+                }
+                else
+                {
+                   if (window.localStorage.getItem("GoToPage") !== null) {
+                                window.localStorage.removeItem('GoToPage');
+                        }
                 }
     </script>
 
@@ -23,12 +30,12 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-
-        
     </head>
+
 <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
-      <header id="top-header">
+       
+ <header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
@@ -147,7 +154,7 @@
             
         </header>
     <!-- End Header -->
-  <div >
+  <div>
 <!--
   <section id="header">
     <div class="container">
@@ -218,61 +225,201 @@
     </div>
   </section>
 -->
-<div class="clearfix"></div>
-  <section id="book-now" ng-init="shortlistedproducts();">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-           <h2 class="section-title">My Shortlisted Products</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-         <div class="col-sm-3" ng-repeat="product in productslist">
-                        <div class="product-box">
-                            <div class="pro-img">
-                                <a href="product_detail.html?id={{product.ProductId}}">
-                                    <img src="uploads/{{product.Image1}}" alt="" title="">
-                                </a>
-                            </div>
-                            <div class="product-footer">
-                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                            <!--     <h5>{{product.Description}}</h5>
-                                <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p> -->
-                                <h4><span>From SGD</span>${{product.Price}}</h4>
-                                <div class="bottom-btn">
-                                    <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
-                                    </div>
-                                    <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                           <!--  <div class="box-flag-img">
-                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
-                            </div> -->
-                            <div class="cat-text">
-                                <span>Footwears</span>
-                            </div>
+ <section id="pleacr-order-wrap"  id="book-now" ng-init="sellerorder()">
+          <div class="container">
+            <div class="row">
+               
+              <div class="col-sm-offset-1 col-sm-6 col-md-offset-1 col-md-6">
+                <div class="seller-details">
+                 <h4>ORDER NO : {{order.OrderId}}</h4>
+                  <h4>Shipping Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span>{{order.CompanyName}}</label><br>
+                    <label for="phoneno"><span>Address :</span>{{order.Address1}},{{order.Address2}},{{order.PostalCode}},{{order.Country}}</label><br>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-4 col-md-offset-1 col-md-4">
+                <div class="seller-details">
+                  <h4>ORDER DATE : {{order.OrderDate | limitTo: 10}}</h4>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <form name="termsform" id="termsform" ng-submit="sellerterms()">
+                <div class="cart-table">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:38%">Title</th>
+                        <th style="width:15%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p>{{order.ProductId}}</p>
+                        </td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="uploads/{{order.Image1}}" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{{order.ProductName}}</p>
+                        </td>
+                        <td data-th="Price">
+                          <p>{{order.Currency}} {{order.Price}}</p>
+                        </td>
+                        <td data-th="Quantity">
+                          <p>{{order.Quantity}}</p>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          <p>{{order.Currency}} {{order.TotalAmount}}</p>
+                        </td>
+                        <!-- <td class="actions" data-th="">
+                          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="order-add-form">
+                  <div class="top-strip">
+                    <div class="col-sm-6 col-md-6">
+                      <h5>Terms</h5>                      
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                            <input type="button" class="red-btn small-btn" value="Edit" onclick="$('#terms').show();$('#proposal').show();$('#approve').hide()" ng-if="order.SellerApproval == 'Pending' && order.BuyerApproval == 'Approved' && order.OrderStatus == 'Pending'">
+                       <!--  <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="order-form-foot">
+                    <!-- <div class="col-sm-4">
+                      <label>Title</label>
+                      <input class=" form-group form-control" type='text' required="">
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Type</label>
+                      <Select class="form-group form-control" type='text' required="">
+                        <option value="Select">Select</option>
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>%</label>
+                      <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Amount</label>
+                      <input class="form-group form-control" type='text' ng-model='amt'>
+                    </div> -->
+                    <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <td>Title</td>
+                  <th>Type</th>
+                  <th>%</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody id="specificationtable">
+              <tr ng-show="termslist.length > 0" ng-repeat="t in termslist">
+                 <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{$index+1}}</td>
+                 <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{ t.Terms }}</td> 
+                 <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{ t.Type}}</td>
+                 <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{ t.Percentage}}</td>
+                 <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{order.Currency}} {{ t.Amount}}</td>
+              </tr>             
+              </tbody>
+            </table>
+            </div>
+             <div id="terms" hidden="" ng-if="order.OrderStatus == 'Pending'">
+            <div class="row">
+              <div class="col-sm-3">
+                      <label>Title</label>
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Type</label>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>%</label>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Amount</label>
+                    </div>
+            </div>
+            <div class="row"  ng-repeat="t in termsli">
+            <div class="col-sm-3">
+                      <input class=" form-group form-control" type='text' required="" ng-model="t.Terms">
+                    </div>
+                    <div class="col-sm-4">
+                      <Select class="form-group form-control" type='text' required="" ng-model='t.Type' ng-change="changeType2($index)">
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='t.Percentage' ng-change='calterm(order,t)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='t.Amount'>
+                    </div>
+                     <div class='col-md-1'>
+                            <label class="close-btn" ng-click="removeterm($index)">&#10008</label>
+                    </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-1">
+             <input type="button" class="red-btn small-btn" value="+" ng-click="addterm(termli)">             
+            </div>
+            </div>
+
+              
+            </div>
+            
+                      <div class="col-sm-6 mr-t20">
+                        <div class="form-group">
+                          
+                          <!-- <label><input type="checkbox" value="">Option 3</label> -->
+                         <!--  <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'">
+                          <label for="styled-checkbox-1" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'">I Agree</label> -->
                         </div>
+                        <div class="detail-btn">
+                          <a href="#" class="red-btn small-btn mr20" ng-if="order.OrderStatus == 'Pending' && order.BuyerApproval == 'Approved'" id="approve" ng-click="sellerapprove();">Approve</a>
+                          <!-- <a href="#" class="red-btn small-btn mr20">Send To Buyer</a> -->
+                          <input type="submit" name="" class="red-btn small-btn mr20" value="Send To Buyer" name="submit" id="proposal" style="display: none;" ng-if="order.SellerApproval == 'Pending' && order.BuyerApproval == 'Approved'">
                         </div>
-        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-12 mr-t20">
+                        <h5>History</h5>
+                        <!-- <p><span class="color-blue">Sent proposal to buyer : </span>5-12-2017</p>
+                        <p><span class="color-blue">You have received proposal from buyer : </span> 8-12-2017</p> -->
+                        <p ng-repeat="history in historylist">
+                        <span class="color-blue">{{history.SellerMessage}} : </span>
+                       {{history.TermDate}}
+                        </p>
+                      </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      </div>
-    </div>
-      <div class="clearfix"></div>
-  </section>
-
-
-
-
-
-
-
-        <div w3-include-html="footer.html"></div>
+ <div w3-include-html="footer.html"></div>
 
         <script src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
@@ -295,6 +442,27 @@
          $('input[type="date"]').datepicker();
     });
 </script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQD-LT4-VzlsdNpf33yNDeT38EaF3Kz-g&libraries=places"></script>
+<script>
+
+
+google.maps.event.addDomListener(window, 'load', function () 
+{
+
+  var options = { types: ['(cities)']};
+
+ // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
+ // };
+            var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
+            google.maps.event.addListener(places, 'place_changed', function () { 
+             
+
+            });
+                
+});
+
+</script>
+
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
 var sc_project=11561280; 

@@ -28,7 +28,7 @@
     </head>
 <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
-      <header id="top-header">
+       <header id="top-header">
             <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
@@ -133,7 +133,6 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
-                                               <li><a href="request-product.html">Request Item</a></li>
                                             </ul>
                                         </li>
                                       </ul>
@@ -219,49 +218,151 @@
   </section>
 -->
 <div class="clearfix"></div>
-  <section id="book-now" ng-init="shortlistedproducts();">
+  <section id="book-now">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-           <h2 class="section-title">My Shortlisted Products</h2>
+           <h2 class="section-title">Edit Product Details</h2>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-         <div class="col-sm-3" ng-repeat="product in productslist">
-                        <div class="product-box">
-                            <div class="pro-img">
-                                <a href="product_detail.html?id={{product.ProductId}}">
-                                    <img src="uploads/{{product.Image1}}" alt="" title="">
-                                </a>
-                            </div>
-                            <div class="product-footer">
-                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                            <!--     <h5>{{product.Description}}</h5>
-                                <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p> -->
-                                <h4><span>From SGD</span>${{product.Price}}</h4>
-                                <div class="bottom-btn">
-                                    <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
-                                    </div>
-                                    <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                           <!--  <div class="box-flag-img">
-                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
-                            </div> -->
-                            <div class="cat-text">
-                                <span>Footwears</span>
-                            </div>
-                        </div>
-                        </div>
-        </div>
+       <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Product Details</a></li>
+        <li><a data-toggle="tab" href="#menu1">Product Specification</a></li>
+      </ul>
 
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+     <div class="row">
+     <br/><br/>
+        <form name="addproduct" ng-submit="updateproduct(product)" id="addproduct" method="post" ng-init="fileinit();getcurrency();productinit();">
+             <div class="col-md-6">
+              <div class="form-group">
+              <label for="name">Product Name:</label>
+              <input type="text" class="form-control" ng-model="product.ProductName" name="name" id="name" required>
+            </div> 
+             </div> 
+             <div class="col-md-2">        
+            <div class="form-group">
+              <label for="price">Currency:</label>
+              <input type="text" class="form-control" ng-model="product.Currency" Disabled>
+              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+            </div>
+            </div> 
+              <div class="col-md-4">        
+            <div class="form-group">
+              <label for="price">Product Price:</label>
+              <input type="text" class="form-control" ng-model="product.Price" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
+              <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
+            </div>
+            </div>
+             <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Product Description:</label>
+              <textarea class="form-control" ng-model="product.Description" name="description" id="description" rows="6" required></textarea>
+            </div> 
+            </div>
+            <div class="col-md-4">
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <input id="file_browse1" class="form-control" type='file' name="productimage" onchange="angular.element(this).scope().updateattachment('file_browse1');   $('#imagepreview').children().remove();" accept="image/*"/>
+             <!--  <input type="text" class="form-control" ng-model="product.image" name="image" id="image" required> -->
+              <input type="hidden" name="imagename" ng-model="product.imagename">
+            </div>
+            </div>
+
+             <div class="col-md-4">
+             <div class="form-group">
+              <label for="quantity">In Stock:</label>
+              <input type="text" class="form-control" ng-model="product.Quantity" name="quantity" id="quantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
+            </div>
+            </div>
+
+            <div class="col-md-4">
+             <div class="form-group">
+              <label for="quantity">Min Order Quantity:</label>
+              <input type="text" class="form-control" ng-model="product.MinOrderQty" name="minquantity" id="minquantity" pattern="[0-9]{1,5}" oninvalid="setCustomValidity('Enter Valid Quantity')" onchange="try{setCustomValidity('')}catch(e){}" required>
+            </div>
+            </div>
+
+            <div class="col-md-12">
+              <div id="imagepreview"></div>
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="category">Category:</label>
+              <!-- <input type="text" class="form-control" ng-model="product.category" name="category" id="category" required> -->
+              <select class="form-control" ng-init="getCategories()" ng-change="getSubCat()" id="category" name="category" ng-options="cat.CategoryId as cat.CategoryTitle for cat in categorieslist" ng-model="product.CategoryId" required="">
+              </select>
+            </div>  
+            </div>
+             <div class="col-md-6">
+            <div class="form-group">
+              <label for="subcat">Subcategory:</label>
+               <select class="form-control" id="subcat"  name="subcat" ng-options="sc.SubCatId as sc.SubCatTitle for sc in subcatlist" ng-model="product.SubCatId" required="">
+              </select>
+            </div> 
+            </div>
+            <div class="form-group" id="alertmessage" hidden="">
+              <label>{{alertmessage}}</label>
+            </div> 
+           
+             
+        
+              <div class="clearfix"></div>
+          
+             
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Save</button>
+          </form>
+     </div>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+    <br><br>
+      <form name="addproduct2" ng-submit="specedit(spec,product)" id="addproduct2" method="post">
+            <input type="hidden" name="ProductId" ng-model="spec.ProductId">
+             <div class="col-md-12">
+              <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" ng-model="spec.Title" name="title" id="title" required>
+            </div> 
+             </div>  
+             <div class="col-md-12">
+            <div class="form-group">
+              <label for="desc">Description:</label>
+              <textarea class="form-control" ng-model="spec.Description" name="desc" id="desc" rows="6" required></textarea>
+            </div> 
+            </div>             
+        
+              <div class="clearfix"></div>
+          
+             
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Save</button>
+          </form><br/><br/>
+            <div class="table-responsive">          
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody id="specificationtable">
+              <tr ng-show="specification.length > 0" ng-repeat="s in specification">
+                 <td>{{$index+1}}</td>
+                 <td>{{ s.Title }}</td> 
+                 <td>{{ s.Description}}</td>
+                 <td ng-click="showSpecification($index,s.SpecificationId)"><i class="fa fa-pencil"></i></td>
+                <td ng-click="deleteSpecification($index,s.SpecificationId)"><i class="fa fa-trash"></i></td>
+              </tr>             
+              </tbody>
+            </table>
+            </div>
+            <br/><br/>
+           <!--  <button class="btn btn-success orenge-btn" type="button" value="Apply" class="wpcf7-form-control wpcf7-submit" onclick="$('#specification').hide();$('#thankyoudiv').show('slow');">Save</button> -->
       </div>
+  
+      </div>
+
     </div>
       <div class="clearfix"></div>
   </section>

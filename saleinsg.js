@@ -58,38 +58,67 @@ app.get('/api/allcategories', contact.allcategories);
 app.get('/api/getsubcategories/:id', contact.getsubcategories);
 
 app.get('/api/allproducts', contact.allproducts);
+app.get('/api/productrequests', contact.productrequests);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
+app.get('/api/getReqProductDetails/:id', contact.getReqProductDetails);
 app.get('/api/getProductSpecification/:id', contact.getProductSpecification);
 app.post('/api/getrecentprod', contact.getrecentprod);
+app.get('/api/featuredseller', contact.featuredseller);
+app.get('/api/getsellerinfo/:id', contact.getsellerinfo);
 
 app.get('/api/getcurrency/:id', contact.getcurrency);
+app.get('/api/getcountry/:id', contact.getcountry);
+app.get('/api/getProductName/:id', contact.getProductName);
 app.get('/api/getAllcurrency/', contact.getAllcurrency);
 app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.get('/api/filterbycategory/:id', contact.filterbycategory);
 app.get('/api/filterbycountry/:id', contact.filterbycountry);
+app.get('/api/filterbyseller/:id', contact.filterbyseller);
 app.post('/api/filterbyCouCat', contact.filterbyCouCat);
 app.post('/api/filterbyCatSub', contact.filterbyCatSub);
+app.post('/api/filterbySelCat', contact.filterbySelCat);
 app.post('/api/filterbyall', contact.filterbyall);
+app.post('/api/filterallbyseller', contact.filterallbyseller);
 
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
 
 app.get('/api/sellerorders/:id', seller.sellerorders);
 app.post('/api/addproduct', seller.addproduct);
+app.post('/api/updateproduct', seller.updateproduct);
+app.get('/api/disableProduct/:id', seller.disableProduct);
+app.get('/api/enableProduct/:id', seller.enableProduct);
 app.post('/api/addspecification', seller.addspecification);
+app.post('/api/specedit', seller.specedit);
+app.get('/api/showSpecification/:id', seller.showSpecification);
+app.get('/api/deleteSpecification/:id', seller.deleteSpecification);
 app.get('/api/userproducts/:id', seller.userproducts);
+app.get('/api/getOrderDetails/:id', seller.getOrderDetails);
+app.post('/api/GetOrderDetails', seller.GetOrderDetails);
+app.get('/api/getTerms/:id', seller.getTerms);
+app.post('/api/sellerTerms', seller.sellerTerms);
+app.post('/api/sellerapprove', seller.sellerapprove);
+app.get('/api/getHistory/:id', seller.getHistory);
+
 app.get('/api/userinfo/:id', contact.userinfo);
 app.post('/api/updateprofile', contact.updateprofile);
 app.post('/api/updatebankdetails', contact.updatebankdetails);
 app.post('/api/updatepassword', contact.updatepassword);
 
+app.post('/api/requestproduct', buyer.requestproduct);
 app.get('/api/buyerorders/:id', buyer.buyerorders);
 app.get('/api/shortlistedproducts/:id', buyer.shortlistedproducts);
 app.post('/api/addtowishlist', buyer.addtowishlist);
 app.post('/api/removefromwishlist', buyer.removefromwishlist);
 app.post('/api/placeorder', buyer.placeorder);
 app.post('/api/addTerms', buyer.addTerms);
+app.get('/api/getbuyerOrderDetails/:id', buyer.getbuyerOrderDetails);
+app.post('/api/GetbuyerOrderDetails', buyer.GetbuyerOrderDetails);
+app.post('/api/buyerTerms', buyer.buyerTerms);
+app.post('/api/buyerapprove', buyer.buyerapprove);
+app.post('/api/buyerdelete', buyer.buyerdelete);
+app.get('/api/getBankDetails/:id', buyer.getBankDetails);
 
 app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);

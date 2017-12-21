@@ -2,7 +2,7 @@
 <html lang="en">
 
   <script type="text/javascript">
-         if (window.sessionStorage.getItem('User_Id')<=0) 
+         if (window.localStorage.getItem('User_Id')<=0) 
                 {
                    window.location.href="login.html";
                 }
@@ -19,6 +19,7 @@
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
         <link href="assets/css/responsive.css" rel="stylesheet">
+
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -133,6 +134,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li>
                                             </ul>
                                         </li>
                                       </ul>
@@ -280,7 +282,11 @@
          <div class="col-sm-9">
      <div class="row">
      <div class="new_message_head">
-    <!--  <div class="pull-left"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button></div><div class="pull-right"><div class="dropdown">
+     <div class="pull-left">
+
+    <a href="product_detail.html?id={{ProductId}}" class="color-white"><h4>{{ProductName}}</h4></a> 
+     <!-- <button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button> -->
+     </div><!-- <div class="pull-right"><div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-cogs" aria-hidden="true"></i>  Setting
     <span class="caret"></span>
@@ -361,7 +367,17 @@
          $('input[type="date"]').datepicker();
     });
 </script> -->
-
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ?"https://secure" : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/" target="_blank">
+<img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 </div>
 </body>
 

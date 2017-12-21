@@ -1131,8 +1131,9 @@ section#footer {
   background-color: transparent;
 }
 .banner-form-wrap{
-  background: url("../img/top-banner.jpg") no-repeat top center;
-  padding: 100px 0px;
+  /*background: url("../img/top-banner.jpg") no-repeat top center;*/
+ /* padding: 100px 0px;*/
+  padding: 50px 0px;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -1149,7 +1150,8 @@ section#footer {
 }
 .banner-form-text h4{
   font-size: 39px;
-  color: #ffffff;
+ /* color: #ffffff;*/
+  color: #000000;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
   line-height: 49px;
@@ -2143,6 +2145,57 @@ h4.pro-price span{
     display: inline-block; width: 8rem;
   }
 }
+#order-wrap h6 label{
+  color: #887476;
+  font-size: 15px;
+  line-height: 22px;
+}
+#order-wrap h6 label span{ 
+  color: #52bad5;
+  font-weight: normal;
+}
+#order-wrap .table>tbody>tr>td{
+    vertical-align: middle;
+    text-align: center;
+}
+#order-wrap .table>tbody>tr>td p{
+  margin: 0px;
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+#order-wrap .table>tbody>tr>td{
+  text-align: center;
+  padding: 8px;
+}
+#order-wrap .table>tbody>tr>td img{
+  display: block;
+  margin: 0 auto;
+}
+#order-wrap .table>tbody>tr>td select{
+  width: 70px;
+  padding: 3px 7px;
+}
+#order-wrap .table>thead>tr>th{
+   padding: 16px 8px;
+   text-align: center;
+}
+#order-wrap .table>thead>tr{
+  background-color: #f2f2f2;
+}
+@media screen and (max-width: 600px) {
+  #order-wrap  table#cart tbody td .form-control{
+    width:20%;
+    display: inline !important;
+  }
+  #order-wrap table#cart thead { display: none; }
+  #order-wrap table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+  #order-wrap table#cart tbody tr td:first-child { background: #333; color: #fff; }
+  #order-wrap table#cart tbody td:before {
+    content: attr(data-th); font-weight: bold;
+    display: inline-block; width: 8rem;
+  }
+}
 .order-add-form{
   border: 1px solid #e7e7e7;
 }
@@ -2257,4 +2310,11 @@ h4.pro-price span{
 }
 .mr-l10{
   margin-left: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

@@ -16,16 +16,16 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
         <script type="text/javascript">
-         if (window.sessionStorage.getItem('User_Id')<=0) 
+         if (window.localStorage.getItem('User_Id')<=0) 
                 {
-                   window.sessionStorage.setItem('GoToPage',window.location.href); 
+                   window.localStorage.setItem('GoToPage',window.location.href); 
                    window.location.href="login.html";
 
                 }
                 else
                 {
-                   if (window.sessionStorage.getItem("GoToPage") !== null) {
-                                window.sessionStorage.removeItem('GoToPage');
+                   if (window.localStorage.getItem("GoToPage") !== null) {
+                                window.localStorage.removeItem('GoToPage');
                         }
                 }
     </script>
@@ -210,6 +210,7 @@
                 <h2 class="section-title">Place Order</h2>
               </div>
               <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+<<<<<<< HEAD
                 <div class="col-sm-6">
                   <div class="row">
                      <div class="seller-details">
@@ -236,6 +237,17 @@
                         </h6>
                     </div>
                   </div>
+=======
+                <div class="seller-details">
+                  <h4>Buyer Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> {{product.fullname}}</label><br>
+                    <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label><br>
+                    <label for="email"><span>Email Address : </span>{{product.email}}</label><br>
+                    <label> <span>Country : </span> {{product.buyercountry}} </label><br>
+                    <label><span>Seller : </span> <a href="productsbyseller.html?seller={{product.SupplierId}}">{{product.CompanyName}}</a> </label>
+                  </h6>
+>>>>>>> master
                 </div>
               </div>
               <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
@@ -255,7 +267,7 @@
                     <tbody>
                       <tr>
                         <td>
-                          <p>12656809</p>
+                          <p>{{product.ProductId}}</p>
                         </td>
                         <td data-th="Product">
                           <div class="">
@@ -273,7 +285,8 @@
                           </p>
                         </td>
                         <td data-th="Quantity">
-                          <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
+                         <!--  <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select> -->
+                         <input type="number" name="orderqty" id="orderqty" ng-model="product.orderqty" ng-change="cal(product,per);cal1(product,per1)" required="" min="0">
                         </td>
                         <td data-th="Subtotal" class="text-right">
                           <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
@@ -304,7 +317,7 @@
                     </div>
                     <div class="col-sm-4">
                       <label>Type</label>
-                      <Select class="form-group form-control" type='text' ng-model='types' required="">
+                      <Select class="form-group form-control" type='text' ng-model='types' required="" ng-change="changeType()">
                         <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                         <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                         <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
@@ -318,13 +331,29 @@
                       <label>Amount</label>
                       <input class="form-group form-control" type='text' ng-model='amt'>
                     </div>
+                    <div class="col-sm-3">
+                      <input class=" form-group form-control" type='text' ng-model='terms1' required="">
+                    </div>
+                    <div class="col-sm-4">
+                      <Select class="form-group form-control" type='text' ng-model='types1' required="" ng-change="changeType1()">
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='per1' ng-change='cal1(product,per1)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <input class="form-group form-control" type='text' ng-model='amt1'>
+                    </div>
                         <div ng-repeat="n in [].constructor(10) track by $index">
                           <div id="termsdiv{{$index}}" hidden="">
                           <div class='col-md-3'>
                             <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
                           </div>
                           <div class='col-md-4'>
-                             <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                             <Select class="form-group form-control" type='text' ng-model='product.type[$index]' ng-change="changeType2($index)">
                               <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
                               <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
                               <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
@@ -372,6 +401,115 @@
           </div>
         </section>
 
+           <section id="order-wrap" id="book-now" hidden="">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 text-center">
+                <h2 class="section-title">Thank You For placing Order</h2>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="seller-details">
+                  <h4>Shipping Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> {{product.fullname}}</label><br>
+                    <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label><br>
+                    <label for="email"><span>Email Address : </span>{{product.email}}</label><br>
+                    <!-- <label> <span>Country : </span> {{product.buyercountry}} </label><br>
+                    <label><span>Seller : </span> <a href="productsbyseller.html?seller={{product.SupplierId}}">{{product.CompanyName}}</a> </label> -->
+                    <label for="email"><span>Address : </span>{{product.address1}},{{product.address2}},{{product.postalcode}},{{product.country}}</label><br>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="confirmorder()">
+                <div class="cart-table">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:28%">Title</th>
+                        <th style="width:25%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p>{{product.ProductId}}</p>
+                        </td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{{product.ProductName}}</p>
+                        </td>
+                        <td data-th="Price">
+                          <p>{{product.Currency}} {{product.Price}} </p>
+                        </td>
+                        <td data-th="Quantity">
+                          <p>{{product.orderqty}} </p>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="order-add-form">
+                  <div class="top-strip">
+                    <div class="col-sm-6 col-md-6">
+                      <h5>Terms</h5>                      
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                      <!-- <input type="button" class="red-btn small-btn" ng-click="showterms()" value="Add"> -->
+                       <!-- <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="order-form-foot">
+
+                  <div class="table-responsive">          
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>Title</td>
+                        <th>Type</th>
+                        <th>%</th>
+                        <th>Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody id="specificationtable">
+                    <tr ng-repeat="n in [].constructor(10) track by $index" ng-if="product.term[$index]">
+                       <td>{{product.term[$index]}}</td> 
+                       <td>{{product.type[$index]}}</td>
+                       <td>{{product.percentage[$index]}}%</td>
+                       <td>{{product.Currency}} {{product.amount[$index]}}</td>
+                    </tr>             
+                    </tbody>
+                  </table>
+               </div>
+
+                          <div class="clearfix"></div>
+                          <div class="shipping-wrap mr-t20">
+                           
+                            <div class="col-sm-12 col-md-12 text-center mr-t20">
+                              <button class="red-btn small-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Confirm</button>
+                            </div>
+                          </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
 
 
@@ -405,6 +543,17 @@
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
         <script src="assets/js/custom.js"></script>
+ <!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ?"https://secure" : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="Web AnalyticsMade Easy - StatCounter" href="http://statcounter.com/" target="_blank">
+<img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="Web Analytics Made Easy - StatCounter"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 
 </div>
 </body>
