@@ -2405,6 +2405,12 @@ input::-webkit-inner-spin-button {
   .foot-text p{font-size: 13px}
   .foot-text h5{font-size: 13px; margin-bottom: 4px;}
   #bottom-strip p{font-size: 13px; margin: 0px 25px;}
+  .navigation-wrap .navbar-default .navbar-nav>li>a, 
+  .cuntry-nav-strip .navbar-default .navbar-nav>li>a, 
+  .cuntry-nav-strip .dropdown-menu>li>a, 
+  .dropdown-menu>li>a{
+    color: #ffffff;
+  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
