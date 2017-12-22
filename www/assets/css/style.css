@@ -2406,6 +2406,9 @@ input::-webkit-inner-spin-button {
   .foot-text h5{font-size: 15px; margin-bottom: 7px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  .sm-center{text-align: center;}
+
+
   .foot-logo {width: 100%;}
   .login-form-wrap {width: 80%; margin: 70px auto;}
 
