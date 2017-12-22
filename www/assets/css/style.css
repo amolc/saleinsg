@@ -2377,6 +2377,7 @@ input::-webkit-inner-spin-button {
 
 /*Responsive Css Start */
 
+
 @media (max-width: 767px) {
   .xs-pd0{padding: 0px;}
   .orenge-logo-strip{background: transparent; padding: 0px;}
@@ -2392,7 +2393,7 @@ input::-webkit-inner-spin-button {
   .navbar-default .navbar-toggle .icon-bar{background-color: #fff;}
   .navbar-nav{background-color: #52bbd5; margin: 0px -15px;}
   .navigation-wrap .navbar-default{margin-top: 0px;}
-  .navigation-wrap{position: absolute; left: 0; top: 0; width: 100%;}
+  .navigation-wrap{position: absolute; left: 0; top: 0; width: 100%; z-index: 99;}
   #book-now{padding: 20px 15px;}
   .login-form-wrap{width: 100%; padding: 20px;}
   .section-title{font-size: 20px; margin-bottom: 15px;}
