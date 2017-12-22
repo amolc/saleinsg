@@ -2274,19 +2274,7 @@ h4.pro-price span{
   transform: rotate(45deg);
 }
 .seller-box{
-  background: #52bbd5;
-  padding: 20px;
-  padding: 20px 20px 20px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  box-shadow: 0 1px 3px 0 #b9b7b7;
-  -webkit-box-shadow: 0 1px 3px 0 #b9b7b7;
-  -moz-box-shadow: 0 1px 3px 0 #b9b7b7;
-  -ms-box-shadow: 0 1px 3px 0 #b9b7b7;
-  -o-box-shadow: 0 1px 3px 0 #b9b7b7;
+  padding: 20px 20px 20px;  
 }
 .seller-img{
   width: 88px;
@@ -2294,6 +2282,7 @@ h4.pro-price span{
   border-radius: 50%;
   overflow: hidden;
   margin: 0px auto 15px;
+  border: 3px solid #52bbd5;
 }
 .seller-footer h3{
   text-align: center;
@@ -2301,7 +2290,7 @@ h4.pro-price span{
 }
 .seller-footer h3 a{
   font-size: 17px;
-  color: #ffffff;
+  color: #000000;
   font-weight: normal;
 } 
 .about-box{
