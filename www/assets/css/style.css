@@ -2372,3 +2372,33 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+
+
+/*Responsive Css Start */
+
+@media (max-width: 767px) {
+  .xs-pd0{padding: 0px;}
+  .orenge-logo-strip{background: transparent; padding: 0px;}
+  .xs-bs-gray{background-color: #f2f2f2; }
+  .xs-btn-toggle{position: absolute;  right: 15px; top: -59px; margin: 10px 0px;}
+  .xs-center{text-align: center;}
+  .xs-mr0{margin: 0px;}
+
+  .orenge-logo-strip a img{width: 127px; height: auto; margin: 10px 0px}
+  .navbar-default .navbar-toggle, 
+  .navbar-default .navbar-toggle:focus, 
+  .navbar-default .navbar-toggle:hover{border-color: #52bbd5; background: #52bbd5;}
+  .navbar-default .navbar-toggle .icon-bar{background-color: #fff;}
+  .navbar-nav{background-color: #52bbd5; margin: 0px -15px;}
+  .navigation-wrap .navbar-default{margin-top: 0px;}
+  .navigation-wrap{position: absolute; left: 0; top: 0; width: 100%;}
+  #book-now{padding: 20px 15px;}
+  .login-form-wrap{width: 100%; padding: 20px;}
+  .section-title{font-size: 20px; margin-bottom: 15px;}
+  .form-control{height: 40px;}
+  .login-form-wrap .small-btn.mr-t30{margin-top: 10px;}
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }
