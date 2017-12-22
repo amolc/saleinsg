@@ -258,9 +258,9 @@ section#footer {
 .foot-text ul li:last-child a{
     margin: 0px;
 }
-.pd-l80{
+/*.pd-l80{
     padding-left: 80px;
-}
+}*/
 .tour-package{
     padding: 60px 0px;
 }
@@ -355,7 +355,7 @@ section#footer {
     color: #171717;
      border-color: #18a7e2;
 }
-#book-now{padding: 60px;}
+#book-now{padding: 60px 0px;}
 .form-control{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; height: 44px; border-color: #171717;}
 .form-control:focus, .form-control:hover, .form-control:active{box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -o-box-shadow: none; border-color: #18a7e2;}
 .btn-success{border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; -ms-border-radius: 0px; -o-border-radius: 0px; display: block; margin: 10px auto 0px; padding: 10px 45px; background-color: #18a7e2;
@@ -1572,7 +1572,6 @@ section#footer {
   padding: 100px 0px;
 }
 .login-form-wrap{
-  width: 40%;
   margin: 0 auto;
   background: #e8e8e8;
   padding: 50px;
@@ -2406,6 +2405,13 @@ input::-webkit-inner-spin-button {
   .foot-text p{font-size: 14px}
   .foot-text h5{font-size: 15px; margin-bottom: 7px;}
 }
-@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
-@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
-@media (min-width: @screen-lg-min) { ... }
+@media (min-width: 768px) and (max-width: 991px) {
+  .foot-logo {width: 100%;}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+@media (min-width: 1200px) {
+  .login-form-wrap"{width: 40%;}
+  .pd-l80{padding-left: 80px;}
+}
