@@ -239,11 +239,10 @@ section#footer {
  }
 .foot-text ul li a{
     color: #ffffff;
-    display: inline-block; 
+    display: block; 
     font-size: 17px; 
     font-family: 'Open Sans', sans-serif;
     margin-right: 20px; 
-    text-align: center; 
     transition: all 0.2s linear 0s; 
     -webkit-transition: all 0.2s linear 0s; 
     -moz-transition: all 0.2s linear 0s; 
@@ -2399,6 +2398,7 @@ input::-webkit-inner-spin-button {
   .section-title{font-size: 20px; margin-bottom: 15px;}
   .form-control{height: 40px;}
   .login-form-wrap .small-btn.mr-t30{margin-top: 10px;}
+  #footer .col-sm-4.col-md-4.pd-l80{padding-left: 15px;}
 }
 @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
 @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
