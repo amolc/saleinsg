@@ -2407,8 +2407,8 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .foot-logo {width: 100%;}
-  .login-form-wrap {width: 80%; margin: 50px auto;}
-  
+  .login-form-wrap {width: 80%; margin: 80px auto;}
+
 }
 @media (min-width: 992px) and (max-width: 1199px) {
 
