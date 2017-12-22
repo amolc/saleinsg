@@ -2273,6 +2273,65 @@ h4.pro-price span{
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+.seller-box{
+  background: #52bbd5;
+  padding: 20px;
+  padding: 20px 20px 20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #b9b7b7;
+  -webkit-box-shadow: 0 1px 3px 0 #b9b7b7;
+  -moz-box-shadow: 0 1px 3px 0 #b9b7b7;
+  -ms-box-shadow: 0 1px 3px 0 #b9b7b7;
+  -o-box-shadow: 0 1px 3px 0 #b9b7b7;
+}
+.seller-img{
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0px auto 15px;
+}
+.seller-footer h3{
+  text-align: center;
+  text-transform: uppercase;
+}
+.seller-footer h3 a{
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: normal;
+} 
+.about-box{
+  background-color: #f2f2f2;
+  padding: 25px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  margin-top: 30px;
+}
+.col-sm-offset-1.about-box {
+    margin-left: 7.133333%;
+}
+.about-box h5{
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  color: #52bbd5;
+}
+ul.comman-list li{
+  list-style-type: square;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #52bbd5;
+}
+ul.comman-list li span{
+  color: #000000;
+}
 
 
 
@@ -2299,6 +2358,12 @@ h4.pro-price span{
 
 
 
+
+
+
+.mr-t10{
+  margin-top: 10px;
+}
 .mr-t20{
   margin-top: 20px;
 }

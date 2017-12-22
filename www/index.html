@@ -744,14 +744,14 @@
 
                   <div class="item active" ng-repeat="seller in sellerlist |limitTo:4">
                       <div class="col-xs-12 col-sm-6 col-md-3">
-                        <div class="product-box">
-                            <div class="pro-img">
+                        <div class="seller-box">
+                            <div class="seller-img">
                           <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
                                 <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
                                 <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
                               <!-- </a> -->
                             </div>
-                            <div class="product-footer">
+                            <div class="seller-footer">
                                 <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
                                 <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
