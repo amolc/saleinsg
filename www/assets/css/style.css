@@ -2400,10 +2400,10 @@ input::-webkit-inner-spin-button {
   #footer .col-sm-4.col-md-4.pd-l80{padding-left: 15px;}
   section#footer{padding: 30px 0px;}
   .foot-logo{width: 150px; margin: 23px auto 0;}
-  .foot-text ul li a{font-size: 14px; text-align: right; margin-bottom: 8px;margin-right: 0px;}
+  .foot-text ul li a{font-size: 13px; text-align: right; margin-bottom: 8px;margin-right: 0px;}
   .foot-text ul li:last-child a{margin-right: 0px;}
-  .foot-text p{font-size: 14px}
-  .foot-text h5{font-size: 15px; margin-bottom: 7px;}
+  .foot-text p{font-size: 13px}
+  .foot-text h5{font-size: 13px; margin-bottom: 7px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
