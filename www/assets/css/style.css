@@ -2420,6 +2420,7 @@ input::-webkit-inner-spin-button {
   .circle-1{width: 96px; height: 96px; border: 14px solid #f2f2f2;}
   .circle-1 .flag-img{width: 69px; height: 69px;}
   section{padding: 20px 0px;}
+  #offers-wrap{padding-bottom: 0px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
