@@ -2422,7 +2422,7 @@ input::-webkit-inner-spin-button {
   section{padding: 20px 0px;}
   #offers-wrap{padding-bottom: 0px;}
   .seller-box{padding: 0px;}
-  .seller-footer h3{font-size: 14px; line-height: 22px;}
+  .seller-footer h3{font-size: 12px; line-height: 22px;}
   .seller-img{margin: 0px auto 4px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
