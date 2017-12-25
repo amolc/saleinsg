@@ -2417,6 +2417,8 @@ input::-webkit-inner-spin-button {
   .banner-form-text h4{font-size: 21px; line-height: 26px; margin-bottom: 19px;}
   .banner-form-wrap{padding: 20px 0px;}
   .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next{display: none;}
+  .circle-1{width: 96px; height: 96px; border: 14px solid #f2f2f2;}
+  .circle-1 .flag-img{width: 69px; height: 69px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
