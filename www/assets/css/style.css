@@ -2395,7 +2395,7 @@ input::-webkit-inner-spin-button {
   .navigation-wrap{position: absolute; left: 0; top: 0; width: 100%; z-index: 99;}
   #book-now{padding: 20px 15px;}
   .login-form-wrap{width: 100%; padding: 20px;}
-  .section-title{font-size: 20px; margin-bottom: 15px;}
+  .section-title{font-size: 18px; margin-bottom: 25px;}
   .form-control{height: 40px;}
   .login-form-wrap .small-btn.mr-t30{margin-top: 10px;}
   #footer .col-sm-4.col-md-4.pd-l80{padding-left: 15px;}
@@ -2414,8 +2414,9 @@ input::-webkit-inner-spin-button {
 
   /*INDEX PAGE RESPONSIVE CSS*/
   .col-sm-12.mr-t50.text-center{margin-top: 0px;}
-  .banner-form-text h4{font-size: 22px; line-height: 26px; margin-bottom: 14px;}
+  .banner-form-text h4{font-size: 21px; line-height: 26px; margin-bottom: 19px;}
   .banner-form-wrap{padding: 20px 0px;}
+  .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next{display: none;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
