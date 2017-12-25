@@ -1344,6 +1344,9 @@ section#footer {
   border-radius: 50%;
   border:16px solid #f2f2f2;
   /*float:left;*/
+  width: 137px;
+  height: 137px;
+  margin: 0 auto;
 }
 
 .circle-1 .flag-img {
@@ -1580,9 +1583,7 @@ section#footer {
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-}
-.login-form-wrap{
-
+  width: 50%;
 }
 .form-control:hover, .form-control:focus, .form-control:active{
   border-color: #52bcd5;
@@ -2408,9 +2409,7 @@ input::-webkit-inner-spin-button {
   .navigation-wrap .navbar-default .navbar-nav>li>a, 
   .cuntry-nav-strip .navbar-default .navbar-nav>li>a, 
   .cuntry-nav-strip .dropdown-menu>li>a, 
-  .dropdown-menu>li>a{
-    color: #ffffff;
-  }
+  .dropdown-menu>li>a{color: #ffffff;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
