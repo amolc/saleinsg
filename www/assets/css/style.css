@@ -2247,7 +2247,7 @@ h4.pro-price span{
   height: 20px;
   background: #e6e6e6;
 }
- 
+
  
 .styled-checkbox:checked + label:before {
   background: #52bbd5;
@@ -2421,6 +2421,9 @@ input::-webkit-inner-spin-button {
   .circle-1 .flag-img{width: 69px; height: 69px;}
   section{padding: 20px 0px;}
   #offers-wrap{padding-bottom: 0px;}
+  .seller-box{padding: 0px;}
+  .seller-footer h3{font-size: 14px; line-height: 22px;}
+  .seller-img{margin: 0px auto 4px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
