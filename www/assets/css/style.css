@@ -2435,7 +2435,7 @@ input::-webkit-inner-spin-button {
   #requests-wrap #pleacr-order-wrap table#cart tbody tr {margin-bottom: 20px; display: block;}
   #requests-wrap #pleacr-order-wrap .table-bordered{border: 0px;}
   #requests-wrap #pleacr-order-wrap .table{margin-bottom: 0px;}
-  #requests-wrap{padding-bottom: 0px;}
+  #requests-wrap{padding-bottom: 10px;}
   
 }
 @media (min-width: 768px) and (max-width: 991px) {
