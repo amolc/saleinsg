@@ -2350,6 +2350,7 @@ ul.comman-list li span{
 
 
 
+
 .mr-t10{
   margin-top: 10px;
 }
@@ -2427,6 +2428,7 @@ input::-webkit-inner-spin-button {
   .seller-img{margin: 0px auto 4px;}
   .seller-footer h3 a{font-size: 14px;}
   .section-title{font-size: 18px; margin-bottom: 25px; text-align: center;}
+  #viewed-wrap{padding-bottom: 0px;}
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sm-center{text-align: center;}
