@@ -2320,8 +2320,9 @@ ul.comman-list li{
 ul.comman-list li span{
   color: #000000;
 }
-
-
+#requests-wrap{background-color: #f2f2f2;}
+#requests-wrap table{background-color: #ffffff;}
+#requests-wrap #pleacr-order-wrap .table>thead>tr{background-color: #f1fcff;}
 
 
 
