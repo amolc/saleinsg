@@ -2391,7 +2391,12 @@ ul.comman-list li span{
   font-weight: 600;
 }
 #pleacr-order-wrap h6 label{
-  color: #444;
+  font-weight: 400;
+  color: #000;
+  font-size: 18px;
+}
+.mr-r30{
+  margin-right: 30px;
 }
 
 
