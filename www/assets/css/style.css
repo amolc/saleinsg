@@ -2324,6 +2324,88 @@ ul.comman-list li span{
 #requests-wrap{background-color: #f2f2f2;}
 #requests-wrap #pleacr-order-wrap .table>tbody>tr{background-color: #ffffff;}
 #requests-wrap #pleacr-order-wrap .table>thead>tr{background-color: #f1fcff;}
+.bidding-block{
+  background-color: #f2f2f2;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.12);
+  padding: 30px;
+  margin-top: 30px;
+}
+.bidding-form{
+  margin-top: 30px;
+}
+.bidding-block h4{
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 24px;
+  font-weight: 700;
+}
+.bidding-block h4 strong{
+  font-weight: 700;
+}
+.bidding-block h4 span{
+  font-weight: 400;
+  color: #000;
+  font-size: 18px;
+}
+.bidding-block p{
+  font-size: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
+.bidding-block p span{
+  color: #52bbd5;
+}
+.bidding-product hr{
+  border: 0.5px solid #887476;
+}
+.sealer-img{
+  width: 96px;
+  height: 96px;
+  float: left;
+}
+.sealer-img img{
+  width: 100%;
+  height: auto;
+}
+.sealer-info{
+  margin-left: 120px;
+  width: 450px;
+}
+.sealer-info h5{
+  font-size: 17px;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.sealer-info h5 span{
+  color: #52bbd5;
+}
+.sealer-profile{
+  padding: 20px 0px;
+  border-top: 1px solid #cecece;
+}
+#bidding-wrap{
+  padding: 20px 0px;
+}
+#pleacr-order-wrap h6 label span{
+  color: #000 !important;
+  font-weight: 600;
+}
+#pleacr-order-wrap h6 label{
+  font-weight: 400;
+  color: #000;
+  font-size: 18px;
+}
+.mr-r30{
+  margin-right: 30px;
+}
+
+
+
+
+
+
+
+
 
 
 
