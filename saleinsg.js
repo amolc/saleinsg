@@ -80,6 +80,7 @@ app.post('/api/filterbyCatSub', contact.filterbyCatSub);
 app.post('/api/filterbySelCat', contact.filterbySelCat);
 app.post('/api/filterbyall', contact.filterbyall);
 app.post('/api/filterallbyseller', contact.filterallbyseller);
+app.get('/api/getbiddings/:id', contact.getbiddings);
 
 app.post('/api/addorder', contact.addorder);
 app.post('/api/addbankorder', contact.addbankorder);
@@ -124,7 +125,7 @@ app.post('/api/submitenquiry', message.submitenquiry);
 app.get('/api/conversationlist/:id', message.conversationlist);
 app.post('/api/conversation/', message.conversation);
 app.post('/api/sendmessage/', message.sendmessage);
-
+app.post('/api/postbid', message.postbid);
 
 
 app.listen(9888, function () {

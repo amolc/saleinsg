@@ -1269,11 +1269,11 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       {
 
 
-      $scope.enquiry.productId= productId[1];
+       $scope.enquiry.productId= productId[1];
 
        $http.get(baseurl + 'getProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
 
-           // console.log(data);
+           $scope.enquiry = data;
            $scope.enquiry.Type = data.ProductType;
            if($scope.enquiry.Type == 'Product')
            {
@@ -1294,7 +1294,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            }
            if ($scope.enquiry.Type == 'Request'){
 
-                $scope.enquiry.productname = data.ProductName;
+               // $scope.enquiry.productname = data.ProductName;
                 $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
                 $scope.enquiry.BuyerId = data.BuyerId;
                 $scope.enquiry.BuyerEmail = data.SupEmail;
@@ -1304,7 +1304,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                     $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
                     $scope.enquiry.email = window.localStorage.getItem('User_Email');
                     $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
+
                 }
+
+              $http.get(baseurl + 'getbiddings/'+$scope.enquiry.productId).success(function(data, status) {    
+                   // console.log(data); 
+                     $scope.biddinglist = data;  
+
+              });
 
            }
 
@@ -2045,6 +2052,29 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
              document.enquiryform.reset(); 
              $("#enquiryform").hide();
              $("#thankyou").show('slow');
+
+        }
+
+      });
+  
+  }
+
+   $scope.postbid = function (enquiryform) {
+
+   // console.log($scope.enquiry);
+
+    var date = new Date();
+    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+    dateToday = messagedate+' '+messagetime;
+    $scope.enquiry.date = messagedate ; 
+    $scope.enquiry.datetime = dateToday ; 
+
+      $http.post(baseurl + 'postbid',$scope.enquiry).success(function(data, status) {
+
+        if (data.status == true) 
+        {
+             document.enquiryform.reset(); 
 
         }
 
