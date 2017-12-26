@@ -238,6 +238,7 @@ exports.postbid = function (req, res) {
 
 
             var to = req.body.BuyerEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+           // var to = 'komal.gaikwad@fountaintechies.com';
             var subject = "Tradeexchange.co - Product Bidding Request";
 
             var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
@@ -371,7 +372,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="color:#000000;line-height:120%;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
-<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 18px; line-height: 21px;"><strong>Buyer Details</strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Name : </b>'+req.body.fullname+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Country : </b>'+req.body.buyercountry+'<br></span></p></div>\
+<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 18px; line-height: 21px;"><strong>Seller Details</strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Name : </b>'+req.body.fullname+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Country : </b>'+req.body.sellercountry+'<br></span></p></div>\
 </div>\
 </div>\
 </div>\
@@ -406,7 +407,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
-<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/RequestedProduct/'+fileName+'" class="img-responsive"></div>\
+<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/RequestedProduct/'+req.body.Image1+'" class="img-responsive"></div>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\

@@ -1298,6 +1298,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
                 $scope.enquiry.BuyerId = data.BuyerId;
                 $scope.enquiry.BuyerEmail = data.SupEmail;
+                $scope.enquiry.BuyerCountry = data.CountryTitle;
                 if (window.localStorage.getItem('User_Id')>0) 
                 {
                     $scope.enquiry.SupId = window.localStorage.getItem('User_Id');
@@ -1350,6 +1351,75 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     else
     {
         location.href = "products.html";
+    }
+
+    }
+
+    $scope.bidinit = function (req, res) {
+       
+     //console.log($scope.enquiry);
+
+      $scope.enquiry = {};
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var productId = urlpart[0].split('=');
+
+
+
+      if (productId[0]=='id') 
+      {
+
+
+       $scope.enquiry.productId= productId[1];
+
+       $http.get(baseurl + 'getReqProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
+
+           $scope.enquiry = data;
+          
+                $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
+                $scope.enquiry.BuyerId = data.BuyerId;
+                $scope.enquiry.BuyerEmail = data.SupEmail;
+                $scope.enquiry.BuyerCountry = data.CountryTitle;
+                if (window.localStorage.getItem('User_Id')>0) 
+                {
+                    $scope.enquiry.SupId = window.localStorage.getItem('User_Id');
+                    $scope.enquiry.fullname = window.localStorage.getItem('User_Name');
+                    $scope.enquiry.email = window.localStorage.getItem('User_Email');
+                    $scope.enquiry.phonenumber = window.localStorage.getItem('User_Phone');
+                    var sellercountryId = parseInt(window.localStorage.getItem('User_Location'));
+                    $http.get(baseurl + 'getcountry/'+sellercountryId).success(function(data, status) {
+                     // console.log(data);
+                      $scope.enquiry.sellercountry = data.CountryTitle;
+
+
+                   });
+
+                }
+
+              $http.get(baseurl + 'getbiddings/'+productId[1]).success(function(data, status) {    
+                     // console.log(data); 
+                     $scope.biddinglist = data;  
+
+              });
+
+
+            
+       
+      });
+
+      }
+
+    }
+    else
+    {
+        location.href = "index.html";
     }
 
     }
@@ -2074,7 +2144,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
         if (data.status == true) 
         {
-             document.enquiryform.reset(); 
+
+             $http.get(baseurl + 'getbiddings/'+$scope.enquiry.ProductId).success(function(data1, status1) {    
+                     $scope.biddinglist = data1;  
+                    document.enquiryform.reset(); 
+
+              });
 
         }
 
