@@ -436,7 +436,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="product in reqlist">
+                    <tr ng-repeat="product in reqlist | limitTo:4">
                        <td>{{product.ProductId}}</td>
                        <td>{{product.FirstName}} {{product.LastName}}</td>
                        <td>{{product.CountryTitle}}</td>
