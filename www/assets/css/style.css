@@ -2399,6 +2399,9 @@ ul.comman-list li span{
   margin-right: 30px;
 }
 
+.hidden {
+  display: none;
+}
 
 
 
