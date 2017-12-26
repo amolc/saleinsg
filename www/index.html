@@ -98,7 +98,7 @@
                       <div class="banner-form-text">
                         <!-- <h1>What is tradeexchange.co</h1> -->
                         <div class="clearfix"></div>
-                        <h4>Tradeexchange is a 100% International export<br> platform for asian countries.</h4>
+                        <h4>Tradeexchange is a 100% International export<br> platform for buyers and sellers.</h4>
                         <form ng-init="getCountries()">
                           <div class="form-fild">
                           <!--   <div>Sell from 
@@ -128,8 +128,8 @@
                                 <span class="focus-border"><i></i></span>
                                 </div>
                               </div> -->
-                              <div class="col-sm-12 mr-t50 text-center">
-                                <a href="register.html" class="red-btn small-btn">Start Here</a>
+                              <div class="col-sm-12 text-center">
+                                <a href="register.html" class="red-btn small-btn">Join Now</a>
                               </div>
                           </div>
                           
@@ -642,7 +642,7 @@
                 <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
                   <div class="carousel-inner">
 
-                  <div class="item active" ng-repeat="seller in sellerlist |limitTo:4">
+                  <div class="item active" ng-repeat="seller in sellerlist">
                       <div class="col-xs-6 col-sm-6 col-md-3">
                         <div class="seller-box">
                             <div class="seller-img">
@@ -652,6 +652,7 @@
                               <!-- </a> -->
                             </div>
                             <div class="seller-footer">
+                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.FirstName}} {{seller.LastName}}</h3>
                                 <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
                                 <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
@@ -860,7 +861,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2 class="section-title">
-                  Product Requests
+                  Buyer Requirements
                 </h2>
               </div>
             </div>
@@ -878,7 +879,7 @@
                         <th style="width:20%">Buying Request</th>
                         <th style="width:15%">Expected Price</th>
                         <th style="width:15%">Required Quantity</th>
-                        <th style="width:22%">Quote Now</th>
+                        <th style="width:22%">Bid Now</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -889,7 +890,7 @@
                        <td>{{product.ProductName}}</td>
                        <td>{{product.Currency}} {{product.Price}}</td>
                        <td>{{product.Quantity}}</td>
-                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Quote Now</a></td>   
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>   
                     </tr>
                     </tbody>
                   </table>  
