@@ -2482,6 +2482,7 @@ input::-webkit-inner-spin-button {
   .navigation-wrap .navbar-default{margin-top: 0px;}
   .navigation-wrap{position: absolute; left: 0; top: 0; width: 100%; z-index: 99;}
   #book-now{padding: 20px 15px;}
+  
   .login-form-wrap{width: 100%; padding: 20px;}
   
   .form-control{height: 40px;}
