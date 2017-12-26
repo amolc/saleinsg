@@ -221,7 +221,6 @@ exports.postbid = function (req, res) {
 
     dateToday = now.format("DD/MM/YYYY hh:mm a");
     
-
     var createObj = {
                         "ProductId" :  req.body.ProductId,
                         "SupplierId": req.body.SupId || "",
