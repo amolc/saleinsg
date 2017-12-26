@@ -838,6 +838,17 @@ exports.getReqProductDetails = function (req, res) {
     
 };
 
+exports.getbiddings = function (req, res) {
+
+  var ProductId = req.params.id;
+   var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= "+ProductId;
+   console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+    
+};
+
 exports.getProductSpecification = function (req, res) {
 
   var ProductId = req.params.id;
