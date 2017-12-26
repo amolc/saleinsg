@@ -2380,8 +2380,16 @@ ul.comman-list li span{
   padding: 20px 0px;
   border-top: 1px solid #cecece;
 }
-
-
+#bidding-wrap{
+  padding: 20px 0px;
+}
+#pleacr-order-wrap h6 label span{
+  color: #000 !important;
+  font-weight: 600;
+}
+#pleacr-order-wrap h6 label{
+  color: #444;
+}
 
 
 
