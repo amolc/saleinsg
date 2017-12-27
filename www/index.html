@@ -414,7 +414,7 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2 class="section-title">
-                  Buyer Requirements
+                  Buyer Request
                 </h2>
               </div>
             </div>
@@ -533,7 +533,7 @@
                       <thead>
                       <tr>
                         <th style="width:8%">SKU No</th>
-                        <th style="width:15%">Name</th>
+                        <!-- <th style="width:15%">Name</th> -->
                         <th style="width:10%">Country</th>
                         <th style="width:20%">Buying Request</th>
                         <th style="width:15%">Expected Price</th>
@@ -544,7 +544,7 @@
                     <tbody>
                     <tr ng-repeat="product in reqlist | limitTo:4">
                        <td>{{product.ProductId}}</td>
-                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                  <!--      <td>{{product.FirstName}} {{product.LastName}}</td> -->
                        <td>{{product.CountryTitle}}</td>
                        <td>{{product.ProductName}}</td>
                        <td>{{product.Currency}} {{product.Price}}</td>
