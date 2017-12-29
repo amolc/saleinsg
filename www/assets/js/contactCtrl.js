@@ -2239,6 +2239,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    $http.get(baseurl + 'getProductName/'+$scope.ProductId).success(function(data, status) {
                      // console.log(data);
                       $scope.ProductName = data.ProductName;
+                      $scope.ProductType = data.ProductType;
+
 
                    });
               //$scope.conversation();

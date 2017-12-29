@@ -159,7 +159,7 @@ exports.register = function(req, res){
                             'LastName': req.body.lname,
                             'Phone': req.body.phone,
                             'CompanyName':req.body.company,
-                          //'Location':req.body.location,
+                            'Location':req.body.location,
                             'CountryId' :req.body.CountryId,
                             'VerificationCode':'',
                             'CreateDate':req.body.datetime,
@@ -885,7 +885,7 @@ exports.getcountry = function (req, res) {
 exports.getProductName = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT `ProductName` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
+   var sql = "SELECT `ProductName`,`ProductType` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
