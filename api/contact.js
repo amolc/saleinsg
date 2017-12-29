@@ -708,6 +708,15 @@ exports.productrequests = function (req, res) {
     });
 };
 
+exports.buyerproductrequests = function (req, res) {
+  var id = req.params.id;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.`BuyerId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 
 exports.getproductsbylocation = function (req, res) {
   var location = req.params.id;

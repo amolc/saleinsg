@@ -59,6 +59,7 @@ app.get('/api/getsubcategories/:id', contact.getsubcategories);
 
 app.get('/api/allproducts', contact.allproducts);
 app.get('/api/productrequests', contact.productrequests);
+app.get('/api/buyerproductrequests/:id', contact.buyerproductrequests);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
 app.get('/api/getReqProductDetails/:id', contact.getReqProductDetails);
 app.get('/api/getProductSpecification/:id', contact.getProductSpecification);

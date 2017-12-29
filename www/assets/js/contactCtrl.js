@@ -1030,6 +1030,26 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+      $scope.buyerproductrequests = function(){
+
+        $scope.userid =  window.localStorage.getItem('User_Id');
+
+        $http.get(baseurl + 'buyerproductrequests/'+$scope.userid).success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.reqlist = res;
+            }
+
+        }).error(function () {
+
+        });
+
+    }
+
      $scope.userproducts = function(){
 
         $scope.userid =  window.localStorage.getItem('User_Id');
