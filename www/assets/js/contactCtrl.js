@@ -1309,8 +1309,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 }
 
               $http.get(baseurl + 'getbiddings/'+$scope.enquiry.productId).success(function(data, status) {    
-                   // console.log(data); 
+                     
+
                      $scope.biddinglist = data;  
+                     //  console.log($scope.biddinglist); 
 
               });
 
@@ -1352,6 +1354,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     {
         location.href = "products.html";
     }
+
+    }
+
+    $scope.getinfo = function (bid) {
+              
+          $scope.message = {};    
+          $scope.message.userid = window.localStorage.getItem('User_Id');
+          $scope.message.OtherUserId = bid.SupplierId;
+          $scope.message.ProductId = bid.ProductId;
+          $('#myModal').modal('show');
 
     }
 
@@ -2107,7 +2119,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.submitenquiry = function (enquiryform) {
 
-    console.log($scope.enquiry);
+    //console.log($scope.enquiry);
 
     var date = new Date();
     var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -2349,6 +2361,30 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
   
   }
+
+   $scope.sendchat = function (message) {
+
+    var date = new Date();
+    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+    dateToday = messagedate+' '+messagetime;
+    //console.log(dateToday);
+
+  
+      $scope.message.date = dateToday;
+     // console.log($scope.conversation);
+       
+      $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
+
+           document.sendmsg.reset();
+           $(".message").hide();
+           $(".message1").show();
+           $("#modalclose").delay(1200).click(300);
+         
+      });
+  
+  }
+
 
    $scope.order = function (enquiryform) {
 

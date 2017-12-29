@@ -257,12 +257,13 @@
             <div class="seller-details">
               <h4>About the Buyer : </h4>
               <h6>
-                 <label class="mr-r30">Buyer Name : {{enquiry.BuyerName}}</label>
+                 <!-- <label class="mr-r30">Buyer Name : {{enquiry.BuyerName}}</label> -->
                 <label>Country : {{enquiry.BuyerCountry}}</label><br>
                 <label> Product Id : {{enquiry.ProductId}}</label><br>
               </h6>
             </div>
-            <div class="bidding-form">
+          <!--   <div class="bidding-form" ng-if="User_Id != enquiry.BuyerId"> -->
+          <div class="bidding-form">
               <form ng-submit="postbid()" id="enquiryform" name="enquiryform">
                 <div class="form-group">
                   <h4>Proposal [ Please do explain why you are the best supplier ]</h4>
@@ -280,7 +281,7 @@
             <div class="bidding-product">
               <h4>{{biddinglist.length}} Sellers are bidding on this product</h4>
             </div>
-            <div class="sealer-profile" ng-repeat="bid in biddinglist">
+            <div class="sealer-profile" ng-repeat="bid in biddinglist" ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">
               <div class="sealer-img">
                  <img ng-if="bid.ProfilePic!=null" src="uploads/ProfilePic/{{bid.ProfilePic}}" alt="" title="">
                  <img ng-if="bid.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
@@ -289,6 +290,9 @@
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}, <span>{{bid.CountryTitle}}</span></h5>
                 <p>{{bid.Message}}</p>
               </div>  
+                 <div ng-if="User_Id == bid.BuyerId" style="float:right">
+                <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
+                </div>
               <div class="clearfix"></div>            
             </div>
             <!-- <div class="sealer-profile">
@@ -318,8 +322,36 @@
   </section>
 
 
+
+
  
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
     
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Modal Header</h4> -->
+        </div>
+         <form name="sendmsg" id="sendmsg" ng-submit="sendchat()">
+        <div class="modal-body">
+        
+           <textarea class="form-control message" ng-model="message.message" placeholder="Write Your Message Here..." required="" rows="6"></textarea>
+
+           <label class="message1" hidden="">Message Sent Successfully</label>
+      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="modalclose">Close</button>
+          <button type="submit" class="btn btn-default message">Send Message</button>
+        </div>
+           </form>
+      </div>
+      
+    </div>
+  </div>
 
 
 
