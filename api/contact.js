@@ -461,6 +461,7 @@ exports.updateprofile = function(req, res){
               'LastName': req.body.LastName,
               'Phone': req.body.Phone,
               'CompanyName':req.body.CompanyName,
+              'Location' : req.body.Location,
               'CountryId' :req.body.CountryId,
               'ProfilePic' : fileName
 
@@ -830,7 +831,7 @@ exports.getProductDetails = function (req, res) {
 exports.getReqProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
+   var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`Location` as SupLocation,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
@@ -917,7 +918,7 @@ exports.featuredseller = function (req, res) {
 exports.getsellerinfo = function (req, res) {
 
   var UserId = req.params.id;
-    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
+    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`Location`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
     console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);

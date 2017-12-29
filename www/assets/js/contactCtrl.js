@@ -240,6 +240,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.info.LastName = res.LastName;
                 $scope.info.Email = res.Email;
                 $scope.info.Phone = res.Phone;
+                $scope.info.Location = res.Location;
                 $scope.info.CompanyName = res.CompanyName;
                 $scope.info.CountryId = res.CountryId;
                 $scope.info.AccountName = res.AccountName;
@@ -1394,10 +1395,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getReqProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
 
            $scope.enquiry = data;
+
+           console.log($scope.enquiry);
           
                 $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
                 $scope.enquiry.BuyerId = data.BuyerId;
                 $scope.enquiry.BuyerEmail = data.SupEmail;
+                 $scope.enquiry.BuyerCity = data.SupLocation;
                 $scope.enquiry.BuyerCountry = data.CountryTitle;
                 if (window.localStorage.getItem('User_Id')>0) 
                 {

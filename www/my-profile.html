@@ -257,6 +257,7 @@
                               <p><span><b>Contact No : </b></span><span>{{User.Phone}}</span></p>
                               <p><span><b>Email Id : </b></span><span>{{User.Email}}</span></p>
                               <p><span><b>Company Name : </b></span><span>{{User.CompanyName}}</span></p>
+                              <p><span><b>City : </b></span><span>{{User.Location}}</span></p>
                               <p><span><b>Country : </b></span><span>{{User.CountryTitle}}</span></p>
                             </div>
                             <h5 class="mr-t30">My Bank Details</h5>
@@ -301,6 +302,12 @@
                                   <div class="form-group">
                                     <label for="fname">Company Name :</label>
                                     <input type="text" class="form-control" ng-model="info.CompanyName" name="fname" id="company" required="">
+                                  </div> 
+                                 </div>
+                                   <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="fname">City :</label>
+                                    <input type="text" class="form-control" ng-model="info.Location" name="fname" id="company" required="">
                                   </div> 
                                  </div>
                                  <div class="col-md-6">

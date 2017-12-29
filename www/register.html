@@ -260,18 +260,18 @@
               <input type="password" class="form-control" ng-model="registration.cpassword" name="cpassword" id="cpassword" required>
             </div>  
             </div>
-             <div class="col-md-6">
+             <div class="col-md-12">
             <div class="form-group">
               <label for="company">Company Name:</label>
               <input type="text" class="form-control" ng-model="registration.company" name="company" id="company" required>
             </div> 
             </div>
-             <!-- <div class="col-md-6">
+             <div class="col-md-6">
             <div class="form-group">
-              <label for="location">Location:</label>
+              <label for="location">City:</label>
               <input type="text" class="form-control" ng-model="registration.location" name="location" id="address" required>
             </div> 
-            </div> -->
+            </div>
              <div class="col-md-6">
             <div class="form-group">
               <label for="country">Select Country:</label>
@@ -340,20 +340,20 @@
 <script>
 
 
-google.maps.event.addDomListener(window, 'load', function () 
-{
+// google.maps.event.addDomListener(window, 'load', function () 
+// {
 
-  var options = { types: ['(cities)']};
+//   var options = { types: ['(cities)']};
 
- // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
- // };
-            var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
-            google.maps.event.addListener(places, 'place_changed', function () { 
+//  // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
+//  // };
+//             var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
+//             google.maps.event.addListener(places, 'place_changed', function () { 
              
 
-            });
+//             });
                 
-});
+// });
 
 </script>
 <!-- Start of StatCounter Code for Default Guide -->
