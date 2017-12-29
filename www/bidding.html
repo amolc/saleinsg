@@ -288,7 +288,8 @@
                  <img ng-if="bid.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
               </div>
               <div class="sealer-info">
-                <h5>{{bid.SupFirstName}} {{bid.SupLastName}},<span ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></h5>
+                <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
+                <p ng-if="bid.Location!=null"><span>{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p>{{bid.Message}}</p>
               </div>  
                  <div ng-if="User_Id == bid.BuyerId" style="float:right">
