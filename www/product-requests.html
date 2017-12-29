@@ -19,7 +19,7 @@
 
         
     </head>
-    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="featuredseller()">
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="productrequests()">
         <!-- Start Header -->
          
 <header id="top-header"> <div class="orenge-logo-strip">
@@ -136,33 +136,43 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h2 class="section-title text-center">
-                           All Sellers
+                          Buyer Request
                         </h2>
                     </div>
-                    <div class="col-sm-3" ng-repeat="seller in sellerlist">
-                      
-                        <div class="seller-box">
-                            <div class="seller-img">
-                          <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
-                                <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
-                                <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
-                              <!-- </a> -->
-                            </div>
-                            <div class="seller-footer">
-                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.FirstName}} {{seller.LastName}}</h3>
-                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
-                               
-                                                    <div class="clearfix"></div>
-                               
-                            </div>
-                          
-                            <div class="cat-text">
-                                <span>Footwears</span>
-                            </div>
-                        </div>
-
-
+                    <div class="col-sm-10">
                     </div>
+                    <div class="col-sm-2">
+                        <a href="request-product.html" class="red-btn small-btn">Post Request</a>
+                    </div>
+                    <div class="col-sm-12 col-md-12">
+              <div class="cart-table" id="pleacr-order-wrap" ng-init="productrequests();">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:8%">SKU No</th>
+                        <!-- <th style="width:15%">Name</th> -->
+                        <th style="width:10%">Country</th>
+                        <th style="width:20%">Buying Request</th>
+                        <th style="width:15%">Expected Price</th>
+                        <th style="width:15%">Required Quantity</th>
+                        <th style="width:22%">Bid Now</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="product in reqlist">
+                       <td>{{product.ProductId}}</td>
+                  <!--      <td>{{product.FirstName}} {{product.LastName}}</td> -->
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>   
+                    </tr>
+                    </tbody>
+                  </table> 
+
+                </div>
+            </div>
                   
              
 
