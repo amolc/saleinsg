@@ -258,7 +258,7 @@
               <h4>About the Buyer : </h4>
               <h6>
                  <!-- <label class="mr-r30">Buyer Name : {{enquiry.BuyerName}}</label> -->
-                 <label>City : {{enquiry.BuyerCity}}</label><br>
+                 <label ng-if="enquiry.BuyerCity!=null">City : {{enquiry.BuyerCity}}</label><br>
                 <label>Country : {{enquiry.BuyerCountry}}</label><br>
                 <label> Product Id : {{enquiry.ProductId}}</label><br>
               </h6>
@@ -288,7 +288,7 @@
                  <img ng-if="bid.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
               </div>
               <div class="sealer-info">
-                <h5>{{bid.SupFirstName}} {{bid.SupLastName}},<span ng-if="bid.Location!=null">{{bid.Location}},</span> <span>{{bid.CountryTitle}}</span></h5>
+                <h5>{{bid.SupFirstName}} {{bid.SupLastName}},<span ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></h5>
                 <p>{{bid.Message}}</p>
               </div>  
                  <div ng-if="User_Id == bid.BuyerId" style="float:right">
