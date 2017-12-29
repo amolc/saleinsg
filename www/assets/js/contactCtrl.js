@@ -2379,7 +2379,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
            document.sendmsg.reset();
            $(".message").hide();
            $(".message1").show();
-           $("#modalclose").delay(1200).click(300);
+           $("#modalclose").delay(1200).modal('hide');
          
       });
   
