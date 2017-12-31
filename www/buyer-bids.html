@@ -17,11 +17,11 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-        
+
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller" ng-init="buyerproductrequests()">
         <!-- Start Header -->
-         
+
 <header id="top-header"> <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
@@ -57,7 +57,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li class="user-drop-icon">
                                                 <a href="my-profile.html">
-                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
                                                   <span>{{User_Name}}</span>
                                                 </a>
                                               </li>
@@ -83,7 +83,7 @@
                 <div class="col-sm-12 col-md-12">
                  <nav class="navbar navbar-default">
                                   <div class="container-fluid pd0">
-                                    
+
                                     <div class="navbar-header">
                                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
@@ -91,16 +91,16 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                       </button>
-                                    
+
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
                                       <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
-                                    
+
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
-                                       
+
                                         <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
@@ -166,17 +166,17 @@
                        <td>{{product.ProductName}}</td>
                        <td>{{product.Currency}} {{product.Price}}</td>
                        <td>{{product.Quantity}}</td>
-                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn">View Bid</a></td>   
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn">View Bid</a></td>
                     </tr>
                     </tbody>
-                  </table> 
+                  </table>
 
                 </div>
             </div>
-                  
-             
 
-                    
+
+
+
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@
 
 
         <div class="clearfix"></div>
-       
+
 
          <div w3-include-html="footer.html"></div>
 
@@ -192,12 +192,12 @@
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
-        
+
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
@@ -235,14 +235,35 @@
 <script src="assets/js/star-rating.js"></script>
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11561280; 
-var sc_invisible=1; 
-var sc_security="ecdd2308"; 
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
 var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
 </script>
 <noscript><div class="statcounter"><a title="website
 statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
     </body>
 </html>
