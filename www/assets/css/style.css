@@ -2469,6 +2469,12 @@ input::-webkit-inner-spin-button {
     -o-border-radius: 4px;
     /*box-shadow: 1px 1px 5px #b1b1b1;*/
 }
+.account-btn{
+  margin-bottom: 50px;
+}
+.account-btn span{
+  margin-left: 15px;
+}
 .total-box{
   margin-bottom: 20px;
 }
