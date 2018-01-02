@@ -2500,9 +2500,32 @@ input::-webkit-inner-spin-button {
 .pd-r4{
   padding-right: 4px;
 }
-
-
-
+.payment-form-block{
+  width: 50%;
+  margin: 0 auto;
+  padding: 30px;
+}
+.sgd-amt-select{
+  float: right;
+  width: 125px;
+}
+.sgd-amt-select span{
+  display: inline-block;
+  margin-top: 5px;
+}
+.sgd-amt-select select{
+  margin-right: 10px;
+  padding: 5px;
+  float: left;
+  width: 80px;
+  height: 30px;
+  font-style: normal;
+}
+.accounts-sgd-amt span input{
+    width: 80px;
+    height: 30px;
+    display: inline;
+}
 
 /*Responsive Css Start */
 

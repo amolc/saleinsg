@@ -16,7 +16,6 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-        
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
@@ -202,172 +201,38 @@
   </section>
 -->
 <div class="clearfix"></div>
-  <section id="account-wrap">
+   
+   <section id="payment-form-wrap">
     <div class="container">
       <div class="row">
-        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0">
-          <div class="col-sm-12 col-md-12">
-            <div class="account-btn">
-            <span class="pull-left">
-               <h2 class="section-title text-center">
-                 My Accounts
-               </h2>
-            </span>
-            <span class="pull-right"><a href="withdraw-form.html" class="red-btn small-btn">Withdraw</a></span>
-            <span class="pull-right"><a href="deposit-form.html" class="red-btn small-btn">Deposit</a></span>
-          </div>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Deposited Ammount</p>
-                  <h4>SGD<span> $ 34567</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Withdrawn Ammount</p>
-                  <h4>SGD<span> $ 567</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Balance</p>
-                  <h4>SGD<span> $ 34000</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
-          <div class="account-table" id="requests-wrap">
-            <div class="table-responsive" id="pleacr-order-wrap">          
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th style="text-align: left; padding-left: 20px;">Date</th>
-                    <th>Order No</th>
-                    <th>Credit</th>
-                    <th>Debit</th>
-                    <th style="text-align: center;">Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td style="text-align: left; padding-left: 20px;">1-Jan-2018</td>
-                    <td>SD584875</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">1000</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td style="text-align: left; padding-left: 20px;">5-Dec-2017</td>
-                    <td>SD584875</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">12000</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td style="text-align: left; padding-left: 20px;">8-Nov-2017</td>
-                    <td>SD584875</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">8000</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td style="text-align: left; padding-left: 20px;">5-Nov-2017</td>
-                    <td>SD584875</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">15000</td>
-                  </tr>
-                </tbody>
-              </table>
-              </div>
-          </div>  
-        </div>
-          <!-- Modal -->
-          <!-- <div class="modal fade" id="withdraw-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-body bg-gray">
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                   <div class="accounts-form">
-                   <div class="col-sm-12 col-md-12 mr-b20">
-                     <h3 class="sub-heading">
-                        Withdraw
-                     </h3>
-                   </div>
-                    <form>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Name*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Bank Name*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">IFSC Code*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Account No*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                      </div>
-                      <div class="col-md-12 col-md-12">
-                        <div class="form-group">
-                          <label for="name">Re-Enter Account No*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group">
-                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">WITHDRAW</button>
-                        </div>
-                      </div>
-                    </form>
-                   </div>
-                   <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- <div class="modal fade" id="deposit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-body bg-gray">
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                   <div class="accounts-form">
+        <div class="col-sm-12">
+          <div class="payment-form-block bg-gray">
+                    <div class="accounts-form">
                    <div class="col-sm-12 col-md-12 mr-b20">
                      <h3 class="sub-heading">
                         Deposit
                      </h3>
                    </div>
                     <form>
+                      <div class="col-sm-12 col-md-12">
+                        <div class="accounts-sgd-amt">
+                          <h4 class="pull-left">
+                            <span>SGD $ <input type="text" class="form-control" id="name" ></span>
+                          </h4>
+                          <h4 class="sgd-amt-select">
+                            <em>
+                              <select class="form-control">
+                                <option>INR</option>
+                                <option>MYR</option>
+                                <option>THB</option>
+                                <option>IDR</option>
+                                <option>BDT</option>
+                              </select> 
+                            </em> 
+                            <span>$50</span> 
+                          </h4>
+                        </div>
+                      </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Enter Your Card Number*</label>
@@ -385,7 +250,7 @@
                           <label for="name">MM*</label>
                           <input type="text" class="form-control" id="name">
                         </div>
-                        <div class="form-group col-sm-6 col-md-6 pd-r4">
+                        <div class="form-group col-sm-6 col-md-6 pd-l 4">
                           <label for="name">YY*</label>
                           <input type="text" class="form-control" id="name">
                         </div>
@@ -405,13 +270,10 @@
                    </div>
                    <div class="clearfix"></div>
                 </div>
-              </div>
-            </div>
-          </div> -->
-
+        </div>
       </div>
     </div>
-  </section>
+   </section>
 
 
 
