@@ -2467,7 +2467,7 @@ input::-webkit-inner-spin-button {
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-    box-shadow: 1px 1px 5px #b1b1b1;
+    /*box-shadow: 1px 1px 5px #b1b1b1;*/
 }
 .total-box{
   margin-bottom: 20px;
