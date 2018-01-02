@@ -1493,7 +1493,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.product.SupplierId = sellerid[1];
                   $http.get(baseurl + 'getsellerinfo/'+$scope.product.SupplierId).success(function(data, status) {
                    console.log(data);
-                   $scope.product.CompanyName = data.CompanyName;                                           
+                   $scope.product.CompanyName = data.CompanyName; 
+                   $scope.product.CountryTitle = data.CountryTitle; 
+                   $scope.product.SupEmail = data.Email; 
+                   $scope.product.SupFirstName = data.FirstName; 
+                   $scope.product.SupLastName = data.LastName;  
+
               });
             }
 
@@ -1506,10 +1511,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
             //$scope.product.orderqty = $scope.product.MinOrderQty;
             if ($scope.product.ProductType == 'Request')
-            {
-              
-            }
-            $scope.product.orderqty = 1;
+              $scope.product.orderqty = $scope.product.Quantity;
+            else
+              $scope.product.orderqty = 1;
             $scope.product.changePrice = data.Price
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
