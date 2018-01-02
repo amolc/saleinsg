@@ -287,15 +287,16 @@
                  <img ng-if="bid.ProfilePic!=null" src="uploads/ProfilePic/{{bid.ProfilePic}}" alt="" title="">
                  <img ng-if="bid.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
               </div>
+              <div ng-if="enquiry.SupplierId == bid.SupplierId" style="float:right">
+              <label class="red-btn small-btn">Awarded</label>
+              </div>
               <div class="sealer-info">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
               
               </div>
-              <div ng-if="enquiry.SupplierId == bid.SupplierId" style="float:right">
-              <h5>Awarded</h5>
-              </div>
+
                  <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
                   <a class="red-btn small-btn" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
                 <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
