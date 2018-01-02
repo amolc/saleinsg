@@ -264,7 +264,7 @@
               </h6>
             </div>
           <!--   <div class="bidding-form" ng-if="User_Id != enquiry.BuyerId"> -->
-          <div class="bidding-form">
+          <div class="bidding-form" ng-if="enquiry.IsAwarded == '0'">
               <form ng-submit="postbid()" id="enquiryform" name="enquiryform">
                 <div class="form-group">
                   <h4>Proposal [ Please do explain why you are the best supplier ]</h4>
@@ -292,7 +292,7 @@
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
               </div>
-                 <div ng-if="User_Id == bid.BuyerId" style="float:right">
+                 <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded == '0'" style="float:right">
                   <a class="red-btn small-btn" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
                 <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
                 </div>
