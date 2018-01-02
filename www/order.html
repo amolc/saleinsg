@@ -184,7 +184,8 @@
                         </td>
                         <td data-th="Product">
                           <div class="">
-                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                            <img ng-if="product.ProductType=='Product'" src="uploads/{{product.Image1}}" class="img-responsive">
+                             <img ng-if="product.ProductType=='Request'" src="uploads/RequestedProduct/{{product.Image1}}" class="img-responsive"></div>
                           </div>
                         </td>
                         <td>
@@ -354,7 +355,8 @@
                         </td>
                         <td data-th="Product">
                           <div class="">
-                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                           <img ng-if="product.ProductType=='Product'" src="uploads/{{product.Image1}}" class="img-responsive">
+                             <img ng-if="product.ProductType=='Request'" src="uploads/RequestedProduct/{{product.Image1}}" class="img-responsive"></div>
                           </div>
                         </td>
                         <td>

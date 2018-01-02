@@ -392,7 +392,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 
 exports.placeorder = function (req, res) {
 
-  //console.log(req.body);
+  console.log(req.body);
   orderCRUD.create({
                             SuplierId:req.body.SupplierId,
                             ProductId:req.body.ProductId,
@@ -472,11 +472,23 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
-                               var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
-                               var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+                               var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
+                               var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
                               // var buyer = req.body.email;
                               // var seller = req.body.SupEmail;
+                             // var buyer = 'komal.gaikwad@fountaintechies.com';
+                            //  var seller = 'komal.gaikwad@fountaintechies.com';
                                var subject = "Tradeexchange New Order - "+orderID;
+
+                               if (req.body.ProductType == 'Product')
+                               {
+                                    var image = req.body.Image1
+                               }
+                               else
+                               {
+                                    var image = 'RequestedProduct/'+req.body.Image1;
+                               }
+                               
 
 
                              // + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
@@ -676,7 +688,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
-<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/'+req.body.Image1+'" class="img-responsive"></div>\
+<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/'+image+'" class="img-responsive"></div>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\
@@ -923,7 +935,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <div>\
-<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/'+req.body.Image1+'" class="img-responsive"></div>\
+<img style="width: 60px; height: auto; margin: 0 auto; display: block; padding: 8px 10px;" src="https://www.tradeexchange.co/uploads/'+image+'" class="img-responsive"></div>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\
@@ -994,13 +1006,40 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 
 
                              send_mail( seller, subject, mailbody );
-                                var resdata = {
+
+
+   if (req.body.ProductType == 'Request')
+    {
+            var updateObj = {
+
+                'SupplierId' :req.body.SupplierId,
+                'IsAwarded' : '1'
+
+ 
+    };
+    // console.log("after", createObj);
+        productCRUD.update({ProductId: req.body.ProductId}, updateObj,function(err, val) {
+
+             var resdata = {
                                     status: true,
                                     value:val2,
                                     message: 'Order Placed successfully'
                                 };
 
                                 res.jsonp(resdata);
+        });
+    }
+    else
+    {
+         var resdata = {
+                                    status: true,
+                                    value:val2,
+                                    message: 'Order Placed successfully'
+                                };
+
+                                res.jsonp(resdata);
+    }
+                               
                             }
                             else
                             {
