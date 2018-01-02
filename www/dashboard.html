@@ -2,7 +2,7 @@
 <html lang="en">
 
   <script type="text/javascript">
-         if (window.localStorage.getItem('User_Id')<=0) 
+         if (window.localStorage.getItem('User_Id')<=0)
                 {
                    window.location.href="login.html";
                 }
@@ -13,8 +13,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>tradeexchange.co </title>
-
+        <title>Tradeexchange.co - Dashboard to help you with the exchange</title>
+        <meta name="description" content="Tradeexchange Dashboard helps you keep track of your sales and bids">
+        <meta name="keywords" content="deal desk, trading exchange, buyer exchange, seller exchange, trading, ">
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
@@ -25,7 +26,7 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-        
+
     </head>
 <body ng-app="80consult" ng-controller="contactcontroller" ng-init="conversationlist();shortlistedproducts();">
 <!-- Start Header -->
@@ -68,7 +69,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li class="user-drop-icon">
                                                 <a href="my-profile.html">
-                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
                                                   <span>{{User_Name}}</span>
                                                 </a>
                                               </li>
@@ -85,7 +86,7 @@
                             </div>
                            <!--  <div class=" col-sm-3  pull-right">
                                 <a href="register.html" class="txt-bcsup">Become Supplier
-                                    
+
                                 </a>
 
                             </div> -->
@@ -111,6 +112,7 @@
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
@@ -133,9 +135,10 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
-                                              <li><a href="request-product.html">Request Item</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
                                             </ul>
                                         </li>
+                                      <li><a href="contact.html">Contact Us</a></li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
@@ -143,8 +146,8 @@
                 </div>
               </div>
             </div>
-            
-            
+
+
         </header>
     <!-- End Header -->
   <div >
@@ -266,8 +269,8 @@
                            <!-- <span class="badge pull-right">3</span> -->
                         </div>
                         <div class="contact_sec">
-                            {{c.ProductName}}
-                           <!-- <strong class="primary-font">(123) 123-456</strong> --> 
+                            {{c.ProductName}}<span ng-if="c.ProductType == 'Request'">-bidding request</span>
+                           <!-- <strong class="primary-font">(123) 123-456</strong> -->
                         </div>
                      </div>
                      </a>
@@ -276,14 +279,14 @@
             </div></div>
          </div>
          <!--chat_sidebar-->
-     
-     
+
+
          <div class="col-sm-9">
      <div class="row">
      <div class="new_message_head">
      <div class="pull-left">
 
-    <a href="product_detail.html?id={{ProductId}}" class="color-white"><h4>{{ProductName}}</h4></a> 
+    <a href="product_detail.html?id={{ProductId}}" class="color-white"><h4>{{ProductName}}<span ng-if="ProductType == 'Request'">-bidding request</span></h4></a>
      <!-- <button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Message</button> -->
      </div><!-- <div class="pull-right"><div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -297,7 +300,7 @@
   </ul>
 </div></div> -->
      </div><!--new_message_head-->
-     
+
      <div class="chat_area">
      <ul class="list-unstyled" id="chat_area">
      <li class="left clearfix" ng-repeat="msg in conversation">
@@ -309,8 +312,8 @@
                         <p>{{msg.Message}}</p>
             <div class="chat_time pull-right">{{msg.MessageTime}}</div>
                      </div>
-                  </li>     
-     
+                  </li>
+
      </ul>
      </div><!--chat_area-->
      <div class="message_section">
@@ -326,7 +329,7 @@
               <div class="chat_bottom">
                 <input class="pull-right btn btn-success" type="submit" name="submit" value="Send">
               </div>
-            </div>            
+            </div>
           </form>
      </div>
          </div> <!--message_section-->
@@ -348,13 +351,13 @@
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
         <script src="https://use.fontawesome.com/45e03a14ce.js"></script>
-        
+
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
@@ -368,15 +371,25 @@
 </script> -->
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11561280; 
-var sc_invisible=1; 
-var sc_security="ecdd2308"; 
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
 var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
 </script>
 <noscript><div class="statcounter"><a title="website
 statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
 </div>
 </body>
 

@@ -240,6 +240,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 $scope.info.LastName = res.LastName;
                 $scope.info.Email = res.Email;
                 $scope.info.Phone = res.Phone;
+                $scope.info.Location = res.Location;
                 $scope.info.CompanyName = res.CompanyName;
                 $scope.info.CountryId = res.CountryId;
                 $scope.info.AccountName = res.AccountName;
@@ -1029,6 +1030,26 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+      $scope.buyerproductrequests = function(){
+
+        $scope.userid =  window.localStorage.getItem('User_Id');
+
+        $http.get(baseurl + 'buyerproductrequests/'+$scope.userid).success(function (res) {
+
+            if (res.status == 'false') {
+
+            }
+            else {
+               // console.log(res);
+                $scope.reqlist = res;
+            }
+
+        }).error(function () {
+
+        });
+
+    }
+
      $scope.userproducts = function(){
 
         $scope.userid =  window.localStorage.getItem('User_Id');
@@ -1309,8 +1330,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                 }
 
               $http.get(baseurl + 'getbiddings/'+$scope.enquiry.productId).success(function(data, status) {    
-                   // console.log(data); 
+                     
+
                      $scope.biddinglist = data;  
+                     //  console.log($scope.biddinglist); 
 
               });
 
@@ -1355,6 +1378,16 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+    $scope.getinfo = function (bid) {
+              
+          $scope.message = {};    
+          $scope.message.userid = window.localStorage.getItem('User_Id');
+          $scope.message.OtherUserId = bid.SupplierId;
+          $scope.message.ProductId = bid.ProductId;
+          $('#myModal').modal('show');
+
+    }
+
     $scope.bidinit = function (req, res) {
        
      //console.log($scope.enquiry);
@@ -1382,10 +1415,13 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getReqProductDetails/'+$scope.enquiry.productId).success(function(data, status) {
 
            $scope.enquiry = data;
+
+           console.log($scope.enquiry);
           
                 $scope.enquiry.BuyerName = data.SupFirstName+' '+data.SupLastName;
                 $scope.enquiry.BuyerId = data.BuyerId;
                 $scope.enquiry.BuyerEmail = data.SupEmail;
+                 $scope.enquiry.BuyerCity = data.SupLocation;
                 $scope.enquiry.BuyerCountry = data.CountryTitle;
                 if (window.localStorage.getItem('User_Id')>0) 
                 {
@@ -2107,7 +2143,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
   $scope.submitenquiry = function (enquiryform) {
 
-    console.log($scope.enquiry);
+    //console.log($scope.enquiry);
 
     var date = new Date();
     var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -2227,6 +2263,8 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    $http.get(baseurl + 'getProductName/'+$scope.ProductId).success(function(data, status) {
                      // console.log(data);
                       $scope.ProductName = data.ProductName;
+                      $scope.ProductType = data.ProductType;
+
 
                    });
               //$scope.conversation();
@@ -2349,6 +2387,30 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       });
   
   }
+
+   $scope.sendchat = function (message) {
+
+    var date = new Date();
+    var messagedate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+    var messagetime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+    dateToday = messagedate+' '+messagetime;
+    //console.log(dateToday);
+
+  
+      $scope.message.date = dateToday;
+     // console.log($scope.conversation);
+       
+      $http.post(baseurl + 'sendmessage/',$scope.message).success(function(data, status) {
+
+           document.sendmsg.reset();
+           $(".message").hide();
+           $(".message1").show();
+           $("#modalclose").delay(1200).modal('hide');
+         
+      });
+  
+  }
+
 
    $scope.order = function (enquiryform) {
 

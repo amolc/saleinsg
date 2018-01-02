@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <script type="text/javascript">
-         if (window.localStorage.getItem('User_Id')<=0) 
+ <script type="text/javascript">
+         if (window.localStorage.getItem('User_Id')<=0)
                 {
+                   window.localStorage.setItem('GoToPage',window.location.href);
                    window.location.href="login.html";
+
+                }
+                else
+                {
+                   if (window.localStorage.getItem("GoToPage") !== null) {
+                                window.localStorage.removeItem('GoToPage');
+                        }
                 }
     </script>
 
@@ -22,7 +30,7 @@
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">        
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     </head>
 <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
@@ -65,14 +73,13 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li class="user-drop-icon">
                                                 <a href="my-profile.html">
-                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
                                                   <span>{{User_Name}}</span>
                                                 </a>
                                               </li>
                                               <li role="separator" class="divider"></li>
                                               <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
                                               <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
-
                                             </ul>
                                         </li>
                                       </ul>
@@ -83,7 +90,7 @@
                             </div>
                            <!--  <div class=" col-sm-3  pull-right">
                                 <a href="register.html" class="txt-bcsup">Become Supplier
-                                    
+
                                 </a>
 
                             </div> -->
@@ -99,7 +106,7 @@
                                   <div class="container-fluid pd0">
                                     <!-- Brand and toggle get grouped for better mobile display -->
                                     <div class="navbar-header">
-                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
@@ -109,9 +116,10 @@
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
                                     <!-- Collect the nav links, forms, and other content for toggling -->
-                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                         <!-- <li><a href="#">Seller</a></li>
                                         <li><a href="#">Buyer</a></li> -->
@@ -131,9 +139,10 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li><a href="buyer-orders.html">Orders</a></li>
                                               <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
-                                              <li><a href="request-product.html">Request Item</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
                                             </ul>
                                         </li>
+                                      <li><a href="contact.html">Contact Us</a></li>
                                       </ul>
                                     </div><!-- /.navbar-collapse -->
                                   </div><!-- /.container-fluid -->
@@ -141,8 +150,8 @@
                 </div>
               </div>
             </div>
-            
-            
+
+
         </header>
     <!-- End Header -->
   <div >
@@ -231,16 +240,16 @@
               <div class="form-group">
               <label for="name">Product Name:</label>
               <input type="text" class="form-control" ng-model="product.name" name="name" id="name" required>
-            </div> 
-             </div> 
-             <div class="col-md-2">        
+            </div>
+             </div>
+             <div class="col-md-2">
             <div class="form-group">
               <label for="price">Currency:</label>
               <input type="text" class="form-control" ng-model="product.currency" Disabled>
               <!-- <span class="icon-position"><i class="fa fa-calendar" aria-hidden="true"></i></span> -->
             </div>
-            </div> 
-              <div class="col-md-4">        
+            </div>
+              <div class="col-md-4">
             <div class="form-group">
               <label for="price">Product Price:</label>
               <input type="text" class="form-control" ng-model="product.price" name="price" id="price" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}" required>
@@ -251,7 +260,7 @@
             <div class="form-group">
               <label for="description">Product Description:</label>
               <textarea class="form-control" ng-model="product.description" name="description" id="description" rows="6" required></textarea>
-            </div> 
+            </div>
             </div>
             <div class="col-md-4">
             <div class="form-group">
@@ -285,24 +294,24 @@
               <!-- <input type="text" class="form-control" ng-model="product.category" name="category" id="category" required> -->
               <select class="form-control" ng-init="getCategories()" ng-change="getSubCat()" id="category" name="category" ng-options="cat.CategoryId as cat.CategoryTitle for cat in categorieslist" ng-model="product.CategoryId" required="">
               </select>
-            </div>  
+            </div>
             </div>
              <div class="col-md-6">
             <div class="form-group">
               <label for="subcat">Subcategory:</label>
                <select class="form-control" id="subcat" name="subcat" ng-options="sc.SubCatId as sc.SubCatTitle for sc in subcatlist" ng-model="product.SubCatId" required="">
               </select>
-            </div> 
+            </div>
             </div>
             <div class="form-group" id="alertmessage" hidden="">
               <label>{{alertmessage}}</label>
-            </div> 
-           
-             
-        
+            </div>
+
+
+
               <div class="clearfix"></div>
-          
-             
+
+
             <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add Product</button>
           </form>
 
@@ -314,21 +323,21 @@
               <div class="form-group">
               <label for="title">Title:</label>
               <input type="text" class="form-control" ng-model="spec.Title" name="title" id="title" required>
-            </div> 
-             </div>  
+            </div>
+             </div>
              <div class="col-md-12">
             <div class="form-group">
               <label for="desc">Description:</label>
               <textarea class="form-control" ng-model="spec.Description" name="desc" id="desc" rows="6" required></textarea>
-            </div> 
-            </div>             
-        
+            </div>
+            </div>
+
               <div class="clearfix"></div>
-          
-             
+
+
             <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Add</button>
           </form><br/><br/>
-            <div class="table-responsive">          
+            <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -338,7 +347,7 @@
                 </tr>
               </thead>
               <tbody id="specificationtable">
-               
+
               </tbody>
             </table>
             </div>
@@ -372,12 +381,12 @@
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
-        
+
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
@@ -391,15 +400,36 @@
 </script>
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11561280; 
-var sc_invisible=1; 
-var sc_security="ecdd2308"; 
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
 var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
 </script>
 <noscript><div class="statcounter"><a title="website
 statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
 </div>
 </body>
 

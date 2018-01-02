@@ -159,7 +159,7 @@ exports.register = function(req, res){
                             'LastName': req.body.lname,
                             'Phone': req.body.phone,
                             'CompanyName':req.body.company,
-                          //'Location':req.body.location,
+                            'Location':req.body.location,
                             'CountryId' :req.body.CountryId,
                             'VerificationCode':'',
                             'CreateDate':req.body.datetime,
@@ -461,6 +461,7 @@ exports.updateprofile = function(req, res){
               'LastName': req.body.LastName,
               'Phone': req.body.Phone,
               'CompanyName':req.body.CompanyName,
+              'Location' : req.body.Location,
               'CountryId' :req.body.CountryId,
               'ProfilePic' : fileName
 
@@ -700,7 +701,17 @@ exports.allproducts = function (req, res) {
 };
 
 exports.productrequests = function (req, res) {
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
+exports.buyerproductrequests = function (req, res) {
+  var id = req.params.id;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.`BuyerId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -830,7 +841,7 @@ exports.getProductDetails = function (req, res) {
 exports.getReqProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
+   var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`Location` as SupLocation,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
@@ -841,7 +852,7 @@ exports.getReqProductDetails = function (req, res) {
 exports.getbiddings = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= "+ProductId;
+   var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= "+ProductId;
    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -885,7 +896,7 @@ exports.getcountry = function (req, res) {
 exports.getProductName = function (req, res) {
 
   var ProductId = req.params.id;
-   var sql = "SELECT `ProductName` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
+   var sql = "SELECT `ProductName`,`ProductType` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
    console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
@@ -917,7 +928,7 @@ exports.featuredseller = function (req, res) {
 exports.getsellerinfo = function (req, res) {
 
   var UserId = req.params.id;
-    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
+    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`Location`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
     console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
