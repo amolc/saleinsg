@@ -290,6 +290,9 @@
               <div ng-if="enquiry.SupplierId == bid.SupplierId" style="float:right">
               <label class="red-btn small-btn">Awarded</label>
               </div>
+              <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
+                  <a class="red-btn small-btn" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
+                </div>
               <div class="sealer-info">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
@@ -298,7 +301,6 @@
               </div>
 
                  <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
-                  <a class="red-btn small-btn" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
                 <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
                 </div>
               <div class="clearfix"></div>
