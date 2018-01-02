@@ -1487,15 +1487,28 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $http.get(baseurl + 'getProductDetails/'+$scope.product.productId).success(function(data, status) {
 
             $scope.product = data;
+            if ($scope.product.ProductType == 'Request') 
+            {
+                var sellerid = urlpart[1].split('=');
+                $scope.product.SupplierId = sellerid[1];
+                  $http.get(baseurl + 'getsellerinfo/'+$scope.product.SupplierId).success(function(data, status) {
+                   console.log(data);
+                   $scope.product.CompanyName = data.CompanyName;                                           
+              });
+            }
 
-              $scope.product.buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
-          $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
+            $scope.product.buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
+            $http.get(baseurl + 'getcountry/'+$scope.product.buyercountryId).success(function(data, status) {
            // console.log(data);
             $scope.product.buyercountry = data.CountryTitle;
 
          });
 
             //$scope.product.orderqty = $scope.product.MinOrderQty;
+            if ($scope.product.ProductType == 'Request')
+            {
+              
+            }
             $scope.product.orderqty = 1;
             $scope.product.changePrice = data.Price
             $scope.product.changeCurrency = data.Currency;

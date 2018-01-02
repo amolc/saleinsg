@@ -90,7 +90,7 @@ exports.addproduct = function (req, res) {
                              // var seller = req.body.SupEmail;
                               var subject = "Tradeexchange.co - New Product";
                             //  var to = 'komal.gaikwad@fountaintechies.com';
-                              var to = req.body.SupEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+                              var to = req.body.SupEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
                             var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
 <meta name="viewport" content="width=device-width">\
@@ -667,8 +667,8 @@ exports.sellerTerms = function (req, res) {
               }
 
 
-  var buyer = req.body.order.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-  var seller = req.body.order.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+  var buyer = req.body.order.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+  var seller = req.body.order.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
    // console.log(buyer);
    // console.log(seller);                            
 
@@ -1294,8 +1294,8 @@ exports.sellerapprove = function (req, res) {
 
 
 
-  var buyer = req.body.order.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
-  var seller = req.body.order.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+  var buyer = req.body.order.Email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+  var seller = req.body.order.selleremail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
    // console.log(buyer);
    // console.log(seller);                            
 

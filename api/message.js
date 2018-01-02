@@ -237,7 +237,7 @@ exports.postbid = function (req, res) {
           {
 
 
-            var to = req.body.BuyerEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com';
+            var to = req.body.BuyerEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
            // var to = 'komal.gaikwad@fountaintechies.com';
             var subject = "Tradeexchange.co - Product Bidding Request";
 
