@@ -282,7 +282,7 @@
             <div class="bidding-product">
               <h4>{{biddinglist.length}} Sellers are bidding on this product</h4>
             </div>
-            <div class="sealer-profile" ng-repeat="bid in biddinglist" ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">
+            <div class="sealer-profile" ng-repeat="bid in biddinglist">
               <div class="sealer-img">
                  <img ng-if="bid.ProfilePic!=null" src="uploads/ProfilePic/{{bid.ProfilePic}}" alt="" title="">
                  <img ng-if="bid.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
@@ -290,7 +290,7 @@
               <div class="sealer-info">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
-                <p>{{bid.Message}}</p>
+                <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
               </div>
                  <div ng-if="User_Id == bid.BuyerId" style="float:right">
                 <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
