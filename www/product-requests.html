@@ -155,6 +155,7 @@
                         <th style="width:20%">Buying Request</th>
                         <th style="width:15%">Expected Price</th>
                         <th style="width:15%">Required Quantity</th>
+                        <th style="width:15%">No Of Bids</th>
                         <th style="width:22%">Bid Now</th>
                       </tr>
                     </thead>
@@ -166,6 +167,7 @@
                        <td>{{product.ProductName}}</td>
                        <td>{{product.Currency}} {{product.Price}}</td>
                        <td>{{product.Quantity}}</td>
+                       <td>{{product.count}}</td>
                        <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>   
                     </tr>
                     </tbody>
