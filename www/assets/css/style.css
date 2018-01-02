@@ -40,7 +40,7 @@ body {
 }
 a:hover { text-decoration: none}
 label{font-weight: normal;}
-
+.bg-gray{background-color: #e8e8e8;}
 
 .jumbotron p {
     font-size: 18px;
@@ -53,6 +53,9 @@ section{
 section#header {
     padding-top: 30px;
     padding-bottom: 50px;
+}
+.mr-b20{
+  margin-bottom: 20px;
 }
 
 
@@ -2491,6 +2494,16 @@ input::-webkit-inner-spin-button {
   font-weight: 600;
   color: #ffffff;
 }
+.pd-l4{
+  padding-left: 4px;
+}
+.pd-r4{
+  padding-right: 4px;
+}
+
+
+
+
 /*Responsive Css Start */
 
 
