@@ -251,7 +251,7 @@
             <div class="seller-details">
               <h4>Product Name : <span>{{enquiry.ProductName}}</span></h4>
               <h4>Required Quantity : <span>{{enquiry.Quantity}}</span></h4>
-              <h4>Expected Price :  <span>{{enquiry.Currency}} {{enquiry.Price}}</span></h4>
+              <h4>Expected Price :  <span>{{enquiry.Currency}} {{enquiry.ExpectedPrice}}</span></h4>
               <h4>Product Discription : <span>{{enquiry.Description}}</span></h4>
             </div>
             <div class="seller-details">
@@ -268,8 +268,9 @@
               <form ng-submit="postbid()" id="enquiryform" name="enquiryform">
                 <div class="form-group">
                   <h4>Proposal [ Please do explain why you are the best supplier ]</h4>
-                  <textarea class="form-control mb19 ng-pristine ng-untouched ng-valid" name="message" id="message" cols="30" rows="5" ng-model="enquiry.Message"></textarea>
-                  <div class="text-center">
+                  <textarea class="form-control mb19" name="message" id="message" cols="30" rows="5" ng-model="enquiry.Message" placeholder="Description"></textarea><br>
+                  <input type="text" class="form-control" ng-model="enquiry.SellerPrice" required="" placeholder="Price In {{enquiry.Currency}}" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}">
+                  <div class="text-center">                  
                     <input type="submit" class="red-btn small-btn mr-t30" value="Post">
                   </div>
                 </div>
@@ -291,12 +292,13 @@
               <h5 style="color: #52bad5">Awarded</h5>
               </div>
               <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
-                  <a class="red-btn small-btn" style="width: 75px" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
+                  <a class="red-btn small-btn" style="width: 75px" href="order.html?id={{bid.ProductId}}&bid={{bid.BidId}}">Award</a>
                 </div>
               <div class="sealer-info">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
+                <p  ng-if="bid.SellerPrice>0 && (User_Id == bid.SupplierId || User_Id == bid.BuyerId)">Quotation : {{enquiry.Currency}} {{bid.SellerPrice}}</p>
               
               </div>
 

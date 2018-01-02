@@ -226,6 +226,7 @@ exports.postbid = function (req, res) {
                         "SupplierId": req.body.SupId || "",
                         "BuyerId" : req.body.BuyerId,
                         "Message":req.body.Message,
+                        "SellerPrice" : req.body.SellerPrice, 
                         "Date": req.body.date || "",
                         "CreatedOn": req.body.datetime || "",      
                     };
@@ -438,6 +439,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
 <p><b>Product Description :</b> <br/>'+req.body.Description+'</p>\
 <p><b>Message :</b> <br/>'+req.body.Message+'</p>\
+<p><b>Quotation :</b> <br/>'+req.body.Currency+' '+req.body.SellerPrice+'</p>\
 </div>\
 </div>\
 </div>\
