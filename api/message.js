@@ -414,7 +414,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.Currency+' '+req.body.Price+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.Currency+' '+req.body.SellerPrice+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.Quantity+'</p>\
