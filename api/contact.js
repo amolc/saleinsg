@@ -173,7 +173,7 @@ exports.register = function(req, res){
                                console.log(val2.insertId);
                                 var regId = val2.insertId;
                                // console.log(req.body.Email);
-                                var recipientEmail = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com'; 
+                                var recipientEmail = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com'; 
                                 var subject = "Tradeexchange.co - Registration confirmation mail";
                                 // var mailbody = '<table>\
                                 //                     <tr>\
