@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co</title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
+        <!-- Start Header -->
+<header id="top-header">
+          <!--   <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12 xs-pd0">
+                            <div class="col-sm-3 col-xs-12 txt-logo xs-bs-gray">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="col-sm-9 col-xs-12">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed xs-btn-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+
+
+                                    <div class="collapse navbar-collapse top-nav" id="bs-example-navbar-collapse-1">
+
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+
+                                        <li ng-if="User_Id>0"><a href="dashboard.html">Dashboard</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+                        <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
+
+                                        <li class="dropdown profile-wrap" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                              <div class="profile-icon">
+                                                <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                Me <span class="caret"></span></a>
+                                              </div>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li class="user-drop-icon">
+                                                <a href="my-profile.html">
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                  <span>{{User_Name}}</span>
+                                                </a>
+                                              </li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                              <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+                                            </ul>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="col-sm-12 col-md-12">
+                 <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+                                    <ul class="nav navbar-nav">
+                                      <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
+                                    </ul>
+
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+
+                                        <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav1">
+                                              <li><a href="add-products.html">Add Products</a></li>
+                                              <li><a href="seller-products.html">Products</a></li>
+                                              <li><a href="seller-orders.html">Orders</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li><a href="buyer-orders.html">Orders</a></li>
+                                              <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
+                                            </ul>
+                                        </li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="banner-form-wrap">
+                <div class="container">
+                    <div class="col-sm-12">
+                      <div class="banner-form-text">
+                        <!-- <h1>What is tradeexchange.co</h1> -->
+                        <div class="clearfix"></div>
+                        <h4>Tradeexchange is a 100% International export<br> platform for buyers and sellers.</h4>
+                        <form ng-init="getCountries()">
+                          <div class="form-fild">
+                          <!--   <div>Sell from
+                              <div class="cos-select-box">
+                                <select class="form-control effect-7">
+                                  <option class="color-black">India</option>
+                                  <option class="color-black">Malaysia</option>
+                                  <option class="color-black">Thailand</option>
+                                  <option class="color-black">Indonesia</option>
+                                  <option class="color-black">Bangladesh</option>
+                                  <option class="color-black">Singapore</option>
+                                  <option class="color-black">Vietnam</option>
+                                </select>
+                              <span class="focus-border"><i></i></span>
+                              </div>
+                              <span>to </span>
+                              <div class="cos-select-box">
+                                <select class="form-control effect-7">
+                                   <option class="color-black">Singapore</option>
+                                  <option class="color-black">Malaysia</option>
+                                  <option class="color-black">Thailand</option>
+                                  <option class="color-black">Indonesia</option>
+                                  <option class="color-black">Bangladesh</option>
+                                   <option class="color-black">India</option>
+                                   <option class="color-black">Vietnam</option>
+                                </select>
+                                <span class="focus-border"><i></i></span>
+                                </div>
+                              </div> -->
+                              <div class="col-sm-12 text-center">
+                                <a href="register.html" class="red-btn small-btn">Sell Item</a>
+                              </div>
+                          </div>
+
+                        </form>
+
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+         <!-- <section id="prduct-wrap">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="section-title">
+                  Trending Offers
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="pro-sides">
+                <div class="carousel carousel-showmanymoveone slide" id="carousel12">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro2.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">4806 Dark Red Designer Replica Suit</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Womens Wear</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Womens Wear</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro2.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">4806 Dark Red Designer Replica Suit</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Womens Wear</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Womens Wear</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro2.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">4806 Dark Red Designer Replica Suit</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Womens Wear</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Womens Wear</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="left carousel-control" href="#carousel12" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                  <a class="right carousel-control" href="#carousel12" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+         </section> -->
+
+          <section id="requests-wrap">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-10">
+                <h2 class="section-title">
+                  Buyer Request
+                </h2>
+              </div>
+              <div class="col-sm-2 text-center">
+                  <a href="request-product.html" class="red-btn small-btn">Post Request</a>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="cart-table" id="pleacr-order-wrap">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:8%">SKU No</th>
+                        <th style="width:15%">Name</th>
+                        <th style="width:10%">Country</th>
+                        <th style="width:20%">Buying Request</th>
+                        <th style="width:15%">Expected Price</th>
+                        <th style="width:15%">Required Quantity</th>
+                        <th style="width:22%">Bid Now</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    <tr class="hidden">
+                       <td>{{product.ProductId}}</td>
+                       <td>{{product.FirstName}} {{product.LastName}}</td>
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-12 text-center">
+                  <a href="#" id="display" class="red-btn small-btn">More</a>
+                </div>
+            </div>
+          </div> -->
+          <div class="container">
+            <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <div class="cart-table" id="pleacr-order-wrap" ng-init="productrequests();">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:8%">SKU No</th>
+                        <!-- <th style="width:15%">Name</th> -->
+                        <th style="width:10%">Country</th>
+                        <th style="width:20%">Buying Request</th>
+                        <th style="width:15%">Expected Price</th>
+                        <th style="width:15%">Required Quantity</th>
+                        <th style="width:22%">Bid Now</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="product in reqlist | limitTo:4">
+                       <td>{{product.ProductId}}</td>
+                  <!--      <td>{{product.FirstName}} {{product.LastName}}</td> -->
+                       <td>{{product.CountryTitle}}</td>
+                       <td>{{product.ProductName}}</td>
+                       <td>{{product.Currency}} {{product.Price}}</td>
+                       <td>{{product.Quantity}}</td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn">Bid Now</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="col-sm-12 text-center">
+                    <a href="product-requests.html" id="display" class="red-btn small-btn">More</a>
+                  </div>
+                </div>
+            </div>
+
+              </div>
+            </div>
+         </section>
+
+                  <section id="viewed-wrap" ng-init="featuredseller()">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <h2 class="section-title">
+                  Featured Seller
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="pro-sides">
+                <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
+                  <div class="carousel-inner">
+
+                  <div class="item active" ng-repeat="seller in sellerlist | limitTo:4">
+                      <div class="col-xs-6 col-sm-6 col-md-3">
+                        <div class="seller-box">
+                            <div class="seller-img">
+                          <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
+                                <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
+                                <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
+                              <!-- </a> -->
+                            </div>
+                            <div class="seller-footer">
+                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.FirstName}} {{seller.LastName}}</h3>
+                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
+                                <!-- <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
+                                <!--  <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                 <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                                <h4 class="pull-right">
+                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}</h4> -->
+                                                    <div class="clearfix"></div>
+                                <!-- <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div> -->
+                            </div>
+                           <!--  <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div> -->
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="item active">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <a class="left carousel-control" href="#recently-viewed-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                  <a class="right carousel-control" href="#recently-viewed-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+                  <div class="col-sm-12 text-center">
+                    <a href="sellers.html" id="display" class="red-btn small-btn">More</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+         </section>
+
+
+        <section id="offers-wrap" ng-init="getAllcurrency()">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="section-title">
+                  Featured Product
+                </h2>
+              </div>
+            </div>
+
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="pro-sides">
+                <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
+                  <div class="carousel-inner" ng-init="allproducts()">
+                  <div class="item active" ng-repeat="product in productslist |limitTo:4">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                            <a href="product_detail.html?id={{product.ProductId}}">
+                                <img src="uploads/{{product.Image1}}" alt="" title="">
+                                 </a>
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
+                               <!--  <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
+                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                                <h4 class="pull-right">
+                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}</h4>
+                                                    <div class="clearfix"></div>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="item">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <p>Saler : Pravin Shelar</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="box-flag-img">
+                                <img src="assets/img/flags/india.jpg" class="img-responsive" alt="" title="">
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>-->
+                    </div>
+                  <a class="left carousel-control" href="#offers-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                  <a class="right carousel-control" href="#offers-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+         </section>
+
+
+          <section id="flag-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12 text-center">
+                        <h2 class="section-title">
+                          Trading Partners
+                        </h2>
+                    </div>
+                    <div class="flag-col-width" ng-init="getCountries()">
+                    <div class="col-sm-3 col-xs-4" ng-repeat="cn in countrylist">
+                    <a href="products.html?country={{cn.CountryId}}">
+                        <div class="circle-1">
+                            <div class="flag-img">
+                                <img src="assets/img/flags/{{cn.CountryFlag}}" />
+                            </div>
+                        </div>
+                        </a>
+                        <div class="flag-img">
+                          <h5><a href="products.html?country={{cn.CountryId}}">{{cn.CountryTitle}}</a></h5>
+                        </div>
+                        </div>
+                        <!-- <div class="col-sm-3">
+                        <div class="circle-1">
+                            <div class="flag-img">
+                                <img src="assets/img/flags/india.jpg" />
+                                <h5><a href="#">india</a></h5>
+                            </div>
+                        </div>
+                     -->
+                    </div>
+                </div>
+            </div>
+          </section>
+
+
+
+
+
+
+        <div class="clearfix"></div>
+
+
+        <div w3-include-html="footer.html"></div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+<!--   <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+      <script src="https://js.stripe.com/v2/"></script> -->
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
+
+
+      <!--   <script type="text/javascript">
+          $(document).ready(function() {
+            $('#cart .hidden').slice(0, 2).removeClass('hidden');
+             $("#display").click(function() {
+                $('#cart .hidden').slice(0, 2).removeClass('hidden');
+                if ($('#cart .hidden').length == 0) {
+                  $(this).addClass('hidden');
+                }
+              });
+            });
+        </script>-->
+
+
+    <!--     <script src="assets/js/custom.js"></script> -->
+        <script type="text/javascript">
+          $(document).ready(function(){
+
+            $('.check_box').change(function(){
+                if($('.check_box:checked').length==0){
+                    $('.p_element').hide();
+                }else{
+                    $('.p_element').hide();
+                    $('.check_box:checked').each(function(){
+                        $('#'+$(this).attr('data-ptag')).show();
+                    });
+
+                }
+
+            });
+          });
+        </script>
+
+
+
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="website
+statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+    </body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
+        
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
+<!-- Start Header -->
+        <header id="top-header"> <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
+
+                                        <li class="dropdown profile-wrap" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                              <div class="profile-icon">
+                                                <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                Me <span class="caret"></span></a>
+                                              </div>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li class="user-drop-icon">
+                                                <a href="my-profile.html">
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <span>{{User_Name}}</span>
+                                                </a>
+                                              </li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                              <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+                                            </ul>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="col-sm-12 col-md-12">
+                 <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+                                    
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                    
+                                    </div>
+                                    <ul class="nav navbar-nav">
+                                      <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
+                                    </ul>
+                                    
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                       
+                                        <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav1">
+                                              <li><a href="add-products.html">Add Products</a></li>
+                                              <li><a href="seller-products.html">Products</a></li>
+                                              <li><a href="seller-orders.html">Orders</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li><a href="buyer-orders.html">Orders</a></li>
+                                              <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
+                                            </ul>
+                                        </li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                </div>
+              </div>
+            </div>
+        </header>
+    <!-- End Header -->
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+<!--
+  <section id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Bonne Route Travels</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+
+<!--
+  <section id="context">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 box-context">
+          <div class="context-head text-center">
+            <h3>Book Now</h3>
+          </div>
+
+          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" id="phoneno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Travel Date</label>
+              <div class="input-append date">
+              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <div class="input-append date">
+                <textarea rows="4" cols="50">
+
+                  </textarea>
+            </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
+          </form>
+
+        </div>
+
+        <div class="col-md-6 box-context">
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+-->
+<div class="clearfix"></div>
+  <section id="book-now">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+           <h2 class="section-title">Contact Us</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+             <div class="col-md-6"><div class="form-group">
+              <label for="">Name :</label>
+              <input type="name" class="form-control" ng-model="fullname" name="fullname" id="fullname" required>
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" ng-model="phonenumber" name="phonenumber" id="phonenumber" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address:</label>
+              <input type="email" class="form-control" ng-model="email" name="email" id="email" required>
+            </div>            
+           <!--  <div class="form-group">
+              <label for="pwd">Travel Date :</label>
+              <input type="date" class="form-control" ng-model="travelDate" name="travelDate" id="travelDate" required>
+            </div> -->
+              </div>
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <textarea class="form-control mb19" name="message" ng-model="message" id="message" cols="30" rows="9"></textarea>
+            </div>
+            </div>
+              <div class="clearfix"></div>
+           <!--  <input type="text" class="form-control" ng-model="packageName" name="packageName" id="packageName"> -->
+             <input type="hidden" class="form-control" ng-model="packagename" value="{{packagename}}" name="packageName" id="packageName">
+            <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">SUBMIT</button>
+          </form>
+          <div id="thankyou">
+            <div class="thankyou">
+                <div class="item">
+                    <span><h4><b><font>Submitted Successfully!</font></b></h4></span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+      <div class="clearfix"></div>
+  </section>
+
+
+
+
+
+
+
+ <div w3-include-html="footer.html"></div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+    
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="assets/js/custom.js"></script>
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="website
+statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+        
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
+        <!-- Owl Stylesheets -->
+        <link rel="stylesheet" href="OwlCarousel/docs.theme.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="OwlCarousel/owl.theme.default.min.css">
+
+    <script type="text/javascript" src="assets/js/angular.min.js"></script>
+      <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+      <script type="text/javascript" src="assets/js/app.js"></script>
+      <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+   
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
+        <!-- Start Header -->
+        <header id="top-header">
+            <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.jpg" alt="" title="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navigation-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="top-nav">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav" ng-init="isLoggedin()">
+                                        <li><a href="index.html" class="hvr-underline-reveal">Marketplace</a></li>
+                                        <li><a href="products.html" class="hvr-underline-reveal">Products</a></li>
+                                       <!--  <li><a href="europe.html" class="hvr-underline-reveal">Europe</a></li>
+                                        <li><a href="visa.html" class="hvr-underline-reveal">Visa</a></li> -->
+                                        <li><a href="custom-tour.html" class="hvr-underline-reveal">Contact Us</a></li>
+                                         <li ng-if="User_Id<=0"><a href="login.html" class="hvr-underline-reveal">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html" class="hvr-underline-reveal">Register</a></li>
+                                        <li ng-if="User_Id>0"><a href="add-products.html" class="hvr-underline-reveal">Add Products</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" class="hvr-underline-reveal" ng-click="logout()">Logout</a></li>
+                                      </ul>
+                                    </div><!-- /.navbar-collapse -->
+                                  </div><!-- /.container-fluid -->
+                                </nav>
+                            </div>
+                        </div >
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="pakeges-wrap" ng-init="allproducts()">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="section-title">
+                            Products
+                        </h2>
+                    </div>
+                    <!-- <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                             <div id="demos">
+                            <div class="owl-carousel owl-theme">
+                                <div class="item">
+                                  <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                                <div class="item">
+                                  <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                                <div class="item">
+                                  <img src="assets/img/place-img1.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                                
+                              </div>
+                              </div>
+                               
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Universal Studios Singapore One-Day Pass</a></h5>
+                                    <p class="small-height"> Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</p>
+                                   
+                                    <div class="price-right-block pull-right">
+                                        <span>From SGD</span>
+                                        <h4>$76</h4>
+                                        
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="price-right-block text-right">
+                                 
+                                        <a href="#" class="pakege-btn">Order Now</a>
+                                        </div>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-6" ng-repeat="product in productslist">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+
+                            
+
+                                <div class="place-img">
+                                    <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">{{product.ProductName}}</a></h5>
+                                    <p class="packege-para small-height">{{product.Description | limitTo: 150 }}{{product.Description.length > 150 ? '...' : ''}}</p>
+                                    <div class="right-blck">
+                                    <p class="gray-small-text"><span>   <!--  Location: Singapore, Singapore  --><br>
+                                           Category : {{product.Category}}</span>
+                                        </p>
+                                        <!--  <div class="star-rating-wrap">
+                                             
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div> -->
+                                       
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>${{product.Price}}</h4>
+                                        
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="price-right-block text-right">
+
+                                    <a href="#" class="pakege-btn">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/garden-by.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Garden By The Bay   </a></h5>
+                                    <p class="packege-para">  Visit Gardens By The Bay - Marina Bay's Famed Gardens! This sprawling  garden in the city provides mesmerising waterfront views across three  gardens, spanning over 101 hectares..</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$28</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/night-safari.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Singapore Night Safari</a></h5>
+                                    <p class="packege-para">Get a window into the nightlife of  nocturnal animals on the Singapore Night Safari. During this evening  excursion, hop on board a Safari Tram that travels through seven  geographical...</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$43</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/river-safari.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Singapore River Safari</a></h5>
+                                    <p class="packege-para"> Learn about the world's mightiest rivers during a visit to the Singapore River Safari. Cruise downstream on one of the park's boat rides, included in your ticket, and meet the park's...</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$28</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/singapore-zoo.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Singapore Zoo</a></h5>
+                                    <p class="packege-para">   The Singapore Zoo, formerly known as the Singapore Zoological Gardens  and commonly known locally as the Mandai Zoo, occupies 28 hectares (69  acres) on the margins of Upper...</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$32</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/madame-tussauds.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Madame Tussauds & Image Of Singapore Live Admission</a></h5>
+                                    <p class="packege-para">Combine three top Singapore attractions  with one admission ticket! Experience 200 years of Singapore history via  live actors and special effects at Images of Singapore LIVE...</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$29</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                    <img src="assets/img/marina-bay.jpg" class="img-responsive" alt="" title="">
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="#">Marina Bay Segway Hire In Singapore</a></h5>
+                                    <p class="packege-para">Explore Marina Bay in Singapore by Segway  with this 1-hour rental. On your own personal transport device, you'll  glide easily along the Waterfront Promenade, passing...</p>
+                                    <div class="right-blck">
+                                        <p class="gray-small-text"><span>Location: Singapore, Singapore <br>
+                                            Duration: Flexible</span>
+                                        </p>
+                                        <div class="star-rating-wrap">
+                                             <!-- <div class="row lead"></div> -->
+                                            <div id="stars-existing" class="starrr" data-rating='3'></div>
+                                        </div>
+                                        <!-- <div class="social-links">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div> -->
+                                    </div>
+                                    <div class="price-right-block">
+                                        <span>From SGD</span>
+                                        <h4>$39</h4>
+                                        <a href="enquiry.html" class="pakege-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+
+    <!-- End Header -->
+
+<!--
+        <section id="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="jumbotron">
+                          <h3>Suzantravels</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+-->
+
+        <div class="clearfix"></div>
+        <!-- <section id="context" class="tour-Package">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <h2 class="section-title">
+                            Travels Package
+                        </h2>
+                    </div>
+                    <div class="col-sm-12 package-masonry">
+
+<div class="container">
+<div class="row">
+    <div class="item">
+      <div class="well"> 
+        <div class="box-context">
+                        <div class="Package-box">
+                        <div class="context-img text-center">
+                            <img src="assets/img/img-1.png" alt="img">
+                        </div>
+                        <div class="content-info">
+                            <h3>3D2N Wildlife From SGD 245</h3>
+                            <p>Package Includes :</p>
+                            <ul>
+                                <li><span>Return Airport Transfers</span></li>
+                                <li><span>2 Nights Accommodation</span></li>
+                                <li><span>Daily Breakfast</span></li>
+                                <li><span>Half-day Guided City Tour</span></li>
+                                <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
+                                <li><span>Night Safari</span></li>
+                            </ul>
+
+                        
+                          <a href="enquiry.html?pck=3D2N WLIDLIFE From SGD 245" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                        </div>
+                            </div>
+                    </div>
+      </div>
+    </div>
+     <div class="item">
+        <div class="well"> 
+            <div class="box-context">
+                        <div class="Package-box">
+                        <div class="context-img text-center">
+                            <img src="assets/img/img-2.png" alt="img">
+                        </div>
+                        <div class="content-info">
+                            <h3>4D3N Package From SGD 350</h3>
+                            <p>Package Includes :</p>
+                            <ul>
+                                <li><span>Return Airport Transfers</span></li>
+                                <li><span>3 Nights Accommodation</span></li>
+                                <li><span>Daily Breakfast</span></li>
+                                <li><span>Gardens by The Bay </span></li>
+                                <li><span>Half-day Guided City Tour</span></li>
+                                <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
+                                <li><span>Universal Studios </span></li>
+                            </ul>
+                        
+                        <a href="enquiry.html?pck=4D3 Package From SGD 350" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                         </div>
+                            </div>
+                    </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="well"> 
+         <div class="box-context">
+                         <div class="Package-box">
+                        <div class="context-img text-center">
+                            <img src="assets/img/img-3.png" alt="img">
+                        </div>
+                        <div class="content-info">
+                             <h3>3D2N Wildlife From SGD 245</h3>
+                            <p>Package Includes :</p>
+                            <ul>
+                                <li><span>Return Airport Transfers</span></li>
+                                <li><span>4 Nights Accommodation</span></li>
+                                <li><span>Daily Breakfast</span></li>
+                                <li><span>Full Day River Safari, Zoo & Night Safari Tour</span></li>
+                                <li><span>Half-day Guided City Tour</span></li>
+                                <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
+                                <li><span>Universal Studios</span></li>
+                            </ul>
+                       
+                        <a href="enquiry.html?pck=3D2N WLIDLIFE From SGD 245" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                         </div>
+                              </div>
+                    </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="well"> 
+                     <div class="box-context">
+                         <div class="Package-box">
+                            <div class="context-img text-center">
+                                <img src="assets/img/img-6.png" alt="img">
+                            </div>
+                            <div class="content-info">
+                                <h3>5D4N Package From SGD 495</h3>
+                                <p>Package Includes :</p>
+                                <ul>
+                                    <li><span>Return Airport Transfers</span></li>
+                                    <li><span>3 Nights Accommodation</span></li>
+                                    <li><span>Daily Breakfast</span></li>
+                                    <li><span>Full Day River Safari, Zoo & Night Sahari Tour</span></li>
+                                    <li><span>Half-day Guided City Tour</span></li>
+                                    <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
+                                    <li><span>Universal Studios</span></li>
+                                    <li><span>Marina Bay Sands & Gardens By The Bay Tour</span></li>
+                                </ul>
+                            
+                            <a href="enquiry.html?pck=5D4N Package From SGD 495" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                         </div>
+                             </div>
+                         
+                    </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="well">
+         <div class="box-context">
+                        <div class="Package-box">
+                        <div class="context-img text-center">
+                            <img src="assets/img/img-4.png" alt="img">
+                        </div>
+                        <div class="content-info">
+                             <h3>3D2N RWS From SGD 260</h3>
+                            <p>Package Includes :</p>
+                            <ul>
+                                <li><span>Return Airport Transfers</span></li>
+                                <li><span><span>2 Nights Accommodation</span></li>
+                                <li><span>Daily Breakfast</span></li>
+                                <li><span>Night Safari</span></li>
+                                <li><span>Universal Studios</span></li>
+                            </ul>
+                        
+                        <a href="enquiry.html?pck=3D2N RWS From SGD 260" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                         </div>
+                            </div>
+                    </div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="well"> 
+           <div class="box-context">
+                         <div class="Package-box">
+                        <div class="context-img text-center">
+                            <img src="assets/img/img-5.png" alt="img">
+                        </div>
+                        <div class="content-info">
+                            <h3>4D3N Package From SGD 365 </h3>
+                            <p>Package Includes :</p>
+                            <ul>
+                                <li><span>Return Airport Transfers</span></li>
+                                <li><span>3 Nights Accommodation</span></li>
+                                <li><span>Daily Breakfast</span></li>
+                                <li><span>Night Safari</span></li>
+                                <li><span>Half-day Guided City Tour</span></li>
+                                <li><span>Sentosa Tour <small>(Cable Car, 4D Show & Wings of Time)</small></span></li>
+                                <li><span>Universal Studios</span></li>
+                            </ul>
+                       
+                        <a href="enquiry.html?pck=4D3N Package From SGD 365" class="btn btn-info orenge-btn" role="button">Book Now</a>
+                         </div>
+                              </div>
+                    </div>
+        </div>
+    </div>
+</div>
+</div>
+
+                    </div>
+                    <!-- <div class="col-sm-12 col-md-12">
+                        <h2 class="section-title">
+                            Travels Package
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </section> -->
+
+
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                   <!--  <div class="col-sm-4 col-md-4">
+                        <div class="foot-text">
+                            <h4>About us</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-4 col-md-4 pd-l80">
+                        <div class="foot-text">
+                              <h4>Contact Us</h4>
+                              <h5>tradeexchange.co</h5>
+                              <p>06-32 Paya Lebar Square</p>
+                              <p>Singapore 409051</p>
+
+                       </div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 pd-l80">
+                        <div class="foot-text">
+                            <!-- <h4>select Hotels</h4> 
+                            <ul>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#" class="hvr-radial-out"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            </ul>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer  id="bottom-strip">
+            <p>Copyright 2017- tradeexchange.co - All Rights Reserved.</p>
+        </footer>
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        
+    <!--     <script src="assets/js/custom.js"></script> -->
+
+
+<script>
+            $(document).ready(function() {
+              var owl = $('.owl-carousel');
+              owl.owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true
+              });
+              $('.play').on('click', function() {
+                owl.trigger('play.owl.autoplay', [1000])
+              })
+              $('.stop').on('click', function() {
+                owl.trigger('stop.owl.autoplay')
+              })
+            })
+          </script>
+           <!-- javascript -->
+  
+    <script src="OwlCarousel/owl.carousel.js"></script>
+        <!-- vendors -->
+    <script src="../assets/vendors/highlight.js"></script>
+  
+<script src="assets/js/star-rating.js"></script>
+    </body>
+</html>

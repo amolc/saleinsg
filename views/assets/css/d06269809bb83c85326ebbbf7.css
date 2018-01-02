@@ -1,0 +1,443 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300);
+
+$color_bg: #FFF;
+$color_bg_shade: #E8F0F4; 
+
+/* Foreground color for text and UI elements */
+$color_fg: #475F72;
+$color_fg_tint: lighten($color_fg,15%); /* 20% lighter */
+$color_fg_shade: darken($color_fg,15%); /* 20% darker */
+
+/* Used for borders, dividers, etc. */
+$color_chrome:#D0D7DD;
+$color_chrome_tint:lighten($color_chrome,10%); /* 10% lighter */
+$color_chrome_shade:darken($color_chrome,10%); /* 10% darker */
+
+/*--- Inverted Colors ---*/
+/* Background color */
+$color_invert_bg:#22303A;
+$color_invert_bg_tint:lighten($color_invert_bg,10%); /* 10% lighter */
+$color_invert_bg_shade:darken($color_invert_bg,10%); /* 10% darker */
+
+/* Foreground color for text and UI elements */
+$color_invert_fg:#FAFAFA;
+$color_invert_fg_shade:$color_chrome;
+
+/* Used for borders, dividers, etc. */
+$color_invert_chrome:#637787;
+$color_invert_chrome_tint:lighten($color_invert_chrome,10%); /* 10% lighter */
+$color_invert_chrome_shade:darken($color_invert_chrome,10%); /* 10% darker */
+
+/*--- Accent Colors ---*/
+
+/* Primary accent color (orange) */
+$color_accent_orange: #F8510F;
+$color_accent_orange_tint: lighten($color_accent_orange,10%); /* 10% lighter */
+$color_accent_orange_shade: darken($color_accent_orange,10%); /* 10% darker */
+$color_accent_orange_tint2: lighten($color_accent_orange,20%); /* 20% lighter */
+$color_accent_orange_shade2: darken($color_accent_orange,20%); /* 20% darker */
+
+/* Secondary accent color (blue) */
+$color_accent_blue: #00C0FA;
+$color_accent_blue_tint: lighten($color_accent_blue,10%); /* 10% lighter */
+$color_accent_blue_shade: darken($color_accent_blue,10%); /* 10% darker */
+$color_accent_blue_tint2: lighten($color_accent_blue,20%); /* 20% lighter */
+$color_accent_blue_shade2: darken($color_accent_blue,20%);; /* 20% darker */
+
+/* Tertiary accent colors */
+$color_accent_green:#28E398; /* H:156 S:82 B:89 */
+$color_accent_green_tint:lighten($color_accent_green,20%); /* 20% lighter */
+$color_accent_green_shade: darken($color_accent_green,10%); /* 10% darker */
+$color_accent_yellow:#FED800;
+$color_accent_yellow_tint:#FCED96; 
+$color_accent_yellow_shade:#EFA50D; 
+
+
+/* Basic */
+$basefont: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans';
+
+body{
+  color: $color_fg;
+  font-family: $basefont;         
+  font-size: 16px;
+  margin: 0 0 0 0;
+  text-rendering: optimizeLegibility;
+}
+
+article{
+  margin: 2em auto 0 auto;
+  max-width: 40em;
+  > img{
+    max-width: 100%;
+  }
+  figure img{
+    max-width: 100%;
+  }
+}
+
+article:first-child{
+  margin-top:0;
+}
+
+article:after{
+  content:'';
+  display:block;
+  clear:both;
+}
+blockquote{
+  border-left: solid 4px $color_fg_tint;
+  color: $color_fg_tint;
+  font-size: 150%;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 1em;
+  max-width: 640px;
+  padding: 0 0 0 1em;
+  text-indent: 0em;
+}
+
+button, a.button{
+  align-items: flex-start;
+  background-color: $color_accent_blue;
+  border: none;
+  border-radius: 4px;
+  border-bottom: solid 2px $color_chrome;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: $color_bg;
+  display: inline-block;
+  font-family: $basefont;
+  font-size: 12px;
+  line-height: 1;
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    background-color: $color_accent_blue_tint;
+    cursor: pointer;
+  }
+  &:active{
+    background-color: $color_accent_blue_shade;
+    outline: none;
+  }
+}
+
+code{
+  color: $color_fg_tint;
+  font-family: "Andale Mono","Menlo",mono;
+  padding: 0 .4em;
+  background-color: fade-out($color_invert_chrome_tint,.9);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+figure{
+  margin:2em 0;
+  padding:0;
+  figcaption{
+    color:$color_chrome_shade;
+    font-size:1em;
+    padding-top:1em;
+  }
+}
+figure:first-child{
+  margin-top:0;
+}
+
+footer{
+  max-width:36em;
+  margin:0 auto;
+  padding-top:2em;
+  padding-bottom:2em;
+  text-align:center;
+}
+
+h1,h2,h3{
+  color:$color_fg;
+  font-size:220%;
+  font-weight:500;
+  line-height:1.2;
+  text-align:left;
+  margin:0 0 .25em 0;
+}
+
+h2,h3,h4,h5,h6{
+  color:$color_fg_tint;
+  font-size:180%;
+  font-weight:400;
+  margin: 0 0 .5em 0;
+}
+
+h3,h4,h5,h6{
+  color:$color_fg;
+  font-size:150%;
+  margin: 0 0 .2em 0;
+}
+
+hr{
+  margin:2em 0;
+  padding:0;
+  border-top: solid 1px fade-out($color_fg_tint, .9);
+}
+
+p{
+  margin-bottom:1em;
+  text-align:left;
+  color:$color_fg;
+  line-height:1.45;
+}
+
+p a {
+  border-bottom:solid 1px $color_accent_blue;
+  color:$color_accent_blue;
+  text-decoration:none;
+  &:active{
+    background-color: $color_accent_blue;
+    border-bottom:solid 1px $color_accent_blue;
+    color:$color_bg;
+  }
+  &:hover{
+    border-bottom:dotted 1px $color_accent_blue_tint;
+    color:  $color_accent_blue_tint;
+  }
+}
+
+section{
+  padding: 2em 0 0 
+}
+
+ul,ol{
+  color:$color_fg;
+  margin-bottom:1em;
+  li{
+    margin-bottom:.5em;
+  }
+  li:last-child{
+    margin-bottom:0;
+  }
+}
+
+.button-group{
+  margin-top:2em;
+  text-align:center;
+}
+
+.content{
+  margin-top:2em;
+  clear:both;
+  padding-left:1.5em;
+  padding-right:1.5em;
+  @media(min-width:768px){
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+section.content:first-child{
+   // margin-top:0;
+    padding-top:0;  
+}
+
+/* Single Line Code View for Imgix URLs*/
+.single-line{
+  display:block;
+  margin:0;
+  padding:0;
+  width:100%;
+  overflow:hidden;
+  white-space:nowrap;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  border-radius:4px;
+  code{
+    font-size:16px;
+    overflow-x: scroll;
+    width:100%;
+    word-break:keep-all;
+    padding:1em;
+    line-height:1;
+    border-radius:4px 0 0 4px;
+    display:inline-block;
+    color:$color_accent_blue_tint2;
+    background:$color_invert_bg_tint;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    vertical-align:bottom;
+   }
+  
+  /* Include a Sandbox Button Link */
+  
+  &.sandbox{
+    position:relative;
+    padding-right:4px;
+    border-radius:4px 0 0 4px;
+    code{
+      //width:calc( 100% - 48px );
+    }
+  }
+    .sandbox-link{
+      background:url('https://assets.imgix.net/presskit/imgix-presskit.pdf?page=1&fm=png8&w=48') no-repeat;
+      background-color:$color_accent_orange;
+      display:block;
+      min-height:46px;
+      border-bottom:solid 2px $color_accent_orange_shade;
+      width:48px;
+      text-indent:-9999px;
+      position:absolute;
+      right:0;
+      border-radius:0 4px 4px 0;
+  }
+}
+
+/* Transparent Grids for PNGs and gifs */ 
+
+.transparency-dark{
+  background: rgb(73, 96, 112);
+  background-image: 
+    -moz-linear-gradient(45deg, #354651 25%, transparent 25%),
+    -moz-linear-gradient(-45deg, #354651 25%, transparent 25%),
+    -moz-linear-gradient(45deg, transparent 75%, #354651 75%),
+    -moz-linear-gradient(-45deg, transparent 75%, #354651 75%);
+  background-image: 
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgb(53, 70, 81)), color-stop(.25, rgba(0, 0, 0, 0))),
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgb(53, 70, 81)), color-stop(.25, rgba(0, 0, 0, 0))),
+    -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, rgba(0, 0, 0, 0)), color-stop(.75, rgb(53, 70, 81))),
+    -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, rgba(0, 0, 0, 0)), color-stop(.75, rgb(53, 70, 81)));
+  -moz-background-size: 10px 10px;
+  background-size: 10px 10px;
+  -webkit-background-size: 10px 10px;
+  background-position: 0 0,5px 0,5px -5px,0 5px;
+}
+.transparency-light{
+    background: rgb(239, 239, 239);
+    background-image: 
+      -moz-linear-gradient(45deg, #dfdfdf 25%, transparent 25%),
+      -moz-linear-gradient(-45deg, #dfdfdf 25%, transparent 25%),
+      -moz-linear-gradient(45deg, transparent 75%, #dfdfdf 75%),
+      -moz-linear-gradient(-45deg, transparent 75%, #dfdfdf 75%);
+    background-image: 
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgb(223, 223, 223)), color-stop(.25, rgba(0, 0, 0, 0))),
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgb(223, 223, 223)), color-stop(.25, rgba(0, 0, 0, 0))),
+      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, rgba(0, 0, 0, 0)), color-stop(.75, rgb(223, 223, 223))),
+      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, rgba(0, 0, 0, 0)), color-stop(.75, rgb(223, 223, 223)));
+    -moz-background-size: 10px 10px;
+    background-size: 10px 10px;
+    -webkit-background-size: 10px 10px;
+    background-position: 0 0,5px 0,5px -5px,0 5px;
+}
+
+.responsive{
+  width:100%;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  border-top:solid 10px $color_accent_blue;
+  color:$color_accent_blue;
+  position:relative;
+  line-height:1.4;
+  font-weight:100;
+}
+
+.responsive:before{
+  content:'⇄';
+  position:absolute;
+  right:20px;
+}
+.responsive:after{
+  font-size:100%;
+  vertical-align:baseline;
+  font-weight:400;
+}
+
+/* Wider than desktop */
+@media (min-width: 1200px) {
+  .responsive{
+    border-top:solid 10px $color_accent_blue;
+  }
+  .responsive:after{
+   content:'Large Desktop';
+     font-size:100%;
+  } 
+}
+
+/* Landscape phone to desktop */
+@media (max-width: 1199px) { 
+   .responsive{
+     border-top:solid 10px $color_accent_blue_tint;
+  }
+  .responsive:after{
+   content:'Desktop';
+     font-size:100%;
+  } 
+}
+
+/* Landscape phone to landscape tablet */
+@media (max-width: 979px) {
+  .responsive{
+     border-top:solid 10px $color_accent_blue;
+  }
+  .responsive:after{
+   content:'Landscape Tablet';
+     font-size:100%;
+  } 
+}
+
+/* Small desktop */
+@media (min-width: 980px) and (max-width: 1199px) { 
+  .responsive:after{
+   content:'Small desktop';
+     font-size:100%;
+  } 
+}
+
+/* Portrait tablet to landscape tablet */
+@media (min-width: 768px) and (max-width: 979px) { 
+    .responsive{
+    border-top:solid 10px $color_accent_blue_shade;
+  }
+  .responsive:after{
+   content:'Portrait Tablet';
+     font-size:100%;
+  } 
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+    .responsive{
+    font-size:14px;
+     border-top:solid 10px $color_accent_blue_shade;
+  }
+  .responsive:after{
+   content:'Landscape Phone';
+     font-size:100%;
+  } 
+}
+
+
+@media(max-width:480px){
+  .responsive{
+    font-size:12px;
+    text-align:left;
+      border-top:solid 10px $color_accent_blue_shade;
+  }
+  .responsive:after{
+   content:'Portrait Phone';
+  }
+}
+
+figure{
+  text-align:center;
+}
+
+picture{
+  text-align:center;
+}
+
+

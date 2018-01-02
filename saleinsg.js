@@ -18,6 +18,8 @@ var investor = require('./api/investor.js');
 var seller = require('./api/seller.js');
 var buyer = require('./api/buyer.js');
 var message = require('./api/message.js');
+var seo = require('./api/seo.js');
+var routes = require('./routes/route.js');
 
 
 /*app.use(function(req, res, next){
@@ -43,6 +45,19 @@ app.use(bodyParser.raw({ limit: '50mb' }));
 var www = connect();
 www.use(serveStatic('www'));
 app.use('/', www);
+
+// var views = connect();
+// views.use(serveStatic('views'));
+// app.use('/views', views);
+
+var static = connect();
+static.use(serveStatic('static'));
+app.use('/static', static);
+
+/* testing server side coding */
+app.get('/api/seotags', seo.seotags);
+
+
 
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
@@ -127,6 +142,22 @@ app.get('/api/conversationlist/:id', message.conversationlist);
 app.post('/api/conversation/', message.conversation);
 app.post('/api/sendmessage/', message.sendmessage);
 app.post('/api/postbid', message.postbid);
+
+// app.set('view engine', 'ejs');
+// // use res.render to load up an ejs view file
+// // index page
+//
+//
+// app.get('/backend/', backend.index );
+// app.get('/backend/about',backend.about);
+
+const expressNunjucks = require('express-nunjucks');
+const isDev = app.get('env') === 'development';
+
+ app.set('views', __dirname + '/www');
+var njk = expressNunjucks(app, {watch: isDev,noCache: isDev});
+
+app.get('/allproducts.html', routes.products);
 
 
 app.listen(9888, function () {

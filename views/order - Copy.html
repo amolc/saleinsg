@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+        <script type="text/javascript">
+         if (window.localStorage.getItem('User_Id')<=0) 
+                {
+                   window.localStorage.setItem('GoToPage',window.location.href); 
+                   window.location.href="login.html";
+
+                }
+                else
+                {
+                   if (window.localStorage.getItem("GoToPage") !== null) {
+                                window.localStorage.removeItem('GoToPage');
+                        }
+                }
+    </script>
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
+<!-- Start Header -->
+       <header id="top-header">
+            <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                      <!-- <a class="navbar-brand" href="#">Brand</a> -->
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <!-- <ul class="nav navbar-nav">
+                                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                        <li><a href="#">Link</a></li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                          <ul class="dropdown-menu">
+                                            <li><a href="#">Action</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something else here</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Separated link</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">One more separated link</a></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                      <form class="navbar-form navbar-left">
+                                        <div class="form-group">
+                                          <input type="text" class="form-control" placeholder="Search">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                      </form> -->
+                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                        <!-- <li><a href="#">Seller</a></li>
+                                        <li><a href="#">Buyer</a></li> -->
+                                        <li ng-if="User_Id>0"><a href="dashboard.html">Dashboard</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+                                      </ul>
+                                    </div><!-- /.navbar-collapse -->
+                                  </div><!-- /.container-fluid -->
+                                </nav>
+                              </div>
+                            </div>
+                           <!--  <div class=" col-sm-3  pull-right">
+                                <a href="register.html" class="txt-bcsup">Become Supplier
+                                    
+                                </a>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <nav class="navbar navbar-default">
+                      <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <!-- <a class="navbar-brand" href="#">Go quickly to <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav" ng-init="getCategories()">
+                         <!--  <li ng-repeat='cat in categorieslist'><a href="products.html?filter=category&id={{cat.CategoryId}}">{{cat.CategoryTitle}}</a></li> -->
+                            <!-- <li><a href="#">Electronics</a></li>
+                            <li><a href="#">Appliances</a></li>
+                            <li><a href="#">Men</a></li>
+                            <li><a href="#">Women</a></li>
+                            <li><a href="#">Baby & Kids</a></li>
+                            <li><a href="#">Home & Furniture</a></li> -->
+                            <!-- <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">India <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Malaysia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Thailand <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> 
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Indonesia <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bangladesh <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Appliances</a></li>
+                                <li><a href="#">Men</a></li>
+                                <li><a href="#">Women</a></li>
+                                <li><a href="#">Baby & Kids</a></li>
+                                <li><a href="#">Home & Furniture</a></li>
+                                <li><a href="#">Books & More</a></li>
+                              </ul>
+                            </li> -->
+                          </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </header>
+    <!-- End Header -->
+        <section id="pleacr-order-wrap"  id="book-now" ng-init="getAllcurrency()">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 text-center">
+                <h2 class="section-title">Place Order</h2>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <div class="seller-details">
+                  <h4>Buyer Details</h4>
+                  <h6>
+                    <label for="fullname"><span>Name : </span> {{product.fullname}}</label><br>
+                    <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label><br>
+                    <label for="email"><span>Email Address : </span>{{product.email}}</label><br>
+                    <label> <span>Country : </span> {{product.CountryTitle}} </label><br>
+                    <label><span>Seller : </span> {{product.CompanyName}} </label>
+                  </h6>
+                </div>
+              </div>
+              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+                <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
+                <div class="cart-table">
+                  <table id="cart" class="table table-bordered table-condensed">
+                      <thead>
+                      <tr>
+                        <th style="width:10%">SKU No</th>
+                        <th style="width:10%">Image</th>
+                        <th style="width:28%">Title</th>
+                        <th style="width:25%">Unit Price</th>
+                        <th style="width:15%">Qty</th>
+                        <th style="width:22%">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p>12656809</p>
+                        </td>
+                        <td data-th="Product">
+                          <div class="">
+                            <img src="uploads/{{product.Image1}}" class="img-responsive"></div>
+                          </div>
+                        </td>
+                        <td>
+                          <p>{{product.ProductName}}</p>
+                        </td>
+                        <td data-th="Price">
+                          <p>{{product.Currency}} {{product.Price}} 
+                            <select class="mr-l10" id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                            <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                            </select> : {{product.changePrice}} 
+                          </p>
+                        </td>
+                        <td data-th="Quantity">
+                          <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
+                        </td>
+                        <td data-th="Subtotal" class="text-right">
+                          <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
+                        </td>
+                        <!-- <td class="actions" data-th="">
+                          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+                        </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="order-add-form">
+                  <div class="top-strip">
+                    <div class="col-sm-6 col-md-6">
+                      <h5>Terms</h5>                      
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                      <input type="button" class="red-btn small-btn" ng-click="showterms()" value="Add">
+                       <!-- <button class="btn" type="button" ng-click="showterms()">Add</button> -->
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="order-form-foot">
+                    <div class="col-sm-3">
+                      <label>Title</label>
+                      <input class=" form-group form-control" type='text' ng-model='terms' required="">
+                    </div>
+                    <div class="col-sm-4">
+                      <label>Type</label>
+                      <Select class="form-group form-control" type='text' ng-model='types' required="">
+                        <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                        <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                        <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                       </Select>
+                    </div>
+                    <div class="col-sm-2">
+                      <label>%</label>
+                      <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)' required="">
+                    </div>
+                    <div class="col-sm-2">
+                      <label>Amount</label>
+                      <input class="form-group form-control" type='text' ng-model='amt'>
+                    </div>
+                        <div ng-repeat="n in [].constructor(10) track by $index">
+                          <div id="termsdiv{{$index}}" hidden="">
+                          <div class='col-md-3'>
+                            <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
+                          </div>
+                          <div class='col-md-4'>
+                             <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                              <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                              <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                              <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                             </Select> 
+                          </div>
+                          <div class='col-md-2'>
+                             <input class="form-group form-control" type='text' ng-model='product.percentage[$index]' ng-change="calculate(product,$index)">
+                          </div>
+                          <div class='col-md-2'>
+                             <input class="form-group form-control" type='text' ng-model='product.amount[$index]'>
+                          </div>
+                          <div class='col-md-1'>
+                            <input  type="hidden" ng-model='product.remove[$index]'>
+                            <label class="close-btn" ng-click="remove(product,$index)">&#10008</label>
+                          </div>
+                          </div> 
+                          </div> 
+                          <div class="clearfix"></div>
+                          <div class="shipping-wrap mr-t20">
+                            <div class="col-sm-12 col-md-12">
+                              <h5>Shipping Address</h5>
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                              <input class="form-group form-control" ng-model="product.address1" type="text" name="address1" placeholder="Address Line 1" required="">
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                              <input class="form-group form-control" ng-model="product.address2" type="text" name="address2" placeholder="Address Line 2" required="">
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                              <input class="form-group form-control" ng-model="product.postalcode" type="text" name="postalcode" placeholder="Postal Code" required="">
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                              <input class="form-group form-control" ng-model="product.country" type="text" name="country" placeholder="Country" required="">
+                            </div>
+                            <div class="col-sm-12 col-md-12 text-center mr-t20">
+                              <button class="red-btn small-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
+                            </div>
+                          </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
+
+
+  <div>
+ 
+<div class="clearfix"></div>
+  <section id="book-now" ng-init="getAllcurrency()">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+           <h2 class="section-title">Place Order</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-offset-2 col-sm-9">
+          <form name="orderform" id="orderform"  ng-controller="contactcontroller" ng-submit="order()">
+           <div class="col-md-6">
+            <div class="form-group">
+            <img src="uploads/{{product.Image1}}" class="img-responsive">
+          
+            </div>
+           
+                </div>
+           <div class="col-md-6">
+            <div class="form-group">
+              <h3>{{product.ProductName}}</h3>
+            </div>
+             <div class="form-group">
+              <h4 class="pro-price">Product Price : <span>{{product.Currency}} {{product.Price}}</span><br><select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+              <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+              </select> : <span>{{product.changePrice}}</span> </h4>
+            </div>
+             <div class="form-group">
+              <label for="fullname"><span>Name : </span> {{product.fullname}}</label>
+            </div>
+            <div class="form-group">
+              <label for="phoneno"><span>Phone Number :</span> {{product.phonenumber}}</label>
+            </div>
+            <div class="form-group">
+              <label for="email"><span>Email Address : </span>{{product.email}}</label>
+            </div>
+             <div class="form-group">
+               <label> <span>Country : </span> {{product.CountryTitle}} </label>
+             </div>
+             <div class="form-group">
+                <label><span>Seller : </span> {{product.CompanyName}} </label>
+             </div>
+              <div class="form-group">
+             <!--  <label for="productprice">Quantity : {{product.orderqty}}</label> -->
+               <label for="productprice"><span>Quantity :</span></label>
+               <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select>
+            </div>
+            <div class="form-group">
+              <label for="productprice"><span>Total Amount : </span>{{product.Currency}} {{product.Price * product.orderqty}}</label>
+            </div>
+            <div class="form-group">
+             <label>Terms</label>
+              <button class="btn" type="button" ng-click="showterms()">Add</button>
+            </div>
+            <div id="termsdiv" class="form-group">
+            <div id="label">
+            <div class='col-md-3'>
+                <label>Title</label>
+              </div>
+              <div class='col-md-4'>
+                 <label>Type</label>
+              </div>
+              <div class='col-md-2'>
+                 <label>%</label>
+              </div>
+              <div class='col-md-2'>
+                 <label>Amount</label>
+              </div>
+              </div>
+              <div>
+              <div id="termsdiv">
+              <div class='col-md-3'>
+                <input class=" form-group form-control" type='text' ng-model='terms' required="">
+              </div>
+              <div class='col-md-4'>
+                 <Select class="form-group form-control" type='text' ng-model='types' required="">
+                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                  <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                  <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                 </Select> 
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='per' ng-change='cal(product,per)' required="">
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='amt'>
+              </div>
+
+
+              </div> 
+              </div>
+              <div ng-repeat="n in [].constructor(10) track by $index">
+              <div id="termsdiv{{$index}}" hidden="">
+              <div class='col-md-3'>
+                <input class=" form-group form-control" type='text' ng-model='product.term[$index]'>
+              </div>
+              <div class='col-md-4'>
+                 <Select class="form-group form-control" type='text' ng-model='product.type[$index]'>
+                  <option value="Trade Exchange Escrow (TEE)">Trade Exchange Escrow (TEE)</option>
+                  <option value="Telegraphic Transfer (TT)">Telegraphic Transfer (TT)</option>
+                  <option value="Letter Of Credit (LOC)">Letter Of Credit (LOC)</option>
+                 </Select> 
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.percentage[$index]' ng-change="calculate(product,$index)">
+              </div>
+              <div class='col-md-2'>
+                 <input class="form-group form-control" type='text' ng-model='product.amount[$index]'>
+              </div>
+              <div class='col-md-1'>
+                <input type="hidden" ng-model='product.remove[$index]'>
+                <label ng-click="remove(product,$index)">&#10008</label>
+              </div>
+              </div> 
+              </div>            
+            </div>
+            <br/>
+             <div class="form-group">
+              <label for="shippingaddress">Shipping Address : </label>
+             <!--  <textarea class="form-control mb19" id="address" name="address" ng-model="product.address" rows="6" required="">
+                
+              </textarea> -->
+              <input class="form-group form-control" ng-model="product.address1" type="text" name="address1" placeholder="Address Line 1" required="">
+               <input class="form-group form-control" ng-model="product.address2" type="text" name="address2" placeholder="Address Line 2" required="">
+               <input class="form-group form-control" ng-model="product.postalcode" type="text" name="postalcode" placeholder="Postal Code" required="">
+               <input class="form-group form-control" ng-model="product.country" type="text" name="country" placeholder="Country" required="">
+            </div>
+            
+            
+
+            <!--  <div class="form-group" >
+              <label for="paymenttype">Payment Type : </label>
+                  <select ng-model="product.paymenttype" class="form-control" id="paymenttype" required="">
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Bank Transfer">Bank Transfer</option>
+                  </select>
+            
+              </div> -->
+
+              <div class="clearfix"></div>
+              </div>
+                   
+          <button class="btn btn-success orenge-btn" type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit">Place Order</button>
+          </form>
+          <!--  <form class="form-horizontal" stripe-form="stripeCallback" id="payform" hidden>
+
+                      <div class="col-sm-10" >
+                          <p style="color:red;">{{paymessage}}</p>
+                      </div>
+
+                        <div class="col-sm-12 text-center" >
+                           <h3>Product Name : {{product.ProductName}}</h3>
+                           <h3>Total : SGD {{product.Price * product.orderqty | currency }}</h3>
+                          </div>  
+
+                    
+
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Name</label>
+                                <input type="text" class="form-control" id="" placeholder="Name" ng-model="cardname" value="Humty Dumty">
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Card Number</label>
+                                <input type="text"  class="form-control"  ng-model="number" payments-validate="card" payments-type-model="type" />
+                        </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">Expiry MM/YYYY</label>
+                              <input type="text"  class="form-control"  ng-model="expiry" payments-format="expiry"  />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="control-label">CVV</label>
+                                <input type="text" class="form-control" id="inputEmail3" placeholder="123" ng-model="cvc" maxlength="3" payments-format="cvc" >
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center m-t-40">
+                                <button type="submit" class="btn btn-warning" >Pay</button>
+                            </div>
+                        </div>
+                    </form> -->
+          <div id="thankyou" hidden="">
+            <div class="thankyou">
+                <div class="item">
+                    <span><h4><b><font>Order Placed Successfully!</font></b></h4></span>
+                </div>
+            </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+      <div class="clearfix"></div>
+  </section>
+
+
+
+
+
+
+
+ <div w3-include-html="footer.html"></div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+      <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
+
+</div>
+</body>
+
+</html>
