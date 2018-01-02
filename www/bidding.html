@@ -291,9 +291,12 @@
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
-                <p ng-if="enquiry.SupplierId == bid.SupplierId">Awarded</p>
+              
               </div>
-                 <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded == '0'" style="float:right">
+              <div ng-if="enquiry.SupplierId == bid.SupplierId" style="float:right">
+              <h5>Awarded</h5>
+              </div>
+                 <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
                   <a class="red-btn small-btn" href="order.html?id={{bid.ProductId}}&seller={{bid.SupplierId}}">Award</a>
                 <input type="button" class="red-btn small-btn" value="Chat" ng-click="getinfo(bid)">
                 </div>
