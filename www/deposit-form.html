@@ -253,7 +253,7 @@
                                     </div> 
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group">
-                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">DEPOSIT</button>
+                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply" id="deposit">DEPOSIT</button>
                         </div>
                       </div>
                     </form>
@@ -268,15 +268,15 @@
               <table class="table table-bordered" ng-controller="paymentcontroller" ng-init="getdeposites();">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <!-- <th>#</th> -->
                     <th style="text-align: left; padding-left: 20px;">Date</th>
                     <th>I/P Address</th>
                     <th>Credited Amount</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="transactiontable">
                   <tr ng-repeat="dep in depositlist">
-                    <td>{{$index+1}}</td>
+                    <!-- <td>{{$index+1}}</td> -->
                     <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
                     <td>{{dep.IPAddress}}</td>
                     <td>SGD ${{dep.Amount}}</td>
