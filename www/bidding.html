@@ -290,16 +290,19 @@
               </div>
               <div ng-if="enquiry.SupplierId == bid.SupplierId && enquiry.IsAwarded == '1'" style="float:right">
               <h5 style="color: #52bad5">Awarded</h5>
+              <p  ng-if="bid.SellerPrice>0">Quotation : {{enquiry.Currency}} {{bid.SellerPrice}}</p>
+              
               </div>
               <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
                   <a class="red-btn small-btn" style="width: 75px" href="order.html?id={{bid.ProductId}}&bid={{bid.BidId}}">Award</a>
                 </div>
               <div class="sealer-info">
+                <a href="productsbyseller.html?seller={{seller.SupId}}">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
+                </a>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
                 <p  ng-if="User_Id == bid.SupplierId || User_Id == bid.BuyerId">{{bid.Message}}</p>
-                <p  ng-if="bid.SellerPrice>0 && (User_Id == bid.SupplierId || User_Id == bid.BuyerId)">Quotation : {{enquiry.Currency}} {{bid.SellerPrice}}</p>
-              
+                
               </div>
 
                  <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
