@@ -290,7 +290,7 @@
               </div>
               <div ng-if="enquiry.SupplierId == bid.SupplierId && enquiry.IsAwarded == '1'" style="float:right">
               <h5 style="color: #52bad5">Awarded</h5>
-              <p  ng-if="bid.SellerPrice>0">{{enquiry.Currency}} {{bid.SellerPrice}}</p>
+              <h5  ng-if="bid.SellerPrice>0">{{enquiry.Currency}} {{bid.SellerPrice}}</h5>
               
               </div>
               <div ng-if="User_Id == bid.BuyerId && enquiry.IsAwarded != '1'" style="float:right">
