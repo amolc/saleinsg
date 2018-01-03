@@ -2529,15 +2529,16 @@ input::-webkit-inner-spin-button {
 .store-left-block{
   border: 1px solid #eae9e9;
   background-color: #eae9e9;
+  position: relative;
 }
 .store-left-block img{
     width: 50%;
     float: left;
 }
 .store-text{
-  margin-top: 30px;
+  margin-top: 45px;
   float: left;
-  width: 299px;
+  width: 370px;
   position: relative;
 }
 .store-text h4{
@@ -2555,30 +2556,33 @@ input::-webkit-inner-spin-button {
   width: 100px;
   margin-left: 11px;
 }
-.store-text:before {
+.store-left-block:before {
   content: "";
   border-top: 15px solid transparent;
   border-right: 20px solid #eae9e9;
   border-bottom: 15px solid transparent;
   position: absolute;
-  left: -20px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  margin-left: -8px;
 }
 .seller-block{
     text-align: center; 
     margin-top: 37px;
-    border: 1px solid #52bcd6;
+    border-left: 1px solid #dcdcdc;
+    padding: 4px;
+    background-color: #eae9e9;
 }
 .seller-block h5{
     font-size: 18px;
-    background: #52bbd5;
+    background: #eae9e9;
     padding: 10px;
-    color: #fff;
+    color: #171717;
     font-weight: 600;
     margin: 0px;
 
@@ -2594,14 +2598,20 @@ input::-webkit-inner-spin-button {
     line-height: 24px;
 }
 .seller-text{
-  padding: 20px;
+  padding: 29px;
 }
 .seller-block hr{
-    border-top: 1px solid #52bcd5;
-    margin: 15px 0px;
+    border-top: 1px solid #dcdcdc;
+    margin: 29px 0px;
 }
 .font-size20{
   font-size: 20px;
+}
+.pd-l0{
+  padding-left: 0px;
+}
+.pd-r0{
+  padding-right: 0px;
 }
 /*Responsive Css Start */
 
