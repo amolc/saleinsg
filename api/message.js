@@ -226,6 +226,7 @@ exports.postbid = function (req, res) {
                         "SupplierId": req.body.SupId || "",
                         "BuyerId" : req.body.BuyerId,
                         "Message":req.body.Message,
+                        "SellerPrice" : req.body.SellerPrice, 
                         "Date": req.body.date || "",
                         "CreatedOn": req.body.datetime || "",      
                     };
@@ -413,7 +414,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <p style="margin: 0px; font-size: 14px;">'+req.body.ProductName+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">'+req.body.Currency+' '+req.body.Price+'</p>\
+<p style="margin: 0px; font-size: 14px;">'+req.body.Currency+' '+req.body.ExpectedPrice+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+req.body.Quantity+'</p>\
@@ -438,6 +439,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
 <p><b>Product Description :</b> <br/>'+req.body.Description+'</p>\
 <p><b>Message :</b> <br/>'+req.body.Message+'</p>\
+<p><b>Quotation :</b> <br/>'+req.body.Currency+' '+req.body.SellerPrice+'</p>\
 </div>\
 </div>\
 </div>\

@@ -130,7 +130,8 @@ exports.requestproduct = function (req, res) {
     var createObj = {
         "ProductName" :  req.body.name,
         "Description": req.body.description || "",
-        "Price":req.body.price || "",
+        "ExpectedPrice":req.body.price || "",
+       //"Price":req.body.price || "",
         "Image1": fileName || "",
         "CountryId" : req.body.CountryId,
         "CategoryId" : req.body.CategoryId,
@@ -472,8 +473,8 @@ exports.placeorder = function (req, res) {
                             
                               // var agentemail = "ceo@80startups.com";
                               // var officeremail = "shital.talole@fountaintechies.com";
-                               var buyer = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
-                               var seller = req.body.SupEmail+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
+                               var buyer = req.body.email+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
+                               var seller = req.body.SupEmail+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com,komal.gaikwad@fountaintechies.com';
                               // var buyer = req.body.email;
                               // var seller = req.body.SupEmail;
                              // var buyer = 'komal.gaikwad@fountaintechies.com';
@@ -1013,7 +1014,8 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
             var updateObj = {
 
                 'SupplierId' :req.body.SupplierId,
-                'IsAwarded' : '1'
+                'IsAwarded' : '1',
+                'Price' : req.body.Price
 
  
     };

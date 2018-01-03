@@ -1490,14 +1490,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             if ($scope.product.ProductType == 'Request') 
             {
                 var sellerid = urlpart[1].split('=');
-                $scope.product.SupplierId = sellerid[1];
-                  $http.get(baseurl + 'getsellerinfo/'+$scope.product.SupplierId).success(function(data, status) {
-                   console.log(data);
+                $scope.product.BidId = sellerid[1];
+                $http.get(baseurl + 'bidinfo/'+$scope.product.BidId).success(function(data, status) {
+                   //console.log(data);
+                   $scope.product.SupplierId = data.SupId;
                    $scope.product.CompanyName = data.CompanyName; 
                    $scope.product.CountryTitle = data.CountryTitle; 
-                   $scope.product.SupEmail = data.Email; 
-                   $scope.product.SupFirstName = data.FirstName; 
-                   $scope.product.SupLastName = data.LastName;  
+                   $scope.product.SupEmail = data.SupEmail; 
+                   $scope.product.SupFirstName = data.SupFirstName; 
+                   $scope.product.SupLastName = data.SupLastName;
+                   $scope.product.Price = data.SellerPrice;
+                   $scope.product.changePrice = data.SellerPrice;  
+                   $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
+                   $scope.amt1 =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
 
               });
             }
@@ -1514,7 +1519,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.product.orderqty = $scope.product.Quantity;
             else
               $scope.product.orderqty = 1;
-            $scope.product.changePrice = data.Price
+            $scope.product.changePrice = data.Price;
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
             $scope.terms = "50% In Advance";
