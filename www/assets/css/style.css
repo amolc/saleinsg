@@ -2612,6 +2612,10 @@ input::-webkit-inner-spin-button {
 .pd-r0{
   padding-right: 0px;
 }
+#store-wrap{
+  background: #52bbd5 url(../img/section-bg.png);
+  background-size: 6%;
+}
 /*Responsive Css Start */
 
 
