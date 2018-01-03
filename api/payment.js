@@ -67,6 +67,7 @@ exports.deposit = function(req, res){
                       'Date' : req.body.date,
                       'DateTime' : req.body.datetime,
                       'Type' : 'Deposit',
+                      'PaymentOption' : 'Credit Card',
                         
                   };
 

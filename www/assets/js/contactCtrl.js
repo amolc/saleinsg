@@ -1284,6 +1284,57 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      }
 
+       $scope.withdraw = function (code, result) {
+
+          if ($scope.data.AccountNo !== $scope.data.ConfirmAccount) {
+
+                $scope.alertmessage = 'Account No And Confirm Account No Should Be Same.';
+
+          } else {
+
+               $scope.alertmessage = '';
+
+              var date = new Date();
+              var paydate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+              var paytime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+              dateToday = paydate+' '+paytime;
+              $scope.data.datetime = dateToday ;
+              $scope.data.date = paydate ;
+              $scope.data.type = 'Withdraw' ;
+              $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
+                // response = JSON.stringify(data, null, 2);
+                var response = data;
+                $scope.data.ip = response.ip;
+                //console.log($scope.data);
+                $http.post(baseurl + 'withdraw/',$scope.data).success(function (res) {
+
+                    if (res.status == true) {
+
+                      $("#payform").hide();  
+                      // var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+res.transactionid+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
+                      // $("#transactiontable").prepend(content);
+                      $("#success").show();
+
+                    }
+                    else
+                    { 
+                        $("#deposit").show();
+                        $scope.paymessage = res.message;
+                    }
+                   
+
+                }).error(function () {
+
+                }); 
+        
+              });
+                        
+              
+
+          }
+
+      };
+
    
   $scope.enquiryinit = function (req, res) {
        

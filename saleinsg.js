@@ -149,6 +149,8 @@ app.get('/api/bidinfo/:id', contact.bidinfo);
 app.post('/api/deposit', payment.deposit);
 app.get('/api/buyerdeposites/:id', payment.buyerdeposites);
 
+app.post('/api/withdraw',buyer.withdraw);
+
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file
 // // index page
