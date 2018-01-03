@@ -41,6 +41,7 @@ body {
 a:hover { text-decoration: none}
 label{font-weight: normal;}
 .bg-gray{background-color: #e8e8e8;}
+.bg-white{background-color: #ffffff;}
 
 .jumbotron p {
     font-size: 18px;
@@ -314,12 +315,11 @@ section#footer {
 
 .section-title{
     font-size: 28px;
-    /*text-align: left;*/
-    margin-bottom: 35px;
+    margin-bottom: 0px;
     color: #000000;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
-}
+ }
 .package-box{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.09);
@@ -458,6 +458,9 @@ section#footer {
 .navigation-strip{
     /*background-color: #bc0829;*/
     background-color: #f2f2f2;
+}
+.pd10{
+  padding: 10px;
 }
 .navigation-strip .navbar{
     margin: 0px;
@@ -2536,14 +2539,24 @@ input::-webkit-inner-spin-button {
     float: left;
 }
 .store-text{
-  margin-top: 45px;
+  margin-top: 35px;
   float: left;
-  width: 370px;
+  width: 50%;
   position: relative;
+  padding: 0px 20px 20px 30px;
+}
+.store-text ul li{
+  list-style-type: square;
+  color: #52bad5;
+  font-size: 15px; 
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+.store-text ul li span{
+  color: #171717;
 }
 .store-text h4{
-    font-size: 30px;
-    text-align: center;
+    font-size: 24px;
     color: #52bbd5;
     font-weight: 600;
     font-family: 'Open Sans', sans-serif;
@@ -2554,10 +2567,16 @@ input::-webkit-inner-spin-button {
 }
 
 .shop-btn .small-btn{
-  border-radius: 5px 5px 5px 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  width: 100%;
-  text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    max-width: 280px;
+    padding: 11px;
+    font-weight: 600;
+    float: right;
+    margin-top: 15px;
 }
 .store-left-block:before {
   content: "";
@@ -2616,7 +2635,7 @@ input::-webkit-inner-spin-button {
   padding-right: 0px;
 }
 #store-wrap{
-  background: #ffffff url(../img/section-bg2.png);
+  background: #52bbd5 url(../img/section-bg.png);
   background-size: 6%;
 }
 /*Responsive Css Start */
