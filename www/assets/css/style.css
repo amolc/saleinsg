@@ -2501,7 +2501,7 @@ input::-webkit-inner-spin-button {
   padding-right: 4px;
 }
 .payment-form-block{
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 30px;
 }
