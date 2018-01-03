@@ -2552,9 +2552,12 @@ input::-webkit-inner-spin-button {
   text-align: center;
   margin-top: 50px;
 }
+
 .shop-btn .small-btn{
-  width: 100px;
-  margin-left: 11px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  text-align: center;
 }
 .store-left-block:before {
   content: "";
@@ -2613,7 +2616,7 @@ input::-webkit-inner-spin-button {
   padding-right: 0px;
 }
 #store-wrap{
-  background: #52bbd5 url(../img/section-bg.png);
+  background: #ffffff url(../img/section-bg2.png);
   background-size: 6%;
 }
 /*Responsive Css Start */
