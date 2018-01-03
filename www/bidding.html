@@ -297,7 +297,7 @@
                   <a class="red-btn small-btn" style="width: 75px" href="order.html?id={{bid.ProductId}}&bid={{bid.BidId}}">Award</a>
                 </div>
               <div class="sealer-info">
-                <a href="productsbyseller.html?seller={{seller.SupId}}">
+                <a href="productsbyseller.html?seller={{bid.SupplierId}}">
                 <h5>{{bid.SupFirstName}} {{bid.SupLastName}}</h5>
                 </a>
                 <p><span  ng-if="bid.Location!=null">{{bid.Location}},</span><span>{{bid.CountryTitle}}</span></p>
