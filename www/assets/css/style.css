@@ -2534,9 +2534,12 @@ input::-webkit-inner-spin-button {
   background-color: #eae9e9;
   position: relative;
 }
-.store-left-block img{
+.store-left-block .store-img{
     width: 50%;
     float: left;
+}
+.store-left-block .store-img img{
+  width: 100%
 }
 .store-text{
   margin-top: 35px;
@@ -2563,8 +2566,7 @@ input::-webkit-inner-spin-button {
 }
 .shop-btn{
   text-align: center;
-  margin-top: 50px;
-}
+ }
 
 .shop-btn .small-btn{
     border-radius: 5px 5px 5px 5px;
@@ -2575,7 +2577,6 @@ input::-webkit-inner-spin-button {
     max-width: 280px;
     padding: 11px;
     font-weight: 600;
-    float: right;
     margin-top: 15px;
 }
 .store-left-block:before {
@@ -2634,9 +2635,15 @@ input::-webkit-inner-spin-button {
 .pd-r0{
   padding-right: 0px;
 }
+.pd-t40{padding-top: 40px;}
+.pd-b20{padding-bottom: 20px;}
+.mr-b40{margin-bottom: 40px;}
 #store-wrap{
   background: #52bbd5 url(../img/section-bg.png);
   background-size: 6%;
+}
+.store-img .form-group {
+    margin-bottom: 39px;
 }
 /*Responsive Css Start */
 
