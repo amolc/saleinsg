@@ -130,82 +130,13 @@
         </header>
     <!-- End Header -->
   <div data-ng-app="80consult" data-ng-controller="contactcontroller">
-<!--
-  <section id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="jumbotron">
-            <h3>Bonne Route Travels</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
 
-
-<!--
-  <section id="context">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 box-context">
-          <div class="context-head text-center">
-            <h3>Book Now</h3>
-          </div>
-
-          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="name" class="form-control" id="name">
-            </div>
-            <div class="form-group">
-              <label for="phoneno">Phone Number:</label>
-              <input type="phoneno" class="form-control" id="phoneno">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Travel Date</label>
-              <div class="input-append date">
-              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Special Request</label>
-              <div class="input-append date">
-                <textarea rows="4" cols="50">
-
-                  </textarea>
-            </div>
-            </div>
-
-            <button type="submit" class="btn btn-default">Submit</button>
-            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
-          </form>
-
-        </div>
-
-        <div class="col-md-6 box-context">
-
-        </div>
-
-
-
-
-
-
-      </div>
-    </div>
-  </section>
--->
 <div class="clearfix"></div>
    
-   <section id="payment-form-wrap">
+   <section id="payment-form-wrap" ng-init="getAllcurrency();getbuyerinfo();">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" id="payform">
           <div class="payment-form-block bg-gray">
                     <div class="accounts-form">
                    <div class="col-sm-12 col-md-12 mr-b20">
@@ -213,63 +144,103 @@
                         Deposit
                      </h3>
                    </div>
-                    <form>
+                    <form id="credit-card-form" ng-controller="paymentcontroller" name="credit-card-form" stripe-form="stripeCallback">
                       <div class="col-sm-12 col-md-12">
                         <div class="accounts-sgd-amt">
                           <h4 class="pull-left">
-                            <span>SGD $ <input type="text" class="form-control" id="name" ></span>
+                            <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required=""></span>
                           </h4>
                           <h4 class="sgd-amt-select">
                             <em>
-                              <select class="form-control">
+                             <!--  <select class="form-control">
                                 <option>INR</option>
                                 <option>MYR</option>
                                 <option>THB</option>
                                 <option>IDR</option>
                                 <option>BDT</option>
-                              </select> 
+                              </select>  -->
+                              <select class="form-control" id="currency" name="currency" ng-model="data.changeCurrency" ng-change="convertCurrency(data)" required="">
+                              <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}">{{c.CountryCurrency}}</option>
+                              </select>
                             </em> 
-                            <span>$50</span> 
+                            <span>{{data.changePrice}}</span> 
                           </h4>
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Enter Your Card Number*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" placeholder="Debit/Credit Card Number" required="" ng-model="number" data-stripe="number">
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Name On The Card*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control"  placeholder="Card Holder's Name" ng-model="cardname" required="">
                         </div>
                       </div>
-                      <div class="col-md-6 col-md-6 pd0">
-                        <div class="form-group col-sm-6 col-md-6 pd-r4">
+                      <div class="col-md-6 col-md-6">
+                      <div class="form-group">
+                          <label for="name">MM/YY*</label>
+                          <input type="text" class="form-control" name="expiry" ng-model="expiry" payments-format="expiry" placeholder="Card Expiry" required="">
+                        </div>
+                      
+                        <!-- <div class="form-group col-sm-6 col-md-6 pd-r4">
                           <label for="name">MM*</label>
                           <input type="text" class="form-control" id="name">
                         </div>
                         <div class="form-group col-sm-6 col-md-6 pd-l 4">
                           <label for="name">YY*</label>
                           <input type="text" class="form-control" id="name">
-                        </div>
+                        </div> -->
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">CVV*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" placeholder="Security Code" required="" ng-model="cvc" maxlength="3" payments-format="cvc" >
                         </div>
                       </div>
+                      <div class="col-sm-12 col-md-12 text-center">
+                                     <div class="form-group">
+                                      <label>{{paymessage}}</label>
+                                    </div>
+                                    </div> 
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group">
                           <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">DEPOSIT</button>
                         </div>
                       </div>
                     </form>
+
                    </div>
                    <div class="clearfix"></div>
                 </div>
+        </div>
+             <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="deplist" hidden="">
+          <div class="account-table" id="requests-wrap">
+            <div class="table-responsive" id="pleacr-order-wrap">          
+              <table class="table table-bordered" ng-controller="paymentcontroller" ng-init="getdeposites();">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th style="text-align: left; padding-left: 20px;">Date</th>
+                    <th>I/P Address</th>
+                    <th>Credited Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="dep in depositlist">
+                    <td>{{$index+1}}</td>
+                    <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
+                    <td>{{dep.IPAddress}}</td>
+                    <td>SGD ${{dep.Amount}}</td>
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+              </div>
+          </div>  
         </div>
       </div>
     </div>
@@ -285,11 +256,13 @@
 
         <script src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
-  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
-  <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+      <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+      <script type="text/javascript" src="assets/js/app1.js"></script>
+      <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
-  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+       <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
+      <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+       <script type="text/javascript" src="assets/js/payCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
         <script src="https://use.fontawesome.com/45e03a14ce.js"></script>

@@ -1268,6 +1268,23 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
      }
 
 
+
+    $scope.getbuyerinfo = function (req, res) {
+
+
+      User_Id = window.localStorage.getItem('User_Id');
+  
+      $http.get(baseurl + 'getsellerinfo/'+User_Id).success(function(data, status) {
+                   $scope.data = data;  
+                   $scope.data.BuyerId = User_Id;
+                   $scope.data.Currency = 'SGD';
+                   $scope.data.changeCurrency = 'SGD';
+                   //console.log($scope.data);                                     
+              });
+
+     }
+
+   
   $scope.enquiryinit = function (req, res) {
        
      //console.log($scope.enquiry);
@@ -1987,6 +2004,43 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        {
          $scope.product.changePrice =  $scope.product.Price;
        }             
+     }
+
+       $scope.convertCurrency = function(data){
+
+      // console.log(product);
+       $scope.data = data;
+       $scope.currency = {};
+       $scope.currency.amount = $scope.data.amount;
+       $scope.currency.baseCurrency = $scope.data.Currency;
+       $scope.currency.changeCurrency = $scope.data.changeCurrency;
+      // console.log($scope.currency.amount);
+       if ($scope.currency.amount !== '' ) 
+       {
+         if ($scope.data.Currency!=$scope.data.changeCurrency) 
+         {
+           // $http.get('http://api.fixer.io/latest?base='+$scope.currencyIndex).then(function(res){
+
+           //    console.log(res.data.rates);
+           //    $scope.product.changePrice = parseFloat($scope.amount) * res.data.rates[$scope.product.changeCurrency];
+           //  });
+           $http.post(baseurl + 'changeCurrency/',$scope.currency).then(function(data,status){          
+              // console.log(data.data.converted);
+                $scope.data.changePrice = data.data.converted.toFixed(2);
+              //$scope.product.changePrice = parseFloat($scope.amount) * res.data.rates[$scope.product.changeCurrency];         
+            });
+         }
+         else
+         {
+           $scope.data.changePrice =  $scope.data.amount;
+         }  
+
+       }
+       else
+       {
+          $scope.data.changePrice = '';
+       }
+                 
      }
 
      $scope.calculate = function(product,index){
