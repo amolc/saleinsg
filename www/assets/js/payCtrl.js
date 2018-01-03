@@ -18,6 +18,8 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
 
          $scope.stripeCallback = function (code, result) {
 
+    
+          $("#deposit").hide();
           // console.log($scope.cardname);
           // console.log($scope.number);
           // console.log($scope.expiry);
@@ -26,11 +28,14 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
 
           if (result.error) {
                // window.alert('it failed! error: ' + result.error.message);
+                $("#deposit").show();
                 $scope.paymessage = result.error.message ;
                 $scope.transactionid = result.id ;
 
           } else {
 
+              //$("#deposit").attr('disabled',true);
+              $("#deposit").hide();
           		$scope.data.stripeToken = result.id ;
               var date = new Date();
               var paydate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -51,15 +56,26 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
                     }
                     else {
                          
-                      
-                      User_Id = window.localStorage.getItem('User_Id');
+                      $("#payform").hide();  
+                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+$scope.data.ip+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
+                      $("#transactiontable").prepend(content);
+                      $("#deplist").show();
+                         
+                      // User_Id = window.localStorage.getItem('User_Id');
   
-                      $http.get(baseurl + 'buyerdeposites/'+User_Id).success(function(data1, status) {
-                                   $scope.depositlist = data1;  
-                                   console.log($scope.depositlist);
-                                   $("#payform").hide();  
-                                   $("#deplist").show();                                   
-                              });
+                      // $http.get(baseurl + 'buyerdeposites/'+User_Id).success(function(data1, status) {
+
+                      //             if (data1.status == true) 
+                      //             {
+
+                      //                $scope.list = data1.value;  
+                      //                console.log($scope.depositlist);
+                      //                $("#payform").hide();  
+                      //                $("#deplist").show();
+                      //             }
+
+                                                                     
+                      //         });
                        
                     }
 
