@@ -1031,7 +1031,7 @@ section#footer {
 .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next{
   margin-right: -60px;
 }
-#offers-wrap{
+#flag-wrap{
   background-color: #f2f2f2;
 }
 
@@ -2324,7 +2324,7 @@ ul.comman-list li{
 ul.comman-list li span{
   color: #000000;
 }
-#requests-wrap{background-color: #f2f2f2;}
+#requests-wrap, #viewed-wrap{background-color: #f2f2f2;}
 #requests-wrap #pleacr-order-wrap .table>tbody>tr{background-color: #ffffff;}
 #requests-wrap #pleacr-order-wrap .table>thead>tr{background-color: #f1fcff;}
 .bidding-block{
@@ -2540,9 +2540,6 @@ input::-webkit-inner-spin-button {
   float: left;
   width: 370px;
   position: relative;
-}
-#store-wrap{
-  padding: 20px 0px;
 }
 .store-text h4{
     font-size: 30px;
