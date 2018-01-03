@@ -18,6 +18,7 @@ var investor = require('./api/investor.js');
 var seller = require('./api/seller.js');
 var buyer = require('./api/buyer.js');
 var message = require('./api/message.js');
+var payment = require('./api/payment.js');
 var seo = require('./api/seo.js');
 var routes = require('./routes/route.js');
 
@@ -143,6 +144,10 @@ app.post('/api/conversation/', message.conversation);
 app.post('/api/sendmessage/', message.sendmessage);
 app.post('/api/postbid', message.postbid);
 app.get('/api/bidinfo/:id', contact.bidinfo);
+
+
+app.post('/api/deposit', payment.deposit);
+app.get('/api/buyerdeposites/:id', payment.buyerdeposites);
 
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file
