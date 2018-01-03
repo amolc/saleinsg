@@ -144,7 +144,6 @@ app.post('/api/sendmessage/', message.sendmessage);
 app.post('/api/postbid', message.postbid);
 app.get('/api/bidinfo/:id', contact.bidinfo);
 
-
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file
 // // index page
