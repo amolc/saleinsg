@@ -129,77 +129,8 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
-<!--
-  <section id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="jumbotron">
-            <h3>Bonne Route Travels</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller"  ng-init="getAllcurrency();getbuyerinfo();">
 
-
-<!--
-  <section id="context">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 box-context">
-          <div class="context-head text-center">
-            <h3>Book Now</h3>
-          </div>
-
-          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="name" class="form-control" id="name">
-            </div>
-            <div class="form-group">
-              <label for="phoneno">Phone Number:</label>
-              <input type="phoneno" class="form-control" id="phoneno">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control" id="email">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Travel Date</label>
-              <div class="input-append date">
-              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
-            </div>
-            <div class="form-group">
-              <label for="pwd">Special Request</label>
-              <div class="input-append date">
-                <textarea rows="4" cols="50">
-
-                  </textarea>
-            </div>
-            </div>
-
-            <button type="submit" class="btn btn-default">Submit</button>
-            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
-          </form>
-
-        </div>
-
-        <div class="col-md-6 box-context">
-
-        </div>
-
-
-
-
-
-
-      </div>
-    </div>
-  </section>
--->
 <div class="clearfix"></div>
    
    <section id="payment-form-wrap">
@@ -248,7 +179,7 @@
             </a>
           </div>
         </div>  
-        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0 mr-t30">
+        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0 mr-t30" id="payform">
           <div class="payment-form-block2">
                     <div class="accounts-form">
                    <div class="col-sm-12 col-md-12 mr-b20">
@@ -256,56 +187,57 @@
                         Withdraw
                      </h3>
                    </div>
-                    <form>
+                    <form id="withdraw-form" name="withdraw-form" ng-submit="withdraw()">
                       <div class="col-sm-12 col-md-12">
                         <div class="accounts-sgd-amt">
                           <h4 class="pull-left">
-                            <span>SGD $ <input type="text" class="form-control" id="name" ></span>
+                             <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required=""></span>
                           </h4>
                           <h4 class="sgd-amt-select">
                             <em>
-                              <select class="form-control">
-                                <option>INR</option>
-                                <option>MYR</option>
-                                <option>THB</option>
-                                <option>IDR</option>
-                                <option>BDT</option>
-                              </select> 
+                               <select class="form-control" id="currency" name="currency" ng-model="data.changeCurrency" ng-change="convertCurrency(data)" required="">
+                              <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}">{{c.CountryCurrency}}</option>
+                              </select>
                             </em> 
-                            <span>$50</span> 
+                            <span>{{data.changePrice}}</span> 
                           </h4>
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Name*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" id="name" ng-model="data.Name" required="">
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Bank Name*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" id="name" ng-model="data.BankName" required="">
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">IFSC Code*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" id="name" ng-model="data.IFSCcode" required="">
                         </div>
                       </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Account No*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" id="name" ng-model="data. AccountNo" required="">
                         </div>
                       </div>
                       <div class="col-md-12 col-md-12">
                         <div class="form-group">
                           <label for="name">Re-Enter Account No*</label>
-                          <input type="text" class="form-control" id="name">
+                          <input type="text" class="form-control" id="name" ng-model="data.ConfirmAccount" required="">
                         </div>
                       </div>
+                       <div class="col-sm-12 col-md-12 text-center">
+                          <div class="form-group">
+                              <label>{{alertmessage}}</label>
+                          </div>
+                       </div>
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group">
                           <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">WITHDRAW</button>
@@ -315,6 +247,9 @@
                    </div>
                    <div class="clearfix"></div>
                 </div>
+        </div>
+        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0 mr-t30" id="success" hidden>
+          <h4>Withdrawal Request Sent Successfully</h4>
         </div>
       </div>
     </div>
