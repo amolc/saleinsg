@@ -36,6 +36,7 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
 
               //$("#deposit").attr('disabled',true);
               $("#deposit").hide();
+               $scope.paymessage = "";
           		$scope.data.stripeToken = result.id ;
               var date = new Date();
               var paydate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
@@ -51,33 +52,20 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
                 //console.log($scope.data);
                 $http.post(baseurl + 'deposit/',$scope.data).success(function (res) {
 
-                    if (res.status == 'false') {
+                    if (res.status == true) {
 
-                    }
-                    else {
-                         
                       $("#payform").hide();  
-                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+$scope.data.ip+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
+                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+res.transactionid+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
                       $("#transactiontable").prepend(content);
                       $("#deplist").show();
-                         
-                      // User_Id = window.localStorage.getItem('User_Id');
-  
-                      // $http.get(baseurl + 'buyerdeposites/'+User_Id).success(function(data1, status) {
 
-                      //             if (data1.status == true) 
-                      //             {
-
-                      //                $scope.list = data1.value;  
-                      //                console.log($scope.depositlist);
-                      //                $("#payform").hide();  
-                      //                $("#deplist").show();
-                      //             }
-
-                                                                     
-                      //         });
-                       
                     }
+                    else
+                    { 
+                        $("#deposit").show();
+                        $scope.paymessage = res.message;
+                    }
+                   
 
                 }).error(function () {
 
