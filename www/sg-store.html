@@ -16,6 +16,7 @@
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
+        
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
 <!-- Start Header -->
@@ -130,188 +131,158 @@
         </header>
     <!-- End Header -->
   <div data-ng-app="80consult" data-ng-controller="contactcontroller">
-
-<div class="clearfix"></div>
-   
-   <section id="payment-form-wrap" ng-init="getAllcurrency();getbuyerinfo();">
+<!--
+  <section id="header">
     <div class="container">
       <div class="row">
-<<<<<<< HEAD
-        <div class="col-sm-12" id="payform">
-          <div class="payment-form-block bg-gray">
-=======
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h3>Bonne Route Travels</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+-->
+
+
+<!--
+  <section id="context">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 box-context">
+          <div class="context-head text-center">
+            <h3>Book Now</h3>
+          </div>
+
+          <form class="" name="contactform"  ng-controller="contactcontroller" ng-submit="booknow()">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="name" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="phoneno">Phone Number:</label>
+              <input type="phoneno" class="form-control" id="phoneno">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address:</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Travel Date</label>
+              <div class="input-append date">
+              <input type="date" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Special Request</label>
+              <div class="input-append date">
+                <textarea rows="4" cols="50">
+
+                  </textarea>
+            </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="submit" value="Apply" class="wpcf7-form-control wpcf7-submit"/>
+          </form>
+
+        </div>
+
+        <div class="col-md-6 box-context">
+
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+-->
+<div class="clearfix"></div>
+  <section id="account-wrap">
+    <div class="container">
+      <div class="row">
         <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0">
           <div class="col-sm-12 col-md-12">
             <div class="account-btn">
             <span class="pull-left">
                <h2 class="section-title text-center">
-                 My Accounts
+                 SG Store
                </h2>
             </span>
-            <span class="pull-right"><a href="account.html" class="red-btn small-btn">Account</a></span>
-            <span class="pull-right"><a href="withdraw-form.html" class="red-btn small-btn">Withdraw</a></span>
-            <!-- <span class="pull-right"><a href="deposit-form.html" class="red-btn small-btn">Deposit</a></span> -->
           </div>
           </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Deposited Ammount</p>
-                  <h4>SGD<span> $ 34567</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Withdrawn Ammount</p>
-                  <h4>SGD<span> $ 567</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-sm-4 col-md-4">
-            <a href="#">
-              <div class="total-box">
-                <div class="total-amt">
-                  <p>Balance</p>
-                  <h4>SGD<span> $ 34000</span></h4>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>  
-        <div class="col-sm-12">
-          <div class="payment-form-block">
->>>>>>> master
-                    <div class="accounts-form">
-                   <div class="col-sm-12 col-md-12 mr-b20">
-                     <h3 class="sub-heading">
-                        Deposit
-                     </h3>
-                   </div>
-                    <form id="credit-card-form" ng-controller="paymentcontroller" name="credit-card-form" stripe-form="stripeCallback">
-                      <div class="col-sm-12 col-md-12">
-                        <div class="accounts-sgd-amt">
-                          <h4 class="pull-left">
-                            <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required=""></span>
-                          </h4>
-                          <h4 class="sgd-amt-select">
-                            <em>
-                             <!--  <select class="form-control">
-                                <option>INR</option>
-                                <option>MYR</option>
-                                <option>THB</option>
-                                <option>IDR</option>
-                                <option>BDT</option>
-                              </select>  -->
-                              <select class="form-control" id="currency" name="currency" ng-model="data.changeCurrency" ng-change="convertCurrency(data)" required="">
-                              <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}">{{c.CountryCurrency}}</option>
-                              </select>
-                            </em> 
-                            <span>{{data.changePrice}}</span> 
-                          </h4>
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Enter Your Card Number*</label>
-                          <input type="text" class="form-control" placeholder="Debit/Credit Card Number" required="" ng-model="number" data-stripe="number">
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">Name On The Card*</label>
-                          <input type="text" class="form-control"  placeholder="Card Holder's Name" ng-model="cardname" required="">
-                        </div>
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                      <div class="form-group">
-                          <label for="name">MM/YY*</label>
-                          <input type="text" class="form-control" name="expiry" ng-model="expiry" payments-format="expiry" placeholder="Card Expiry" required="">
-                        </div>
-                      
-                        <!-- <div class="form-group col-sm-6 col-md-6 pd-r4">
-                          <label for="name">MM*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group col-sm-6 col-md-6 pd-l 4">
-                          <label for="name">YY*</label>
-                          <input type="text" class="form-control" id="name">
-                        </div> -->
-                      </div>
-                      <div class="col-md-6 col-md-6">
-                        <div class="form-group">
-                          <label for="name">CVV*</label>
-                          <input type="text" class="form-control" placeholder="Security Code" required="" ng-model="cvc" maxlength="3" payments-format="cvc" >
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-md-12 text-center">
-                                     <div class="form-group">
-                                      <label>{{paymessage}}</label>
-                                    </div>
-                                    </div> 
-                      <div class="col-sm-12 col-md-12">
-                        <div class="form-group">
-                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">DEPOSIT</button>
-                        </div>
-                      </div>
-                    </form>
-
-                   </div>
-                   <div class="clearfix"></div>
-                </div>
         </div>
-             <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="deplist" hidden="">
-          <div class="account-table" id="requests-wrap">
-            <div class="table-responsive" id="pleacr-order-wrap">          
-              <table class="table table-bordered" ng-controller="paymentcontroller" ng-init="getdeposites();">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th style="text-align: left; padding-left: 20px;">Date</th>
-                    <th>I/P Address</th>
-                    <th>Credited Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="dep in depositlist">
-                    <td>{{$index+1}}</td>
-                    <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
-                    <td>{{dep.IPAddress}}</td>
-                    <td>SGD ${{dep.Amount}}</td>
-                   
-                  </tr>
-                 
-                </tbody>
-              </table>
+        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+          <div class="col-sm-8 col-md-8 pd-r0">
+            <h5 class="font-size20">Launching Singapore Store</h5>
+            <div class="store-left-block">
+              <img src="assets/img/shop.png" / >
+              <div class="store-text">
+                <h4>Sample Store <br>Singapore</h4>
+                <div class="shop-btn">
+                  <span><a href="#" class="red-btn small-btn">More</a></span>
+                  <span><a href="#" class="red-btn small-btn">Buy Now</a></span>
+                </div>
               </div>
-          </div>  
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4 pd-l0">
+            <div class="seller-block">
+              <h5>Sample Store Singapore</h5>
+              <div class="seller-text">
+                <h4>
+                  <a href="#">
+                    Keep your sample in <br>Singapore office.
+                  </a>
+                </h4> 
+                <hr>
+                <h4>
+                  <a href="#">
+                    Use our office address on <br>your website.
+                  </a>
+                </h4> 
+              </div>
+            </div>
+            <!-- <div class="">
+               <h4>
+                <a href="#">
+                  Keep your sample in <br>Singapore office.
+                </a>
+              </h4> 
+            </div>-->
+           <!--  <div class="seller-block">
+              <h4>
+                <a href="#">
+                  Use our office address on <br>your website.
+                </a>
+              </h4>
+            </div> -->
+          </div>
         </div>
       </div>
     </div>
-   </section>
+  </section>
 
 
 
 
 
-
+<div class="clearfix"></div>
 
  <div w3-include-html="footer.html"></div>
 
         <script src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
-      <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
-      <script type="text/javascript" src="assets/js/app1.js"></script>
-      <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
-       <script> Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO'); </script>
-      <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
-       <script type="text/javascript" src="assets/js/payCtrl.js"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
         <script src="https://use.fontawesome.com/45e03a14ce.js"></script>
