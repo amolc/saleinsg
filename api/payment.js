@@ -78,6 +78,7 @@ exports.deposit = function(req, res){
                         var resdata = {
                             status: true,
                             value:val,
+                            transactionid : stripetoken, 
                             message: 'Details successfully added'
                         };
 
@@ -105,7 +106,7 @@ exports.deposit = function(req, res){
                    var resdata = {
                             status: false,
                             error: err,
-                            message: 'Error: Details not successfully added. '
+                            message: 'Error: Transaction Error. '
                         };
 
                         res.jsonp(resdata);
