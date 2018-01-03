@@ -92,7 +92,7 @@
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
-                                      <li><a href="product-requests.html">Bids</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li><li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                     </ul>
                                     
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
@@ -287,32 +287,29 @@
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
-        
+        <script src="https://use.fontawesome.com/45e03a14ce.js"></script>
+
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
         <script src="assets/js/star-rating.js"></script>
-    
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="assets/js/custom.js"></script>
-<script>
+        <script src="assets/js/custom.js"></script>
+<!-- <script>
     $(function(){
          // Find any date inputs and override their functionality
          $('input[type="date"]').datepicker();
     });
-</script>
+</script> -->
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11561280; 
-var sc_invisible=1; 
-var sc_security="ecdd2308"; 
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
 var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
 </script>
