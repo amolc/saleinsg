@@ -55,6 +55,8 @@ exports.deposit = function(req, res){
           if(!err){
               //  console.log('charge',charge);
                  stripetoken = charge.id ;
+                 //console.log(token);
+                 //console.log(stripetoken);
                 // balance =  req.body.balance + req.body.amount ; 
                 // dateToday = now.format("DD/MM/YYYY hh:mm a");
                  var createObj = {
@@ -76,7 +78,7 @@ exports.deposit = function(req, res){
 
                     if (!err) 
                     {
-                         var customer = req.body.Email; 
+                         var customer = req.body.Email+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com'; 
                          var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
                            // var to = "komal.gaikwad@fountaintechies.com";
                             var subject = "Tradeexchange.co - Deposit";
@@ -232,7 +234,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <table cellpadding="0" cellspacing="0" style="width: 96%; margin: 0px auto;">\
 <thead>\
 <tr style="background-color: #52bad5; color: #ffffff;">\
-<th style="width:70px; padding: 5px 10px; font-size: 14px;">Date</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Date</th>\
 <th style="width:70px; padding: 5px 10px; font-size: 14px;">Amount</th>\
 <th style="width:330px; padding: 5px 10px; font-size: 14px;">Transaction Id</th>\
 <th style="width:120px; padding: 5px 10px; font-size: 14px;">I/P Address</th>\
