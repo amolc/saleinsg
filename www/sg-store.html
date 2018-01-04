@@ -156,12 +156,13 @@
                         <li><span>Launch Offer - $50/monthly</span></li>
                       </ul>
                     </div>
+                     <form id="payform" name="payform" ng-controller="paymentcontroller" stripe-form="stripePay">
                     <div class="store-img pd-t30 pd-b20">
 
                       <div class="col-sm12 col-md-12">
                         <h4 class="color-blue">SGD $50</h4>
                       </div>
-                      <form id="payform" name="payform" stripe-form="stripePay">
+                     
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Name On The Card*</label>
@@ -187,7 +188,7 @@
                         </div>
                       </div>
                     </div>  
-                    <div class="col-sm-12 col-md-12 mr-b40">
+                    <div class="col-sm-12 col-md-12 mr-b40 text-center">
                        <div class="form-group">
                                       <label>{{paymessage}}</label>
                                     </div>
@@ -199,6 +200,11 @@
                         </div>
                     </div>
                     </form>
+                    <div class="store-img pd-t30 pd-b20" id="success" hidden="">
+                       <div class="col-sm12 col-md-12">
+                       <h4 class="color-blue">Payment Successful</h4>
+                       </div>
+                    </div>
                      <div class="clearfix"></div>
                   </div>
                 </div>
