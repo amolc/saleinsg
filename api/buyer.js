@@ -3006,6 +3006,7 @@ exports.withdraw = function(req, res){
                     {
 
                          var to = req.body.Email+',komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+                          // console.log(to);
                            // var to = "komal.gaikwad@fountaintechies.com";
                             var subject = "Tradeexchange.co - Withdraw Request";
                             var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
@@ -3156,12 +3157,37 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;color:#71777D; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 25px;">\
 <div style="font-size:12px;line-height:14px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;color:#71777D;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"></p></div>\
 </div>\
-<div style="font-size: 16px;margin-left:10px;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;  width:100%;">\
-<p><b>Name :</b> '+req.body.Name+'</p>\
-<p><b>Bank Name :</b> '+req.body.BankName+'</p>\
-<p><b>IFSC Code :</b> '+req.body.IFSCcode+'</p>\
-<p><b>Account No :</b> '+req.body.AccountNo+'</p>\
-<p><b>Amount :</b> SGD $'+amount+'</p>\
+<div style="font-size: 16px;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;  width:100%;">\
+<table cellpadding="0" cellspacing="0" style="width: 96%; margin: 0px auto;">\
+<thead>\
+<tr style="background-color: #52bad5; color: #ffffff;">\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Date</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Bank Name</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Account No</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">IFSC Code</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Amount</th>\
+</tr>\
+</thead>\
+<tbody>\
+<tr style="border-top: 1px solid #c1c1c1">\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">'+req.body.date+'</p>\
+</td>\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">'+req.body.BankName+'</p>\
+</td>\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">'+req.body.IFSCcode+'</p>\
+</td>\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">'+req.body.AccountNo+'</p>\
+</td>\
+<td style="text-align: center; padding: 8px 10px;">\
+<p style="margin: 0px; font-size: 14px;">SGD $'+amount+'</p>\
+</td>\
+</tr>\
+</tbody>\
+</table>\
 </div>\
 </div>\
 </div>\
