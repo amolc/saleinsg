@@ -145,6 +145,7 @@ app.post('/api/sendmessage/', message.sendmessage);
 app.post('/api/postbid', message.postbid);
 app.get('/api/bidinfo/:id', contact.bidinfo);
 
+app.post('/api/pay', payment.pay);
 
 app.post('/api/deposit', payment.deposit);
 app.get('/api/buyerdeposites/:id', payment.buyerdeposites);
