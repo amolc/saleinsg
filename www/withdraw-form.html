@@ -241,7 +241,7 @@
                        </div>
                       <div class="col-sm-12 col-md-12">
                         <div class="form-group">
-                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply">WITHDRAW</button>
+                          <button class="btn btn-success small-btn mr-t20 wpcf7-form-control wpcf7-submit" type="submit" value="Apply" id="withsubmit">WITHDRAW</button>
                         </div>
                       </div>
                     </form>
@@ -257,6 +257,9 @@
                   <tr>
                     <!-- <th>#</th> -->
                     <th style="text-align: left; padding-left: 20px;">Date</th>
+                    <th>Bank Name</th>
+                    <th>IFSC Code</th>
+                    <th>Account No</th>
                     <th>Debited Amount</th>
                   </tr>
                 </thead>
@@ -264,6 +267,9 @@
                   <tr ng-repeat="dep in transactionlist" ng-if="dep.Type == 'Withdraw'">
                     <!-- <td>{{$index+1}}</td> -->
                     <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
+                    <td>{{dep.BankName}}</td>
+                    <td>{{dep.IFSCcode}}</td>
+                    <td>{{dep.AccountNo}}</td>
                     <td>SGD ${{dep.Amount}}</td>
                    
                   </tr>

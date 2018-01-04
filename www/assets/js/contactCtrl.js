@@ -1325,14 +1325,18 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
        $scope.withdrawamonut = function () {
 
+        $("#withsubmit").hide();
+
        // alert('hi');
           if ($scope.data.amount > $scope.balance) {
 
+                 $("#withsubmit").show();
                 $scope.alertmessage = 'Please Enter Amount less that Balance';
 
           } 
           else if ($scope.data.AccountNo !== $scope.data.ConfirmAccount) {
 
+                $("#withsubmit").show();
                 $scope.alertmessage = 'Account No And Confirm Account No Should Be Same.';
 
           } else {
@@ -1361,7 +1365,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                       $("#balance").text($scope.data.balance);
 
                       $("#payform").hide();  
-                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
+                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+$scope.data.BankName+'</td><td>'+$scope.data.IFSCcode+'</td><td>'+$scope.data.AccountNo+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
                       $("#transactiontable").prepend(content);
                       $("#deplist").show();
                     }
