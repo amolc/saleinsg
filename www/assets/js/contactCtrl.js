@@ -1361,10 +1361,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                       $("#balance").text($scope.data.balance);
 
                       $("#payform").hide();  
-                      // var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+res.transactionid+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
-                      // $("#transactiontable").prepend(content);
-                      $("#success").show();
-
+                      var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
+                      $("#transactiontable").prepend(content);
+                      $("#deplist").show();
                     }
                     else
                     { 

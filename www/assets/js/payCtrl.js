@@ -1,6 +1,6 @@
 app.controller('paymentcontroller', function ($scope, $location, $http, $window) {
 
-	$window.Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO');
+	$window.Stripe.setPublishableKey('pk_test_OhQmkdGJBvsyyfACNGMcGFXw');
 
     
 

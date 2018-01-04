@@ -192,7 +192,7 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="accounts-sgd-amt">
                           <h4 class="pull-left">
-                             <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required="" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}"></span>
+                             <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required="" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Amount')" onchange="try{setCustomValidity('')}catch(e){}"></span>
                           </h4>
                           <h4 class="sgd-amt-select">
                             <em>
@@ -249,8 +249,29 @@
                    <div class="clearfix"></div>
                 </div>
         </div>
-        <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10 pd0 mr-t30" id="success" hidden>
-          <h4>Withdrawal Request Sent Successfully</h4>
+         <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="deplist">
+          <div class="account-table" id="requests-wrap">
+            <div class="table-responsive" id="pleacr-order-wrap">          
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <!-- <th>#</th> -->
+                    <th style="text-align: left; padding-left: 20px;">Date</th>
+                    <th>Debited Amount</th>
+                  </tr>
+                </thead>
+                <tbody id="transactiontable">
+                  <tr ng-repeat="dep in transactionlist" ng-if="dep.Type == 'Withdraw'">
+                    <!-- <td>{{$index+1}}</td> -->
+                    <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
+                    <td>SGD ${{dep.Amount}}</td>
+                   
+                  </tr>
+                 
+                </tbody>
+              </table>
+              </div>
+          </div>  
         </div>
       </div>
     </div>
