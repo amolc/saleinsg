@@ -316,7 +316,7 @@ section#footer {
 
 .section-title{
     font-size: 28px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
     color: #000000;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
@@ -2648,6 +2648,9 @@ input::-webkit-inner-spin-button {
   font-size: 32px;
   float: right;
   margin-bottom: 31px;
+}
+.section-title.bg-white{
+  margin-bottom: 0px;
 }
  
 /*Responsive Css Start */

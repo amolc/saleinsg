@@ -116,7 +116,7 @@
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
-                                      <li><a href="product-requests.html">Bids</a></li><li ng-if="User_Id>0"><a href="account.html">Account</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
@@ -124,6 +124,7 @@
                                         <!-- <li><a href="#">Seller</a></li>
                                         <li><a href="#">Buyer</a></li> -->
                                         <li><a href="dashboard.html">Messages</a></li>
+                                        <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
                                             <span class="caret"></span></a>
