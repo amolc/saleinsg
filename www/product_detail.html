@@ -99,6 +99,7 @@
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                        
                                         <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                      <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
                                             <span class="caret"></span></a>
@@ -149,7 +150,8 @@
                                                     </p>
                                                     <input type="hidden" name="basecurrency" ng-model="product.Currency">
                                                     <input type="hidden" name="baseprice" ng-model="product.Price">
-                                                    <h4 class="pro-price">Price {{product.Currency}} : <span>{{product.Price}}</span> <br> <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <h4 class="pro-price">Price {{product.Currency}} : <span class="mr-r40">{{product.Price}}</span>
+                                                     <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
                                                     <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
                                                     </select> : <span>{{product.changePrice}}</span> </h4>
                                                     <div class="pro-note">
