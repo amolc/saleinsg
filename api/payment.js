@@ -41,7 +41,7 @@ exports.buyerdeposites = function (req, res) {
 exports.deposit = function(req, res){
         //console.log(req.body);
         var token = req.body.stripeToken;
-        var amount = req.body.amount ;
+        var amount = req.body.amount * 100;
         var stripeToken = "" ;
         // Charge the user's card:
         var charge = stripe.charges.create({
@@ -246,7 +246,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <p style="margin: 0px; font-size: 14px;">'+req.body.date+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
-<p style="margin: 0px; font-size: 14px;">SGD $'+amount+'</p>\
+<p style="margin: 0px; font-size: 14px;">SGD $'+req.body.amount+'</p>\
 </td>\
 <td style="text-align: center; padding: 8px 10px;">\
 <p style="margin: 0px; font-size: 14px;">'+stripetoken+'</p>\

@@ -1287,6 +1287,25 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      }
 
+       $scope.getsellerinfo = function (req, res) {
+
+
+      User_Id = window.localStorage.getItem('User_Id');
+  
+      $http.get(baseurl + 'getsellerinfo/'+User_Id).success(function(data, status) {
+                   $scope.data = data;  
+                   $scope.data.SupplierId = User_Id;
+                   $scope.data.amount = 50 ; 
+                   // $scope.data.Currency = 'SGD';
+                   // $scope.data.changeCurrency = 'SGD';
+                   // $scope.data.balance = $scope.balance;  
+                   // $scope.data.deposit = $scope.deposit;  
+                   // $scope.data.withdraw = $scope.withdraw;
+                   // console.log($scope.data);                              
+              });
+
+     }
+
      $scope.gettransactions = function (req, res) {
 
 
