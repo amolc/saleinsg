@@ -1326,8 +1326,12 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
        $scope.withdrawamonut = function () {
 
        // alert('hi');
+          if ($scope.data.amount > $scope.balance) {
 
-          if ($scope.data.AccountNo !== $scope.data.ConfirmAccount) {
+                $scope.alertmessage = 'Please Enter Amount less that Balance';
+
+          } 
+          else if ($scope.data.AccountNo !== $scope.data.ConfirmAccount) {
 
                 $scope.alertmessage = 'Account No And Confirm Account No Should Be Same.';
 

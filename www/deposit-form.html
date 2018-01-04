@@ -195,7 +195,7 @@
                       <div class="col-sm-12 col-md-12">
                         <div class="accounts-sgd-amt">
                           <h4 class="pull-left">
-                            <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required=""></span>
+                            <span>SGD $ <input type="text" class="form-control" id="name" ng-model="data.amount" ng-change="convertCurrency(data)" required="" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}"></span>
                           </h4>
                           <h4 class="sgd-amt-select">
                             <em>
