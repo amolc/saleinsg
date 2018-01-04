@@ -6,7 +6,7 @@
 
 /* Base CSS */
 .alignleft {
-    float: left;
+    float: left;  
     margin-right: 15px;
 }
 .alignright {   
@@ -17,6 +17,7 @@
     display: block;
     margin: 0 auto 15px;
 }
+.color-blue{color: #52bbd5;}
 a:focus { outline: 0 solid }
 a, a:hover, a:active, a:focus{
     text-decoration: none;
@@ -315,7 +316,7 @@ section#footer {
 
 .section-title{
     font-size: 28px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
     color: #000000;
     text-transform: uppercase;
     font-family: 'Open Sans', sans-serif;
@@ -2635,15 +2636,23 @@ input::-webkit-inner-spin-button {
   padding-right: 0px;
 }
 .pd-t40{padding-top: 40px;}
+.pd-t30{padding-top: 30px;}
 .pd-b20{padding-bottom: 20px;}
 .mr-b40{margin-bottom: 40px;}
+.mr-r40{margin-right: 40px;}
 #store-wrap{
   background: #52bbd5 url(../img/section-bg.png);
   background-size: 6%;
 }
-.store-img .form-group {
-    margin-bottom: 39px;
+.store-img h4{
+  font-size: 32px;
+  float: right;
+  margin-bottom: 31px;
 }
+.section-title.bg-white{
+  margin-bottom: 0px;
+}
+ 
 /*Responsive Css Start */
 
 

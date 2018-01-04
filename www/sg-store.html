@@ -93,13 +93,14 @@
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
-                                      <li><a href="product-requests.html">Bids</a></li><li ng-if="User_Id>0"><a href="account.html">Account</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
                                     
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                        
                                         <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                      <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
                                             <span class="caret"></span></a>
@@ -214,7 +215,20 @@
               <div class="col-sm-12 col-md-12">
                 <div class="">
                    <div class="store-left-block">
-                    <div class="store-img pd-t40 pd-b20">
+                    <div class="store-text">
+                      <h4>PAYA LEBAR SQUARE STORE</h4>
+                      <ul>
+                        <li><span>Display your samples at our office in Singapore</span></li>
+                        <li><span>Get 1 table space [ 2x3 ft]</span></li>
+                        <li><span>Use our address for your customers</span></li>
+                        <li><span>Our team would be available to showcase and provide information about your product</span></li>
+                        <li><span>Launch Offer - $50/monthly</span></li>
+                      </ul>
+                    </div>
+                    <div class="store-img pd-t30 pd-b20">
+                      <div class="col-sm12 col-md-12">
+                        <h4 class="color-blue">SGD $50</h4>
+                      </div>
                       <div class="col-md-6 col-md-6">
                         <div class="form-group">
                           <label for="name">Name On The Card*</label>
@@ -239,23 +253,10 @@
                           <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="Security Code" ng-model="cardname" required="">
                         </div>
                       </div>
-                    </div>
-                    
-
-                    <div class="store-text">
-                      <h4>PAYA LEBAR SQUARE STORE</h4>
-                      <ul>
-                        <li><span>Display your samples at our office in Singapore</span></li>
-                        <li><span>Get 1 table space [ 2x3 ft]</span></li>
-                        <li><span>Use our address for your customers</span></li>
-                        <li><span>Our team would be available to showcase and provide information about your product</span></li>
-                        <li><span>Launch Offer - $50/monthly</span></li>
-                      </ul>
-                    </div>
-                   
+                    </div>                   
                     <div class="col-sm-12 col-md-12 mr-b40">
                        <div class="shop-btn">
-                          <span><a href="sg-store.html" class="red-btn small-btn">BUY NOW</a></span>
+                          <span><a href="sg-store.html" class="red-btn small-btn">PAY</a></span>
                         </div>
                     </div>
                      <div class="clearfix"></div>
