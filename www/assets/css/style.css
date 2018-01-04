@@ -2510,7 +2510,6 @@ input::-webkit-inner-spin-button {
 }
 .sgd-amt-select{
   float: right;
-  width: 125px;
 }
 .sgd-amt-select span{
   display: inline-block;
