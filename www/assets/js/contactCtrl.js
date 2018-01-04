@@ -1323,7 +1323,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
      }
 
-       $scope.withdraw = function (code, result) {
+       $scope.withdrawamonut = function () {
+
+       // alert('hi');
 
           if ($scope.data.AccountNo !== $scope.data.ConfirmAccount) {
 
@@ -1340,14 +1342,19 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.data.datetime = dateToday ;
               $scope.data.date = paydate ;
               $scope.data.type = 'Withdraw' ;
+              $scope.data.balance = parseFloat($scope.balance) - parseFloat($scope.data.amount);
+              $scope.data.withdraw = parseFloat($scope.withdraw) + parseFloat($scope.data.amount);
               $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
                 // response = JSON.stringify(data, null, 2);
                 var response = data;
                 $scope.data.ip = response.ip;
-                //console.log($scope.data);
+                console.log($scope.data);
                 $http.post(baseurl + 'withdraw/',$scope.data).success(function (res) {
 
                     if (res.status == true) {
+
+                      $("#withdraw").text($scope.data.withdraw);
+                      $("#balance").text($scope.data.balance);
 
                       $("#payform").hide();  
                       // var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+res.transactionid+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';

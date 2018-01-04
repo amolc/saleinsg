@@ -130,7 +130,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller"  ng-init="getAllcurrency();gettransactions();getbuyerinfo();">
+  <div ng-init="getAllcurrency();gettransactions();getbuyerinfo();">
 
 <div class="clearfix"></div>
    
@@ -188,7 +188,7 @@
                         Withdraw
                      </h3>
                    </div>
-                    <form id="withdraw-form" name="withdraw-form" ng-submit="withdraw()">
+                    <form id="withdraw-form" name="withdraw-form" ng-submit="withdrawamonut()">
                       <div class="col-sm-12 col-md-12">
                         <div class="accounts-sgd-amt">
                           <h4 class="pull-left">

@@ -3007,6 +3007,7 @@ exports.withdraw = function(req, res){
                       'BankName' : req.body.BankName,
                       'IFSCcode' : req.body.IFSCcode,
                       'AccountNo' : req.body.AccountNo,
+                      'Balance' : req.body.balance,
                         
                   };
 
