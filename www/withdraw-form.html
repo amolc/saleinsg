@@ -129,7 +129,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller"  ng-init="getAllcurrency();getbuyerinfo();">
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller"  ng-init="getAllcurrency();gettransactions();getbuyerinfo();">
 
 <div class="clearfix"></div>
    
@@ -153,7 +153,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Deposited Ammount</p>
-                  <h4>SGD<span> $ 34567</span></h4>
+                  <h4>SGD $ <span id="showdep">  {{deposit}}</span></h4>
                 </div>
               </div>
             </a>
@@ -163,7 +163,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Withdrawn Ammount</p>
-                  <h4>SGD<span> $ 567</span></h4>
+                  <h4>SGD $ <span id="withdraw">  {{withdraw}}</span></h4>
                 </div>
               </div>
             </a>
@@ -173,7 +173,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Balance</p>
-                  <h4>SGD<span> $ 34000</span></h4>
+                  <h4>SGD $ <span id="balance"> {{balance}}</span></h4>
                 </div>
               </div>
             </a>

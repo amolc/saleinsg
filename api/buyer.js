@@ -98,6 +98,16 @@ exports.addtowishlist = function (req, res) {
 };
 
 
+exports.gettransactions = function (req, res) {
+
+    var BuyerId = req.params.id;
+    var sql = "SELECT * FROM `tbl_deposits` WHERE `BuyerId` = "+BuyerId+" ORDER BY DepId DESC";
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
+
 exports.requestproduct = function (req, res) {
 
     // console.log(req.body)

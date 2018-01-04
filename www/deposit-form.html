@@ -129,11 +129,11 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller" ng-init="getAllcurrency();gettransactions();getbuyerinfo();">
 
 <div class="clearfix"></div>
    
-   <section id="payment-form-wrap" ng-init="getAllcurrency();getbuyerinfo();">
+   <section id="payment-form-wrap">
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -156,7 +156,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Deposited Ammount</p>
-                  <h4>SGD<span> $ 34567</span></h4>
+                  <h4>SGD $ <span id="showdep">  {{deposit}}</span></h4>
                 </div>
               </div>
             </a>
@@ -166,7 +166,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Withdrawn Ammount</p>
-                  <h4>SGD<span> $ 567</span></h4>
+                  <h4>SGD $ <span id="withdraw">  {{withdraw}}</span></h4>
                 </div>
               </div>
             </a>
@@ -176,7 +176,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Balance</p>
-                  <h4>SGD<span> $ 34000</span></h4>
+                  <h4>SGD $ <span id="balance"> {{balance}}</span></h4>
                 </div>
               </div>
             </a>
@@ -265,7 +265,7 @@
              <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10" id="deplist">
           <div class="account-table" id="requests-wrap">
             <div class="table-responsive" id="pleacr-order-wrap">          
-              <table class="table table-bordered" ng-controller="paymentcontroller" ng-init="getdeposites();">
+              <table class="table table-bordered">
                 <thead>
                   <tr>
                     <!-- <th>#</th> -->
@@ -275,7 +275,7 @@
                   </tr>
                 </thead>
                 <tbody id="transactiontable">
-                  <tr ng-repeat="dep in depositlist">
+                  <tr ng-repeat="dep in transactionlist" ng-if="dep.Type == 'Deposit'">
                     <!-- <td>{{$index+1}}</td> -->
                     <td style="text-align: left; padding-left: 20px;">{{dep.Date}}</td>
                     <td>{{dep.Stripetoken}}</td>

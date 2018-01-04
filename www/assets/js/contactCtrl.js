@@ -1279,7 +1279,46 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    $scope.data.BuyerId = User_Id;
                    $scope.data.Currency = 'SGD';
                    $scope.data.changeCurrency = 'SGD';
-                   //console.log($scope.data);                                     
+                   $scope.data.balance = $scope.balance;  
+                   $scope.data.deposit = $scope.deposit;  
+                   $scope.data.withdraw = $scope.withdraw;
+                  // console.log($scope.data);                              
+              });
+
+     }
+
+     $scope.gettransactions = function (req, res) {
+
+
+      User_Id = window.localStorage.getItem('User_Id');
+  
+      $http.get(baseurl + 'gettransactions/'+User_Id).success(function(data, status) {
+                   
+                   $scope.transactionlist = data;
+                   //console.log($scope.transactionlist);
+                   if ($scope.transactionlist.length > 0) 
+                   {
+                       $scope.balance = $scope.transactionlist[length-1].Balance;
+                   }
+                   else
+                   {
+                     $scope.balance = 0;
+                   }
+
+                    $scope.deposit = 0;
+                    $scope.withdraw = 0;
+                    $.each( $scope.transactionlist,function (index, value) { 
+                     //console.log(value);
+                    if (value.Type == 'Deposit')
+                    {
+                         $scope.deposit = $scope.deposit + value.Amount;
+                    }
+                    if (value.Type == 'Withdraw')
+                    {
+                         $scope.withdraw = $scope.withdraw + value.Amount;
+                    }
+                }); 
+
               });
 
      }

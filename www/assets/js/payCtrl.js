@@ -45,6 +45,8 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
               $scope.data.datetime = dateToday ;
               $scope.data.date = paydate ;
               $scope.data.type = 'Deposit' ;
+              $scope.data.balance = parseFloat($scope.balance) + parseFloat($scope.data.amount);
+              $scope.data.deposit = parseFloat($scope.deposit) + parseFloat($scope.data.amount);
               $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data) {
                 // response = JSON.stringify(data, null, 2);
                 var response = data;
@@ -54,6 +56,12 @@ app.controller('paymentcontroller', function ($scope, $location, $http, $window)
 
                     if (res.status == true) {
 
+                      // $scope.balance = $scope.data.balance;
+                      //$scope.deposit = $scope.data.deposit;
+                      //var deposit = $scope.data.deposit.toString();
+                      $("#showdep").text($scope.data.deposit);
+                      $("#balance").text($scope.data.balance);
+                      // console.log($scope.data.deposit);  
                       $("#payform").hide();  
                       var content = '<tr> <td style="text-align: left; padding-left: 20px;">'+$scope.data.date+'</td><td>'+res.transactionid+'</td><td>SGD $'+$scope.data.amount+'</td></tr>';
                       $("#transactiontable").prepend(content);

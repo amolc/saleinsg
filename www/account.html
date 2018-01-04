@@ -130,7 +130,7 @@
             </div>
         </header>
     <!-- End Header -->
-  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller" ng-init="gettransactions();">
 <!--
   <section id="header">
     <div class="container">
@@ -222,7 +222,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Deposited Ammount</p>
-                  <h4>SGD<span> $ 34567</span></h4>
+                  <h4>SGD $ <span id="showdep">  {{deposit}}</span></h4>
                 </div>
               </div>
             </a>
@@ -232,7 +232,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Withdrawn Ammount</p>
-                  <h4>SGD<span> $ 567</span></h4>
+                  <h4>SGD $ <span id="withdraw">  {{withdraw}}</span></h4>
                 </div>
               </div>
             </a>
@@ -242,7 +242,7 @@
               <div class="total-box">
                 <div class="total-amt">
                   <p>Balance</p>
-                  <h4>SGD<span> $ 34000</span></h4>
+                  <h4>SGD $ <span id="balance"> {{balance}}</span></h4>
                 </div>
               </div>
             </a>
@@ -264,42 +264,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td style="text-align: left; padding-left: 20px;">1-Jan-2018</td>
-                    <td>SD584875</td>
-                    <td>By Credit Card</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">1000</td>
+                  <tr ng-repeat="t in transactionlist">
+                    <td>{{$index+1}}</td>
+                    <td style="text-align: left; padding-left: 20px;">{{t.Date}}</td>
+                    <td>{{t.Stripetoken}}</td>
+                    <td>By {{t.PaymentOption}}</td>
+                    <td ng-if="t.Type == 'Deposit'">SGD ${{t.Amount}}</td>
+                    <td ng-if="t.Type != 'Deposit'">SGD $0</td>
+                    <td ng-if="t.Type == 'Withdraw'">SGD ${{t.Amount}}</td>
+                    <td ng-if="t.Type != 'Withdraw'">SGD $0</td>
+                    <td>SGD ${{t.Balance}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td style="text-align: left; padding-left: 20px;">5-Dec-2017</td>
-                    <td>SD584875</td>
-                    <td>By Bank Transfer</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">12000</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td style="text-align: left; padding-left: 20px;">8-Nov-2017</td>
-                    <td>SD584875</td>
-                    <td>By Credit Card</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">8000</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td style="text-align: left; padding-left: 20px;">5-Nov-2017</td>
-                    <td>SD584875</td>
-                    <td>By Bank Transfer</td>
-                    <td>SGD $1200</td>
-                    <td>SGD $200</td>
-                    <td style="text-align: right; padding-right: 20px;">15000</td>
-                  </tr>
+                 
                 </tbody>
               </table>
               </div>

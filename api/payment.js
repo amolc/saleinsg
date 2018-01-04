@@ -55,7 +55,7 @@ exports.deposit = function(req, res){
           if(!err){
               //  console.log('charge',charge);
                  stripetoken = charge.id ;
-
+                // balance =  req.body.balance + req.body.amount ; 
                 // dateToday = now.format("DD/MM/YYYY hh:mm a");
                  var createObj = {
 
@@ -68,6 +68,7 @@ exports.deposit = function(req, res){
                       'DateTime' : req.body.datetime,
                       'Type' : 'Deposit',
                       'PaymentOption' : 'Credit Card',
+                      'Balance' : req.body.balance,
                         
                   };
 
@@ -287,7 +288,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </tbody>\
 </table>\
 </body></html>';
-                             send_mail( to, subject, mailbody );
+                            // send_mail( to, subject, mailbody );
 
 
                             var customermailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
@@ -495,7 +496,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </table>\
 </body></html>';   
 
-                       send_mail( customer, subject, customermailbody );                       
+                      // send_mail( customer, subject, customermailbody );                       
 
                         var resdata = {
                             status: true,
