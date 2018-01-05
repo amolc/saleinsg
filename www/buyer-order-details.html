@@ -334,6 +334,7 @@
                   <th>Type</th>
                   <th>%</th>
                   <th>Amount</th>
+                  <th ng-if="bankdetails==0">Payment</th>
                 </tr>
               </thead>
               <tbody id="specificationtable">
@@ -343,6 +344,8 @@
                  <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{ t.Type}}</td>
                  <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{ t.Percentage}}</td>
                  <td ng-if="t.Amount!=Terms && t.Amount!=Type && t.Percentage!=null && t.Amount!=null">{{order.Currency}} {{ t.Amount}}</td>
+                 <td ng-if="order.OrderStatus == 'Approved' && bankdetails==0 && t.PaymentStatus == 'Pending' && termslist[$index-1].PaymentStatus != 'Pending'"><a href="javascript:void(0)" ng-click="payNow(order.OrderId,t. TermId,t.Amount,order.Currency)">Pay Now</a></td>
+                 <td ng-if="order.OrderStatus == 'Approved' && bankdetails==0 && t.PaymentStatus == 'Paid'">Paid</td>
               </tr>             
               </tbody>
             </table>

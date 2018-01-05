@@ -1317,7 +1317,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    //console.log($scope.transactionlist);
                    if ($scope.transactionlist.length > 0) 
                    {
-                       $scope.balance = $scope.transactionlist[length-1].Balance;
+                       $scope.balance = $scope.transactionlist[0].Balance;
                    }
                    else
                    {
@@ -1885,6 +1885,127 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
     }
 
     }
+
+ 
+
+     $scope.payNow = function(OrderId,TermId,PayAmount,Currency){
+
+      //alert(OrderId);
+      User_Id = window.localStorage.getItem('User_Id');
+  
+      $http.get(baseurl + 'gettransactions/'+User_Id).success(function(data, status) {
+                   
+                   $scope.transactionlist = data;
+
+                   //console.log($scope.transactionlist);
+                   if ($scope.transactionlist.length > 0) 
+                   {
+                       $scope.balance = $scope.transactionlist[0].Balance;
+
+                       $scope.currency = {};
+                       $scope.currency.amount = PayAmount;
+                       $scope.currency.baseCurrency = Currency;
+                       $scope.currency.changeCurrency = 'SGD';
+
+                           
+                      $http.post(baseurl + 'changeCurrency/',$scope.currency).then(function(res,status){ 
+
+
+                          // console.log(res);
+                          
+                          if (res.status == 200)
+                          {
+                            $scope.Charge = res.data.converted;
+                            //console.log(res.data.converted);
+                            if($scope.balance <= 0 || $scope.balance < res.data.converted)
+                            {
+                                window.location.href = "deposit-form.html";
+                            }
+                              else 
+                               {
+                                    $scope.order = {}
+                                    $scope.order.OrderId = OrderId;
+                                    $scope.order.BuyerId = parseInt(window.localStorage.getItem('User_Id'));
+                                    $scope.order.balance = $scope.balance;
+                                   
+                                    //console.log($scope.order);
+
+                                  $http.post(baseurl + 'GetbuyerOrderDetails',$scope.order).success(function(data, status) {
+
+                                  $scope.order = data;
+                                   $http.get(baseurl + 'getTerms/'+$scope.order.OrderId).success(function(data1, status) {
+
+                                  $scope.order.terms = data1;
+
+                                  var buyercountryId = parseInt(window.localStorage.getItem('User_Location'));
+                                  $http.get(baseurl + 'getcountry/'+buyercountryId).success(function(data2, status) {
+                                   // console.log(data);
+                                    $scope.order.buyercountry = data2.CountryTitle;
+                                    $scope.order.buyername = window.localStorage.getItem('User_Name');
+                                    $scope.order.buyeremail = window.localStorage.getItem('User_Email');
+                                     //console.log($scope.order);
+
+                                    var date = new Date();
+                                    var paydate = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+                                    var paytime = date.toLocaleTimeString('en-US', {hour: '2-digit',minute: '2-digit',timeZone: 'Asia/Singapore' });
+                                    dateToday = paydate+' '+paytime;
+                                    $scope.order.datetime = dateToday ;
+                                    $scope.order.date = paydate ;
+                                    $scope.order.type = 'Withdraw' ;
+                                    $scope.order.balance = parseFloat($scope.balance) - parseFloat(res.data.converted);
+                                    $.getJSON('//api.ipify.org?format=jsonp&callback=?', function(data4) {
+                                      // response = JSON.stringify(data, null, 2);
+                                      var response = data4;
+                                       $scope.order.ip = response.ip;
+                                       $scope.order.Charge = res.data.converted;
+                                       $scope.order.TermId = TermId ; 
+                                      console.log($scope.order);
+                                      $http.post(baseurl + 'payNow/',$scope.order).success(function (res) {
+
+                                          if (res.status == true) {
+
+                                              window.location.href = "buyer-orders.html";
+                                            
+                                          }
+                                          else
+                                          { 
+                                              alert('Please Try After Some Time')
+                                          }
+                                         
+
+                                      }).error(function () {
+
+                                      }); 
+              
+                                    });
+
+                                 });
+
+                              });
+                             
+                              });
+
+                            }
+
+                          }
+                          
+                          
+                         
+                      });
+                        
+                        
+                   }
+                   else
+                   {
+                       window.location.href = "deposit-form.html";
+                   }
+
+              });
+
+     
+
+    }
+
 
      $scope.showterms = function(){
 

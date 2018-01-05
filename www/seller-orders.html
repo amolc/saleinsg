@@ -248,7 +248,7 @@
               <tr ng-repeat="o in orderlist">
                 <td>{{$index+1}}</td>
                 <td>{{o.ProductName}}</td>
-                <td>{{o.OrderDate}}</td>
+                <td>{{o.OrderDate | limitTo:10}}</td>
                 <td>$ {{o.TotalAmount}}</td>
                 <td>{{o.FirstName}} {{o.LastName}}</td>
                 <td>{{o.OrderStatus}}</td>

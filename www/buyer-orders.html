@@ -249,14 +249,16 @@
               <tr ng-repeat="o in orderlist">
                 <td>{{$index+1}}</td>
                 <td>{{o.ProductName}}</td>
-                <td>{{o.OrderDate}}</td>
+                <td>{{o.OrderDate | limitTo:10}}</td>
                 <td>$ {{o.TotalAmount}}</td>
                 <td>{{o.CompanyName}}</td>
                 <td>{{o.OrderStatus}}</td>
                 <td>{{o.PaymentStatus}}</td>
                 <td><a href="buyer-order-details.html?id={{o.OrderId}}"><i class="fa fa-eye"></i></a></td>
-                <td ng-if="o.OrderStatus=='Approved' && o.Type=='Trade Exchange Escrow (TEE)'"><a href="javascript:void(0)">Pay Now</a></td>
-                <td ng-if="o.OrderStatus=='Approved' && o.Type!='Trade Exchange Escrow (TEE)'">Bank Transfer</td>
+               <!--  <td ng-if="o.OrderStatus=='Approved' && o.Type=='Trade Exchange Escrow (TEE)' && o. PaymentStatus == 'Pending'"><a href="javascript:void(0)" ng-click="payNow(o.OrderId,o.TotalAmount)">Pay Now</a></td>  -->
+                <td ng-if="o.OrderStatus=='Approved' && o.Type=='Trade Exchange Escrow (TEE)' && o. PaymentStatus == 'Pending'"><a href="buyer-order-details.html?id={{o.OrderId}}">Pay Now</a></td> 
+                <td ng-if="o. PaymentStatus == 'Paid'">Paid</td>
+                <td ng-if="o.OrderStatus=='Approved' && o.Type!='Trade Exchange Escrow (TEE)'">Bank Transfer</td> 
               </tr>
             </tbody>
           </table>

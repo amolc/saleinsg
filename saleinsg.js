@@ -151,6 +151,7 @@ app.post('/api/deposit', payment.deposit);
 app.get('/api/buyerdeposites/:id', payment.buyerdeposites);
 
 app.post('/api/withdraw',buyer.withdraw);
+app.post('/api/payNow',buyer.payNow);
 app.get('/api/gettransactions/:id',buyer.gettransactions);
 
 // app.set('view engine', 'ejs');
