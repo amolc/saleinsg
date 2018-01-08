@@ -2282,6 +2282,7 @@ h4.pro-price span{
 }
 .seller-box{
   padding: 20px 20px 20px;  
+  min-height: 270px;
 }
 .seller-img{
   width: 88px;
