@@ -11,7 +11,7 @@ var cors = require('cors');
 var http = require("http").createServer(app);
 fs = require('fs-extra');
 
-
+var admin = require('./api/admin.js');
 var contact = require('./api/contact.js');
 var startup = require('./api/startup.js');
 var investor = require('./api/investor.js');
@@ -153,6 +153,9 @@ app.get('/api/buyerdeposites/:id', payment.buyerdeposites);
 app.post('/api/withdraw',buyer.withdraw);
 app.post('/api/payNow',buyer.payNow);
 app.get('/api/gettransactions/:id',buyer.gettransactions);
+
+app.post('/api/adminlogin', admin.adminlogin);
+app.get('/api/getAllUsers', admin.getAllUsers);
 
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file
