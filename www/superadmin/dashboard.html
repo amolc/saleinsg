@@ -230,7 +230,7 @@
 
                         <div class="table-responsive user-table-wrap">
                    <!--  <table class="table table-striped table-bordered table-hover dataTables-example" ng-init="getAllUsers()"> -->
-                    <table class="table table-striped table-bordered table-hover" ng-init="getAllUsers()">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" ng-init="getAllUsers()">
                     <thead>
                     <tr>
                         <th>First Name</th>
@@ -296,7 +296,7 @@
                 10GB of <strong>250GB</strong> Free.
             </div> -->
             <div>
-                <strong>Copyright</strong> kumarlimo.80startups.com
+                <strong>Copyright</strong> tradeexchange.co
             </div>
         </div>
 
@@ -373,30 +373,30 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+            // $('.dataTables-example').DataTable({
+            //     pageLength: 25,
+            //     responsive: true,
+            //     dom: '<"html5buttons"B>lTfgitp',
+            //     buttons: [
+            //         { extend: 'copy'},
+            //         {extend: 'csv'},
+            //         {extend: 'excel', title: 'ExampleFile'},
+            //         {extend: 'pdf', title: 'ExampleFile'},
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
+            //         {extend: 'print',
+            //          customize: function (win){
+            //                 $(win.document.body).addClass('white-bg');
+            //                 $(win.document.body).css('font-size', '10px');
 
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
+            //                 $(win.document.body).find('table')
+            //                         .addClass('compact')
+            //                         .css('font-size', 'inherit');
+            //         }
+            //         }
+            //     ]
 
-            });
-            $('[data-toggle="tooltip"]').tooltip();
+            // });
+            // $('[data-toggle="tooltip"]').tooltip();
         });
 
     </script>
