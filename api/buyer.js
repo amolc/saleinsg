@@ -3266,6 +3266,8 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 exports.payNow = function (req, res) {
   var dateToday = now.format("YYYY-MM-DD H:mm:ss");
 
+  random = randomString();
+
    var buyername = req.body.buyername;
    var buyercountry = req.body.buyercountry;
    var sellername = req.body.FirstName+' '+req.body.LastName;
@@ -3282,7 +3284,9 @@ exports.payNow = function (req, res) {
                       'Type' : 'Withdraw',
                       'Balance' : req.body.balance,
                       'OrderNo' : req.body.OrderId,
-                      'TermId' : req.body.TermId
+                      'TermId' : req.body.TermId,
+                      'PaymentOption' : sellername+'_'+req.body.OrderId,
+                      'Stripetoken' : req.body.BuyerId+'_'+random,
                         
                   };
 
@@ -3449,8 +3453,6 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 10px; padding-left: 10px;">\
 <div style="font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;line-height:120%;color:#555555; padding-right: 0px; padding-left: 0px; padding-top: 15px; padding-bottom: 15px;">\
 <div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.date+'</strong></span></p>\
-<p style="margin: 25px 0px 0px; font-size: 13px; line-height: 14px; text-align: right; text-transform: uppercase; font-weight: 600;">Order Status : <span style="color: red;">Pending</span>\
-</p>\
 </div>\
 </div>\
 </div>\
@@ -3872,6 +3874,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
             var resdata = {
                 status: true,
                 value:val,
+                count : count,
                 message: 'Details successfully updated'
             };
 

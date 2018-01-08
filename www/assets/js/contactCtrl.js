@@ -1964,7 +1964,10 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
                                           if (res.status == true) {
 
-                                              window.location.href = "buyer-orders.html";
+                                              if(res.count == 0)
+                                               window.location.href = "buyer-orders.html";
+                                              else if(res.count == 1)
+                                               window.location.href = "buyer-order-details.html?id="+$scope.order.OrderId;
                                             
                                           }
                                           else
