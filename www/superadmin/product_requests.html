@@ -229,9 +229,10 @@
 
                         <div class="table-responsive user-table-wrap">
                    <!--  <table class="table table-striped table-bordered table-hover dataTables-example" ng-init="getAllUsers()"> -->
-                    <table class="table table-striped table-bordered table-hover" ng-init="productrequests()">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" ng-init="productrequests()">
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th>Buyer Name</th>
                         <th>Country</th>
                         <th>Buying Request</th>
@@ -240,15 +241,15 @@
                         <th>No Of Bids</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="text-center" ng-repeat="product in reqlist">
+                    <tbody id="requesttable">
+                   <!--  <tr class="text-center" ng-repeat="product in reqlist">
                         <td>{{product.FirstName}} {{product.LastName}}</td>
                         <td>{{product.CountryTitle}}</td>
                         <td>{{product.ProductName}}</td>
                         <td>{{product.Currency}} {{product.ExpectedPrice}}</td>
                         <td>{{product.Quantity}}</td>
                         <td>{{product.count}}</td>
-                    </tr>
+                    </tr> -->
                    <!--  <tr class="text-center">
                         <td>Mganus Komal</td>
                         <td>Komal</td>
@@ -370,31 +371,31 @@
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+        //     $('.dataTables-example').DataTable({
+        //         pageLength: 25,
+        //         responsive: true,
+        //         dom: '<"html5buttons"B>lTfgitp',
+        //         buttons: [
+        //             { extend: 'copy'},
+        //             {extend: 'csv'},
+        //             {extend: 'excel', title: 'ExampleFile'},
+        //             {extend: 'pdf', title: 'ExampleFile'},
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
+        //             {extend: 'print',
+        //              customize: function (win){
+        //                     $(win.document.body).addClass('white-bg');
+        //                     $(win.document.body).css('font-size', '10px');
 
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
+        //                     $(win.document.body).find('table')
+        //                             .addClass('compact')
+        //                             .css('font-size', 'inherit');
+        //             }
+        //             }
+        //         ]
 
-            });
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+        //     });
+        //     $('[data-toggle="tooltip"]').tooltip();
+        // });
 
     </script>
 
