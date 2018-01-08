@@ -161,15 +161,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="product in reqlist">
-                       <td>{{product.ProductId}}</td>
+                     <tr ng-repeat="product in reqlist">
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.ProductId}}</a></td>
                   <!--      <td>{{product.FirstName}} {{product.LastName}}</td> -->
-                       <td>{{product.CountryTitle}}</td>
-                       <td>{{product.ProductName}}</td>
-                       <td>{{product.Currency}} {{product.ExpectedPrice}}</td>
-                       <td>{{product.Quantity}}</td>
-                       <td>{{product.count}}</td>
-                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded != '1'">Bid Now</a><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded == '1'">Awarded</a></td>   
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.CountryTitle}}</a></td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.ProductName}}</a></td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.Currency}} {{product.ExpectedPrice}}</a></td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.Quantity}}</a></td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.count}}</a></td>
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded != '1'">View Bid</a><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded == '1'">Awarded</a></td>   
                     </tr>
                     </tbody>
                   </table> 
