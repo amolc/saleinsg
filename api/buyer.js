@@ -3174,8 +3174,8 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <tr style="background-color: #52bad5; color: #ffffff;">\
 <th style="width:100px; padding: 5px 10px; font-size: 14px;">Date</th>\
 <th style="width:100px; padding: 5px 10px; font-size: 14px;">Bank Name</th>\
-<th style="width:100px; padding: 5px 10px; font-size: 14px;">Account No</th>\
 <th style="width:100px; padding: 5px 10px; font-size: 14px;">IFSC Code</th>\
+<th style="width:100px; padding: 5px 10px; font-size: 14px;">Account No</th>\
 <th style="width:100px; padding: 5px 10px; font-size: 14px;">Amount</th>\
 </tr>\
 </thead>\
