@@ -2990,6 +2990,7 @@ exports.withdraw = function(req, res){
         //console.log(req.body);
 
         var amount = req.body.amount ;
+        random = randomString();
 
 
                 // dateToday = now.format("DD/MM/YYYY hh:mm a");
@@ -3005,9 +3006,13 @@ exports.withdraw = function(req, res){
                       'PaymentOption' : 'Bank Transfer',
                       'Name' : req.body.Name,
                       'BankName' : req.body.BankName,
+                      'BranchName' : req.body.BranchName,
+                      'BankAddress' : req.body.BankAddress,
+                      'Country' : req.body.Country,
                       'IFSCcode' : req.body.IFSCcode,
                       'AccountNo' : req.body.AccountNo,
                       'Balance' : req.body.balance,
+                      'Stripetoken' : req.body.BuyerId+'_'+random,
                         
                   };
 
@@ -3213,6 +3218,10 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
+<p><strong>Bank Details : </strong></p>\
+<p><strong>Branch Name : </strong>'+req.body.BranchName+'</p>\
+<p><strong>Address : </strong>'+req.body.BankAddress+'</p>\
+<p><strong>Country : </strong>'+req.body.Country+'</p>\
 </div>\
 </div>\
 </div>\
