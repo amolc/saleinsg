@@ -158,6 +158,7 @@ app.post('/api/adminlogin', admin.adminlogin);
 app.get('/api/getAllUsers', admin.getAllUsers);
 app.get('/api/getUserDetails/:id', admin.getUserDetails);
 app.post('/api/sendmail', admin.sendmail);
+app.get('/api/deleteUser/:id', admin.deleteUser);
 
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file

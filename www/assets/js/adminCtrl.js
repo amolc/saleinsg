@@ -277,6 +277,28 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
       });
 
      }
+
+
+       $scope.deleteUser = function (id) {
+
+        alert(id);
+
+               var r = confirm("Are You Sure You want to Delete It?");
+        if (r == true) 
+        { 
+          $http.get(baseurl + 'deleteUser/'+id).success(function(res) {
+
+               
+                window.location.href = 'dashboard.html';
+                
+
+          }).error(function() {
+                      // alert("Please check your internet connection or data source..");
+         });
+            
+        }    
+
+     }
     
 
      $scope.productrequests = function(){

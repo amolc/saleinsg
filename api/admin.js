@@ -96,7 +96,7 @@ exports.adminlogin = function (req, res) {
 
 exports.getAllUsers = function (req, res) {
 
-   var sql = "SELECT s.*,c.`CountryTitle` FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId`";
+   var sql = "SELECT s.*,c.`CountryTitle` FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE s.`IsDeleted` = '0'";
     console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
@@ -265,23 +265,6 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
 <div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
 <div style="background-color: transparent; width: 100% !important;">\
-<div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:10px; padding-right: 0px; padding-left: 0px;">\
-<div style="font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;color:#71777D; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 25px;">\
-<div style="font-size:12px;line-height:14px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;color:#71777D;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"></p></div>\
-</div>\
-<div style="font-size: 16px;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: center; width:100%;">\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-<div style="background-color:transparent;">\
-<div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-<div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
-<div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
 <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
@@ -318,6 +301,41 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
     
 
 };
+
+
+exports.deleteUser = function (req, res) {
+
+    var id = req.params.id;
+    var updateObj = {
+                         "IsDeleted" :  '1',
+      
+                    };
+                            // console.log("after", createObj);
+
+                            userCRUD.update({SupId: id}, updateObj,function (err, data) {
+
+                                if (!err) 
+                                {
+                                    var resdata = {
+                                        status: true,
+                                        message: 'User deleted',
+                                    };
+
+                                    res.jsonp(resdata);
+                                }
+                                else
+                                {
+                                    var resdata = {
+                                        status: false,
+                                        error: err,
+                                        message: 'Could Not deleted'
+                                    };
+
+                                    res.jsonp(resdata);
+                                }
+                            });
+};
+
 
 
 ///____________________END______________________
