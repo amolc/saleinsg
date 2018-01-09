@@ -136,6 +136,47 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
             });
 
      }
+
+     $scope.getUserDetails = function (req, res) {
+
+             //console.log($scope.enquiry);
+
+      $scope.user = {};
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var UserId = urlpart[0].split('=');
+
+
+
+      if (UserId[0]=='id') 
+      {
+
+
+       $scope.user.UserId= UserId[1];
+
+       $http.get(baseurl + 'getUserDetails/'+$scope.user.UserId).success(function(data, status) {
+
+           $scope.user = data; 
+           console.log($scope.user);         
+       
+      });
+
+      }
+
+    }
+    else
+    {
+        location.href = "dashboard.html";
+    }
+
+     }
     
 
      $scope.productrequests = function(){

@@ -104,6 +104,16 @@ exports.getAllUsers = function (req, res) {
     
 };
 
+exports.getUserDetails = function (req, res) {
+
+   UserId = req.params.id;
+   var sql = "SELECT s.*,c.`CountryTitle` FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE s.`SupId` = "+UserId;
+    console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+    
+};
 
 ///____________________END______________________
 

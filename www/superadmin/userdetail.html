@@ -25,7 +25,7 @@
 
 </head>
 
-<body data-ng-app="80consult" data-ng-controller="admincontroller">
+<body data-ng-app="80consult" data-ng-controller="admincontroller" data-ng-init="getUserDetails();">
 
     <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -184,7 +184,7 @@
         </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-6">
-                    <h2 class="page-hading"><strong>User</strong></h2>
+                    <h2 class="page-hading"><strong>User Details</strong></h2>
 
                    <!--  <ol class="breadcrumb">
                         <li>
@@ -211,25 +211,26 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="m-b-md">
-                                        <a href="#" class="btn btn-white btn-xs pull-right">Delete User</a>
-                                        <h2>Alex Smith</h2>
+                                      <!--   <a href="#" class="btn btn-white btn-xs pull-right">Delete User</a> -->
+                                        <h2>{{user.FirstName}} {{user.LastName}}</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-2">
                                      <div class="profile-image">
-                                        <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                                        <img ng-if="user.ProfilePic!=null" src="../uploads/ProfilePic/{{user.ProfilePic}}" class="img-circle circle-border m-b-md" alt="profile">
+                                        <img ng-if="user.ProfilePic==null" src="../uploads/ProfilePic/no-img.jpg" class="img-circle circle-border m-b-md" alt="profile">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                    
 
-                                        <STRONG>CompanyName : </STRONG>Fashion Trends<br/>
-                                         <STRONG>Email : </STRONG>Alex@gmail.com<br/>
-                                         <STRONG>Contact No : </STRONG>9586958565<br/>
-                                         <STRONG>City : </STRONG>Delhi<br/>
-                                         <STRONG>Country : </STRONG>India<br/>
+                                        <STRONG>CompanyName : </STRONG>{{user.CompanyName}}<br/>
+                                         <STRONG>Email : </STRONG>{{user.Email}}<br/>
+                                         <STRONG>Contact No : </STRONG>{{user.Phone}}<br/>
+                                         <STRONG>City : </STRONG>{{user.Location}}<br/>
+                                         <STRONG>Country : </STRONG>{{user.CountryTitle}}<br/>
                                        
                                    
                                 </div>
@@ -240,8 +241,8 @@
                                 <div class="panel-heading">
                                     <div class="panel-options">
                                         <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tab-1" data-toggle="tab">Users messages</a></li>
-                                            <li class=""><a href="#tab-2" data-toggle="tab">Last activity</a></li>
+                                            <li class="active"><a href="#tab-1" data-toggle="tab">Account</a></li>
+                                            <li class=""><a href="#tab-2" data-toggle="tab">Products</a></li>
                                         </ul>
                                     </div>
                                 </div>
