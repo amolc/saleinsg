@@ -113,7 +113,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
 
                         SrNo = parseInt(index)+1;
 
-                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+'</td><td>'+value.FirstName+'</td><td>'+value.CompanyName+'</td><td>'+value.Email+'</td><td>'+value.Phone+'</td><td>'+value.Location+'</td><td>'+value.CountryTitle+'</td></tr>';
+                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.CompanyName+'</td><td>'+value.Email+'</td><td>'+value.Phone+'</td><td>'+value.Location+'</td><td>'+value.CountryTitle+'</td></tr>';
 
                         $("#usertable").append(content);
                       
