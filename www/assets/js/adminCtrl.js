@@ -281,7 +281,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
 
        $scope.deleteUser = function (id) {
 
-        alert(id);
+        //alert(id);
 
                var r = confirm("Are You Sure You want to Delete It?");
         if (r == true) 
