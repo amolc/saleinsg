@@ -157,6 +157,7 @@ app.get('/api/gettransactions/:id',buyer.gettransactions);
 app.post('/api/adminlogin', admin.adminlogin);
 app.get('/api/getAllUsers', admin.getAllUsers);
 app.get('/api/getUserDetails/:id', admin.getUserDetails);
+app.post('/api/sendmail', admin.sendmail);
 
 // app.set('view engine', 'ejs');
 // // use res.render to load up an ejs view file

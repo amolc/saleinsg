@@ -211,7 +211,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="m-b-md">
-                                      <!--   <a href="#" class="btn btn-white btn-xs pull-right">Delete User</a> -->
+                                        <a href="#" class="btn btn-white btn-xs pull-right">Delete User</a>
+                                        <a data-toggle="modal" href="#user-form" class="btn btn-white btn-xs pull-right">Send Mail</a>
                                         <h2>{{user.FirstName}} {{user.LastName}}</h2>
                                     </div>
                                 </div>
@@ -346,38 +347,27 @@
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <div class="row">
-                                                <form>
+                                                <form id="mailform" name="mailform" ng-submit="sendmail()">
                                                     <div class="inn-form-wrap">
-                                                        <h2>Add User</h2>
-                                                        <div class="col-sm-6">
+                                                        <h2>Send Mail</h2>
+                                                        <div class="col-sm-12">
                                                             <div class="form-group">
-                                                                <label>User Name</label> 
-                                                                <input type="text" placeholder="User Name" class="form-control">
+                                                                <input type="text" placeholder="Email Id" class="form-control"  ng-model="user.Email" disabled="" required>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-12">
                                                             <div class="form-group">
-                                                                <label>First Name</label> 
-                                                                <input type="text" placeholder="User Name" class="form-control">
+                                                                <input type="text" placeholder="Subject" class="form-control" ng-model="user.Subject" required="" id="subject">
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-12">
                                                             <div class="form-group">
-                                                                <label>Last Name</label> 
-                                                                <input type="text" placeholder="User Name" class="form-control">
+                                                                <textarea placeholder="Type Your Message Here.." class="form-control" ng-model="user.Message" required="" rows="10" id="message"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label>User Type</label> 
-                                                                    <select class="form-control">
-                                                                        <option disabled selected>User Type</option><option valu="super-admin">Super Admin</option>
-                                                                        <option valu="admin">Admin</option>
-                                                                    </select>
-                                                            </div>
-                                                        </div>
+
                                                         <div class="col-sm-12 text-center mr-t30">
-                                                            <button class="btn-red" type="submit">Add User</button>
+                                                            <button class="btn-red" type="submit">Send</button>
                                                         </div>
                                                     </div> 
                                                 </form>

@@ -255,6 +255,28 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
     }
 
      }
+
+       $scope.sendmail = function (req, res) {
+
+         var date = new Date();
+         $scope.user.date = date.toLocaleDateString('en-GB', {timeZone: 'Asia/Singapore' });
+         $scope.user.msg = $('#message').val().replace(/\n/g, '<br />');
+
+       $http.post(baseurl + 'sendmail/',$scope.user).success(function(data, status) {
+
+          if (data.status == true)
+          {
+             //document.mailform.reset(); 
+             $('#subject').val('');
+             $('#message').val('');
+             alert('Mail Sent Successfully');
+             $('#user-form').modal('hide');
+          }
+
+
+      });
+
+     }
     
 
      $scope.productrequests = function(){
