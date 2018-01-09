@@ -177,6 +177,84 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
     }
 
      }
+
+      $scope.getUserAccount = function (req, res) {
+
+             //console.log($scope.enquiry);
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var UserId = urlpart[0].split('=');
+
+
+
+      if (UserId[0]=='id') 
+      {
+
+
+       $scope.UserId= UserId[1];
+
+       $http.get(baseurl + 'gettransactions/'+$scope.UserId).success(function(data, status) {
+
+            $scope.transactionlist = data;
+           //console.log($scope.user);         
+       
+      });
+
+      }
+
+    }
+    else
+    {
+        location.href = "dashboard.html";
+    }
+
+     }
+
+          $scope.getUserProducts = function (req, res) {
+
+             //console.log($scope.enquiry);
+
+      var url = window.location.href;
+
+      var parts = url.split("?");
+              //console.log(parts.length);
+      if(parts.length>1){
+      var urlparams = parts[1];
+
+      var urlpart = urlparams.split('&');
+      var UserId = urlpart[0].split('=');
+
+
+
+      if (UserId[0]=='id') 
+      {
+
+
+       $scope.UserId= UserId[1];
+
+       $http.get(baseurl + 'userproducts/'+$scope.UserId).success(function(data, status) {
+
+            $scope.productlist = data;
+           //console.log($scope.user);         
+       
+      });
+
+      }
+
+    }
+    else
+    {
+        location.href = "dashboard.html";
+    }
+
+     }
     
 
      $scope.productrequests = function(){
