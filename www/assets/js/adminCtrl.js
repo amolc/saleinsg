@@ -113,7 +113,16 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
 
                         SrNo = parseInt(index)+1;
 
-                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.CompanyName+'</td><td>'+value.Email+'</td><td>'+value.Password+'</td><td>'+value.Phone+'</td><td>'+value.Location+'</td><td>'+value.CountryTitle+'</td></tr>';
+                        if (value.CreateDate== '' || value.CreateDate==null) {
+                           date = '';
+                         
+                        }
+                        else
+                        {
+                           date = value.CreateDate.substring(0,10);
+                        }
+
+                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.Email+'</td><td>'+value.Password+'</td><td>'+value.Phone+'</td><td>'+value.CountryTitle+'</td><td>'+date+'</td><td><a href="userdetail.html?id='+value.SupId+'"><i class="fa fa-eye"></i></td></tr>';
 
                         $("#usertable").append(content);
                       
