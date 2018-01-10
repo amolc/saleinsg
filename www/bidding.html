@@ -19,7 +19,7 @@
          if (window.localStorage.getItem('User_Id')<=0)
                 {
                    window.localStorage.setItem('GoToPage',window.location.href);
-                   window.location.href="login.html";
+                  // window.location.href="login.html";
 
                 }
                 else
@@ -265,7 +265,7 @@
               </h6>
             </div>
           <!--   <div class="bidding-form" ng-if="User_Id != enquiry.BuyerId"> -->
-          <div class="bidding-form" ng-if="enquiry.IsAwarded != '1'">
+          <div class="bidding-form" ng-if="enquiry.IsAwarded != '1' && User_Id!=''">
               <form ng-submit="postbid()" id="enquiryform" name="enquiryform">
                 <div class="form-group">
                   <h4>Proposal [ Please do explain why you are the best supplier ]</h4>
@@ -273,6 +273,15 @@
                   <input type="text" class="form-control" ng-model="enquiry.SellerPrice" required="" placeholder="Price In {{enquiry.Currency}}" pattern="[0-9]{1,5}[.]{0,1}[0-9]{0,2}" oninvalid="setCustomValidity('Enter Valid Price')" onchange="try{setCustomValidity('')}catch(e){}">
                   <div class="text-center">                  
                     <input type="submit" class="red-btn small-btn mr-t30" value="Post">
+                  </div>
+                </div>
+               </form>
+             </div>
+              <div class="bidding-form" ng-if="enquiry.IsAwarded != '1' && User_Id==''">
+              <form>
+                <div class="form-group">
+                  <div class="text-center">                  
+                    <a href="login.html"><input type="button" class="red-btn small-btn mr-t30" value="Login"></a>
                   </div>
                 </div>
                </form>
