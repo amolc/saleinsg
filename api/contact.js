@@ -605,7 +605,7 @@ exports.login = function (req, res) {
 
             userCRUD.load({
                 Email: email,
-                VerificationCode: ''
+                IsDeleted: '0'
             },function (err3, val3) {
 
                 if (val3.length > 0) 
@@ -652,7 +652,7 @@ exports.login = function (req, res) {
                     var resdata3 = {
                         verifyValid: false,
                         error: err3,
-                        message: 'Please confirm your email!'
+                        message: 'Account Deactivated!'
                     };
 
                     res.jsonp(resdata3);
