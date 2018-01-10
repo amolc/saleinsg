@@ -124,7 +124,6 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
           }
 
-
           $scope.login = function(logininfo,formLogin){
 
            // console.log($scope.logininfo);

@@ -19,7 +19,8 @@ var productCRUD = CRUD(db, 'tbl_Products');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
 var messagesCRUD = CRUD(db, 'tbl_Messages');
-const converter = require('google-currency')
+const converter = require('google-currency');
+
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var transporter = nodemailer.createTransport({
