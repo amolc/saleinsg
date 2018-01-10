@@ -78,7 +78,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
                 buttons: [
                     //{ extend: 'copy'},
                     //{extend: 'csv'},
-                    {extend: 'excel'},
+                    {extend: 'excel',},
                     //{extend: 'pdf', title: 'ExampleFile'},
 
                     // {extend: 'print',
