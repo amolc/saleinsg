@@ -246,21 +246,6 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </div>\
 </div>\
 <div style="background-color:transparent;">\
-<div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid two-up ">\
-<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-<div class="col num6" style="max-width: 320px;min-width: 310px;display: table-cell;vertical-align: top;">\
-<div style="background-color: transparent; width: 100% !important;">\
-<div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
-<div style="color:#000000;line-height:120%;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
-<div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 18px; line-height: 21px;"><strong>User Details</strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Name : </b>'+req.body.FirstName+' '+req.body.LastName+'</span></p><p style="margin: 0;font-size: 14px;line-height: 17px"><span style="font-size: 14px; line-height: 16px;"><b>Country : </b>'+req.body.CountryTitle+'<br></span></p></div>\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-</div>\
-<div style="background-color:transparent;">\
 <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
 <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
 <div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\

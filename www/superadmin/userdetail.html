@@ -218,13 +218,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-2">
+                                <div class="col-lg-3">
                                      <div class="profile-image">
                                         <img ng-if="user.ProfilePic!=null" src="../uploads/ProfilePic/{{user.ProfilePic}}" class="img-circle circle-border m-b-md" alt="profile">
                                         <img ng-if="user.ProfilePic==null" src="../uploads/ProfilePic/no-img.jpg" class="img-circle circle-border m-b-md" alt="profile">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                
+                                 <div class="col-lg-4">
                                    
 
                                         <STRONG>CompanyName : </STRONG>{{user.CompanyName}}<br/>
@@ -232,6 +233,18 @@
                                          <STRONG>Contact No : </STRONG>{{user.Phone}}<br/>
                                          <STRONG>City : </STRONG>{{user.Location}}<br/>
                                          <STRONG>Country : </STRONG>{{user.CountryTitle}}<br/>
+                                       
+                                   
+                                </div>
+
+                                <div class="col-lg-5">
+                                   
+
+                                        <STRONG>Bank Account Details:</STRONG><br/>
+                                         <STRONG>Name : </STRONG>{{user.AccountName}}<br/>
+                                         <STRONG>Bank Name : </STRONG>{{user.BankName}}<br/>
+                                         <STRONG>IFSC Code : </STRONG>{{user.IFSCcode}}<br/>
+                                         <STRONG>Account No : </STRONG>{{user.AccountNo}}<br/>
                                        
                                    
                                 </div>
