@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+ <script type="text/javascript">
+         if (window.localStorage.getItem('User_Id')<=0)
+                {
+                   window.localStorage.setItem('GoToPage',window.location.href);                  
+                  // window.location.href="login.html";
+
+                }
+                else
+                {
+                   if (window.localStorage.getItem("GoToPage") !== null) {
+                                window.localStorage.removeItem('GoToPage');
+                        }
+                }
+    </script>
    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,20 +29,7 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-         <script type="text/javascript">
-         if (window.localStorage.getItem('User_Id')<=0)
-                {
-                   window.localStorage.setItem('GoToPage',window.location.href);                  
-                  // window.location.href="login.html";
 
-                }
-                else
-                {
-                   if (window.localStorage.getItem("GoToPage") !== null) {
-                                window.localStorage.removeItem('GoToPage');
-                        }
-                }
-    </script>
 
 
     </head>
