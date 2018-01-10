@@ -653,7 +653,7 @@ exports.login = function (req, res) {
                     var resdata3 = {
                         verifyValid: false,
                         error: err3,
-                        message: 'Account Deactivated!'
+                        message: 'Account Deactivated, Please Contact Admin!'
                     };
 
                     res.jsonp(resdata3);
