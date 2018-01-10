@@ -159,8 +159,12 @@ exports.requestproduct = function (req, res) {
         if (!err) 
         {
 
-                               var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
-                               var subject = "Tradeexchange.co - Product Request";
+            
+
+                              // var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+                              // var subject = "Tradeexchange.co - Product Request";
+                              //var to = 'komal.gaikwad@fountaintechies.com';
+                              var subject = req.body.reqQuan+' '+req.body.name+' '+'require on Tradeexchange.co-Bid Now';
                             var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
 <meta name="viewport" content="width=device-width">\
@@ -286,6 +290,24 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </div>\
 </div>\
 <div style="background-color:transparent;">\
+<div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
+<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
+<div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
+<div style="background-color: transparent; width: 100% !important;">\
+<div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
+<div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
+<div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
+<p>Hi,</p>\
+<p>We have new requirement for '+req.body.reqQuan+' '+req.body.name+'.</p>\
+<p>Requirement details are as follows:</p>\
+</div>\
+</div>\
+</div>\
+</div>\
+</div>\
+</div>\
+</div>\
+<div style="background-color:transparent;">\
 <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid two-up ">\
 <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
 <div class="col num6" style="max-width: 320px;min-width: 310px;display: table-cell;vertical-align: top;">\
@@ -357,6 +379,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
 <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
 <p><b>Product Description :</b> <br/>'+req.body.description+'</p>\
+<div style="text-align: center;"><a href="https://www.tradeexchange.co/bidding.html?id='+data.insertId+'" target="_blank" style="display: inline-block;padding: 9px 12px; background-color: #52bbd5;margin-top: 45px;color: #ffffff; text-decoration: none;">Bid Now</a></div></div>\
 </div>\
 </div>\
 </div>\
@@ -377,7 +400,39 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </tbody>\
 </table>\
 </body></html>';
-                             send_mail( to, subject, mailbody );
+            
+            var mailarray = ['nadyshaikh@gmail.com','komal@magnusideas.com','ceo@80startups.com','office@80startups.com','amolc@80startups.com','amolchawathe@80startups.com','shital.talole@fountaintechies.com','komal.gaikwad@fountaintechies.com','shital.talole1@fountaintechies.com','akshita@gmail.com'];
+            count = mailarray.indexOf(req.body.BuyerEmail);
+            //var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+            //console.log(count);
+            var to = '';
+            if (count>=1)
+            {
+                to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
+                 //console.log('to:'+to);
+                send_mail( to, subject, mailbody );
+            }
+            else
+            {
+                var sql = "SELECT `Email` FROM `tbl_Suppliers` WHERE `IsDeleted` = '0'";
+                 db.query(sql, function (err1, data1) {
+                   //console.log(data1);
+                    
+                    var q = ''
+                    data1.forEach(function(current_value) {
+                        //console.log(current_value.Email);
+                        //a b c
+                        to += q+current_value.Email;
+                        q = ',';
+                    });
+                    //console.log('to:'+to);
+                    send_mail( to, subject, mailbody );
+                });
+                  
+            }
+
+            //console.log('to:'+to);
+            //send_mail( to, subject, mailbody );
 
 
             var resdata = {
