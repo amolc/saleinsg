@@ -96,7 +96,7 @@ exports.adminlogin = function (req, res) {
 
 exports.getAllUsers = function (req, res) {
 
-   var sql = "SELECT s.*,c.`CountryTitle` FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE s.`IsDeleted` = '0'";
+   var sql = "SELECT s.*,c.`CountryTitle`,COUNT(`ProductId`) as count FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` LEFT JOIN `tbl_Products` as p ON p.`SupplierId` = s.`SupId` WHERE s.`IsDeleted` = '0' GROUP BY s.`SupId`";
     console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);

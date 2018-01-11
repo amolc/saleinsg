@@ -123,7 +123,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
                            date = value.CreateDate.substring(0,10);
                         }
 
-                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.Email+'</td><td>'+value.Password+'</td><td>'+value.Phone+'</td><td>'+value.CountryTitle+'</td><td>'+date+'</td><td><a href="userdetail.html?id='+value.SupId+'"><i class="fa fa-eye"></i></td></tr>';
+                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.Email+'</td><td>'+value.Password+'</td><td>'+value.Phone+'</td><td>'+value.CountryTitle+'</td><td>'+date+'</td><td>'+value.count+'</td><td><a href="userdetail.html?id='+value.SupId+'"><i class="fa fa-eye"></i></td></tr>';
 
                         $("#usertable").append(content);
                       
@@ -317,7 +317,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
 
                         SrNo = parseInt(index)+1;
 
-                        var content = '<tr><td>'+SrNo+'</td><td>'+value.FirstName+' '+value.LastName+'</td><td>'+value.CountryTitle+'</td><td>'+value.ProductName+'</td><td>'+value.Currency+' '+value.ExpectedPrice+'</td><td>'+value.Quantity+'</td><td>'+value.count+'</td></tr>';
+                        var content = '<tr><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+SrNo+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.FirstName+' '+value.LastName+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.CountryTitle+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.ProductName+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.Currency+' '+value.ExpectedPrice+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.Quantity+'</a></td><td><a href="userdetail.html?id='+value.BuyerId+'" class="color-black">'+value.count+'</a></td></tr>';
 
                         $("#requesttable").append(content);
                       
