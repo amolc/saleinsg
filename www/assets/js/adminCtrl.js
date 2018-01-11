@@ -95,6 +95,7 @@ app.controller('admincontroller', function ($scope, $location, $http, $window) {
 
             });
             $('[data-toggle="tooltip"]').tooltip();
+            $('.buttons-excel span').html('Export');
 
     }
 
