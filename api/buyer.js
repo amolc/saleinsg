@@ -401,7 +401,9 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </table>\
 </body></html>';
             
-            var mailarray = ['nadyshaikh@gmail.com','komal@magnusideas.com','ceo@80startups.com','office@80startups.com','amolc@80startups.com','amolchawathe@80startups.com','shital.talole@fountaintechies.com','komal.gaikwad@fountaintechies.com','shital.talole1@fountaintechies.com','akshita@gmail.com'];
+           // var mailarray = ['nadyshaikh@gmail.com','komal@magnusideas.com','ceo@80startups.com','office@80startups.com','amolc@80startups.com','amolchawathe@80startups.com','shital.talole@fountaintechies.com','komal.gaikwad@fountaintechies.com','shital.talole1@fountaintechies.com','akshita@gmail.com'];
+            var mailarray = ['nadyshaikh@gmail.com','komal@magnusideas.com','office@80startups.com','shital.talole@fountaintechies.com','komal.gaikwad@fountaintechies.com','shital.talole1@fountaintechies.com','akshita@gmail.com'];
+
             count = mailarray.indexOf(req.body.BuyerEmail);
             //var to = 'komal.gaikwad@fountaintechies.com,ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
             //console.log(count);
