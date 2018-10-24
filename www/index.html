@@ -482,6 +482,106 @@
 
 
 
+         <section id="viewed-wrap" ng-init="featuredseller()">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12">
+                <h2 class="section-title">
+                  Featured Seller
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="pro-sides">
+                <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
+                  <div class="carousel-inner">
+
+                  <div class="item active" ng-repeat="seller in sellerlist | limitTo:4">
+                      <div class="col-xs-6 col-sm-6 col-md-3">
+                        <div class="seller-box">
+                            <div class="seller-img">
+                          <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
+                                <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
+                                <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
+                              <!-- </a> -->
+                            </div>
+                            <div class="seller-footer">
+                              <!--  <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.FirstName}} {{seller.LastName}}</h3>-->
+                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
+                                <!-- <h5>{{product.Description}}</h5>
+                                <p>Category : {{product.CategoryTitle}}</p>
+                                <p>Seller : {{product.CompanyName}}</p> -->
+                                <!--  <input type="hidden" name="basecurrency" ng-model="product.Currency">
+                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
+                                 <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                                <h4 class="pull-right">
+                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
+                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
+                                                    </select></span>{{product.changePrice}}</h4> -->
+                                                    <div class="clearfix"></div>
+                                <!-- <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div> -->
+                            </div>
+                           <!--  <div class="box-flag-img">
+                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
+                            </div> -->
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="item active">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <div class="product-box">
+                            <div class="pro-img">
+                                <img src="images/pro1.jpg" alt="" title="">
+                            </div>
+                            <div class="product-footer">
+                                <h3><a href="product_detail.html">Queens</a></h3>
+                                <h5>Go beyond the screen and Ride The Movies® at   Universal Studios Singapore®. Only here can you experience cutting-edge rides, shows and attractions.</h5>
+                                <p>Category : Footwears</p>
+                                <h4><span>From SGD</span>$2000</h4>
+                                <div class="bottom-btn">
+                                    <div class="order-btn">
+                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                    </div>
+                                    <div class="inquiry-btn">
+                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="cat-text">
+                                <span>Footwears</span>
+                            </div>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <a class="left carousel-control" href="#recently-viewed-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                  <a class="right carousel-control" href="#recently-viewed-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+                </div>
+                  <div class="col-sm-12 text-center mr-t30">
+                    <a href="sellers.html" id="display" class="red-btn small-btn">More</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+         </section>
+
+
+
       <!--   <section id="store-wrap">
           <div class="container">
             <div class="row">
@@ -518,7 +618,7 @@
           </div>
          </section>   -->
 
-                  <section id="viewed-wrap" ng-init="featuredseller()">
+        <section id="viewed-wrap" ng-init="featuredseller()">
           <div class="container">
             <div class="row">
               <div class="col-sm-12 col-xs-12">
