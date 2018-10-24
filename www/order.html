@@ -200,9 +200,11 @@
                           </p>
                         </td>
                         <td data-th="Quantity">
+                         
                          <!--  <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select> -->
-                         <input type="number" name="orderqty" id="orderqty" ng-model="product.orderqty" ng-change="cal(product,per);cal1(product,per1)" required="" min="0">
+                         <input type="number" name="orderqty" id="orderqty" ng-model="product.MinOrderQty" ng-change="cal(product,per);cal1(product,per1)" required="" min="0">
                         </td>
+                        
                         <td data-th="Subtotal" class="text-right">
                           <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
                         </td>
@@ -246,7 +248,7 @@
                       <label>Amount</label>
                       <input class="form-group form-control" type='text' ng-model='amt'>
                     </div>
-                    <div class="col-sm-3">
+                     <!--   <div class="col-sm-3">
                       <input class=" form-group form-control" type='text' ng-model='terms1' required="">
                     </div>
                     <div class="col-sm-4">
@@ -261,7 +263,7 @@
                     </div>
                     <div class="col-sm-2">
                       <input class="form-group form-control" type='text' ng-model='amt1'>
-                    </div>
+                    </div>  -->
                         <div ng-repeat="n in [].constructor(10) track by $index">
                           <div id="termsdiv{{$index}}" hidden="">
                           <div class='col-md-3'>

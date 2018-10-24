@@ -1658,7 +1658,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
               $scope.product.orderqty = $scope.product.Quantity;
             else
               $scope.product.orderqty = 1;
-            $scope.product.changePrice = data.Price;
+         /*   $scope.product.changePrice = data.Price;
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
             $scope.terms = "50% In Advance";
@@ -1672,6 +1672,22 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.qty = [];
             for (var i = 1; i <=  $scope.product.Quantity; i++) {
                $scope.qty.push(i);
+*/
+            $scope.product.changePrice = data.Price;
+            $scope.product.changeCurrency = data.Currency;
+            $scope.product.paymenttype = 'Credit Card';
+            $scope.terms = "100% In Advance";
+            $scope.types = "Trade Exchange Escrow (TEE)";
+            $scope.per = 100;
+            $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
+           /* $scope.terms1 = "50% Against Delivery";  */
+            /* $scope.types1 = "Trade Exchange Escrow (TEE)"; */
+          /*  $scope.per1 = 50; */
+         /*   $scope.amt1 =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;  */
+            $scope.qty = [];
+            for (var i = 1; i <=  $scope.product.Quantity; i++) {
+              $scope.qty.push(i)
+
             }
           //  console.log($scope.qty);
             //console.log($scope.product.CategoryId);
