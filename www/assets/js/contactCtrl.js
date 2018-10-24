@@ -1679,7 +1679,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             $scope.terms = "100% In Advance";
             $scope.types = "Trade Exchange Escrow (TEE)";
             $scope.per = 100;
-            $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
+            $scope.amt =  $scope.product.MinOrderQty *  $scope.product.Price *  $scope.per / 100;
            /* $scope.terms1 = "50% Against Delivery";  */
             /* $scope.types1 = "Trade Exchange Escrow (TEE)"; */
           /*  $scope.per1 = 50; */
