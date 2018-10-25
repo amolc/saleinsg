@@ -199,14 +199,15 @@
                             </select> : {{product.changePrice}}
                           </p>
                         </td>
+
                         <td data-th="Quantity">
-                         
-                         <!--  <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select> -->
-                         <input type="number" name="orderqty" id="orderqty" ng-model="product.MinOrderQty" ng-change="cal(product,per);cal1(product,per1)" required="" min="0">
+                          <!--  <select id="orderqty" ng-model="product.orderqty"  placeholder="Select Quantity" required="" ng-options="n for n in [] | range:product.MinOrderQty:product.Quantity" ng-change="cal(product,per)"></select> -->
+                         <input type="number" name="MinOrderQty" id="MinOrderQty" ng-model="product.MinOrderQty" ng-change="cal(product,per);cal1(product,per1)" required="" min="10">
+                         <div class="error" ng-show="myForm.MinOrderQty.$dirty && myForm.MinOrderQty.$error.min" ng-message="min">Unexpected minimum data</div>
                         </td>
                         
                         <td data-th="Subtotal" class="text-right">
-                          <p>{{product.Currency}} {{product.Price * product.orderqty}}</p>
+                          <p>{{product.Currency}} {{product.Price * product.MinOrderQty}}</p>
                         </td>
                         <!-- <td class="actions" data-th="">
                           <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
@@ -246,6 +247,7 @@
                     </div>
                     <div class="col-sm-2">
                       <label>Amount</label>
+                      
                       <input class="form-group form-control" type='text' ng-model='amt'>
                     </div>
                      <!--   <div class="col-sm-3">

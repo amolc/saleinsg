@@ -29,7 +29,7 @@ var transporter = nodemailer.createTransport({
   auth: {
     user: '66ca4479851e0bd9cedc629bdff36ee6',
     pass: 'a3ec60f55a89f7fab98891e86818c8db'
-  }
+        }
 });
 
 

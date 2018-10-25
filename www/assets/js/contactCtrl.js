@@ -25,7 +25,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
   $scope.child = ['0','1','2','3','4','5','6','7','8','9','10'];
  // $scope.urlParams = $location.search();
  // console.log($location.search());
-
+ 
    $scope.getCountries = function() {
 
     $scope.registration = {};
@@ -1640,7 +1640,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
                    $scope.product.SupLastName = data.SupLastName;
                    $scope.product.Price = data.SellerPrice;
                    $scope.product.changePrice = data.SellerPrice;  
-                   $scope.amt =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
+                   $scope.amt =  $scope.product.MinOrderQty *  $scope.product.Price *  $scope.per / 100;
                    $scope.amt1 =  $scope.product.orderqty *  $scope.product.Price *  $scope.per / 100;
 
               });
@@ -1657,7 +1657,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             if ($scope.product.ProductType == 'Request')
               $scope.product.orderqty = $scope.product.Quantity;
             else
-              $scope.product.orderqty = 1;
+              $scope.product.orderqty = 10;
          /*   $scope.product.changePrice = data.Price;
             $scope.product.changeCurrency = data.Currency;
             $scope.product.paymenttype = 'Credit Card';
@@ -2329,9 +2329,9 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       $scope.cal = function(product,per){
 
        //console.log(product.percentage[index]);
-       $scope.product = product; 
+     $scope.product = product; 
        $scope.per = per;
-       $scope.amt = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.per / 100).toFixed(2);
+       $scope.amt = parseFloat($scope.product.Price * $scope.product.MinOrderQty *  $scope.per / 100).toFixed(2);
        if ( $scope.amt == 0) 
           {
              $scope.amt = '';
@@ -2339,14 +2339,14 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
          if (typeof $scope.product.percentage !== 'undefined' ) 
          {
             $.each($scope.product.percentage, function( key, value ) {
-              $scope.product.amount[key] = parseFloat($scope.product.Price * $scope.product.orderqty *  $scope.product.percentage[key] / 100).toFixed(2);
+              $scope.product.amount[key] = parseFloat($scope.product.Price * $scope.product.MinOrderQty *  $scope.product.percentage[key] / 100).toFixed(2);
 
             });
           }
 
          } 
 
-      $scope.cal1= function(product,per1){
+   /*   $scope.cal1= function(product,per1){
 
        //console.log(product.percentage[index]);
        $scope.product = product; 
@@ -2358,7 +2358,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
           } 
 
          } 
-
+*/
       $scope.changeType= function(){
 
         $scope.types1 = $scope.types;
