@@ -6,7 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Tradeexchange.co - Great platform for traders in asia to buy and sell</title>
+        <!-- <title>Tradeexchange.co - Great platform for traders in asia to buy and sell</title> -->
+          <title> {$ countryData[1].ProductName $} </title>
         <meta name="description" content="Tradeexchange.co helps traders to find sellers and buyers from asia. The platform is an easy to use system to close deals quickly.">
         <meta name="keywords" content="deal desk, trading exchange, buyer exchange, seller exchange, trading, ">
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +16,6 @@
         <link href="assets/css/responsive.css" rel="stylesheet">
 
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
 
@@ -372,45 +372,34 @@
                             </div>
                          </div>
                     </div>
-                    <div class="col-sm-9" ng-init="getAllcurrency()">
-                        <div class="col-sm-4" ng-repeat="product in productslist">
-                        <div class="product-box">
-                            <div class="pro-img">
-                                <a href="product_detail.html?id={{product.ProductId}}">
-                                    <img src="uploads/{{product.Image1}}" alt="" title="">
-                                </a>
-                            </div>
-                            <div class="product-footer">
-                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                            <!--     <h5>{{product.Description}}</h5>
-                                <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p> -->
-                                <input type="hidden" name="basecurrency" ng-model="product.Currency">
-                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
-                                <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
-                                <h4 class="pull-right">
-                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
-                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select></span>{{product.changePrice}}</h4>
-                                                    <div class="clearfix"></div>
-                                <div class="bottom-btn">
-                                    <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
-                                    </div>
-                                    <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
-                                    </div>
-                                    <div class="clearfix"></div>
+                    <div class="col-sm-9"  style="border:1px solid red" ng-init="getAllcurrency()">
+                      {%  for each in productData  %} 
+                      
+                      
+                    <div class="col-sm-6" >
+                       
+
+                        <div class="packges-block">
+                            <div class="col-sm-5 pd0">
+                                <div class="place-img">
+                                 <a href="product_detail.html?id={{product.ProductId}}">
+                                    <img src="uploads/{{product.Image1}}" class="img-responsive" alt="" title="">
+                                    </a>
                                 </div>
                             </div>
-                            <div class="box-flag-img">
-                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
-                            </div>
-                            <div class="cat-text">
-                                <span>Footwears</span>
-                            </div>
-                        </div>
-                        </div>
+                            <div class="col-sm-7">
+                                <div class="packeg-details-text">
+                                    <h5><a href="product_detail.html?id={{product.ProductId}}">{{each.ProductName}}</a></h5>
+                                    <p class="packege-para small-height">{{each.Description | limitTo: 150 }}{{each.Description.length > 150 ? '...' : ''}}</p>
+                                    <div class="right-blck">
+                                    <p class="gray-small-text"><span>
+
+
+                    </div>
+
+                               
+                      
+                      
                     </div>
 
                     <!-- <div class="col-sm-6" ng-repeat="product in productslist">
@@ -442,6 +431,7 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </section>
 
 

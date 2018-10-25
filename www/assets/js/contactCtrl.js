@@ -772,24 +772,31 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
       $scope.filter = {};
       var url = window.location.href;
+      console.log(url);
 
       var parts = url.split("?");
-              //console.log(parts.length);
+              console.log(parts.length);
+
+              console.log(baseurl + 'filterbycategory/');
       if(parts.length>1){
 
       var urlparams = parts[1];
 
       var urlpart = urlparams.split('&');
+      
 
       if (urlpart.length==1) 
       {
-
         //alert(urlpart);
       var id = urlpart[0].split('=');
+
+      
       //alert(type[1]);
       if (id[0]=='category') 
+      
       {
          $http.get(baseurl + 'filterbycategory/'+id[1]).success(function(data, status) {
+          
 
              $scope.productslist = data;  
              window.localStorage.setItem('filter_category',id[1]); 
@@ -992,6 +999,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     else
     {
+      console.log('call is here');
         
         $http.get(baseurl + 'allproducts').success(function (res) {
 
@@ -1001,6 +1009,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
             else {
                // console.log(res);
                 $scope.productslist = res;
+                console.log($scope.productslist);
             }
 
         }).error(function () {

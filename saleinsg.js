@@ -169,10 +169,25 @@ app.get('/api/deleteUser/:id', admin.deleteUser);
 // app.get('/backend/about',backend.about);
 
 const expressNunjucks = require('express-nunjucks');
+
 const isDev = app.get('env') === 'development';
 
  app.set('views', __dirname + '/www');
-var njk = expressNunjucks(app, {watch: isDev,noCache: isDev});
+// var njk = expressNunjucks(app, {watch: isDev,noCache: isDev});
+
+const njk = expressNunjucks(app, {
+  watch: isDev,
+  noCache: isDev,
+  autoescape:false,
+  tags: {
+      blockStart: '{%',
+      blockEnd: '%}',
+      variableStart: '{$',
+      variableEnd: '$}',
+      commentStart: '{#',
+      commentEnd: '#}'
+  }
+});
 
 app.get('/allproducts.html', routes.products);
 
