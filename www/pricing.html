@@ -166,7 +166,7 @@ background: #1AA85C;
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
                                           <li ng-if="User_Id>0"><a href="pricing.html">Pricing</a></li>
-                          <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                      <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
                                       <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
@@ -186,6 +186,8 @@ background: #1AA85C;
                                               <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
                                             </ul>
                                         </li>
+
+                                        <li ng-if="User_Id<=0"><a href="pricing.html">Pricing</a></li>
                                         <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
                                         <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
                                         <li><a href="contact.html">Contact Us</a></li>
@@ -215,7 +217,7 @@ background: #1AA85C;
             
             <div class="col-xs-12 col-sm-6 col-md-3 princing-item red">
               <div class="pricing-divider ">
-                  <h3 class="text-light">START-UP</h3>
+                  <h3 class="text-light">Free</h3>
                 <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 120 <span class="h5">/mo</span></h4>
                  <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
               <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
@@ -230,12 +232,12 @@ background: #1AA85C;
               </div>
               <div class="card-body bg-white mt-0 shadow">
                 <ul class="list-unstyled mb-5 position-relative">
-                  <li><b>10</b> users included</li>
-                  <li><b>2 GB</b> of storage</li>
-                  <li><b>Free </b>Email support</li>
-                  <li><b>Help center access</b></li>
-                </ul>
-                <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                    <li><b>50 </b>   Products</li>
+                    <li><b>$10</b>   Per Order Confirmation</li>
+                    <li><b>3 Month</li>
+                    <li><b>Help center access</b></li>
+                 </ul>
+               <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
               </div>
             </div>
            
@@ -244,8 +246,8 @@ background: #1AA85C;
             
             <div class="col-xs-12 col-sm-6 col-md-3 princing-item blue">
               <div class="pricing-divider ">
-                  <h3 class="text-light">BUSINESS</h3>
-                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 250 <span class="h5">/mo</span></h4>
+                  <h3 class="text-light">Starter</h3>
+                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 50 <span class="h5">3/mo</span></h4>
                  <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
               <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
       c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
@@ -260,20 +262,20 @@ background: #1AA85C;
     
               <div class="card-body bg-white mt-0 shadow">
                 <ul class="list-unstyled mb-5 position-relative">
-                  <li><b>100 </b>users included</li>
-                  <li><b>10 GB</b> of storage</li>
-                  <li><b>Free</b>Email support</li>
-                  <li><b>Help center access</b></li>
+                    <li><b>50 </b>   Products</li>
+                    <li><b>$5</b>     Per Order Confirmation</li>
+                    <li><b>3 Month</li>
+                    <li><b>Help center access</b></li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
               </div>
             </div>
                    
             
             <div class="col-xs-12 col-sm-6 col-md-3 princing-item blue">
                 <div class="pricing-divider ">
-                    <h3 class="text-light">BUSINESS</h3>
-                  <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 250 <span class="h5">/mo</span></h4>
+                    <h3 class="text-light">Wholeseller</h3>
+                  <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 100 <span class="h5">/mo</span></h4>
                    <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
                 <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
         c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
@@ -288,12 +290,12 @@ background: #1AA85C;
       
                 <div class="card-body bg-white mt-0 shadow">
                   <ul class="list-unstyled mb-5 position-relative">
-                    <li><b>100 </b>users included</li>
-                    <li><b>10 GB</b> of storage</li>
-                    <li><b>Free</b>Email support</li>
+                    <li><b>100 </b>   Products</li>
+                    <li><b>$3</b>     Per Order Confirmation</li>
+                    <li><b>Monthly</li>
                     <li><b>Help center access</b></li>
                   </ul>
-                  <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                  <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
                 </div>
               </div>
                      
@@ -302,8 +304,8 @@ background: #1AA85C;
              
             <div class="col-xs-12 col-sm-6 col-md-3 princing-item green">
               <div class="pricing-divider ">
-                  <h3 class="text-light">PRO</h3>
-                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 450 <span class="h5">/mo</span></h4>
+                  <h3 class="text-light">Wholeseller Pro</h3>
+                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 200 <span class="h5">/mo</span></h4>
                  <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
               <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
       c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
@@ -318,12 +320,12 @@ background: #1AA85C;
     
               <div class="card-body bg-white mt-0 shadow">
                 <ul class="list-unstyled mb-5 position-relative">
-                  <li><b>300</b> users included</li>
-                  <li><b>20 GB</b> of storage</li>
-                  <li><b>Free</b> Email support</li>
-                  <li><b>Help center access</b></li>
+                  <li><b>500</b>    Products</li>
+                 <li><b>$3</b>     Per Order Confirmation</li>
+                 <li><b>Monthly</li>
+                 <li><b>Help center access</b></li> 
                 </ul>
-                <button type="button" class="btn btn-lg btn-block  btn-custom ">Sign up for free</button>
+                <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
               </div>
             </div>
                    

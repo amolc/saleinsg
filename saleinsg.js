@@ -59,6 +59,9 @@ app.use('/static', static);
 app.get('/api/seotags', seo.seotags);
 
 
+app.post('/api/contactus', contact.contactus);
+
+
 
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
