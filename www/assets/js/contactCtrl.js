@@ -27,9 +27,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
  // console.log($location.search());
  
    $scope.getCountries = function() {
-
     $scope.registration = {};
-
     $http.get(baseurl + 'allcountries').success(function (res) {
 
             if (res.status == 'false') {
@@ -761,6 +759,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var pageurl = fullpath[0].split("/");
       var filename = pageurl.pop();
       console.log(filename);
+
       if (filename !== 'products.html') 
       {
           window.localStorage.removeItem('filter_country');
@@ -777,7 +776,7 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
       var parts = url.split("?");
               console.log(parts.length);
 
-              console.log(baseurl + 'filterbycategory/');
+            
       if(parts.length>1){
 
       var urlparams = parts[1];
@@ -997,17 +996,15 @@ app.controller('contactcontroller', function ($scope, $location, $http, $window)
 
     }
 
+
+
     else
     {
       console.log('call is here');
-        
         $http.get(baseurl + 'allproducts').success(function (res) {
-
             if (res.status == 'false') {
-
             }
             else {
-               // console.log(res);
                 $scope.productslist = res;
                 console.log($scope.productslist);
             }
