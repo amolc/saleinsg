@@ -1,7 +1,7 @@
 var http = require('http');
 var mysql = require('mysql');
 var randomString = require('random-string');
-//var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7"); 
+//var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7");
 var moment = require("moment");
 var verifycode = randomString();
 var now = moment();
@@ -94,13 +94,13 @@ exports.consult = function (req, res) {
 
 exports.allcountries = function (req, res) {
     var sql = "SELECT `CountryId`,`CountryTitle`,`CountryFlag` FROM `tbl_Countries`";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
 };
 
-exports.changeCurrency = function (req, res) {    
+exports.changeCurrency = function (req, res) {
     const options = {
         from: req.body.baseCurrency,
         to: req.body.changeCurrency,
@@ -114,7 +114,7 @@ exports.changeCurrency = function (req, res) {
 
 exports.allcategories = function (req, res) {
     var sql = "SELECT `CategoryId`,`CategoryTitle` FROM `tbl_Categories`";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -122,7 +122,7 @@ exports.allcategories = function (req, res) {
 
 exports.getsubcategories = function (req, res) {
     var sql = "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = "+req.params.id;
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -147,10 +147,10 @@ exports.register = function(req, res){
 
                // console.log(val3);
 
-                if (val3.length<=0) 
+                if (val3.length<=0)
                 {
-                    
-                      if (req.body.password == req.body.cpassword) 
+
+                      if (req.body.password == req.body.cpassword)
                         {
 
                           userCRUD.create({
@@ -169,12 +169,12 @@ exports.register = function(req, res){
 
                         }, function(err2, val2) {
 
-                            if (!err2) 
+                            if (!err2)
                             {
                                console.log(val2.insertId);
                                 var regId = val2.insertId;
                                // console.log(req.body.Email);
-                                var recipientEmail = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com'; 
+                                var recipientEmail = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
                                 var subject = "Tradeexchange.co - Registration confirmation mail";
                                 // var mailbody = '<table>\
                                 //                     <tr>\
@@ -219,7 +219,7 @@ exports.register = function(req, res){
                                  //                    </tr>\
                                  //                  </table>';
 
-                            
+
                                var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
 <meta name="viewport" content="width=device-width">\
@@ -393,7 +393,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
                             });
 
                           }
-                      
+
                         else
                         {
 
@@ -406,7 +406,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
                             res.jsonp(resdata2);
 
                         }
-                      
+
 
                 }
                 else
@@ -425,7 +425,7 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 
             });
 
-       
+
 };
 
 
@@ -470,12 +470,12 @@ exports.updateprofile = function(req, res){
 
     userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
 
-        if (!err) 
+        if (!err)
         {
             var sql = "UPDATE `tbl_Products` SET CountryId = "+req.body.CountryId+" WHERE SupplierId = '"+req.body.User_Id+"'";
-            //console.log(sql);
+            ////console.log(sql);
             db.query(sql, function (err1, data1) {
-               
+
             });
             var resdata = {
                 status: true,
@@ -497,12 +497,12 @@ exports.updateprofile = function(req, res){
         }
 
     });
-    
+
 };
 
 
 exports.updatebankdetails = function(req, res){
-  
+
 
      var updateObj = {
 
@@ -515,7 +515,7 @@ exports.updatebankdetails = function(req, res){
 
     userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
 
-        if (!err) 
+        if (!err)
         {
             var resdata = {
                 status: true,
@@ -537,7 +537,7 @@ exports.updatebankdetails = function(req, res){
         }
 
     });
-    
+
 };
 
 
@@ -551,7 +551,7 @@ exports.updatepassword = function(req, res){
 
     userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
 
-        if (!err) 
+        if (!err)
         {
             var resdata = {
                 status: true,
@@ -573,13 +573,13 @@ exports.updatepassword = function(req, res){
         }
 
     });
-    
+
 };
 
 exports.verifyAccount = function(req, res){
     //console.log(req.params.id);
     var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
-    //console.log(sql);
+    ////console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -601,7 +601,7 @@ exports.login = function (req, res) {
     }, function (err, val) {
 
 
-        if (val.length > 0) 
+        if (val.length > 0)
         {
 
             userCRUD.load({
@@ -609,7 +609,7 @@ exports.login = function (req, res) {
                 IsDeleted: '0'
             },function (err3, val3) {
 
-                if (val3.length > 0) 
+                if (val3.length > 0)
                 {
 
                    userCRUD.load({
@@ -618,7 +618,7 @@ exports.login = function (req, res) {
                         VerificationCode: ''
                     },function (err2, val2) {
 
-                        if (val2.length > 0) 
+                        if (val2.length > 0)
                         {
 
                             var resdata2 = {
@@ -663,8 +663,8 @@ exports.login = function (req, res) {
 
             });
 
-        } 
-        else 
+        }
+        else
         {
             var resdata = {
                 emailexist: false,
@@ -685,7 +685,7 @@ exports.login = function (req, res) {
 exports.userinfo = function (req, res) {
     var UserId = req.params.id;
     var sql = "select s.*,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
@@ -693,7 +693,7 @@ exports.userinfo = function (req, res) {
 
 exports.allproducts = function (req, res) {
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    console.log(sql);
+    // //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -702,7 +702,7 @@ exports.allproducts = function (req, res) {
 exports.productrequests = function (req, res) {
     //var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -711,7 +711,7 @@ exports.productrequests = function (req, res) {
 exports.buyerproductrequests = function (req, res) {
   var id = req.params.id;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.`BuyerId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -721,16 +721,16 @@ exports.buyerproductrequests = function (req, res) {
 exports.getproductsbylocation = function (req, res) {
   var location = req.params.id;
   var sql = "SELECT p.* FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId`  WHERE p.ProductType='Product' AND s.`Location` LIKE '%"+location+"%'  ORDER BY `ProductId` DESC";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
 };
 
-exports.getrecentprod = function (req, res) {  
+exports.getrecentprod = function (req, res) {
   //  console.log("product ids "+req.body.recentProducts);
-  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`ProductId` IN ("+req.body.recentProducts+") AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-  console.log(sql);
+  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`ProductId` IN ("+req.body.recentProducts+") AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
     db.query(sql, function (err, data) {
         res.jsonp(data);
        // console.log(data);
@@ -739,8 +739,8 @@ exports.getrecentprod = function (req, res) {
 
 exports.filterbycategory = function (req, res) {
     var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    ////console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -748,8 +748,8 @@ exports.filterbycategory = function (req, res) {
 
 exports.filterbycountry = function (req, res) {
     var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CountryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CountryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+   // //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -757,8 +757,8 @@ exports.filterbycountry = function (req, res) {
 
 exports.filterbyseller = function (req, res) {
     var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    ////console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -769,8 +769,8 @@ exports.filterbyCouCat = function (req, res) {
 
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -781,8 +781,8 @@ exports.filterbyCatSub = function (req, res) {
 
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -792,8 +792,8 @@ exports.filterbySelCat = function (req, res) {
 
     var SellerId = req.body.SellerId;
     var CategoryId = req.body.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -804,8 +804,8 @@ exports.filterbyall = function (req, res) {
     var CountryId = req.body.CountryId;
     var CategoryId = req.body.CategoryId;
     var SubCatId = req.body.SubCatId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -816,8 +816,8 @@ exports.filterallbyseller = function (req, res) {
     var SellerId = req.body.SellerId;
     var CategoryId = req.body.CategoryId;
     var SubCatId = req.body.SubCatId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC"; 
-    console.log(sql);
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
@@ -827,120 +827,120 @@ exports.getProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
-   console.log(sql);
+  // //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getReqProductDetails = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`Location` as SupLocation,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getbiddings = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= "+ProductId;
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
-    
+
 };
 
 exports.bidinfo = function (req, res) {
 
   var BidId = req.params.id;
    var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`BidId`= "+BidId;
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getProductSpecification = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT `SpecificationId`,`Title`,`Description` FROM `tbl_ProductSpecification` WHERE `ProductId`= "+ProductId;
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
-   
+
 };
 
 exports.getcurrency = function (req, res) {
 
   var CountryId = req.params.id;
    var sql = "SELECT `CountryCurrency` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getcountry = function (req, res) {
 
   var CountryId = req.params.id;
    var sql = "SELECT `CountryTitle` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
-  console.log(sql);
+ // //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getProductName = function (req, res) {
 
   var ProductId = req.params.id;
    var sql = "SELECT `ProductName`,`ProductType` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
-   console.log(sql);
+   ////console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.getAllcurrency = function (req, res) {
 
    var sql = "SELECT `CountryCurrency` FROM `tbl_Currency`";
-   console.log(sql);
+   //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
-    
+
 };
 
 
 exports.featuredseller = function (req, res) {
 
    var sql = "SELECT * FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Products` as p ON s.`SupId` = p.`SupplierId` WHERE s.`IsDeleted` = '0' AND  (s.`ProfilePic` != 'NULL' OR s.`ProfilePic` != '') GROUP BY p.`SupplierId` ORDER BY p.`ProductId` DESC";
-    console.log(sql);
+    //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
     });
-    
+
 };
 
 exports.getsellerinfo = function (req, res) {
 
   var UserId = req.params.id;
     var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`Location`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
-    console.log(sql);
+    ////console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data[0]);
     });
-    
+
 };
 
 exports.addbankorder = function (req, res) {
@@ -964,7 +964,7 @@ exports.addbankorder = function (req, res) {
 
                         }, function(err2, val2) {
 
-                            if (!err2) 
+                            if (!err2)
                             {
                             var orderID = val2.insertId ;
                             var agentemail = "ceo@80startups.com";
@@ -1011,7 +1011,7 @@ exports.addbankorder = function (req, res) {
 
 
                });
-    
+
 };
 
 exports.addorder = function(req, res){

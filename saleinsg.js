@@ -193,6 +193,6 @@ app.get('/allproducts.html', routes.products);
 
 
 app.listen(9888, function () {
-  console.log('CORS-enabled web server listening on port 9888')
-})
+  console.log('CORS-enabled web server listening on port 9888');
+});
 console.log("Magic at http://localhost:9888");
