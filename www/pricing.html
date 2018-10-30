@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<style>
+
+  .bg-gradient {
+background: #C9D6FF;
+background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF); 
+background: linear-gradient(to right, #E2E2E2, #C9D6FF);
+} 
+ul li {
+  margin-bottom:1.4rem;
+}
+.pricing-divider {
+border-radius: 20px;
+background: #C64545;
+padding: 1em 0 4em;
+position: relative;
+}
+.blue .pricing-divider{
+background: #2D5772; 
+}
+.green .pricing-divider {
+background: #1AA85C; 
+}
+.red b {
+  color:#C64545
+}
+.blue b {
+  color:#2D5772
+}
+.green b {
+  color:#1AA85C
+}
+.pricing-divider-img {
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	height: 80px;
+}
+.deco-layer {
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+.btn-custom  {
+  background:#C64545; color:#fff; border-radius:20px
+}
+
+.img-float {
+  width:50px; position:absolute;top:-3.5rem;right:1rem
+}
+
+.princing-item {
+  transition: all 150ms ease-out;
+}
+.princing-item:hover {
+  transform: scale(1.05);
+}
+.princing-item:hover .deco-layer--1 {
+  -webkit-transform: translate3d(15px, 0, 0);
+  transform: translate3d(15px, 0, 0);
+}
+.princing-item:hover .deco-layer--2 {
+  -webkit-transform: translate3d(-15px, 0, 0);
+  transform: translate3d(-15px, 0, 0);
+}
+
+
+
+</style>
+        
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
+<!-- Start Header -->
+        <header id="top-header"> <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
+
+                                        <li class="dropdown profile-wrap" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                              <div class="profile-icon">
+                                                <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                Me <span class="caret"></span></a>
+                                              </div>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li class="user-drop-icon">
+                                                <a href="my-profile.html">
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <span>{{User_Name}}</span>
+                                                </a>
+                                              </li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                              <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+                                            </ul>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="col-sm-12 col-md-12">
+                 <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+                                    
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                    
+                                    </div>
+                                    <ul class="nav navbar-nav">
+                                      <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
+                                    </ul>
+                                    
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                          <li ng-if="User_Id>0"><a href="pricing.html">Pricing</a></li>
+                                      <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                      <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav1">
+                                              <li><a href="add-products.html">Add Products</a></li>
+                                              <li><a href="seller-products.html">Products</a></li>
+                                              <li><a href="seller-orders.html">Orders</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li><a href="buyer-orders.html">Orders</a></li>
+                                              <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li ng-if="User_Id<=0"><a href="pricing.html">Pricing</a></li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                </div>
+              </div>
+            </div>
+        </header>
+    <!-- End Header -->
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller">
+
+<div class="clearfix"></div>
+  <section id="book-now">
+
+      <div class="row">
+          <div class="col-md-12 text-center">
+             <h2 class="section-title">Pricing table</h2>
+             <h4 class="">Pay as you go.No long terms contracts.Cancel anytime.</h4><br><br>
+           
+          </div>
+        </div>
+      <div class="container p-5">
+          <div class="row m-auto text-center w-75">
+            
+            <div class="col-xs-12 col-sm-6 col-md-3 princing-item red">
+              <div class="pricing-divider ">
+                  <h3 class="text-light">Free</h3>
+                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 120 <span class="h5">/mo</span></h4>
+                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+              <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+              <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+            </svg>
+              </div>
+              <div class="card-body bg-white mt-0 shadow">
+                <ul class="list-unstyled mb-5 position-relative">
+                    <li><b>50 </b>   Products</li>
+                    <li><b>$10</b>   Per Order Confirmation</li>
+                    <li><b>3 Month</li>
+                    <li><b>Help center access</b></li>
+                 </ul>
+               <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
+              </div>
+            </div>
+           
+    
+            
+            
+            <div class="col-xs-12 col-sm-6 col-md-3 princing-item blue">
+              <div class="pricing-divider ">
+                  <h3 class="text-light">Starter</h3>
+                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 50 <span class="h5">3/mo</span></h4>
+                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+              <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+              <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+            </svg>
+              </div>
+    
+              <div class="card-body bg-white mt-0 shadow">
+                <ul class="list-unstyled mb-5 position-relative">
+                    <li><b>50 </b>   Products</li>
+                    <li><b>$5</b>     Per Order Confirmation</li>
+                    <li><b>3 Month</li>
+                    <li><b>Help center access</b></li>
+                </ul>
+                <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
+              </div>
+            </div>
+                   
+            
+            <div class="col-xs-12 col-sm-6 col-md-3 princing-item blue">
+                <div class="pricing-divider ">
+                    <h3 class="text-light">Wholeseller</h3>
+                  <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 100 <span class="h5">/mo</span></h4>
+                   <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+                <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+        c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+                <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+        c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+                <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+        H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+                <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+        c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+              </svg>
+                </div>
+      
+                <div class="card-body bg-white mt-0 shadow">
+                  <ul class="list-unstyled mb-5 position-relative">
+                    <li><b>100 </b>   Products</li>
+                    <li><b>$3</b>     Per Order Confirmation</li>
+                    <li><b>Monthly</li>
+                    <li><b>Help center access</b></li>
+                  </ul>
+                  <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
+                </div>
+              </div>
+                     
+            
+            
+             
+            <div class="col-xs-12 col-sm-6 col-md-3 princing-item green">
+              <div class="pricing-divider ">
+                  <h3 class="text-light">Wholeseller Pro</h3>
+                <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 200 <span class="h5">/mo</span></h4>
+                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+              <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+      c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+      c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+              <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+      H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+              <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+      c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+            </svg>
+              </div>
+    
+              <div class="card-body bg-white mt-0 shadow">
+                <ul class="list-unstyled mb-5 position-relative">
+                  <li><b>500</b>    Products</li>
+                 <li><b>$3</b>     Per Order Confirmation</li>
+                 <li><b>Monthly</li>
+                 <li><b>Help center access</b></li> 
+                </ul>
+                <a href="pricing-signup.html"><button type="button"  class="btn btn-lg btn-block  btn-custom ">Get Started</button></a> 
+              </div>
+            </div>
+                   
+             
+          
+            
+            
+          </div>
+        </div>
+  </section>
+
+
+
+<br><br>
+
+
+  <section id="footer">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-4 col-md-4 col-xs-5 pd-l80">
+                  <div class="foot-text">
+                        <h4>Contact Us</h4>
+                        <h5>tradeexchange.co</h5>
+                        <p>06-32 Paya Lebar Square</p>
+                        <p>Singapore 409051</p>
+                 </div>
+              </div>
+              <div class="col-sm-4 col-md-4 col-xs-7 pd-l80">
+                  <div class="foot-text">
+                       <!-- <h4>Navigations</h4> -->
+                      <ul>
+                          <li><a href="packages.html">Packages</a></li>
+                          <li><a href="faq.html">FAQ</a></li>
+                          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                          <li><a href="about-us.html">About Us</a></li>
+                          <li><a href="terms.html">Terms and Conditions</a></li>
+                          <li><a href="disclaimer.html">Disclaimer</a></li>
+                      </ul>
+                  </div>
+                  
+              </div>
+              <div class="col-sm-4 col-md-4 col-xs-12">
+                  <div class="foot-text">
+                      <div class="foot-logo">
+                          <a href="index.html">
+                              <img src="assets/img/white-logo.png" alt="" title="" / >
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <footer  id="bottom-strip">
+      <p>Copyright 2018- www.tradeexchange.co (80startups Venture) - All Rights Reserved</p>
+  </footer>
+  
+
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+    
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="assets/js/custom.js"></script>
+<script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280; 
+var sc_invisible=1; 
+var sc_security="ecdd2308"; 
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="website
+statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+
+</div>
+</body>
+
+</html>

@@ -16,64 +16,97 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    </head>
+  
+
+        <style>
+        
+
+
+
+        
+        .bgorange {
+    background: rgba(255,168,25,1);
+    background: -moz-linear-gradient(left, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,168,25,1)), color-stop(100%, rgba(255,51,8,1)));
+    background: -webkit-linear-gradient(left, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
+    background: -o-linear-gradient(left, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
+    background: -ms-linear-gradient(left, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
+    background: linear-gradient(to right, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa819', endColorstr='#ff3308', GradientType=1 );
+}
+        </style>
+  
+      </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
         <!-- Start Header -->
+
+
+
+       <!--  <section id="header">
+          <div class="container">
+              <div class="col-md-12 bgorange" style="height:10px;">
+              </div>
+              <div class="col-md-4">
+                  <a href="/index.html"><img class="navbar-brand" src="/assets/sparksinasia.png" alt="Sparksinasia"></a>
+              </div>
+              <div class="col-md-8">
+                  <div class="row row-no-padding rightalign " id="navcontainer">
+                      <ul class="menubar">
+  
+                          <li><a href="/student/">Register</a></li>
+                          <li><a href="/student/">Login</a></li>
+  
+                      </ul>
+                  </div>
+                  <div class="row row-no-padding rightalign" style="height:70px;">
+  
+                  </div>
+                  <div class="row row-no-padding rightalign" id="navcontainer">
+                      <ul class="menubar">
+                          <li>Home</li>
+                          <li><a href="#">Trainers</a></li>
+                          <li><a href="#">Students</a></li>
+                          <li><a href="#">Corporates</a></li>
+                          <li><a href="#">Skills</a></li>
+                          <li><a href="#">Blog</a></li>
+                          <li><a href="#">Contact Us</a></li>
+                      </ul>
+                  </div>
+  
+              </div>
+  
+  
+              <div class="col-md-12 bgorange" style="height:2px;">
+              </div>
+  
+  
+          </div>
+  
+      </section>   -->
+
+
+
+
+
+
+
+
+
+
 <header id="top-header">
-          <!--   <div class="orenge-logo-strip">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-xs-12 xs-pd0">
-                            <div class="col-sm-3 col-xs-12 txt-logo xs-bs-gray">
-                                 <a href="index.html">
-                                    <img src="assets/img/logo.png" alt="" title="">
-                                </a>
-                            </div>
-                            <div class="col-sm-9 col-xs-12">
-                              <div class="navigation-wrap">
-                                <nav class="navbar navbar-default">
-                                  <div class="container-fluid">
-
-                                    <div class="navbar-header">
-                                      <button type="button" class="navbar-toggle collapsed xs-btn-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                      </button>
-
-                                    </div>
-
-
-                                    <div class="collapse navbar-collapse top-nav" id="bs-example-navbar-collapse-1">
-
-                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
-
-                                        <li ng-if="User_Id>0"><a href="dashboard.html">Dashboard</a></li>
-                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
-                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
-                                        <li ng-if="User_Id>0"><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                </nav>
-                              </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-                        <div class="orenge-logo-strip">
+           <div class="orenge-logo-strip">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
+
+
                             <div class=" col-sm-3 txt-logo">
                                  <a href="index.html">
                                     <img src="assets/img/logo.png" alt="" title="">
                                 </a>
                             </div>
+
+
                             <div class="col-sm-9">
                               <div class="navigation-wrap">
                                 <nav class="navbar navbar-default">
@@ -114,6 +147,9 @@
                                   </div>
                                 </nav>
                               </div>
+
+                              
+
                             </div>
 
                         </div>
@@ -144,7 +180,7 @@
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
 
-                                        <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                          <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
                                       <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
@@ -164,6 +200,7 @@
                                               <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
                                             </ul>
                                         </li>
+                                        <li ng-if="User_Id<=0"><a href="pricing.html">pricing</a></li>
                                         <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
                                         <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
                                         <li><a href="contact.html">Contact Us</a></li>
@@ -224,6 +261,10 @@
                 </div>
             </div>
         </header>
+
+
+
+
 
          <!-- <section id="prduct-wrap">
           <div class="container">

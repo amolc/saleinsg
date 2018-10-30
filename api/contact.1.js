@@ -19,9 +19,7 @@ var productCRUD = CRUD(db, 'tbl_Products');
 var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
 var orderCRUD = CRUD(db, 'tbl_Orders');
 var messagesCRUD = CRUD(db, 'tbl_Messages');
-var productSpecificationCRUD=CRUD(db,'tbl_ProductSpecification');
 const converter = require('google-currency');
-
 
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
@@ -37,18 +35,15 @@ var transporter = nodemailer.createTransport({
 
 
 
-
 ////-----------------CONTACT-----------------
-
-
-    exports.contactus = function (req, res) {
+exports.contactus = function (req, res) {
     console.log("Pricing table form");
     var CompanyName = req.body.company_name;
     var email = req.body.email;
     var phoneNumber = req.body.phone;
-
+    
       var recipientEmail = 'narodashakuntala94@gmail.com';
-
+     
       var subject = "[Fountaintechies.com] Contact Us enquiry";
       var mailbody = '<table>\
                           <tr>\
@@ -78,222 +73,16 @@ var transporter = nodemailer.createTransport({
                           <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
                         </tr>\
                       </table>';
-
-
-
+  
+                    
+  
         send_mail(recipientEmail, subject, mailbody);
         var successmsg={status:"success"};
         console.log(successmsg);
         res.json(successmsg)
   }
-
-
-  function send_mail(usermail, subject, mailbody) {
-
-
-    let mailOptions={
-      from : 'operations@80startups.com',
-      to : 'narodashakuntala94@gmail.com',
-      subject : subject,
-      html : mailbody
-   };
-
-   // Sending email.
-   smtpTransport.sendMail(mailOptions, function(error, response){
-     if(error) {
-        throw new Error("Error in sending email");
-     }
-     console.log("Message sent: " + JSON.stringify(response));
-   });
-
-  };
-
-
-
-/*
-
- exports.contactus = function (req, res) {
-
-
-    var to =  req.body.Email+',narodashakuntala94@gmail.com';
-                              var subject = req.body.Subject;
-                              var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
-  <meta name="viewport" content="width=device-width">\
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">\
-  <title>Empty Template</title>\
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">\
-  <style type="text/css" id="media-query">\
-  body {margin: 0;padding: 0; }\
-  table, tr, td {vertical-align: top;border-collapse: collapse; }\
-  .ie-browser table, .mso-container table {table-layout: fixed; }* {line-height: inherit; }\
-  a[x-apple-data-detectors=true] {color: inherit !important;text-decoration: none !important; }[owa] .img-container div, [owa] .img-container button {display: block !important; }[owa] .fullwidth button {width:100% !important; }\
-  [owa] .block-grid .col {display: table-cell;float: none !important;vertical-align: top; }\
-  .ie-browser .num12, .ie-browser .block-grid, [owa] .num12, [owa] .block-grid {width: 620px !important; }\
-  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td,\
-  .ExternalClass div {line-height: 100%; }\
-  .ie-browser .mixed-two-up .num4, [owa] .mixed-two-up .num4 {width: 204px !important; }\
-  .ie-browser .mixed-two-up .num8, [owa] .mixed-two-up .num8 {width: 408px !important; }\
-  .ie-browser .block-grid.two-up .col, [owa] .block-grid.two-up .col {width: 310px !important; }\
-  .ie-browser .block-grid.three-up .col, [owa] .block-grid.three-up .col {width: 206px !important; }\
-  .ie-browser .block-grid.four-up .col, [owa] .block-grid.four-up .col {width: 155px !important; }\
-  .ie-browser .block-grid.five-up .col, [owa] .block-grid.five-up .col {width: 124px !important; }\
-  .ie-browser .block-grid.six-up .col, [owa] .block-grid.six-up .col {width: 103px !important; }\
-  .ie-browser .block-grid.seven-up .col, [owa] .block-grid.seven-up .col {width: 88px !important; }\
-  .ie-browser .block-grid.eight-up .col, [owa] .block-grid.eight-up .col {width: 77px !important; }\
-  .ie-browser .block-grid.nine-up .col, [owa] .block-grid.nine-up .col {width: 68px !important; }\
-  .ie-browser .block-grid.ten-up .col, [owa] .block-grid.ten-up .col {width: 62px !important; }\
-  .ie-browser .block-grid.eleven-up .col, [owa] .block-grid.eleven-up .col {width: 56px !important; }\
-  .ie-browser .block-grid.twelve-up .col, [owa] .block-grid.twelve-up .col {width: 51px !important; }\
-  @media only screen and (min-width: 640px) {.block-grid {width: 700px !important; }\
-  .block-grid .col {vertical-align: top; }\
-  .block-grid .col.num12 {width: 620px !important; }\
-  .block-grid.mixed-two-up .col.num4 {width: 204px !important; }\
-  .block-grid.mixed-two-up .col.num8 {width: 408px !important; }\
-  .block-grid.two-up .col {width: 310px !important; }\
-  .block-grid.three-up .col {width: 206px !important; }\
-  .block-grid.four-up .col {width: 155px !important; }\
-  .block-grid.five-up .col {width: 124px !important; }\
-  .block-grid.six-up .col {width: 103px !important; }\
-  .block-grid.seven-up .col {width: 88px !important; }\
-  .block-grid.eight-up .col {width: 77px !important; }\
-  .block-grid.nine-up .col {width: 68px !important; }\
-  .block-grid.ten-up .col {width: 62px !important; }\
-  .block-grid.eleven-up .col {width: 56px !important; }\
-  .block-grid.twelve-up .col {width: 51px !important; } }\
-  @media (max-width: 640px) {.block-grid, .col {min-width: 320px !important;max-width: 100% !important;display: block !important; }\
-  .block-grid {width: calc(100% - 40px) !important; }.col {width: 100% !important; }.col > div {margin: 0 auto; }img.fullwidth, img.fullwidthOnMobile {max-width: 100% !important; }\
-  .no-stack .col {min-width: 0 !important;display: table-cell !important; }\
-  .no-stack.two-up .col {width: 50% !important; }\
-  .no-stack.mixed-two-up .col.num4 {width: 33% !important; }.no-stack.mixed-two-up .col.num8 {width: 66% !important; }\
-  .no-stack.three-up .col.num4 {width: 33% !important; }\
-  .no-stack.four-up .col.num3 {width: 25% !important; } }\
-  </style></head>\
-  <body class="clean-body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #FFFFFF">\
-  <style type="text/css" id="media-query-bodytag">\
-  @media (max-width: 520px) {.block-grid {min-width: 320px!important;max-width: 100%!important;width: 100%!important;display: block!important;}\
-  .col {min-width: 320px!important;max-width: 100%!important;width: 100%!important;display: block!important;}\
-  .col > div {margin: 0 auto;}\
-  img.fullwidth {max-width: 100%!important;}\
-  img.fullwidthOnMobile {max-width: 100%!important;}\
-  .no-stack .col {min-width: 0!important;display: table-cell!important;}\
-  .no-stack.two-up .col {width: 50%!important;}\
-  .no-stack.mixed-two-up .col.num4 {width: 33%!important;}\
-  .no-stack.mixed-two-up .col.num8 {width: 66%!important;}\
-  .no-stack.three-up .col.num4 {width: 33%!important}\
-  .no-stack.four-up .col.num3 {width: 25%!important}}\
-  </style>\
-  <table class="nl-container" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px; border: 1px solid #52bad5; background-color: #FFFFFF;width: 700" cellpadding="0" cellspacing="0">\
-  <tbody>\
-  <tr style="vertical-align: top">\
-  <td style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">\
-  <div style="background-color:transparent;">\
-  <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid two-up ">\
-  <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-  <div class="col num6" style="max-width: 320px;min-width: 310px;display: table-cell;vertical-align: top;">\
-  <div style="background-color: transparent; width: 100% !important;">\
-  <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 10px; padding-left: 10px;">\
-  <div align="left" class="img-container left fixedwidth" style="padding-right: 0px;  padding-left: 0px;">\
-  <div style="line-height:10px;font-size:1px">&#160;</div>  <img class="left fixedwidth" align="left" border="0" src="https://www.tradeexchange.co/assets/img/logo.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 100%;max-width: 174px" width="174">\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  <div class="col num6" style="max-width: 320px;min-width: 310px;display: table-cell;vertical-align: top;">\
-  <div style="background-color: transparent; width: 100% !important;">\
-  <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 10px; padding-left: 10px;">\
-  <div style="font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;line-height:120%;color:#555555; padding-right: 0px; padding-left: 0px; padding-top: 15px; padding-bottom: 15px;">\
-  <div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.company_name+'</strong></span></p>\
-  <div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.email+'</strong></span></p>\
-  <div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.phone+'</strong></span></p>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  <div style="background-color:transparent;">\
-  <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
-  <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-  <div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
-  <div style="background-color: transparent; width: 100% !important;">\
-  <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">\
-  <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 15px;">\
-  <div align="center"><div style="border-top: 1px solid #222222; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  <div style="background-color:transparent;">\
-  <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
-  <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-  <div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
-  <div style="background-color: transparent; width: 100% !important;">\
-  <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 5px; padding-left: 5px;">\
-  <div style="font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;color:#52BAD5; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 5px;">\
-  <div style="font-size:12px;line-height:14px;font-family:Lato, Tahoma, Verdana, Segoe, sans-serif;color:#52BAD5;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><span style="font-size: 20px; line-height: 24px;"><strong><span style="line-height: 24px; font-size: 20px;">Mail From Tradeexchange!</span></strong></span></p><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"></p></div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  <div style="background-color:transparent;">\
-  <div style="Margin: 0 auto;min-width: 320px;max-width: 700px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
-  <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
-  <div class="col num12" style="min-width: 320px;max-width: 620px;display: table-cell;vertical-align: top;">\
-  <div style="background-color: transparent; width: 100% !important;">\
-  <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
-  <div style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
-  <div align="center"><div style="border-top: 1px dotted #CCCCCC; width:100%; line-height:1px; height:1px; font-size:1px;">&#160;</div></div>\
-  <p>'+req.body.msg+'</p>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  </div>\
-  <div style="background-color: #52bbd5; color: #ffffff; padding: 10px 10px 2px;">\
-  <span style="width:50%; text-align: left; display: inline-block; float: left; line-height: 30px;">\
-  <a href="tradeexchange.co" style="color: #ffffff; text-decoration: none; font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif;">tradeexchange.co</a>\
-  </span>\
-  <span style="width:50%; text-align: right; display: inline-block;">\
-  <a href="https://www.facebook.com/tradeexchange.co" title="Facebook" target="_blank">\
-  <img src="https://www.tradeexchange.co/assets/img/facebook@2x.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto; max-width: 32px !important"></a>\
-  </span>\
-  </div></td>\
-  </tr>\
-  </tbody>\
-  </table>\
-  </body></html>';
-                               send_mail( to, subject, mailbody );
-
-  console.log(subject);
-              var resdata = {
-                  status: true,
-                  message: 'Mail Sent successfully'
-              };
-
-              res.jsonp(resdata);
-
-
-  };
-
-
-*/
-
-
-
-
-
+  
+  
 
 
 
@@ -386,14 +175,10 @@ exports.allcategories = function (req, res) {
 };
 
 exports.getsubcategories = function (req, res) {
-    var catId=req.params.id;
-    console.log('cat id to get sub categories', catId)
-    var sql = "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = "+catId;
+    var sql = "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = "+req.params.id;
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
-        console.log(data);
-
     });
 };
 
@@ -1024,39 +809,20 @@ exports.filterbycountry = function (req, res) {
     });
 };
 
-
-
-// exports.filterbyseller=function(req,res){
-//     var sellerName=req.params.sellerName;
-//     productCRUD.load({'sellerName':sellerName},function(err,data){
-//         if(err){
-//             console.log(err);
-//         }else{
-//             res.json(data);
-//         }
-//     })
-// }
-
-
-// exports.filterbyCouCat/*/*/ = function (req, res) {
-//     console.log('parameter with url to api for query the filter data',req.body);
-
-//     var CountryId = req.body.CountryId;
-//     var CategoryId = req.body.CategoryId;
-//     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-//     //console.log(sql);
-//     db.query(sql, function (err, data) {
-//         res.json(data);
-//     });
-// };
-
+exports.filterbyseller = function (req, res) {
+    var id = req.params.id;
+    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+    ////console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
+};
 
 
 exports.filterbyCouCat = function (req, res) {
-    console.log('parameter with url to api for query the filter data',req.body);
 
-    var CountryId = req.params.CountryId;
-    var CategoryId = req.params.CategoryId;
+    var CountryId = req.body.CountryId;
+    var CategoryId = req.body.CategoryId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
@@ -1065,25 +831,21 @@ exports.filterbyCouCat = function (req, res) {
 };
 
 
-
 exports.filterbyCatSub = function (req, res) {
-    var SubCatId = req.params.SubCatId;
-    console.log('sub cat id ', SubCatId );
-    var CategoryId = req.params.CategoryId;
-    console.log('cat id is',CategoryId);
+
+    var CountryId = req.body.CountryId;
+    var CategoryId = req.body.CategoryId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
         res.json(data);
-        // console.log('filterbyCatSub data is :',data);
     });
 };
 
 exports.filterbySelCat = function (req, res) {
-    console.log(req.body);
 
-    var SellerId = req.params.SellerId;
-    var CategoryId = req.params.CategoryId;
+    var SellerId = req.body.SellerId;
+    var CategoryId = req.body.CategoryId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
@@ -1093,9 +855,9 @@ exports.filterbySelCat = function (req, res) {
 
 exports.filterbyall = function (req, res) {
 
-    var CountryId = req.params.CountryId;
-    var CategoryId = req.params.CategoryId;
-    var SubCatId = req.params.SubCatId;
+    var CountryId = req.body.CountryId;
+    var CategoryId = req.body.CategoryId;
+    var SubCatId = req.body.SubCatId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
@@ -1105,9 +867,9 @@ exports.filterbyall = function (req, res) {
 
 exports.filterallbyseller = function (req, res) {
 
-    var SellerId = req.params.SellerId;
-    var CategoryId = req.params.CategoryId;
-    var SubCatId = req.params.SubCatId;
+    var SellerId = req.body.SellerId;
+    var CategoryId = req.body.CategoryId;
+    var SubCatId = req.body.SubCatId;
     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
     //console.log(sql);
     db.query(sql, function (err, data) {
@@ -1115,21 +877,16 @@ exports.filterallbyseller = function (req, res) {
     });
 };
 
-
-
-
-
-
 exports.getProductDetails = function (req, res) {
 
-    var ProductId = req.params.id;
-     var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
-    // //console.log(sql);
-      db.query(sql, function (err, data) {
-          res.json(data[0]);
-        //  console.log('query data',data[0]);
-      });
-  };
+  var ProductId = req.params.id;
+   var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
+  // //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data[0]);
+    });
+
+};
 
 exports.getReqProductDetails = function (req, res) {
 
@@ -1164,41 +921,16 @@ exports.bidinfo = function (req, res) {
 
 };
 
-// exports.getProductSpecification = function (req, res) {
+exports.getProductSpecification = function (req, res) {
 
-//   var ProductId = req.params.id;
-//    var sql = "SELECT `SpecificationId`,`Title`,`Description` FROM `tbl_ProductSpecification` WHERE `ProductId`= "+ProductId;
-//    //console.log(sql);
-//     db.query(sql, function (err, data) {
-//         res.json(data);
-//     });
+  var ProductId = req.params.id;
+   var sql = "SELECT `SpecificationId`,`Title`,`Description` FROM `tbl_ProductSpecification` WHERE `ProductId`= "+ProductId;
+   //console.log(sql);
+    db.query(sql, function (err, data) {
+        res.json(data);
+    });
 
-// };
-
-exports.getProductSpecification=function(req,res){
-    var ProductId=req.params.id;
-    productCRUD.load({'ProductId':ProductId},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-            // console.log('product details by p id', data);
-            res.json(data);
-        }
-    })
-
-}
-
-exports.getSpecification=function(req,res){
-    var ProductId=req.params.id;
-    productSpecificationCRUD.load({'ProductId':ProductId},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-            // console.log('specification of Product by Product Id is:', data);
-            res.json(data);
-        }
-    })
-}
+};
 
 exports.getcurrency = function (req, res) {
 
@@ -1254,66 +986,15 @@ exports.featuredseller = function (req, res) {
 
 };
 
+exports.getsellerinfo = function (req, res) {
 
-
-exports.getsellerinfobyname=function(req,res){
-    var companyName =req.params.companyName;
-    console.log('company name is',companyName);
-    userCRUD.load({'userName':companyName},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-          console.log(data);
-            res.json(data);
-        }
-    })
-}
-
-
-
-// exports.getsellerinfo = function (req, res) {
-//     console.log('in seller info api call');
-
-//     var UserId = req.params.id;
-
-//        var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`Location`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
-
-//       ////console.log(sql);
-//       db.query(sql, function (err, data) {
-//           res.json(data[0]);
-//       });
-
-//   };
-
-  exports.getsellerinfo = function (req, res) {
-    console.log('in seller info api call');
-
-    var UserId = req.params.id;
-    userCRUD.load({'SupId':UserId},function(err, data){
-        if(err){
-            console.log(err);
-        }else{
-            res.json(data);
-        }
-
-    })
-
-
-
-  };
-
-exports.filterbyseller = function (req, res) {
-     var id=req.params.id;
-    console.log('req is in fillter by seller api');
-   // var sellerName = req.params.sellerName;
-    //console.log(sellerName);
-     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-
-    //console.log(sql);
+  var UserId = req.params.id;
+    var sql = "select s.`FirstName`,s.`LastName`,s.`CompanyName`,s.`Email`,s.`Phone`,s.`Location`,s.`ProfilePic`,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
+    ////console.log(sql);
     db.query(sql, function (err, data) {
-        res.json(data);
-        console.log('first query data is',data);
+        res.json(data[0]);
     });
+
 };
 
 exports.addbankorder = function (req, res) {
@@ -1468,7 +1149,7 @@ exports.addorder = function(req, res){
 };
 
 ///____________________END______________________
-/*
+
 function send_mail(usermail, subject, mailbody) {
 
   var auth = {
@@ -1499,4 +1180,3 @@ function send_mail(usermail, subject, mailbody) {
     }
   });
 };
-*/

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript">
+    if (window.localStorage.getItem('User_Id') > 0) {
+        window.location.href = "add-products.html";
+    }
+</script>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>tradeexchange.co </title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body ng-app="80consult" ng-controller="contactcontroller">
+    <!-- Start Header -->
+
+    <header id="top-header">
+        <div class="orenge-logo-strip">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class=" col-sm-3 txt-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo.png" alt="" title="">
+                            </a>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                    <div class="container-fluid">
+
+                                        <div class="navbar-header">
+                                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+
+                                        </div>
+                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                            <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
+
+                                                <li class="dropdown profile-wrap" ng-if="User_Id>0">
+                                                    <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                                        <div class="profile-icon">
+                                                            <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                            Me <span class="caret"></span>
+                                                    </a>
+                                        </div>
+                                        <ul class="dropdown-menu" id="nav2">
+                                            <li class="user-drop-icon">
+                                                <a href="my-profile.html">
+                                                    <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                    <span>{{User_Name}}</span>
+                                                </a>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                            <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out"
+                                                        aria-hidden="true"></i> </a></li>
+                                        </ul>
+                                        </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="cuntry-nav-strip">
+            <div class="container">
+                <div class="col-sm-12 col-md-12">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid pd0">
+
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li><a href="products.html">Market Place</a></li>
+                                <li><a href="product-requests.html">Bids</a></li>
+                            </ul>
+
+                            <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
+                                <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+
+                                    <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                    <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
+                                    <li class="dropdown" ng-if="User_Id>0">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
+                                            <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" id="nav1">
+                                            <li><a href="add-products.html">Add Products</a></li>
+                                            <li><a href="seller-products.html">Products</a></li>
+                                            <li><a href="seller-orders.html">Orders</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown" ng-if="User_Id>0">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" id="nav2">
+                                            <li><a href="buyer-orders.html">Orders</a></li>
+                                            <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                            <li><a href="request-product.html">Request Item</a></li>
+                                            <li><a href="buyer-bids.html">My Bids</a></li>
+                                        </ul>
+                                    </li>
+                                    <li ng-if="User_Id<=0"><a href="pricing-signup.html">pricing</a></li>
+                                     <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                    <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
+    <section id="book-now">
+        <div class="container">
+                <div ng-hide="successmsg" class="head_3">
+                        <h3 style="text-align:center;color:green" class="success">{{message}}</h3>       
+                </div>
+            <div class="row" ng-hide="formhide">
+                <div class="col-sm-12">
+                    <div class="login-form-wrap">
+                        <div class="col-md-12 text-center">
+                            <h2 class="section-title">Create a new account</h2>
+                        </div>
+
+                        <form name="myForm" novalidate>
+                            <div class=" ">
+                                <div class="form-group">
+                                  <div ng-class="{ 'has-error' : myForm.company_name.$invalid && !myForm.company_name.$pristine }">
+                                   <label for="">Company Name :</label>
+                                    <input type="text" class="form-control" ng-model="data.company_name" name="company_name" id="company_name"
+                                        required>
+                                    <span ng-show="myForm.company_name.$invalid && !myForm.company_name.$pristine" class="help-block1 has-error">Last
+                                    Name required</span>
+                                   </div>
+                                </div>
+
+                                <div class="form-group">
+                                 <div ng-class="{ 'has-error' : myForm.phone.$invalid && !myForm.phone.$pristine }">
+                                   <label for="">Mobile Number :</label>
+                                    <input type="number" class="form-control" ng-model="data.phone" name="phone" id="phone"
+                                        required>
+                                  </div>
+                                  <span ng-show="myForm.phone.$invalid && !myForm.phone.$pristine" class="help-block1 has-error">Phone
+                                        required</span>
+                                
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div ng-class="{ 'has-error' : myForm.email.$invalid && !myForm.email.$pristine }">
+                                    <label for="email">Email Id :</label>
+                                    <input type="email" class="form-control" ng-model="data.email" name="email" id="email"
+                                        required>
+                                    </div>
+                                    <span ng-show="myForm.email.$invalid && !myForm.email.$pristine" class="help-block1 has-error">Email
+                                      required</span>
+                              
+                                </div>
+
+
+                               
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <div class="form-group">
+                                 <!-- <button class="btn btn-success small-btn mr-t30 wpcf7-form-control wpcf7-submit" type="submit"
+                                    value="Apply">submit</button>   -->
+                                    <center><a href="" ng-disabled="myForm.$invalid" ng-click="contactUS3()"  class="btn_fl btn_gs">  Submit</a></center>
+                     
+                            </div>
+                        </form>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </section>
+
+
+
+
+
+    <div w3-include-html="footer.html"></div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/star-rating.js"></script>
+    <script src="assets/js/custom.js"></script>
+  
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQD-LT4-VzlsdNpf33yNDeT38EaF3Kz-g&libraries=places"></script>
+    <script>
+
+
+// google.maps.event.addDomListener(window, 'load', function () 
+// {
+
+//   var options = { types: ['(cities)']};
+
+//  // var options = { types: ['(cities)'], componentRestrictions: {country: "au"}
+//  // };
+//             var places = new google.maps.places.Autocomplete(document.getElementById('address'),options);
+//             google.maps.event.addListener(places, 'place_changed', function () { 
+
+
+//             });
+
+// });
+
+    </script>
+    <!-- Start of StatCounter Code for Default Guide -->
+    <script type="text/javascript">
+        var sc_project = 11561280;
+        var sc_invisible = 1;
+        var sc_security = "ecdd2308";
+        var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+        document.write("<sc" + "ript type='text/javascript' src='" + scJsHost + "statcounter.com/counter/counter.js'></" + "script>");
+    </script>
+    <noscript>
+        <div class="statcounter"><a title="website
+statistics" href="http://statcounter.com/" target="_blank"><img
+                    class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div>
+    </noscript>
+    <!-- Google Code added by Amol C - 31st Dec -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-111765056-1');
+    </script>
+    <!-- Google Analytics code over -->
+    </div>
+</body>
+
+</html>

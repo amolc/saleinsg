@@ -60,6 +60,15 @@ app.use('/static', static);
 
 /* testing server side coding */
 app.get('/api/seotags', seo.seotags);
+<<<<<<< HEAD
+=======
+
+
+app.post('/api/contactus', contact.contactus);
+
+
+
+>>>>>>> d45e6f59b6b40ce3c60dbbba9bed7a6863b1326d
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);

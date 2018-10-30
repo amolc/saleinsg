@@ -14,18 +14,25 @@
  });
 
 
- app.controller('contactcontroller', function ($scope, $location, $http, $window) {
+app.controller('contactcontroller', function ($scope, $location, $http, $window) {
+  $scope.data={
+    company_name:"",
+           email:"",
+          phone:"",
+          }
 
    // $window.Stripe.setPublishableKey('pk_test_lTp89fhcIMVEFL2HSVRqJTHO');
 
    //----------- Book Now ------------------------///
 
-   $scope.adults = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-   $scope.child = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-   // $scope.urlParams = $location.search();
-   // console.log($location.search());
+  $scope.adults = ['0','1','2','3','4','5','6','7','8','9','10'];
+  $scope.child = ['0','1','2','3','4','5','6','7','8','9','10'];
+ // $scope.urlParams = $location.search();
+ // console.log($location.search());
 
-
+   $scope.getCountries = function() {
+    $scope.registration = {};
+    $http.get(baseurl + 'allcountries').success(function (res) {
 
    $scope.register = function (formRegistration) {
 
@@ -52,7 +59,99 @@
        // console.log("register IN");
        $http.post(baseurl + 'register', $scope.registration).success(function (data, status) {
 
-         console.log('data', data)
+
+
+
+
+//pricing
+
+$scope.contactUS3 = function (code, result) {
+	console.log($scope.data);
+	if($scope.data.company_name==="")
+	{
+
+        // angular.element(document.querySelector(".in_name")).addClass("has-error");
+		$scope.myForm.company_name.$invalid=true;
+		$scope.myForm.company_name.$pristine=false;
+	   /* console.log($scope.myForm.f_name.$invalid);  */
+	}
+
+	if($scope.data.email==="")
+	{
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+		$scope.myForm.email.$invalid=true;
+		$scope.myForm.email.$pristine=false;
+	}
+	if($scope.data.phone==="")
+	{
+//    			 angular.element(document.querySelector(".in_name")).addClass("has-error");
+		$scope.myForm.phone.$invalid=true;
+		$scope.myForm.phone.$pristine=false;
+	}
+
+	if($scope.company_name=="" && $scope.data.email=="" && $scope.data.phone=="" )
+   {
+
+		$scope.msg=false;
+		$scope.msg1=true;
+		$scope.message1 = "Please fill required field."
+
+   }
+
+	else
+ {
+
+//    	  alert('calling the api');
+		 if($scope.data.company_name!="" && $scope.data.email!="" && $scope.data.phone!="" )
+		 {
+
+      console.log($scope.company_name);
+
+		  $http.post(baseurl + 'contactus',$scope.data).success(function(res) {
+
+			$scope.response = res;
+			console.log(res);
+			   $scope.formhide=true;
+			   $scope.msg1=true;
+				$scope.message = "Thank you for contacting us./nOur Team will contact you real soon." ;
+				$scope.data={
+            company_name:"",
+					   email:"",
+					   phone:"",
+
+				  }
+				$scope.myForm.$setPristine();
+
+		  }).error(function() {
+				// alert("Please check your internet connection or data source..");
+		  });
+		 }
+	 }
+}
+
+
+///____________________END______________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   $scope.register = function(formRegistration){
 
          if (data.status == false) {
            $scope.alertmessage = data.message;
@@ -567,11 +666,27 @@
    };
 
 
+      var previous =  document.referrer;
+      var fullpath = previous.split("?");
+      var pageurl = fullpath[0].split("/");
+      var filename = pageurl.pop();
+      console.log(filename);
+
+      if (filename !== 'products.html')
+      {
+          window.localStorage.removeItem('filter_country');
+          window.localStorage.removeItem('filter_category');
+          window.localStorage.removeItem('filter_subcat');
+          window.localStorage.removeItem('filter_seller');
+
+      }
 
    $scope.saveproduct = function (product) {
 
      // console.log($scope.product);
 
+
+      if(parts.length>1){
 
      if (typeof $scope.product.CategoryId === 'undefined') {
        $scope.alertmessage = "Please Select Category";
@@ -719,11 +834,17 @@
 
 
 
-     }).error(function () {
-       // alert("Please check your internet connection or data source..");
-     });
 
-   };
+    else
+    {
+      console.log('call is here');
+        $http.get(baseurl + 'allproducts').success(function (res) {
+            if (res.status == 'false') {
+            }
+            else {
+                $scope.productslist = res;
+                console.log($scope.productslist);
+            }
 
 
    // Product Page
