@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>tradeexchange.co </title>
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/responsive.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+        <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
+        <style>
+                .more {
+                    /* width: 100%; */
+                    /* background: linear-gradient(210deg,#1f9cd9 20%,#2094d6 30.000000000000004%,#218cd2 40%,#2084cf 50%,#1f7ccc 60.00000000000001%,#1c6cc5 80%,#145dbe); */
+                    background: #457dbf;
+                    height: auto;
+                    margin: 0;
+                    z-index: 99;
+                    border-radius: 10px 10px 10px 10px;
+                    padding-bottom: 40px;
+                }
+                .more ul li {
+                    color: #fff!important;
+                }
+                .page_content ul li, .content-area ul li, .comments-list .comment-body .comment-text ul li {
+                    position: relative;
+                    padding: 0 0 0 10px;
+                    margin: 0 0 14px;
+                    line-height: 18px;
+                    color: #222222;
+                    border: none;
+                    font-size: 13px;
+                    list-style: circle;
+                }
+                .more h6 {
+                    color: #fff;
+                }
+                h6 {
+                    font-family: Poppins;
+                    font-weight: 900!important;
+                    font-size: 21px!important;
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    margin: 0 0 15px;
+                    font-weight: 700;
+                }
+                .box {
+                    background-color: #23C0F1;
+                    width: 350px;
+                    padding: 8px;
+                    z-index: 99;
+                    border-radius: 5px 5px 5px 5px;
+                    align-content: center;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    width: 100%;
+                    text-align: center;
+                }
+                h2 {
+                    font-family: Poppins!important;;
+                    font-weight: 900!important;;
+                }
+                h2, .h2 {
+                    font-size: 40px!important;;
+                    line-height: 46px!important;;
+                }
+                h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+                    /* font-family: 'Poppins', 'sans-serif'; */
+                    /* color: #222222; */
+                    padding: 0;
+                   
+                }
+                p, body {
+                    font-family: "Open Sans";
+                    font-weight: normal;
+                }
+                
+                p {
+                    line-height: 26px;
+                    margin: 0 0 15px;
+                    color: #000000;
+                }
+                p {
+                    font-size: 17px;
+                    letter-spacing: -0.4px;
+                    font-family: Poppins, sans-serif;
+                }
+                
+                
+                .accountingbox {
+                    width: 100%;
+                    background: linear-gradient(210deg, #07b592 20%, #a2f9e8);
+                    /* background: #23C0F1; */
+                    height: auto;
+                    margin: 0;
+                    z-index: 9999;
+                    border-radius: 10px 10px 10px 10px;
+                    padding-bottom: 40px;
+                }
+                .services-grid-thumbnail, .services-carousel-thumbnail {
+                    position: relative;
+                }
+                .services-grid figure, .services-carousel figure {
+                    position: relative;
+                    padding: 0;
+                    margin: 0;
+                    overflow: hidden;
+                }
+                figure {
+                    margin: 1em 40px;
+                }
+                article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+                    display: block;
+                }
+                .services-grid figcaption, .services-carousel figcaption {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+                h3 a {
+                    font-family: Poppins;
+                    font-weight: 700;
+                    color: #fff;
+                }
+                a, .revslider-button:hover, .portfolioFilter a.current, .projects .project .project-title:hover, .blogpage-title a:hover, .blogpage-categories a:hover, .blogpost-categories a:hover, .blogpage-comments-count a:hover, .blogpost-comments-count a:hover, .blogpage-readmore:hover, .widget.widget_nav_menu ul li .sub-menu li a:hover, .widget.widget_tag_cloud .tagcloud a:hover, body.woocommerce .star-rating:before, body.woocommerce .star-rating span:before, .widget_product_categories ul.children li a, .widget_shopping_cart .total {
+                    color: #1e2d3d;
+                }
+                h3, .h3 {
+                    font-size: 28px!important;
+                    line-height: 38px!important;
+                    margin-bottom: 5px!important;
+                }
+                .header1-phone-number, .header1-phone-text, .header-signup-btn, body.header_transparent .nt-is-sticky .header .header-signup-btn, .featured-box-title, .featured-box-link a, .services-grid figcaption .services-grid-title, .services-carousel figcaption .services-carousel-title, .services-grid-link a, .services-carousel-link a, .testimonials-grid .testimonial-name, .testimonials-carousel .testimonial-name, .testimonials-grid .testimonial-company, .testimonials-carousel .testimonial-company, .testimonials-grid .testimonial-project, .testimonials-carousel .testimonial-project, .portfolioFilter a, .project-in-filter .project-filter-title, .project-in-filter .project-filter-category a, .blog-carousel-inner .blog-grid-title, .blog-carousel-inner .blog-grid-categories, label, .label-control, input[type="submit"], .header3-phone-number, .header3-number-toptext, .mm-number .mm-number-toptext, .mm-number .mm-phone-number, .icon-box-title, .staff-grid .staff-name, .staff-grid .staff-position, .staff-grid .staff-department, .projects .project figcaption .project-category a, .projects .project .project-title, .projects .project figcaption .project-category a, .breadcrumbs, .blogpage-readmore, .comment-form .form-submit input[type="submit"], .footer .widget.widget_nav_menu ul li a, .widget.widget_nav_menu ul li .sub-menu li a, .widget.widget_calendar .calendar_wrap table caption, body.woocommerce.post-type-archive-product .woocommerce-result-count, .widget_shopping_cart .buttons a.checkout, .widget_shopping_cart .buttons a, strong, b, .widget_price_filter .price_slider_amount .button, body.woocommerce-page ul.products li.product h3, body.woocommerce-page ul.products li.product .button, body.woocommerce-page.single-product .single_add_to_cart_button, body.woocommerce-cart .shop_table th, body.woocommerce-cart .cart_totals .wc-proceed-to-checkout a.checkout-button, body.woocommerce-checkout .woocommerce-info {
+                    font-family: Poppins;
+                }
+                .services-grid figcaption .services-grid-title, .services-carousel figcaption .services-carousel-title {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                    top: 45%;
+                    color: #fff;
+                    font-weight: 400;
+                    font-size: 17px;
+                    letter-spacing: -0.4px;
+                    font-family: Poppins, sans-serif;
+                    -webkit-transform: translateY(0);
+                    -moz-transform: translateY(0);
+                    -ms-transform: translateY(0);
+                    -o-transform: translateY(0);
+                    transform: translateY(0);
+                    -webkit-transition: transform 0.35s;
+                    -moz-transition: transform 0.35s;
+                    -ms-transition: transform 0.35s;
+                    -o-transition: transform 0.35s;
+                    transition: transform 0.35s;
+                }
+                .services-grid .services-grid-excerpt, .services-carousel .services-carousel-excerpt {
+                    font-size: 13px;
+                    padding: 15px 0;
+                }
+                .clickroute {
+                    cursor: pointer;
+                }
+                
+                
+                .officebox {
+                    width: 100%;
+                    background: linear-gradient(210deg, #cc5b95 20%, #f7dcea);
+                    /* background: #23C0F1; */
+                    height: auto;
+                    margin: 0;
+                    z-index: 9999;
+                    border-radius: 10px 10px 10px 10px;
+                    padding-bottom: 40px;
+                }
+                
+                .grantbox {
+                    width: 100%;
+                    background: linear-gradient(210deg, #fc821e 20%, #f7d5b9);
+                    /* background: #23C0F1; */
+                    height: auto;
+                    margin: 0;
+                    z-index: 9999;
+                    border-radius: 10px 10px 10px 10px;
+                    padding-bottom: 40px;
+                }
+
+                #Heading_593b7b5912cb8 {
+                    font-size: 35px!important;
+                    letter-spacing: -0.8px;
+                    margin-bottom: 25px;
+                    text-align: left;
+                    font-weight: 400;
+                    line-height: 105%;
+                }
+                .testimonial-wrap {
+                        text-align: center;
+                }
+                h4 {
+                    font-size: 30px!important;
+                }
+                h4 {
+                  /*  font-family: Poppins;  */
+                    font-weight: 700;
+                }
+                h4, .h4 {
+                    /* font-size: 22px; */
+                    line-height: 30px;
+                    margin-bottom: 5px;
+                }
+                    input, textarea, .form-control {
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #222222;
+                    background: #f5f5f6;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    border: 2px solid transparent;
+                    box-shadow: none;
+                    outline: none;
+                    padding: 16px 20px 15px;
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+                    width: 100%;
+                    display: block;
+                    height: 50px;
+                    margin-bottom: 10px;
+                }
+                .cf7-submit-btn-push {
+                    margin-top: 20px;
+                }
+
+                .header1-phone-number, .header1-phone-text, .header-signup-btn, body.header_transparent .nt-is-sticky .header .header-signup-btn, .featured-box-title, .featured-box-link a, .services-grid figcaption .services-grid-title, .services-carousel figcaption .services-carousel-title, .services-grid-link a, .services-carousel-link a, .testimonials-grid .testimonial-name, .testimonials-carousel .testimonial-name, .testimonials-grid .testimonial-company, .testimonials-carousel .testimonial-company, .testimonials-grid .testimonial-project, .testimonials-carousel .testimonial-project, .portfolioFilter a, .project-in-filter .project-filter-title, .project-in-filter .project-filter-category a, .blog-carousel-inner .blog-grid-title, .blog-carousel-inner .blog-grid-categories, label, .label-control, input[type="submit"], .header3-phone-number, .header3-number-toptext, .mm-number .mm-number-toptext, .mm-number .mm-phone-number, .icon-box-title, .staff-grid .staff-name, .staff-grid .staff-position, .staff-grid .staff-department, .projects .project figcaption .project-category a, .projects .project .project-title, .projects .project figcaption .project-category a, .breadcrumbs, .blogpage-readmore, .comment-form .form-submit input[type="submit"], .footer .widget.widget_nav_menu ul li a, .widget.widget_nav_menu ul li .sub-menu li a, .widget.widget_calendar .calendar_wrap table caption, body.woocommerce.post-type-archive-product .woocommerce-result-count, .widget_shopping_cart .buttons a.checkout, .widget_shopping_cart .buttons a, strong, b, .widget_price_filter .price_slider_amount .button, body.woocommerce-page ul.products li.product h3, body.woocommerce-page ul.products li.product .button, body.woocommerce-page.single-product .single_add_to_cart_button, body.woocommerce-cart .shop_table th, body.woocommerce-cart .cart_totals .wc-proceed-to-checkout a.checkout-button, body.woocommerce-checkout .woocommerce-info {
+                    font-family: Poppins;
+                }
+
+                .revslider-button, input[type="submit"], input[type="submit"]:active, input[type="submit"]:focus, input[type="submit"]:hover, .widget.widget_search .search-form .form-control, input:active, textarea:active, .form-control:active, input:focus, textarea:focus, .form-control:focus, .widget.widget_tag_cloud .tagcloud a:hover, body.woocommerce .page-numbers li span.current, body.woocommerce .page-numbers li a:hover, .woocommerce-tabs.wc-tabs-wrapper ul.tabs li.active {
+                    border-color: #23c0f1;
+                }
+                .slick-dots li button:hover, .slick-dots li button:focus, .slick-arrow-right:hover, .slick-arrow-left:hover, input[type="submit"], .widget.widget_search .search-form button, .widget.widget_calendar .calendar_wrap table thead th, .blogpost-tags a, .comment-form .form-submit input[type="submit"], .error-page .error-page-button, .widget_price_filter .ui-slider .ui-slider-range, .widget_shopping_cart .buttons a.checkout, body.woocommerce .page-numbers li span.current, body.woocommerce-page.single-product .single_add_to_cart_button, body.woocommerce-cart .cart_totals .wc-proceed-to-checkout a.checkout-button, body.woocommerce-checkout .woocommerce-info, .woocommerce-MyAccount-navigation ul, .woocommerce-MyAccount-navigation ul li, .woocommerce-MyAccount-content .woocommerce-Button, .woocommerce-MyAccount-content .woocommerce-Message .woocommerce-Button, .woocommerce-MyAccount-content p .button {
+                    background: #23c0f1;
+                }
+                    input[type="submit"] {
+                    color: #fff;
+                    width: auto;
+                    padding: 14px 40px 16px;
+                    font-family: 'Poppins', 'sans-serif';
+                    font-weight: 700;
+                    font-size: 13px;
+                    letter-spacing: -0.2px;
+                }
+                button, html input[type="button"], input[type="reset"], input[type="submit"] {
+                    -webkit-appearance: button;
+                    cursor: pointer;
+                }
+                input, textarea, .form-control {
+                    font-size: 13px;
+                    line-height: 18px;
+                    color: #222222;
+                    background: #f5f5f6;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    border: 2px solid transparent;
+                    box-shadow: none;
+                    outline: none;
+                    padding: 16px 20px 15px;
+                    -webkit-transition: all 0.3s ease;
+                    -moz-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
+                    width: 100%;
+                    display: block;
+                    height: 50px;
+                    margin-bottom: 10px;
+                }
+
+                input {
+                    line-height: normal;
+                }
+                button, input, optgroup, select, textarea {
+                    color: inherit;
+                    font: inherit;
+                    margin: 0;
+                }
+
+                .revslider-button, input[type="submit"], input[type="submit"]:active, input[type="submit"]:focus, input[type="submit"]:hover, .widget.widget_search .search-form .form-control, input:active, textarea:active, .form-control:active, input:focus, textarea:focus, .form-control:focus, .widget.widget_tag_cloud .tagcloud a:hover, body.woocommerce .page-numbers li span.current, body.woocommerce .page-numbers li a:hover, .woocommerce-tabs.wc-tabs-wrapper ul.tabs li.active {
+                    border-color: #23c0f1;
+                }
+                input[type="submit"]:active, input[type="submit"]:focus, input[type="submit"]:hover {
+                  
+                    opacity: 0.8;
+                }
+                h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+                /* font-family: 'Poppins', 'sans-serif'; */
+                color: #222222;
+                padding: 0;
+                margin: 0;
+                }
+
+                .user-img1 {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                    margin: 20px auto;
+                    overflow: hidden;
+                }
+                p, body {
+                    font-family: "Open Sans";
+                    font-weight: normal;
+                }
+                p {
+                    line-height: 26px;
+                    margin: 0 0 15px;
+                    color: #000000;
+                }
+                p {
+                    font-size: 17px;
+                    letter-spacing: -0.4px;
+                    font-family: Poppins, sans-serif;
+                }
+    </style>
+                
+    </head>
+    <body ng-app="80consult" ng-controller="contactcontroller">
+<!-- Start Header -->
+        <header id="top-header"> <div class="orenge-logo-strip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class=" col-sm-3 txt-logo">
+                                 <a href="index.html">
+                                    <img src="assets/img/logo.png" alt="" title="">
+                                </a>
+                            </div>
+                            <div class="col-sm-9">
+                              <div class="navigation-wrap">
+                                <nav class="navbar navbar-default">
+                                  <div class="container-fluid">
+
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin();">
+
+                                        <li class="dropdown profile-wrap" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle profile-img" data-toggle="dropdown" href="#nav2">
+                                              <div class="profile-icon">
+                                                <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
+                                                Me <span class="caret"></span></a>
+                                              </div>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li class="user-drop-icon">
+                                                <a href="my-profile.html">
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <span>{{User_Name}}</span>
+                                                </a>
+                                              </li>
+                                              <li role="separator" class="divider"></li>
+                                              <li><a href="my-profile.html">My Profile <i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                              <li><a href="javascript:void(0)" ng-click="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i> </a></li>
+                                            </ul>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                              </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="cuntry-nav-strip">
+              <div class="container">
+                <div class="col-sm-12 col-md-12">
+                 <nav class="navbar navbar-default">
+                                  <div class="container-fluid pd0">
+                                    
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                    
+                                    </div>
+                                    <ul class="nav navbar-nav">
+                                      <li><a href="products.html">Market Place</a></li>
+                                      <li><a href="product-requests.html">Bids</a></li>
+                                    </ul>
+                                    
+                                    <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
+                                      <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
+                                       
+                                        <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
+                                      <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav1">Seller
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav1">
+                                              <li><a href="add-products.html">Add Products</a></li>
+                                              <li><a href="seller-products.html">Products</a></li>
+                                              <li><a href="seller-orders.html">Orders</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown" ng-if="User_Id>0">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#nav2">Buyer
+                                            <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" id="nav2">
+                                              <li><a href="buyer-orders.html">Orders</a></li>
+                                              <li><a href="shortlisted-products.html">Shortlisted Items</a></li>
+                                              <li><a href="request-product.html">Request Item</a></li><li><a href="buyer-bids.html">My Bids</a></li>
+                                            </ul>
+                                        </li>
+                                        <li ng-if="User_Id<=0"><a href="login.html">Login</a></li>
+                                        <li ng-if="User_Id<=0"><a href="register.html">Register</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </nav>
+                </div>
+              </div>
+            </div>
+        </header>
+    <!-- End Header -->
+  <div data-ng-app="80consult" data-ng-controller="contactcontroller" ng-init="gettransactions();">
+
+<div class="clearfix"></div>
+  <section id="account-wrap">
+
+
+        <div class="custom-page-header" style="text-align:left;">
+                <div class="container">
+                  <div class="breadcrumbs">
+                    <!-- Breadcrumb NavXT 5.6.0 -->
+                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Consulting X - Layout 1." href="../index.html" class="home"><span property="name">80startups</span></a>
+                    <meta property="position" content="1">
+                    </span> &gt;
+                    <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Consulting X - Layout 1." href="launch.html" class="home"><span property="name">Launch</span></a>
+                    <meta property="position" content="1">
+                    </span>
+                    <meta property="position" content="2">
+                    </span>
+                  </div>
+            
+                  <h1 style="color:#1e2d3d;margin-bottom: 25px;" class="page-title">Congratulations! You are launching your startup in Singapore.</h1></div>
+              </div>
+              <div id="wrapper" class="blue-background">
+            
+                <div class="page_content gradient" id="evaluateform">
+            
+                  <div class="container">
+            
+                    <div class="row row-fluid vc_custom_1487565152327">
+                      <div class="col-sm-12">
+                        <div class="vc_column-inner ">
+                          <div class="wpb_wrapper">
+                            <style>
+                              #Heading_593b7b5912cb8 {
+                                font-size: 35px;
+                                letter-spacing: -0.8px;
+                                margin-bottom: 25px;
+                                text-align: left;
+                                font-weight: 400;
+                                line-height: 105%;
+                              }
+            
+                              @media screen and (max-width: 1000px) {
+                                #Heading_593b7b5912cb8 {
+                                  font-size: 30px;
+                                  letter-spacing: -0.6px;
+                                  text-align: center;
+                                }
+                              }
+            
+                              @media screen and (max-width: 600px) {
+                                #Heading_593b7b5912cb8 {
+                                  font-size: 25px;
+                                  letter-spacing: -0.4px;
+                                  text-align: center;
+                                }
+                              }
+                            </style>
+            
+            
+            
+                            <div class="row" style="padding-bottom:30px;">
+            
+                                 <div class="col-sm-7 more">
+                                   <div  class="more-res" style="height:600px;padding-top:20px;padding-left:30px">
+                                     <div>
+                                         <h6 class="krucial-custom-heading" id="Heading_593b7b5912cb8" align="center" style="color: #fff;">Tell us about your startup.</h6>
+                                         <!--<a class="header-signup-btn" href="contact.html">Read More</a>-->
+                                         <form name="startupapplicationform" ng-controller="startupcontroller" ng-submit="incorporateapply()">
+            
+                                             <div class="col-sm-6 col-xs-12 first">
+                                                 <label>First Name</label><br />
+                                                 <span class="wpcf7-form-control-wrap text-657"><input type="text" name="text-657" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required"  required ng-model = "first_name" placeholder="First Name" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 first">
+                                                 <label>Last Name</label><br />
+                                                 <span class="wpcf7-form-control-wrap text-658"><input type="text" name="text-658" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" required ng-model = "last_name" placeholder="Last Name" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 second">
+                                                 <label>Your Email</label><br />
+                                                 <span class="wpcf7-form-control-wrap email-157"><input type="email" name="email-157" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" required ng-model = "email" placeholder="Email" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 second">
+                                                 <label>Your Number</label><br />
+                                                 <span class="wpcf7-form-control-wrap tel-158"><input type="tel" name="tel-158" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel" required ng-model = "phone_number" placeholder="Number" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 third">
+                                                 <label>Startup Name</label><br />
+                                                 <span class="wpcf7-form-control-wrap email-157"><input type="text" name="email-157" value="" size="40" class="wpcf7-form-control wpcf7-text  wpcf7-validates-as-required " required ng-model = "startup_name" placeholder="Startup Name" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 third">
+                                                 <label>Industry</label><br />
+                                                 <span class="wpcf7-form-control-wrap email-157"><input type="text" name="email-157" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required " required ng-model = "industry" placeholder="Industry" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 third">
+                                                 <label>Initial Capital</label><br />
+                                                 <span class="wpcf7-form-control-wrap email-157"><input type="text" name="email-157" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required " required ng-model = "initial_capital" placeholder="Initial Capital" /></span>
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12 third">
+                                                 <label>No of Directors</label><br />
+                                                 <span class="wpcf7-form-control-wrap email-157"><input type="text" name="email-157" value="" size="40" class="wpcf7-form-control wpcf7-text  wpcf7-validates-as-required " required ng-model = "number_directors" placeholder="Number of Directors" /></span>
+                                             </div>
+                                             
+            
+                                             <div class="col-xs-12 first input-remove-margin">
+                                                 <label class="add-small-space">Tell us more about your startup</label><br/>
+                                                 <span class="wpcf7-form-control-wrap">
+                                                   <textarea style="height:100px;" ng-model = "description" >
+                                                   </textarea>
+                                               
+                                             </div>
+                                             <div class="col-sm-6 col-xs-12">
+                                                 <div class="cf7-submit-btn-push"><input type="submit" value="Send Message" class="wpcf7-form-control wpcf7-submit"/></div>
+                                             </div>
+                                             <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                         </form>
+            
+                                     </div>
+                                   </div>
+                                 </div>
+                                 
+                                  <div class="col-sm-5">
+                                  <div class="testimonial-wrap">
+                                    <h4>TESTIMONIALS</h4>
+                                    <div class="user-img1">
+                                      <img src="images/uesr-img.jpg" alt="Startups Testimonials" style="max-width: none;">
+                                    </div>
+                                    <div class="user-comment">
+                                      <p>We engaged with the 80Startups Team to help set up our ASEAN operations, based in Singapore, and found them to be very professional, knowledgeable and responsive. </p>
+                                      <p>They have made the entire process of incorporating the companies as well as the related practical arrangements very easy, which has allowed us to fully focus on establishing our business in the region.”</p>
+                                      <img src="img/user-co-logo.jpg" alt="" title="">
+                                    </div>
+                                  </div>
+                                 </div>
+            
+            
+            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            
+            
+                  </div>
+                </div>
+            
+                </div>
+
+
+    
+  </section>
+
+
+
+
+
+
+
+ <div w3-include-html="footer.html"></div>
+
+ <script src="assets/js/jquery.min.js"></script>
+ <script type="text/javascript" src="assets/js/angular.min.js"></script>
+  <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
+      <script src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
+
+        <script src="https://www.w3schools.com/lib/w3data.js"></script>
+        <script src="https://use.fontawesome.com/45e03a14ce.js"></script>
+
+
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/star-rating.js"></script>
+        <script src="assets/js/custom.js"></script>
+<!-- <script>
+    $(function(){
+         // Find any date inputs and override their functionality
+         $('input[type="date"]').datepicker();
+    });
+</script> -->
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="website
+statistics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11561280/0/ecdd2308/1/" alt="website statistics"></a></div></noscript>
+<!-- Google Code added by Amol C - 31st Dec -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111765056-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111765056-1');
+</script>
+<!-- Google Analytics code over -->
+
+</div>
+</body>
+
+</html>

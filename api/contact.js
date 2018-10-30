@@ -21,6 +21,17 @@ var orderCRUD = CRUD(db, 'tbl_Orders');
 var messagesCRUD = CRUD(db, 'tbl_Messages');
 const converter = require('google-currency');
 
+
+var nodemailer = require('nodemailer');
+var mandrillTransport = require('nodemailer-mandrill-transport');
+var smtpTransport = nodemailer.createTransport(mandrillTransport({
+  auth: {
+    apiKey : 'F9E0Hvx-FBXauFHYHeulyg'
+  }
+}));
+
+
+/*
 var nodemailer = require('nodemailer');
 var mg = require('nodemailer-mailgun-transport');
 var transporter = nodemailer.createTransport({
@@ -32,13 +43,14 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+*/
 
 
 
 ////-----------------CONTACT-----------------
 
 
-/* exports.contactus = function (req, res) {
+    exports.contactus = function (req, res) {
     console.log("Pricing table form");
     var CompanyName = req.body.company_name;
     var email = req.body.email;
@@ -84,21 +96,36 @@ var transporter = nodemailer.createTransport({
         res.json(successmsg)
   }
   
-  */
+
+  function send_mail(usermail, subject, mailbody) {
+  
+
+    let mailOptions={
+      from : 'operations@80startups.com',
+      to : 'narodashakuntala94@gmail.com',
+      subject : subject,
+      html : mailbody
+   };
+   
+   // Sending email.
+   smtpTransport.sendMail(mailOptions, function(error, response){
+     if(error) {
+        throw new Error("Error in sending email");
+     }
+     console.log("Message sent: " + JSON.stringify(response));
+   });
+   
+  };
+    
 
 
-
+/*
 
  exports.contactus = function (req, res) {    
 
 
     var to =  req.body.Email+',narodashakuntala94@gmail.com';
-                              //var to = req.body.Email+',komal.gaikwad@fountaintechies.com';
-                              
-                              var CompanyName = req.body.company_name;
-                              var email = req.body.email;
-                              var phoneNumber = req.body.phone;
-                             var subject = req.body.Subject;
+                              var subject = req.body.Subject;
                               var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
   <meta name="viewport" content="width=device-width">\
@@ -258,7 +285,7 @@ var transporter = nodemailer.createTransport({
   </body></html>';
                                send_mail( to, subject, mailbody );
   
-  
+  console.log(subject);
               var resdata = {
                   status: true,
                   message: 'Mail Sent successfully'
@@ -270,7 +297,7 @@ var transporter = nodemailer.createTransport({
   };
 
 
-
+*/
 
 
 
@@ -1342,7 +1369,7 @@ exports.addorder = function(req, res){
 };
 
 ///____________________END______________________
-
+/*
 function send_mail(usermail, subject, mailbody) {
 
   var auth = {
@@ -1373,3 +1400,4 @@ function send_mail(usermail, subject, mailbody) {
     }
   });
 };
+*/
