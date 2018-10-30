@@ -134,23 +134,6 @@ $scope.contactUS3 = function (code, result) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    $scope.register = function(formRegistration){
 
          if (data.status == false) {
@@ -163,12 +146,7 @@ $scope.contactUS3 = function (code, result) {
          }
 
          //console.log('data',data)
-       });
-
-     }
-
-   };
-
+       };
 
 
    $scope.verify = function () {
@@ -451,6 +429,7 @@ $scope.contactUS3 = function (code, result) {
    // All Categories
 
    $scope.getCategories = function () {
+     console.log('for categories call is here')
      $scope.product = {};
      $scope.product.SubCatId = 0;
      $scope.subcatlist = {};
@@ -832,19 +811,14 @@ $scope.contactUS3 = function (code, result) {
 
        $("#specificationtable").append(rowappend);
 
+     });
+    }
 
 
 
-    else
-    {
-      console.log('call is here');
-        $http.get(baseurl + 'allproducts').success(function (res) {
-            if (res.status == 'false') {
-            }
-            else {
-                $scope.productslist = res;
-                console.log($scope.productslist);
-            }
+
+
+
 
 
    // Product Page
@@ -2886,6 +2860,7 @@ $scope.contactUS3 = function (code, result) {
        console.log($scope.product);
      });
    }
+
    $scope.confirmorder = function () {
 
      $http.post(baseurl + 'placeorder/', $scope.product).success(function (res) {
@@ -2996,4 +2971,5 @@ $scope.contactUS3 = function (code, result) {
      //alert($scope.packagename);
 
    }
- });
+
+  });
