@@ -197,7 +197,7 @@ const njk = expressNunjucks(app, {
   }
 });
 
-app.get('/', routes.index);
+app.get('//', routes.index);
 app.get('/index.html', routes.index);
 //app.get('/allproducts.html', routes.products);
 app.get('/products.html', routes.products);
