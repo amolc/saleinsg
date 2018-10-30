@@ -28,8 +28,8 @@ exports.index=function(req,res){
         if(val.length>=0){
             get_json(baseurl + 'featuredseller',function(resp){
                 data['sellerData']=resp;
-                // console.log('data on home page is:', data);
-                res.render('index.html',data);
+                 console.log('data on home page is:', data);
+                res.render('homepage.html', data);
             });
         }
     });
@@ -46,13 +46,23 @@ exports.productDetails=function(req,res){
     console.log(baseurl+'getProductSpecification/'+updatedUrlParams[1]);
     get_json(baseurl+'getProductSpecification/'+updatedUrlParams[1],function(val){
         data['productData']=val;
+        var sellerId= data['productData'][0].SupplierId;
+        console.log('seller id is: ',sellerId);
         if(val.length>=0){
-            get_json(baseurl+'getSpecification/'+updatedUrlParams[1],function(respo){
-                data['productSpecification']=respo;
-                // console.log(data);
-                res.render('product_detail',data);
+            get_json(baseurl + 'getsellerinfo/'+sellerId,function(values){
+                data['sellerData']=values;
+                if(values.length>=0){
+                    console.log(baseurl+'getSpecification/'+updatedUrlParams[1]);
+                    get_json(baseurl+'getSpecification/'+updatedUrlParams[1],function(respo){
+                        data['productSpecification']=respo;
+                        console.log(data);
+                        res.render('productDetails',data);
+                    });
+
+                }
             });
         }
+
     });
 };
 
@@ -133,7 +143,7 @@ exports.productsbyseller = function(req,res){
                                 get_json(baseurl + 'getsellerinfo/'+updatedUrlParams,function(respo){
                                     data['sellerData']=respo;
                                     console.log('rendered data', data);
-                                    res.render('productsbyseller',data);
+                                    res.render('productBySeller',data);
                                 });
 
                             }
@@ -406,8 +416,8 @@ exports.products = function (req, res) {
                     if(vals.length > 0){
                         get_json(baseurl + 'allproducts',function(result){
                             data['productData']=result;
-                            console.log('data is rendered for product.html page');
-
+                            console.log('data is rendered for product1.html page');
+                            console.log(data);
                             res.render('products1.html', data);
                         });
                     }
