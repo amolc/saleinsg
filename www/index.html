@@ -443,11 +443,11 @@
                                 <p>Seller : {{product.CompanyName}}</p> -->
                                  <input type="hidden" name="basecurrency" ng-model="product.Currency">
                                 <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
-                                <h4 class="pull-left"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
-                                <h4 class="pull-right">
+                                <h4 class="pull-right"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
+                              <!--   <h4 class="pull-right">
                                 <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
                                                     <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select></span>{{product.changePrice}}</h4>
+                                                    </select></span>{{product.changePrice}}</h4> -->
                                                     <div class="clearfix"></div>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
@@ -459,16 +459,14 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="box-flag-img">
-                                <img src="assets/img/flags/{{product.CountryFlag}}" class="img-responsive" alt="" title="">
-                            </div>
+
                             <div class="cat-text">
                                 <span>Footwears</span>
                             </div>
                         </div>
                       </div>
                     </div>
-                   
+
                     </div>
                   <a class="left carousel-control" href="#offers-carousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
                   <a class="right carousel-control" href="#offers-carousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -718,10 +716,10 @@
          </section>-->
 
 
-      
 
 
-         
+
+
          <section id="requests-wrap">
           <div class="container">
             <div class="row">
@@ -867,7 +865,7 @@
                        <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.Currency}} {{product.ExpectedPrice}}</a></td>
                        <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.Quantity}}</a></td>
                        <td><a href="bidding.html?id={{product.ProductId}}" class="color-black">{{product.count}}</a></td>
-                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded != '1'">Bid Now</a><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded == '1'">Awarded</a></td> 
+                       <td><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded != '1'">Bid Now</a><a href="bidding.html?id={{product.ProductId}}" class="red-btn" ng-if="product.IsAwarded == '1'">Awarded</a></td>
                     </tr>
                     </tbody>
                   </table>
@@ -917,8 +915,8 @@
                           <h5><a href="products.html?country={{cn.CountryId}}">{{cn.CountryTitle}}</a></h5>
                         </div>
                         </div>
-                      
-                     
+
+
                     </div>
                 </div>
             </div>

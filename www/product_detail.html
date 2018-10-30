@@ -7,6 +7,7 @@
 
         <title>tradeexchange.co </title>
 
+
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/css/style.css" rel="stylesheet">
@@ -15,7 +16,7 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-        
+
     </head>
     <body ng-app="80consult" ng-controller="contactcontroller" ng-app="80consult" ng-controller="contactcontroller" ng-init="productinit()">
         <!-- Start Header -->
@@ -54,7 +55,7 @@
                                             <ul class="dropdown-menu" id="nav2">
                                               <li class="user-drop-icon">
                                                 <a href="my-profile.html">
-                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar"> 
+                                                  <img src="uploads/ProfilePic/{{User_Image}}" alt="User Avatar">
                                                   <span>{{User_Name}}</span>
                                                 </a>
                                               </li>
@@ -80,7 +81,7 @@
                 <div class="col-sm-12 col-md-12">
                  <nav class="navbar navbar-default">
                                   <div class="container-fluid pd0">
-                                    
+
                                     <div class="navbar-header">
                                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
@@ -88,16 +89,16 @@
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                       </button>
-                                    
+
                                     </div>
                                     <ul class="nav navbar-nav">
                                       <li><a href="products.html">Market Place</a></li>
                                        <li><a href="product-requests.html">Bids</a></li>
                                     </ul>
-                                    
+
                                     <div class="collapse navbar-collapse pd0" id="bs-example-navbar-collapse-2">
                                       <ul class="nav navbar-nav navbar-right" ng-init="isLoggedin()">
-                                       
+
                                         <li ng-if="User_Id>0"><a href="dashboard.html">Messages</a></li>
                                       <li ng-if="User_Id>0"><a href="account.html">Account</a></li>
                                         <li class="dropdown" ng-if="User_Id>0">
@@ -136,43 +137,39 @@
                         <div class="col-sm-offset-2 col-sm-9">
                             <div class="demo-area">
                                 <div class="col-sm-4">
-                                    <img class="demo-trigger" src="uploads/{{product.Image1}}" data-zoom="uploads/{{product.Image1}}">
-                                </div>                
+                                    <img class="demo-trigger" src="http://www.tradeexchange.co/uploads/{{product.Image1}}" data-zoom="http://www.tradeexchange.co/uploads/{{product.Image1}}">
+                                </div>
                                   <div class="col-sm-8 pl50">
                                     <div class="detail">
                                                <div class="pro-right-text">
                                                 <div>
-                                                    <h2 class="pro-title">{{product.ProductName}}</h2>
+                                                    <h2 class="pro-title">{$ productData[0].ProductName $}</h2>
                                                     <p class="pro-saler-name">
-                                                        <span><strong class="color-blue">Country : </strong> {{product.CountryTitle}}, </span>
+                                                        <!-- <span><strong class="color-blue">Country : </strong> {$ productData[0].CountryTitle $} , </span> -->
                                                         <a href="productsbyseller.html?seller={{product.SupplierId}}"><span><strong class="color-blue">Seller : </strong> {{product.CompanyName}}</span></a>
-                                                        
+                                                        <!-- <a href="productsbyseller.html?seller={$ productData[0].sellerName $}"><span><strong class="color-blue">Seller : </strong> {$ productData[0].sellerName $}</span></a> -->
                                                     </p>
-                                                    <input type="hidden" name="basecurrency" ng-model="product.Currency">
-                                                    <input type="hidden" name="baseprice" ng-model="product.Price">
-                                                    <h4 class="pro-price">Price {{product.Currency}} : <span class="mr-r40">{{product.Price}}</span>
-                                                     <select id="currency" name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
-                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select> : <span>{{product.changePrice}}</span> </h4>
+
+                                                    <h4 class="pro-price">Price {$ productData[0].Currency $} : <span class="mr-r40">{$ productData[0].Price $}</span>
+
                                                     <div class="pro-note">
                                                       <h4>Product Description</h4>
                                                     <ul>
                                                       <li>
-                                                        {{product.Description}}</li>
+                                                        {$ productData[0].Description $}</li>
                                                     </ul>
                                                     </div>
-                                                   <!--  <p class="description-para mb30">
-                                                        {{product.Description}}
-                                                    </p> -->
+
                                                     <div class="pro-note">
                                                       <h4>Product Specification</h4>
                                                       <ul>
-                                                        <li ng-repeat="s in specification">
-                                                         <strong class="color-blue">{{s.Title}} : </strong> {{s.Description}}
+                                                        <li >
+                                                         <!-- <strong class="color-blue"> {{s.Title}} : </strong> {{s.Description}} -->
+                                                         <strong class="color-blue"> {$ productSpecification[0].Title $} : </strong> {$ productSpecification[0].Description $}
                                                         </li>
                                                       </ul>
                                                     </div>
-                                                     
+
                                                     <!-- <div class="category-title mb30">
                                                         <span>Category : {{product.CategoryTitle}}</span>
                                                         <span ng-if="product.SubCatTitle!=null">Subcategory : {{product.SubCatTitle}}</span>
@@ -206,7 +203,7 @@
                                     </div>
                                 </div>
 
-                            
+
                           <!--   <div class="col-sm-7">
                                 <div class="pro-right-text">
                                     <div>
@@ -232,7 +229,7 @@
                 </div>
             </div>
         </section>
-    
+
 
 
     <!-- End Header -->
@@ -441,12 +438,12 @@
         <script type="text/javascript" src="assets/js/angular.min.js"></script>
   <script type="text/javascript" src="assets/js/angular-storage.min.js"></script>
   <script type="text/javascript" src="assets/js/app.js"></script>
-  <script src="bower_components/angular-payments/lib/angular-payments.js"></script> 
+  <script src="bower_components/angular-payments/lib/angular-payments.js"></script>
       <script src="https://js.stripe.com/v2/"></script>
   <script type="text/javascript" src="assets/js/contactCtrl.js"></script>
 
         <script src="https://www.w3schools.com/lib/w3data.js"></script>
-        
+
 
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/main.js"></script>
@@ -476,7 +473,7 @@
               })
             })
           </script>
-           
+
            <!-- javascript -->
 
     <script src="OwlCarousel/owl.carousel.js"></script>
@@ -487,9 +484,9 @@
 <script src="assets/js/pro-slide.js"></script>
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11561280; 
-var sc_invisible=1; 
-var sc_security="ecdd2308"; 
+var sc_project=11561280;
+var sc_invisible=1;
+var sc_security="ecdd2308";
 var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
 document.write("<sc"+"ript type='text/javascript' src='" +scJsHost+"statcounter.com/counter/counter.js'></"+"script>");
 </script>

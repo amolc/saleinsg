@@ -1,3 +1,4 @@
+// Modules
 var connect = require('connect');
 var express = require('express');
 var url = require('url');
@@ -10,6 +11,8 @@ var nodemailer = require( 'nodemailer' );
 var cors = require('cors');
 var http = require("http").createServer(app);
 fs = require('fs-extra');
+
+// API's
 
 var admin = require('./api/admin.js');
 var contact = require('./api/contact.js');
@@ -57,13 +60,9 @@ app.use('/static', static);
 
 /* testing server side coding */
 app.get('/api/seotags', seo.seotags);
-
-
-
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);
-
 app.post('/api/register', contact.register);
 app.get('/api/allcountries', contact.allcountries);
 app.get('/api/verify-account/:id', contact.verifyAccount);
@@ -79,9 +78,11 @@ app.get('/api/buyerproductrequests/:id', contact.buyerproductrequests);
 app.get('/api/getProductDetails/:id', contact.getProductDetails);
 app.get('/api/getReqProductDetails/:id', contact.getReqProductDetails);
 app.get('/api/getProductSpecification/:id', contact.getProductSpecification);
+app.get('/api/getSpecification/:id', contact.getSpecification);
 app.post('/api/getrecentprod', contact.getrecentprod);
 app.get('/api/featuredseller', contact.featuredseller);
-app.get('/api/getsellerinfo/:id', contact.getsellerinfo);
+ app.get('/api/getsellerinfo/:id', contact.getsellerinfo);
+app.get('/api/getsellerinfobyname/:companyName', contact.getsellerinfobyname);
 
 app.get('/api/getcurrency/:id', contact.getcurrency);
 app.get('/api/getcountry/:id', contact.getcountry);
@@ -91,12 +92,15 @@ app.post('/api/changeCurrency/', contact.changeCurrency);
 app.get('/api/getproductsbylocation/:id', contact.getproductsbylocation);
 app.get('/api/filterbycategory/:id', contact.filterbycategory);
 app.get('/api/filterbycountry/:id', contact.filterbycountry);
-app.get('/api/filterbyseller/:id', contact.filterbyseller);
-app.post('/api/filterbyCouCat', contact.filterbyCouCat);
-app.post('/api/filterbyCatSub', contact.filterbyCatSub);
-app.post('/api/filterbySelCat', contact.filterbySelCat);
-app.post('/api/filterbyall', contact.filterbyall);
-app.post('/api/filterallbyseller', contact.filterallbyseller);
+ app.get('/api/filterbyseller/:id', contact.filterbyseller);
+//app.get('/api/filterbyseller/:sellerName', contact.filterbyseller);
+app.get('/api/filterbyCouCat/:CountryId/:CategoryId', contact.filterbyCouCat);
+app.get('/api/filterbyCatSub/:CategoryId/:SubCatId', contact.filterbyCatSub);
+
+app.get('/api/filterbySelCat/:SellerId/:CategoryId', contact.filterbySelCat);
+// app.post('/api/filterbyall', contact.filterbyall);
+app.get('/api/filterbyall/:CountryId/:CategoryId/:SubCatId', contact.filterbyall);
+app.get('/api/filterallbyseller/:SellerId/:CategoryId/:SubCatId', contact.filterallbyseller);
 app.get('/api/getbiddings/:id', contact.getbiddings);
 
 app.post('/api/addorder', contact.addorder);
@@ -168,13 +172,11 @@ app.get('/api/deleteUser/:id', admin.deleteUser);
 // app.get('/backend/', backend.index );
 // app.get('/backend/about',backend.about);
 
+// Express Nunjucks
+
 const expressNunjucks = require('express-nunjucks');
-
 const isDev = app.get('env') === 'development';
-
  app.set('views', __dirname + '/www');
-// var njk = expressNunjucks(app, {watch: isDev,noCache: isDev});
-
 const njk = expressNunjucks(app, {
   watch: isDev,
   noCache: isDev,
@@ -189,10 +191,18 @@ const njk = expressNunjucks(app, {
   }
 });
 
-app.get('/allproducts.html', routes.products);
+app.get('/',routes.index);
+app.get('/homepage.html', routes.index);
+//app.get('/allproducts.html', routes.products);
+app.get('/products.html', routes.products);
+app.get('/productsbysell.html', routes.productsbyseller);
+app.get('/productDetails.html', routes.productDetails);
+app.get('/productsbysupplier.html', routes.productsbysupplier);
+
 
 
 app.listen(9888, function () {
   console.log('CORS-enabled web server listening on port 9888');
+  console.log("Magic at http://localhost:9888");
 });
-console.log("Magic at http://localhost:9888");
+
