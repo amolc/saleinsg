@@ -199,7 +199,10 @@ const njk = expressNunjucks(app, {
 
 app.get('//', routes.index);
 app.get('/index.html', routes.index);
+<<<<<<< HEAD
 //app.get('/allproducts.html', routes.products);
+=======
+>>>>>>> 9a79b35ede7f793dc2f2f324d5dad061f59477e4
 app.get('/products.html', routes.products);
 app.get('/productsbyseller.html', routes.productsbyseller);
 app.get('/product_detail.html', routes.productDetails);

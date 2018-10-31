@@ -246,10 +246,10 @@
                                           </h4>
 
                                               </div>
-                                              <div id="collapseOne_{$ each.CategoryId $}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}" ng-style="{'display': CategoryId==cat.CategoryId ? 'block' : 'none'}">
+                                              <div id="collapseOne_{{cat.CategoryId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_{{cat.CategoryId}}" ng-style="{'display': CategoryId==cat.CategoryId ? 'block' : 'none'}">
                                                 <div class="panel-body">
                                                     <div class="sub-cat-list">
-                                                        <ul  ng-init="getSubCatlist({$ each.CategoryId $})">
+                                                        <ul  ng-init="getSubCatlist(CategoryId)">
                                                            <li ng-repeat="sc in subcatlist">
                                                            <a ng-if="CountryId==null && SellerId==null" href="products.html?category={{cat.CategoryId}}&subcategory={{sc.SubCatId}}" ng-style="{'color': SubCatId==sc.SubCatId ? '#52bbd5' : 'black'}">
                                                            <i class="fa fa-caret-right" aria-hidden="true"></i> {{sc.SubCatTitle}}</a>
