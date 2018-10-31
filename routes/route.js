@@ -187,7 +187,7 @@ exports.products = function (req, res) {
                             get_json(baseurl+'filterbycountry/' + id[1] ,function(result){
                                 data['productData']=result;
                                 console.log('Data is rendered!');
-                                res.render('products.html', data);
+                                res.render('products1.html', data);
 
                             });
                         }
@@ -208,7 +208,7 @@ exports.products = function (req, res) {
                                 console.log('products by categoryfilter call start from here and result is :',result);
                                 data['productData']=result;
                                 console.log('Data is rendered!');
-                                res.render('products.html', data);
+                                res.render('products1.html', data);
 
                             });
                         }
@@ -228,7 +228,7 @@ exports.products = function (req, res) {
                                     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                         data['currencyList']=resp;
                                         console.log('Data is rendered!');
-                                        res.render('products.html', data);
+                                        res.render('products1.html', data);
 
                                     });
                                 }
@@ -267,7 +267,7 @@ exports.products = function (req, res) {
                                     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                         data['currencyList']=resp;
                                         console.log('Data is rendered!');
-                                        res.render('products.html', data);
+                                        res.render('products1.html', data);
 
                                     });
                                 }
@@ -293,7 +293,7 @@ exports.products = function (req, res) {
                                 data['productData']=result;
                                 console.log('Data is rendered!');
                                 console.log('category & sub category filter data',data);
-                                res.render('products.html', data);
+                                res.render('products1.html', data);
                                 // if(result.length>0){
                                 //     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                 //         data['currencyList']=resp;
@@ -330,7 +330,7 @@ exports.products = function (req, res) {
                                     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                         data['currencyList']=resp;
                                         console.log('Data is rendered!');
-                                        res.render('products.html', data);
+                                        res.render('products1.html', data);
 
                                     });
                                 }
@@ -367,7 +367,7 @@ exports.products = function (req, res) {
                                     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                         data['currencyList']=resp;
                                         console.log('Data is rendered!');
-                                        res.render('products.html', data);
+                                        res.render('products1.html', data);
 
                                     });
                                 }
@@ -392,7 +392,7 @@ exports.products = function (req, res) {
                                     get_json(baseurl+ 'getAllcurrency/',function(resp){
                                         data['currencyList']=resp;
                                         console.log('Data is rendered!');
-                                        res.render('products.html', data);
+                                        res.render('products1.html', data);
 
                                     });
                                 }
