@@ -60,15 +60,12 @@ app.use('/static', static);
 
 /* testing server side coding */
 app.get('/api/seotags', seo.seotags);
-<<<<<<< HEAD
-=======
 
 
 app.post('/api/contactus', contact.contactus);
 
 
 
->>>>>>> d45e6f59b6b40ce3c60dbbba9bed7a6863b1326d
 app.post('/api/consult', contact.consult);
 app.post('/api/apply', startup.apply);
 app.post('/api/invest', investor.invest);
@@ -200,12 +197,12 @@ const njk = expressNunjucks(app, {
   }
 });
 
-app.get('/',routes.index);
-app.get('/homepage.html', routes.index);
+app.get('//', routes.index);
+app.get('/index.html', routes.index);
 //app.get('/allproducts.html', routes.products);
 app.get('/products.html', routes.products);
-app.get('/productsbysell.html', routes.productsbyseller);
-app.get('/productDetails.html', routes.productDetails);
+app.get('/productsbyseller.html', routes.productsbyseller);
+app.get('/product_detail.html', routes.productDetails);
 app.get('/productsbysupplier.html', routes.productsbysupplier);
 
 

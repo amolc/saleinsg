@@ -16,14 +16,14 @@
         <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
         <link id="bsdp-css" href="bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-  
+
 
         <style>
-        
 
 
 
-        
+
+
         .bgorange {
     background: rgba(255,168,25,1);
     background: -moz-linear-gradient(left, rgba(255,168,25,1) 0%, rgba(255,51,8,1) 100%);
@@ -35,7 +35,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa819', endColorstr='#ff3308', GradientType=1 );
 }
         </style>
-  
+
       </head>
     <body ng-app="80consult" ng-controller="contactcontroller">
         <!-- Start Header -->
@@ -52,14 +52,14 @@
               <div class="col-md-8">
                   <div class="row row-no-padding rightalign " id="navcontainer">
                       <ul class="menubar">
-  
+
                           <li><a href="/student/">Register</a></li>
                           <li><a href="/student/">Login</a></li>
-  
+
                       </ul>
                   </div>
                   <div class="row row-no-padding rightalign" style="height:70px;">
-  
+
                   </div>
                   <div class="row row-no-padding rightalign" id="navcontainer">
                       <ul class="menubar">
@@ -72,16 +72,16 @@
                           <li><a href="#">Contact Us</a></li>
                       </ul>
                   </div>
-  
+
               </div>
-  
-  
+
+
               <div class="col-md-12 bgorange" style="height:2px;">
               </div>
-  
-  
+
+
           </div>
-  
+
       </section>   -->
 
 
@@ -148,7 +148,7 @@
                                 </nav>
                               </div>
 
-                              
+
 
                             </div>
 
@@ -468,34 +468,29 @@
             <div class="row">
               <div class="pro-sides">
                 <div class="carousel carousel-showmanymoveone slide" id="offers-carousel">
-                  <div class="carousel-inner" ng-init="allproducts()">
-                  <div class="item active" ng-repeat="product in productslist |limitTo:4">
+                  <div class="carousel-inner" >
+                  <div class="item active" >
+                    {% for each in productData.slice(0,4) %}
                       <div class="col-xs-12 col-sm-6 col-md-3">
                         <div class="product-box">
                             <div class="pro-img">
-                            <a href="product_detail.html?id={{product.ProductId}}">
-                                <img src="uploads/{{product.Image1}}" alt="" title="">
+                            <a href="product_detail.html?id={$ each.ProductId $}">
+                                <img src="uploads/{$ each.ProductId $}" alt="" title="">
                                  </a>
                             </div>
                             <div class="product-footer">
-                                <h3><a href="product_detail.html?id={{product.ProductId}}">{{product.ProductName}}</a></h3>
-                               <!--  <h5>{{product.Description}}</h5>
-                                <p>Category : {{product.CategoryTitle}}</p>
-                                <p>Seller : {{product.CompanyName}}</p> -->
-                                 <input type="hidden" name="basecurrency" ng-model="product.Currency">
-                                <input type="hidden" name="baseprice" ng-model="product.Price" ng-init="product.changePrice=product.Price">
-                                <h4 class="pull-right"><span>{{product.Currency}} :</span> {{product.Price}}</h4>
-                              <!--   <h4 class="pull-right">
-                                <span><select name="currency" ng-model="product.changeCurrency" ng-change="changeCurrency(product)" required="">
-                                                    <option ng-repeat="c in currencylist" value="{{c.CountryCurrency}}" ng-selected="product.Currency == c.CountryCurrency">{{c.CountryCurrency}}</option>
-                                                    </select></span>{{product.changePrice}}</h4> -->
+                                <h3><a href="product_detail.html?id={$ each.ProductId $}">{$ each.ProductName $}</a></h3>
+
+
+                                <h4 class="pull-right"><span>{$ each.Currency $} :</span> {$ each.Price $}</h4>
+
                                                     <div class="clearfix"></div>
                                 <div class="bottom-btn">
                                     <div class="order-btn">
-                                        <a href="order.html?id={{product.ProductId}}" class="red-btn">Order Now</a>
+                                        <a href="order.html?id={$ each.ProductId $}" class="red-btn">Order Now</a>
                                     </div>
                                     <div class="inquiry-btn">
-                                        <a href="enquiry.html?id={{product.ProductId}}" class="red-btn">Enquiry</a>
+                                        <a href="enquiry.html?id={$ each.ProductId $}" class="red-btn">Enquiry</a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -506,6 +501,7 @@
                             </div>
                         </div>
                       </div>
+                      {% endfor %}
                     </div>
 
                     </div>
@@ -538,18 +534,21 @@
                 <div class="carousel carousel-showmanymoveone slide" id="recently-viewed-carousel">
                   <div class="carousel-inner">
 
-                  <div class="item active" ng-repeat="seller in sellerlist | limitTo:4">
+                  <!-- <div class="item active" ng-repeat="seller in sellerlist | limitTo:4"> -->
+                      <div class="item active" >
+                          {% for each in sellerData %}
                       <div class="col-xs-6 col-sm-6 col-md-3">
+
                         <div class="seller-box">
                             <div class="seller-img">
                           <!--   <a href="product_detail.html?id={{product.ProductId}}"> -->
-                                <img ng-if="seller.ProfilePic!=null" src="uploads/ProfilePic/{{seller.ProfilePic}}" alt="" title="">
-                                <img ng-if="seller.ProfilePic==null" src="uploads/ProfilePic/no-img.jpg" alt="" title="">
+                                <img  src="uploads/ProfilePic/{$ each.ProfilePic $}" alt="" title="">
+                                <img  src="uploads/ProfilePic/no-img.jpg" alt="" title="">
                               <!-- </a> -->
                             </div>
                             <div class="seller-footer">
                               <!--  <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.FirstName}} {{seller.LastName}}</h3>-->
-                                <h3><a href="productsbyseller.html?seller={{seller.SupId}}">{{seller.CompanyName}}</h3>
+                                <h3><a href="productsbyseller.html?seller={$ each.SupId $}">{$ each.CompanyName $}</h3>
                                 <!-- <h5>{{product.Description}}</h5>
                                 <p>Category : {{product.CategoryTitle}}</p>
                                 <p>Seller : {{product.CompanyName}}</p> -->
@@ -578,7 +577,9 @@
                                 <span>Footwears</span>
                             </div>
                         </div>
+
                       </div>
+                      {% endfor %}
                     </div>
 
                     <!-- <div class="item active">
