@@ -204,6 +204,12 @@ app.get('/productsbyseller.html', routes.productsbyseller);
 app.get('/product_detail.html', routes.productDetails);
 app.get('/productsbysupplier.html', routes.productsbysupplier);
 
+app.get('//', routes.index);
+app.get('//index.html', routes.index);
+app.get('//products.html', routes.products);
+app.get('//productsbyseller.html', routes.productsbyseller);
+app.get('//product_detail.html', routes.productDetails);
+app.get('//productsbysupplier.html', routes.productsbysupplier);
 
 
 app.listen(9888, function () {
