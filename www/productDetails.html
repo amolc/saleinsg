@@ -234,16 +234,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <table class="table table-bordered" ng-repeat="sellerinfo in sellerData">
+                        <p><strong>Sellers</strong></p>
+                        <table class="table table-bordered" >
                             <thead>
                                 <tr>
-                                    <th scope="col">id</th>
+                                    <th scope="col">Supplier ID</th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Sell Price</th>
         
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="sellerinfo in sellerData">
                                 <tr>
                                     <th scope="row">{{getRandomSpan1()}}</th>
                                     <td>{{sellerinfo.product_qty}}</td>
@@ -253,22 +254,21 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-md-6" ng-init="buyerInfo({$ productData[0].ProductId $})" >
-                        <table class="table table-bordered" ng-repeat="buyerI in buyerData" >
+                    <div class="col-md-6"  >
+                        <p><strong>Buyers</strong></p>
+                        <table class="table table-bordered"  ng-init="buyerInfo({$ productData[0].ProductId $})">
                             <thead>
                                 <tr>
-                                    <th scope="col">id</th>
+                                    <th scope="col">Buy Price</th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Price</th>
-        
+                                    <th scope="col">Buyer ID</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody ng-repeat="buyerI in buyerData"> 
                                 <tr>
-                                    <th scope="row">{{getRandomSpan()}}</th>
+                                    <td scope="row">{{buyerI.product_price}}</td>
                                     <td>{{buyerI.product_qty}}</td>
-                                    <td>{{buyerI.product_price}}</td>
-        
+                                    <th >{{getRandomSpan()}}</th>
                                 </tr>
                             </tbody>
                         </table>
