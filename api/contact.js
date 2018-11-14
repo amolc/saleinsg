@@ -1205,27 +1205,52 @@ exports.sellerInfo = function(req, res) {
   console.log("in seller info api call");
   var product_Id = req.params.pId;
   console.log("product id is ", product_Id);
-  sellerCRUD.load({ product_id: product_Id }, function(err, val) {
-    if (err) {
-      console.log(err);
-    } else {
+  var sql =
+    "SELECT * FROM product_seller  WHERE product_id=" +
+    product_Id +
+    " ORDER BY product_price DESC";
+  db.query(sql, function(err, val) {
+    if (!err) {
       console.log("seller info for product page", val);
       res.json(val);
+    } else {
+      console.log(err);
     }
   });
+
+  // sellerCRUD.load({ product_id: product_Id }, function(err, val) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log("seller info for product page", val);
+  //     res.json(val);
+  //   }
+  // });
 };
 exports.buyerInfo = function(req, res) {
   console.log("in buyer info api call");
   console.log("product id is ", product_Id);
   var product_Id = req.params.pId;
-  buyerCRUD.load({ product_id: product_Id }, function(err, val) {
-    if (err) {
-      console.log(err);
-    } else {
+  var sql =
+    "SELECT * FROM product_buyer  WHERE product_id=" +
+    product_Id +
+    " ORDER BY product_price DESC";
+  db.query(sql, function(err, val) {
+    if (!err) {
       console.log("buyer info for product page", val);
       res.json(val);
+    } else {
+      console.log(err);
     }
   });
+  // buyerCRUD.load({ product_id: product_Id }, function(err, val) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log("buyer info for product page", val);
+  //     res.json(val);
+  //   }
+  // });
 };
 
 exports.getProductName = function(req, res) {
