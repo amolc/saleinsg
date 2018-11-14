@@ -146,11 +146,11 @@
                                                     <h2 class="pro-title">{$ productData[0].ProductName $}</h2>
                                                     <p class="pro-saler-name">
                                                         <!-- <span><strong class="color-blue">Country : </strong> {$ productData[0].CountryTitle $} , </span> -->
-                                                        <a href="productsbyseller.html?seller={$ productData[0].SupplierId $}"><span><strong class="color-blue">Seller : </strong>{$ sellerData[0].CompanyName $}</span></a>
+                                                        <!-- <a href="productsbyseller.html?seller={$ productData[0].SupplierId $}"><span><strong class="color-blue">Seller : </strong>{$ sellerData[0].CompanyName $}</span></a> -->
                                                         <!-- <a href="productsbyseller.html?seller={$ productData[0].sellerName $}"><span><strong class="color-blue">Seller : </strong> {$ productData[0].sellerName $}</span></a> -->
                                                     </p>
 
-                                                    <h4 class="pro-price">Price {$ productData[0].Currency $} : <span class="mr-r40">{$ productData[0].Price $}</span>
+                                                    <!-- <h4 class="pro-price">Price {$ productData[0].Currency $} : <span class="mr-r40">{$ productData[0].Price $}</span> -->
 
                                                     <div class="pro-note">
                                                       <h4>Product Description</h4>
@@ -229,6 +229,55 @@
                 </div>
             </div>
         </section>
+
+        <section id="seller-buyer-info" ng-controller="contactcontroller" ng-init="sellerBuyerInfo({$ productData[0].ProductId $})">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-bordered" ng-repeat="sellerinfo in sellerData">
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Price</th>
+        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">{{getRandomSpan1()}}</th>
+                                    <td>{{sellerinfo.product_qty}}</td>
+                                    <td>{{sellerinfo.product_price}}</td>
+        
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6" ng-init="buyerInfo({$ productData[0].ProductId $})" >
+                        <table class="table table-bordered" ng-repeat="buyerI in buyerData" >
+                            <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">Price</th>
+        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">{{getRandomSpan()}}</th>
+                                    <td>{{buyerI.product_qty}}</td>
+                                    <td>{{buyerI.product_price}}</td>
+        
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
 
 
 

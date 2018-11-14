@@ -1,56 +1,53 @@
-var http = require('http');
-var mysql = require('mysql');
-var randomString = require('random-string');
+var http = require("http");
+var mysql = require("mysql");
+var randomString = require("random-string");
 //var stripe = require("stripe")("sk_test_GWo9JO8BeSsKJoE3XKNHy0I7");
 var moment = require("moment");
 var verifycode = randomString();
 var now = moment();
 var db = mysql.createPool({
-  database: 'saleinsg',
-  user: 'root',
-  password: '10gXWOqeaf',
-  host: 'db.80startups.com',
+  database: "saleinsg",
+  user: "root",
+  password: "10gXWOqeaf",
+  host: "db.80startups.com"
 });
 
-var CRUD = require('mysql-crud');
-var consultCRUD = CRUD(db, 'contact');
-var userCRUD = CRUD(db, 'tbl_Suppliers');
-var productCRUD = CRUD(db, 'tbl_Products');
-var enquiryCRUD = CRUD(db, 'tbl_SuppliersEnquiries');
-var orderCRUD = CRUD(db, 'tbl_Orders');
-var messagesCRUD = CRUD(db, 'tbl_Messages');
-var productSpecificationCRUD=CRUD(db,'tbl_ProductSpecification');
-const converter = require('google-currency');
+var CRUD = require("mysql-crud");
+var consultCRUD = CRUD(db, "contact");
+var userCRUD = CRUD(db, "tbl_Suppliers");
+var productCRUD = CRUD(db, "tbl_Products");
+var sellerCRUD = CRUD(db, "product_seller");
+var buyerCRUD = CRUD(db, "product_buyer");
+var enquiryCRUD = CRUD(db, "tbl_SuppliersEnquiries");
+var orderCRUD = CRUD(db, "tbl_Orders");
+var messagesCRUD = CRUD(db, "tbl_Messages");
+var productSpecificationCRUD = CRUD(db, "tbl_ProductSpecification");
+const converter = require("google-currency");
 
-
-var nodemailer = require('nodemailer');
-var mg = require('nodemailer-mailgun-transport');
+var nodemailer = require("nodemailer");
+var mg = require("nodemailer-mailgun-transport");
 var transporter = nodemailer.createTransport({
-  host: 'in-v3.mailjet.com',
-  port: '587',
+  host: "in-v3.mailjet.com",
+  port: "587",
   auth: {
-    user: '66ca4479851e0bd9cedc629bdff36ee6',
-    pass: 'a3ec60f55a89f7fab98891e86818c8db'
+    user: "66ca4479851e0bd9cedc629bdff36ee6",
+    pass: "a3ec60f55a89f7fab98891e86818c8db"
   }
 });
 
-
-
-
-
 ////-----------------CONTACT-----------------
 
+exports.contactus = function(req, res) {
+  console.log("Pricing table form");
+  var CompanyName = req.body.company_name;
+  var email = req.body.email;
+  var phoneNumber = req.body.phone;
 
-    exports.contactus = function (req, res) {
-    console.log("Pricing table form");
-    var CompanyName = req.body.company_name;
-    var email = req.body.email;
-    var phoneNumber = req.body.phone;
+  var recipientEmail = "narodashakuntala94@gmail.com";
 
-      var recipientEmail = 'narodashakuntala94@gmail.com';
-
-      var subject = "[Fountaintechies.com] Contact Us enquiry";
-      var mailbody = '<table>\
+  var subject = "[Fountaintechies.com] Contact Us enquiry";
+  var mailbody =
+    '<table>\
                           <tr>\
                           <td><img src="https://ambitiontours.80startups.com/assets/img/logo.jpg"></td><br>\
                         </tr>\
@@ -64,9 +61,15 @@ var transporter = nodemailer.createTransport({
                         </tr>\
                         <tr>\
                           <td>The details are as follow :<br>\
-                          <br><strong> Company Name:   ' + CompanyName + '</strong><br>\
-                          <br><strong> Email:   ' + email + '</strong><br>\
-                          <br><strong> Contact Number:   ' + phoneNumber + '</strong><br>\
+                          <br><strong> Company Name:   ' +
+    CompanyName +
+    "</strong><br>\
+                          <br><strong> Email:   " +
+    email +
+    "</strong><br>\
+                          <br><strong> Contact Number:   " +
+    phoneNumber +
+    '</strong><br>\
                         </tr>\
                         <tr>\
                           <td>Best wishes,</td>\
@@ -79,36 +82,28 @@ var transporter = nodemailer.createTransport({
                         </tr>\
                       </table>';
 
+  send_mail(recipientEmail, subject, mailbody);
+  var successmsg = { status: "success" };
+  console.log(successmsg);
+  res.json(successmsg);
+};
 
-
-        send_mail(recipientEmail, subject, mailbody);
-        var successmsg={status:"success"};
-        console.log(successmsg);
-        res.json(successmsg)
-  }
-
-
-  function send_mail(usermail, subject, mailbody) {
-
-
-    let mailOptions={
-      from : 'operations@80startups.com',
-      to : 'narodashakuntala94@gmail.com',
-      subject : subject,
-      html : mailbody
-   };
-
-   // Sending email.
-   smtpTransport.sendMail(mailOptions, function(error, response){
-     if(error) {
-        throw new Error("Error in sending email");
-     }
-     console.log("Message sent: " + JSON.stringify(response));
-   });
-
+function send_mail(usermail, subject, mailbody) {
+  let mailOptions = {
+    from: "operations@80startups.com",
+    to: "narodashakuntala94@gmail.com",
+    subject: subject,
+    html: mailbody
   };
 
-
+  // Sending email.
+  smtpTransport.sendMail(mailOptions, function(error, response) {
+    if (error) {
+      throw new Error("Error in sending email");
+    }
+    console.log("Message sent: " + JSON.stringify(response));
+  });
+}
 
 /*
 
@@ -290,17 +285,7 @@ var transporter = nodemailer.createTransport({
 
 */
 
-
-
-
-
-
-
-
-
-
-exports.consult = function (req, res) {
-
+exports.consult = function(req, res) {
   var fullName = req.body.fullname;
   var email = req.body.email;
   var phoneNumber = req.body.phonenumber;
@@ -311,24 +296,26 @@ exports.consult = function (req, res) {
   var Child = req.body.Child;
   var promoCode = req.body.promoCode;
 
-
-  consultCRUD.create({
-			'fullName': fullName,
-      'email': email,
-      'phonenumber': phoneNumber,
-      'travelDate': travelDate,
-      'packageName': packageName,
-      'adults': adults,
-      'Child': Child,
-      'promoCode': promoCode,
-      'message': message,
-		},function (err,vals){
-
-    })
-     var recipientEmail = 'nadyshaikh@gmail.com,ceo@80startups.com,shital.talole@fountaintechies.com,pravinshelar999@gmail.com';
-    //var recipientEmail = 'pravinshelar999@gmail.com'; //,ceo@80startups.com,shital.talole@fountaintechies.com'; //,ceo@80startups.com,shital.talole@80startups.com
-    var subject = "[ambitiontours.COM] Ambition Tours Booking";
-    var mailbody = '<table>\
+  consultCRUD.create(
+    {
+      fullName: fullName,
+      email: email,
+      phonenumber: phoneNumber,
+      travelDate: travelDate,
+      packageName: packageName,
+      adults: adults,
+      Child: Child,
+      promoCode: promoCode,
+      message: message
+    },
+    function(err, vals) {}
+  );
+  var recipientEmail =
+    "nadyshaikh@gmail.com,ceo@80startups.com,shital.talole@fountaintechies.com,pravinshelar999@gmail.com";
+  //var recipientEmail = 'pravinshelar999@gmail.com'; //,ceo@80startups.com,shital.talole@fountaintechies.com'; //,ceo@80startups.com,shital.talole@80startups.com
+  var subject = "[ambitiontours.COM] Ambition Tours Booking";
+  var mailbody =
+    '<table>\
                         <tr>\
                         <td><img src="https://ambitiontours.80startups.com/assets/img/logo.jpg"></td><br>\
                       </tr>\
@@ -341,7 +328,25 @@ exports.consult = function (req, res) {
                         <td>You have one enquiry from the following client:</td>\
                       </tr>\
                       <tr>\
-                        <td>The details are as follow :<br><br><strong> Package Name:   ' + packageName + '</strong> <br><br><strong> Name:   ' + fullName + '</strong><br><br><strong> Email:   ' + email + '</strong><br><br><strong> Contact Number:   ' + phoneNumber + '</strong><br><br><strong> No of Adults:   ' + adults + '</strong><br><br><strong> No of Child:   ' + Child + '</strong><br><br><strong> Travel Date:   ' + travelDate + '</strong><br><br><strong>Message:   ' + message + '</strong><br><br><strong> Promo Code:   ' + promoCode + '</strong><br><br></td>\
+                        <td>The details are as follow :<br><br><strong> Package Name:   ' +
+    packageName +
+    "</strong> <br><br><strong> Name:   " +
+    fullName +
+    "</strong><br><br><strong> Email:   " +
+    email +
+    "</strong><br><br><strong> Contact Number:   " +
+    phoneNumber +
+    "</strong><br><br><strong> No of Adults:   " +
+    adults +
+    "</strong><br><br><strong> No of Child:   " +
+    Child +
+    "</strong><br><br><strong> Travel Date:   " +
+    travelDate +
+    "</strong><br><br><strong>Message:   " +
+    message +
+    "</strong><br><br><strong> Promo Code:   " +
+    promoCode +
+    '</strong><br><br></td>\
                       </tr>\
                       <tr>\
                         <td>Best wishes,</td>\
@@ -354,142 +359,137 @@ exports.consult = function (req, res) {
                       </tr>\
                     </table>';
 
-      send_mail(recipientEmail, subject, mailbody);
-}
-
-exports.allcountries = function (req, res) {
-    var sql = "SELECT `CountryId`,`CountryTitle`,`CountryFlag` FROM `tbl_Countries`";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+  send_mail(recipientEmail, subject, mailbody);
 };
 
-exports.changeCurrency = function (req, res) {
-    const options = {
-        from: req.body.baseCurrency,
-        to: req.body.changeCurrency,
-        amount: req.body.amount
-      }
-      converter(options).then(value => {
-        //console.log(value[0])
-        res.json(value); // Return object
-      })
+exports.allcountries = function(req, res) {
+  var sql =
+    "SELECT `CountryId`,`CountryTitle`,`CountryFlag` FROM `tbl_Countries`";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-exports.allcategories = function (req, res) {
-    var sql = "SELECT `CategoryId`,`CategoryTitle` FROM `tbl_Categories`";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+exports.changeCurrency = function(req, res) {
+  const options = {
+    from: req.body.baseCurrency,
+    to: req.body.changeCurrency,
+    amount: req.body.amount
+  };
+  converter(options).then(value => {
+    //console.log(value[0])
+    res.json(value); // Return object
+  });
 };
 
-exports.getsubcategories = function (req, res) {
-    var catId=req.params.id;
-    console.log('cat id to get sub categories', catId)
-    var sql = "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = "+catId;
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-        console.log(data);
-
-    });
+exports.allcategories = function(req, res) {
+  var sql = "SELECT `CategoryId`,`CategoryTitle` FROM `tbl_Categories`";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
+exports.getsubcategories = function(req, res) {
+  var catId = req.params.id;
+  console.log("cat id to get sub categories", catId);
+  var sql =
+    "SELECT `SubCatId`,`SubCatTitle` FROM `tbl_SubCategories` WHERE `CategoryId` = " +
+    catId;
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+    console.log(data);
+  });
+};
 
-
-exports.register = function(req, res){
-
+exports.register = function(req, res) {
   //console.log('req.body',req.body);
 
+  verifycode = randomString();
+  dateToday = now.format("YYYY-MM-DD H:mm:ss");
+  var fullname = req.body.fname + " " + req.body.lname;
 
-   verifycode = randomString();
-   dateToday = now.format("YYYY-MM-DD H:mm:ss");
-   var fullname =req.body.fname+" "+req.body.lname;
+  userCRUD.load(
+    {
+      Email: req.body.email
+    },
+    function(err3, val3) {
+      // console.log(val3);
 
+      if (val3.length <= 0) {
+        if (req.body.password == req.body.cpassword) {
+          userCRUD.create(
+            {
+              Email: req.body.email,
+              Password: req.body.password,
+              FirstName: req.body.fname,
+              LastName: req.body.lname,
+              Phone: req.body.phone,
+              CompanyName: req.body.company,
+              Location: req.body.location,
+              CountryId: req.body.CountryId,
+              VerificationCode: "",
+              CreateDate: req.body.datetime,
+              PaymentStatus: "Pending",
+              IsActive: 1
+            },
+            function(err2, val2) {
+              if (!err2) {
+                console.log(val2.insertId);
+                var regId = val2.insertId;
+                // console.log(req.body.Email);
+                var recipientEmail =
+                  req.body.email +
+                  ",ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com";
+                var subject =
+                  "Tradeexchange.co - Registration confirmation mail";
+                // var mailbody = '<table>\
+                //                     <tr>\
+                //                       <td><h1>Dear '+fullname+',</td>\
+                //                     </tr>\
+                //                     <tr>\
+                //                     </tr>\
+                //                     <tr>\
+                //                       <td>Please click on the following link to verify your email account to complete registration process.</td>\
+                //                     </tr>\
+                //                     <tr>\
+                //                       <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
+                //                     </tr>\
+                //                     <tr>\
+                //                       <td>Best wishes,</td>\
+                //                     </tr>\
+                //                     <tr>\
+                //                       <td><h2>saleinsg.com</h2></td>\
+                //                     </tr>\
+                //                     <tr>\
+                //                       <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                //                     </tr>\
+                //                   </table>';
 
+                // var mailbody = '<table>\
+                //                    <tr>\
+                //                      <td><h1>Dear '+fullname+',</td>\
+                //                    </tr>\
+                //                    <tr>\
+                //                    </tr>\
+                //                    <tr>\
+                //                      <td>You are successfully registered with tradeexchange.co</td>\
+                //                    </tr>\
+                //                    <tr>\
+                //                      <td>Best wishes,</td>\
+                //                    </tr>\
+                //                    <tr>\
+                //                      <td><h2>tradeexchange.co</h2></td>\
+                //                    </tr>\
+                //                    <tr>\
+                //                      <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
+                //                    </tr>\
+                //                  </table>';
 
-            userCRUD.load({
-                Email: req.body.email
-            },function (err3, val3) {
-
-               // console.log(val3);
-
-                if (val3.length<=0)
-                {
-
-                      if (req.body.password == req.body.cpassword)
-                        {
-
-                          userCRUD.create({
-                            'Email': req.body.email,
-                            'Password': req.body.password,
-                            'FirstName': req.body.fname,
-                            'LastName': req.body.lname,
-                            'Phone': req.body.phone,
-                            'CompanyName':req.body.company,
-                            'Location':req.body.location,
-                            'CountryId' :req.body.CountryId,
-                            'VerificationCode':'',
-                            'CreateDate':req.body.datetime,
-                            'PaymentStatus':'Pending',
-                            'IsActive':1
-
-                        }, function(err2, val2) {
-
-                            if (!err2)
-                            {
-                               console.log(val2.insertId);
-                                var regId = val2.insertId;
-                               // console.log(req.body.Email);
-                                var recipientEmail = req.body.email+',ceo@80startups.com,shital.talole@fountaintechies.com,office@80startups.com,magnusideas5@gmail.com';
-                                var subject = "Tradeexchange.co - Registration confirmation mail";
-                                // var mailbody = '<table>\
-                                //                     <tr>\
-                                //                       <td><h1>Dear '+fullname+',</td>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                       <td>Please click on the following link to verify your email account to complete registration process.</td>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                       <td><a href="https://www.saleinsg.com/verify.html?id='+verifycode+'">Verification</a></td>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                       <td>Best wishes,</td>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                       <td><h2>saleinsg.com</h2></td>\
-                                //                     </tr>\
-                                //                     <tr>\
-                                //                       <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                                //                     </tr>\
-                                //                   </table>';
-
-                                 // var mailbody = '<table>\
-                                 //                    <tr>\
-                                 //                      <td><h1>Dear '+fullname+',</td>\
-                                 //                    </tr>\
-                                 //                    <tr>\
-                                 //                    </tr>\
-                                 //                    <tr>\
-                                 //                      <td>You are successfully registered with tradeexchange.co</td>\
-                                 //                    </tr>\
-                                 //                    <tr>\
-                                 //                      <td>Best wishes,</td>\
-                                 //                    </tr>\
-                                 //                    <tr>\
-                                 //                      <td><h2>tradeexchange.co</h2></td>\
-                                 //                    </tr>\
-                                 //                    <tr>\
-                                 //                      <td bgcolor="#000000"><font color ="white">This is a one-time email. Please do not reply to this email.</font></td>\
-                                 //                    </tr>\
-                                 //                  </table>';
-
-
-                               var mailbody = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
+                var mailbody =
+                  '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><head>\
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">\
 <meta name="viewport" content="width=device-width">\
 <meta http-equiv="X-UA-Compatible" content="IE=edge">\
@@ -572,7 +572,9 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="background-color: transparent; width: 100% !important;">\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 10px; padding-left: 10px;">\
 <div style="font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;line-height:120%;color:#555555; padding-right: 0px; padding-left: 0px; padding-top: 15px; padding-bottom: 15px;">\
-<div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>'+req.body.date+'</strong></span></p></div></div>\
+<div style="font-size:12px;line-height:14px;font-family:Arial, \'Helvetica Neue\', Helvetica, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: right"><span style="font-size: 14px; line-height: 16px;"><strong>' +
+                  req.body.date +
+                  '</strong></span></p></div></div>\
 </div></div></div></div></div></div>\
 <div style="background-color:transparent;">\
 <div style="Margin: 0 auto;min-width: 320px;max-width: 620px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
@@ -604,7 +606,11 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">\
 <div style="color:#000000;line-height:120%;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">\
 <div style="font-size:12px;line-height:14px;color:#000000;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif;text-align:left;">\
-<p style="margin: 0;font-size: 14px;line-height: 25px"><span style="font-size: 14px; line-height: 16px;">Dear, <br>'+req.body.fname+' '+req.body.lname+'</span></p></div> </div></div></div></div></div></div>\
+<p style="margin: 0;font-size: 14px;line-height: 25px"><span style="font-size: 14px; line-height: 16px;">Dear, <br>' +
+                  req.body.fname +
+                  " " +
+                  req.body.lname +
+                  '</span></p></div> </div></div></div></div></div></div>\
 <div style="background-color:transparent;">\
 <div style="Margin: 0 auto;min-width: 320px;max-width: 620px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">\
 <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">\
@@ -613,8 +619,12 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:5px; padding-bottom:10px; padding-right: 0px; padding-left: 0px;">\
 <div style="font-size: 16px;font-family:\'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: center; width:100%;">\
 <p style="color: #000000; font-size: 14px; line-height: 24px;font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: left; padding: 0px 10px;">Thank you for registering with TradeExchange, We proud to have you as a member of the <a style="text-decoration: none; color: #52BAD5;" href="https://www.tradeexchange.co/" target="_blank">TradeExchange</a> family. <br> Please <a  style="text-decoration: none; color: #52BAD5;" href="https://www.tradeexchange.co/login.html" target="_blank">login</a> to your account with below user name and password.</p>\
-<p style="color: #000000; font-size: 14px; line-height: 20px;font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: left; padding: 0px 10px;"><b style="color:#52BAD5;">User Name : </b>'+req.body.email+'<br>\
-<b style="color:#52BAD5;">Password :</b>'+req.body.password+'</p>\
+<p style="color: #000000; font-size: 14px; line-height: 20px;font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: left; padding: 0px 10px;"><b style="color:#52BAD5;">User Name : </b>' +
+                  req.body.email +
+                  '<br>\
+<b style="color:#52BAD5;">Password :</b>' +
+                  req.body.password +
+                  '</p>\
 <p  style="color: #000000; font-size: 14px; line-height: 24px;font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: left; padding: 0px 10px;"  >For any queries and details please feel free to contact us at support@tradeexchange.co We will be glad to hear from you. </p>\
 <p  style="color: #000000; font-size: 14px; line-height: 24px;font-family: \'Lato\', Tahoma, Verdana, Segoe, sans-serif; text-align: right; padding: 0px 20px;"  ><b>Regards,</b><br> Team <a href="https://www.tradeexchange.co/index.html" target="_blank" style="text-decoration: none; color: #52BAD5;">WWW.TradeExchange.co</a></p>\
 </div>\
@@ -639,392 +649,344 @@ img.fullwidthOnMobile {max-width: 100%!important;}\
 </table>\
 </body></html>';
 
-                                send_mail(recipientEmail, subject, mailbody);
-                                var resdata = {
-                                    status: true,
-                                    value:val2,
-                                    message: 'A confirmation has been sent to your email account'
-                                };
+                send_mail(recipientEmail, subject, mailbody);
+                var resdata = {
+                  status: true,
+                  value: val2,
+                  message: "A confirmation has been sent to your email account"
+                };
 
-                                res.jsonp(resdata);
-                            }
-                            else
-                            {
-                                var resdata = {
-                                    status: false,
-                                    error: err2,
-                                    message: 'Error: User not successfully added. '
-                                };
+                res.jsonp(resdata);
+              } else {
+                var resdata = {
+                  status: false,
+                  error: err2,
+                  message: "Error: User not successfully added. "
+                };
 
-                                res.jsonp(resdata);
-                            }
+                res.jsonp(resdata);
+              }
+            }
+          );
+        } else {
+          var resdata2 = {
+            status: false,
+            error: err3,
+            message: "Both passwords should be same"
+          };
 
-                            });
+          res.jsonp(resdata2);
+        }
+      } else {
+        var resdata3 = {
+          status: false,
+          error: err3,
+          message: "Email id already exists"
+        };
 
-                          }
+        res.jsonp(resdata3);
+      }
+    }
+  );
+};
 
-                        else
-                        {
+exports.updateprofile = function(req, res) {
+  //  console.log(req.body);
 
-                            var resdata2 = {
-                                status: false,
-                                error: err3,
-                                message: 'Both passwords should be same'
-                            };
+  if (req.body.image) {
+    var imagedata = req.body.image;
+    var matches = "";
 
-                            res.jsonp(resdata2);
+    function decodeBase64Image(dataString) {
+      var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+        response = {};
+      if (matches.length !== 3) {
+        return new Error("Invalid input string");
+      }
+      response.type = matches[1];
+      response.data = new Buffer(matches[2], "base64");
+      return response;
+    }
+    var decodedImg = decodeBase64Image(imagedata);
+    var imageBuffer = decodedImg.data;
+    var type = decodedImg.type;
+    fileName = req.body.User_Id + "_" + req.body.ProfilePic;
+    fs.writeFileSync("www/uploads/ProfilePic/" + fileName, imageBuffer, "utf8");
+  } else {
+    fileName = req.body.ProfilePic;
+  }
 
-                        }
+  var updateObj = {
+    FirstName: req.body.FirstName,
+    LastName: req.body.LastName,
+    Phone: req.body.Phone,
+    CompanyName: req.body.CompanyName,
+    Location: req.body.Location,
+    CountryId: req.body.CountryId,
+    ProfilePic: fileName
+  };
 
+  userCRUD.update({ SupId: req.body.User_Id }, updateObj, function(err, val) {
+    if (!err) {
+      var sql =
+        "UPDATE `tbl_Products` SET CountryId = " +
+        req.body.CountryId +
+        " WHERE SupplierId = '" +
+        req.body.User_Id +
+        "'";
+      ////console.log(sql);
+      db.query(sql, function(err1, data1) {});
+      var resdata = {
+        status: true,
+        value: fileName,
+        message: "Details successfully updated"
+      };
 
-                }
-                else
+      res.jsonp(resdata);
+    } else {
+      var resdata = {
+        status: false,
+        error: err,
+        message: "Error: Details not successfully updated. "
+      };
+
+      res.jsonp(resdata);
+    }
+  });
+};
+
+exports.updatebankdetails = function(req, res) {
+  var updateObj = {
+    AccountName: req.body.AccountName,
+    AccountNo: req.body.AccountNo,
+    BankName: req.body.BankName,
+    IFSCcode: req.body.IFSCcode
+  };
+
+  userCRUD.update({ SupId: req.body.User_Id }, updateObj, function(err, val) {
+    if (!err) {
+      var resdata = {
+        status: true,
+        value: val,
+        message: "Details successfully updated"
+      };
+
+      res.jsonp(resdata);
+    } else {
+      var resdata = {
+        status: false,
+        error: err,
+        message: "Error: Details not successfully updated. "
+      };
+
+      res.jsonp(resdata);
+    }
+  });
+};
+
+exports.updatepassword = function(req, res) {
+  var updateObj = {
+    Password: req.body.npassword
+  };
+
+  userCRUD.update({ SupId: req.body.User_Id }, updateObj, function(err, val) {
+    if (!err) {
+      var resdata = {
+        status: true,
+        value: val,
+        message: "Details successfully updated"
+      };
+
+      res.jsonp(resdata);
+    } else {
+      var resdata = {
+        status: false,
+        error: err,
+        message: "Error: Details not successfully updated. "
+      };
+
+      res.jsonp(resdata);
+    }
+  });
+};
+
+exports.verifyAccount = function(req, res) {
+  //console.log(req.params.id);
+  var sql =
+    "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '" +
+    req.params.id +
+    "'";
+  ////console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
+
+exports.login = function(req, res) {
+  // console.log('req.body',req.body);
+
+  var email = req.body.email;
+  //var password = md5(req.body.password);
+  var password = req.body.password;
+
+  // console.log("Email :", email)
+  // console.log("Password",password);
+
+  userCRUD.load(
+    {
+      Email: email
+    },
+    function(err, val) {
+      if (val.length > 0) {
+        userCRUD.load(
+          {
+            Email: email,
+            IsDeleted: "0"
+          },
+          function(err3, val3) {
+            if (val3.length > 0) {
+              userCRUD.load(
                 {
-
-                    var resdata3 = {
-                        status: false,
-                        error: err3,
-                        message: 'Email id already exists'
+                  Email: email,
+                  Password: password,
+                  VerificationCode: ""
+                },
+                function(err2, val2) {
+                  if (val2.length > 0) {
+                    var resdata2 = {
+                      passValid: true,
+                      value: val2[0],
+                      message: "successfully login welcome to admin panel."
                     };
 
-                    res.jsonp(resdata3);
-
-                }
-
-
-            });
-
-
-};
-
-
-exports.updateprofile = function(req, res){
-
-   //  console.log(req.body);
-
-     if (req.body.image) {
-         var imagedata = req.body.image;
-         var matches = "";
-
-         function decodeBase64Image(dataString) {
-             var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-                 response = {};
-             if (matches.length !== 3) {
-                 return new Error('Invalid input string');
-             }
-             response.type = matches[1];
-             response.data = new Buffer(matches[2], 'base64');
-             return response;
-         }
-         var decodedImg = decodeBase64Image(imagedata);
-         var imageBuffer = decodedImg.data;
-         var type = decodedImg.type;
-         fileName = req.body.User_Id+'_'+req.body.ProfilePic;
-         fs.writeFileSync('www/uploads/ProfilePic/' + fileName, imageBuffer, 'utf8');
-     }else {
-         fileName = req.body.ProfilePic;
-     }
-
-     var updateObj = {
-
-              'FirstName': req.body.FirstName,
-              'LastName': req.body.LastName,
-              'Phone': req.body.Phone,
-              'CompanyName':req.body.CompanyName,
-              'Location' : req.body.Location,
-              'CountryId' :req.body.CountryId,
-              'ProfilePic' : fileName
-
-      };
-
-    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
-
-        if (!err)
-        {
-            var sql = "UPDATE `tbl_Products` SET CountryId = "+req.body.CountryId+" WHERE SupplierId = '"+req.body.User_Id+"'";
-            ////console.log(sql);
-            db.query(sql, function (err1, data1) {
-
-            });
-            var resdata = {
-                status: true,
-                value:fileName,
-                message: 'Details successfully updated'
-            };
-
-            res.jsonp(resdata);
-        }
-        else
-        {
-            var resdata = {
-                status: false,
-                error: err,
-                message: 'Error: Details not successfully updated. '
-            };
-
-            res.jsonp(resdata);
-        }
-
-    });
-
-};
-
-
-exports.updatebankdetails = function(req, res){
-
-
-     var updateObj = {
-
-              'AccountName': req.body.AccountName,
-              'AccountNo': req.body.AccountNo,
-              'BankName': req.body.BankName,
-              'IFSCcode':req.body.IFSCcode,
-
-      };
-
-    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
-
-        if (!err)
-        {
-            var resdata = {
-                status: true,
-                value:val,
-                message: 'Details successfully updated'
-            };
-
-            res.jsonp(resdata);
-        }
-        else
-        {
-            var resdata = {
-                status: false,
-                error: err,
-                message: 'Error: Details not successfully updated. '
-            };
-
-            res.jsonp(resdata);
-        }
-
-    });
-
-};
-
-
-exports.updatepassword = function(req, res){
-
-     var updateObj = {
-
-              'Password': req.body.npassword,
-
-      };
-
-    userCRUD.update({SupId: req.body.User_Id}, updateObj,function(err, val) {
-
-        if (!err)
-        {
-            var resdata = {
-                status: true,
-                value:val,
-                message: 'Details successfully updated'
-            };
-
-            res.jsonp(resdata);
-        }
-        else
-        {
-            var resdata = {
-                status: false,
-                error: err,
-                message: 'Error: Details not successfully updated. '
-            };
-
-            res.jsonp(resdata);
-        }
-
-    });
-
-};
-
-exports.verifyAccount = function(req, res){
-    //console.log(req.params.id);
-    var sql = "UPDATE `tbl_Suppliers` SET VerificationCode = '' WHERE VerificationCode = '"+req.params.id+"'";
-    ////console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-};
-
-exports.login = function (req, res) {
-
-    // console.log('req.body',req.body);
-
-    var email = req.body.email;
-    //var password = md5(req.body.password);
-    var password = req.body.password;
-
-    // console.log("Email :", email)
-    // console.log("Password",password);
-
-    userCRUD.load({
-        Email: email
-    }, function (err, val) {
-
-
-        if (val.length > 0)
-        {
-
-            userCRUD.load({
-                Email: email,
-                IsDeleted: '0'
-            },function (err3, val3) {
-
-                if (val3.length > 0)
-                {
-
-                   userCRUD.load({
-                        Email: email,
-                        Password: password,
-                        VerificationCode: ''
-                    },function (err2, val2) {
-
-                        if (val2.length > 0)
-                        {
-
-                            var resdata2 = {
-                                passValid: true,
-                                value:val2[0],
-                                message: 'successfully login welcome to admin panel.'
-                            };
-
-                            res.jsonp(resdata2);
-
-                        }
-                        else
-                        {
-
-                            var resdata2 = {
-                                passValid: false,
-                                error: err2,
-                                message: 'Password is incorrect!'
-                            };
-
-                            res.jsonp(resdata2);
-
-                        }
-
-
-                    });
-
-                }
-                else
-                {
-
-                    var resdata3 = {
-                        verifyValid: false,
-                        error: err3,
-                        message: 'Account Deactivated, Please Contact Admin!'
+                    res.jsonp(resdata2);
+                  } else {
+                    var resdata2 = {
+                      passValid: false,
+                      error: err2,
+                      message: "Password is incorrect!"
                     };
 
-                    res.jsonp(resdata3);
-
+                    res.jsonp(resdata2);
+                  }
                 }
+              );
+            } else {
+              var resdata3 = {
+                verifyValid: false,
+                error: err3,
+                message: "Account Deactivated, Please Contact Admin!"
+              };
 
+              res.jsonp(resdata3);
+            }
+          }
+        );
+      } else {
+        var resdata = {
+          emailexist: false,
+          error: err,
+          message: "Email address does not exist!"
+        };
 
-            });
+        res.jsonp(resdata);
+      }
 
-        }
-        else
-        {
-            var resdata = {
-                emailexist: false,
-                error: err,
-                message: 'Email address does not exist!'
-            };
-
-            res.jsonp(resdata);
-        }
-
-       // res.jsonp(resdata);
-
-    });
+      // res.jsonp(resdata);
+    }
+  );
 };
 
-
-
-exports.userinfo = function (req, res) {
-    var UserId = req.params.id;
-    var sql = "select s.*,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = "+UserId;
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-};
-
-exports.allproducts = function (req, res) {
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    // //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-};
-
-exports.productrequests = function (req, res) {
-    //var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-};
-
-exports.buyerproductrequests = function (req, res) {
-  var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.`BuyerId` = "+id+" AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-};
-
-
-exports.getproductsbylocation = function (req, res) {
-  var location = req.params.id;
-  var sql = "SELECT p.* FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId`  WHERE p.ProductType='Product' AND s.`Location` LIKE '%"+location+"%'  ORDER BY `ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-};
-
-exports.getrecentprod = function (req, res) {
-  //  console.log("product ids "+req.body.recentProducts);
-  var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`ProductId` IN ("+req.body.recentProducts+") AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+exports.userinfo = function(req, res) {
+  var UserId = req.params.id;
+  var sql =
+    "select s.*,c.`CountryTitle` from `tbl_Suppliers` as s LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE SupId = " +
+    UserId;
   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.jsonp(data);
-       // console.log(data);
-    });
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+  });
 };
 
-exports.filterbycategory = function (req, res) {
-    var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    ////console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+exports.allproducts = function(req, res) {
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  // //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-exports.filterbycountry = function (req, res) {
-    var id = req.params.id;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CountryId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-   // //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+exports.productrequests = function(req, res) {
+  //var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
+exports.buyerproductrequests = function(req, res) {
+  var id = req.params.id;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`ExpectedPrice`,p.`Price`,p.`Currency`,p.`Image1`,p.`BuyerId`,p.`Quantity`,c.`CountryTitle`,s.`FirstName`,s.`LastName`,s.`CompanyName`,COUNT(`BidId`) as count,p.`IsAwarded` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`BuyerId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_BiddingRequest` as b ON p.`ProductId` = b.`ProductId` WHERE p.ProductType='Request' AND p.`BuyerId` = " +
+    id +
+    " AND p.IsDisabled = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
 
+exports.getproductsbylocation = function(req, res) {
+  var location = req.params.id;
+  var sql =
+    "SELECT p.* FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId`  WHERE p.ProductType='Product' AND s.`Location` LIKE '%" +
+    location +
+    "%'  ORDER BY `ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
+
+exports.getrecentprod = function(req, res) {
+  //  console.log("product ids "+req.body.recentProducts);
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`ProductId` IN (" +
+    req.body.recentProducts +
+    ") AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.jsonp(data);
+    // console.log(data);
+  });
+};
+
+exports.filterbycategory = function(req, res) {
+  var id = req.params.id;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    id +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  ////console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
+
+exports.filterbycountry = function(req, res) {
+  var id = req.params.id;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CountryId` = " +
+    id +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  // //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
 
 // exports.filterbyseller=function(req,res){
 //     var sellerName=req.params.sellerName;
@@ -1036,7 +998,6 @@ exports.filterbycountry = function (req, res) {
 //         }
 //     })
 // }
-
 
 // exports.filterbyCouCat/*/*/ = function (req, res) {
 //     console.log('parameter with url to api for query the filter data',req.body);
@@ -1050,118 +1011,137 @@ exports.filterbycountry = function (req, res) {
 //     });
 // };
 
+exports.filterbyCouCat = function(req, res) {
+  console.log("parameter with url to api for query the filter data", req.body);
 
-
-exports.filterbyCouCat = function (req, res) {
-    console.log('parameter with url to api for query the filter data',req.body);
-
-    var CountryId = req.params.CountryId;
-    var CategoryId = req.params.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+  var CountryId = req.params.CountryId;
+  var CategoryId = req.params.CategoryId;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    CategoryId +
+    " AND p.`CountryId` = " +
+    CountryId +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-
-
-exports.filterbyCatSub = function (req, res) {
-    var SubCatId = req.params.SubCatId;
-    console.log('sub cat id ', SubCatId );
-    var CategoryId = req.params.CategoryId;
-    console.log('cat id is',CategoryId);
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-        // console.log('filterbyCatSub data is :',data);
-    });
+exports.filterbyCatSub = function(req, res) {
+  var SubCatId = req.params.SubCatId;
+  console.log("sub cat id ", SubCatId);
+  var CategoryId = req.params.CategoryId;
+  console.log("cat id is", CategoryId);
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    CategoryId +
+    " AND p.`SubCatId` = " +
+    SubCatId +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+    // console.log('filterbyCatSub data is :',data);
+  });
 };
 
-exports.filterbySelCat = function (req, res) {
-    console.log(req.body);
+exports.filterbySelCat = function(req, res) {
+  console.log(req.body);
 
-    var SellerId = req.params.SellerId;
-    var CategoryId = req.params.CategoryId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+  var SellerId = req.params.SellerId;
+  var CategoryId = req.params.CategoryId;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Currency`,p.`Price`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    CategoryId +
+    " AND p.`SupplierId` = " +
+    SellerId +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-exports.filterbyall = function (req, res) {
-
-    var CountryId = req.params.CountryId;
-    var CategoryId = req.params.CategoryId;
-    var SubCatId = req.params.SubCatId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`CountryId` = "+CountryId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+exports.filterbyall = function(req, res) {
+  var CountryId = req.params.CountryId;
+  var CategoryId = req.params.CategoryId;
+  var SubCatId = req.params.SubCatId;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    CategoryId +
+    " AND p.`CountryId` = " +
+    CountryId +
+    " AND p.`SubCatId` = " +
+    SubCatId +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-exports.filterallbyseller = function (req, res) {
-
-    var SellerId = req.params.SellerId;
-    var CategoryId = req.params.CategoryId;
-    var SubCatId = req.params.SubCatId;
-    var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = "+CategoryId+" AND p.`SupplierId` = "+SellerId+" AND p.`SubCatId` = "+SubCatId+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
+exports.filterallbyseller = function(req, res) {
+  var SellerId = req.params.SellerId;
+  var CategoryId = req.params.CategoryId;
+  var SubCatId = req.params.SubCatId;
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`CategoryId` = " +
+    CategoryId +
+    " AND p.`SupplierId` = " +
+    SellerId +
+    " AND p.`SubCatId` = " +
+    SubCatId +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
 };
 
-
-
-
-
-
-exports.getProductDetails = function (req, res) {
-
-    var ProductId = req.params.id;
-     var sql = "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= "+ProductId;
-    // //console.log(sql);
-      db.query(sql, function (err, data) {
-          res.json(data[0]);
-        //  console.log('query data',data[0]);
-      });
-  };
-
-exports.getReqProductDetails = function (req, res) {
-
+exports.getProductDetails = function(req, res) {
   var ProductId = req.params.id;
-   var sql = "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`Location` as SupLocation,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= "+ProductId;
-   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-
+  var sql =
+    "SELECT p.*,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,ct.`CategoryTitle`,c.`CountryTitle`,sc.`SubCatTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` LEFT JOIN `tbl_SubCategories` as sc ON sc.`SubCatId`= p.`SubCatId` WHERE p.`ProductId`= " +
+    ProductId;
+  // //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+    //  console.log('query data',data[0]);
+  });
 };
 
-exports.getbiddings = function (req, res) {
-
+exports.getReqProductDetails = function(req, res) {
   var ProductId = req.params.id;
-   var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= "+ProductId;
-   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-
+  var sql =
+    "SELECT p.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`Location` as SupLocation,c.`CountryTitle` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON p.`BuyerId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` WHERE p.`ProductId`= " +
+    ProductId;
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+  });
 };
 
-exports.bidinfo = function (req, res) {
+exports.getbiddings = function(req, res) {
+  var ProductId = req.params.id;
+  var sql =
+    "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`ProductId`= " +
+    ProductId;
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
 
+exports.bidinfo = function(req, res) {
   var BidId = req.params.id;
-   var sql = "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`BidId`= "+BidId;
-   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-
+  var sql =
+    "SELECT b.*,s.`SupId`,s.`CompanyName`,s.`Email` as SupEmail,s.`FirstName` as SupFirstName,s.`LastName` as SupLastName,s.`ProfilePic`,s.`Location`,c.`CountryTitle` FROM `tbl_BiddingRequest` as b LEFT JOIN `tbl_Suppliers` as s ON b.`SupplierId` = s.`SupId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = s.`CountryId` WHERE b.`BidId`= " +
+    BidId;
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+  });
 };
 
 // exports.getProductSpecification = function (req, res) {
@@ -1175,101 +1155,119 @@ exports.bidinfo = function (req, res) {
 
 // };
 
-exports.getProductSpecification=function(req,res){
-    var ProductId=req.params.id;
-    productCRUD.load({'ProductId':ProductId},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-            // console.log('product details by p id', data);
-            res.json(data);
-        }
-    })
-
-}
-
-exports.getSpecification=function(req,res){
-    var ProductId=req.params.id;
-    productSpecificationCRUD.load({'ProductId':ProductId},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-            // console.log('specification of Product by Product Id is:', data);
-            res.json(data);
-        }
-    })
-}
-
-exports.getcurrency = function (req, res) {
-
-  var CountryId = req.params.id;
-   var sql = "SELECT `CountryCurrency` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
-   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-
-};
-
-exports.getcountry = function (req, res) {
-
-  var CountryId = req.params.id;
-   var sql = "SELECT `CountryTitle` FROM `tbl_Countries` WHERE `CountryId`= "+CountryId;
- // //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-
-};
-
-exports.getProductName = function (req, res) {
-
+exports.getProductSpecification = function(req, res) {
   var ProductId = req.params.id;
-   var sql = "SELECT `ProductName`,`ProductType` FROM `tbl_Products` WHERE `ProductId`= "+ProductId;
-   ////console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data[0]);
-    });
-
+  productCRUD.load({ ProductId: ProductId }, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log('product details by p id', data);
+      res.json(data);
+    }
+  });
 };
 
-exports.getAllcurrency = function (req, res) {
-
-   var sql = "SELECT `CountryCurrency` FROM `tbl_Currency`";
-   //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-
+exports.getSpecification = function(req, res) {
+  var ProductId = req.params.id;
+  productSpecificationCRUD.load({ ProductId: ProductId }, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log('specification of Product by Product Id is:', data);
+      res.json(data);
+    }
+  });
 };
 
-
-exports.featuredseller = function (req, res) {
-
-   var sql = "SELECT * FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Products` as p ON s.`SupId` = p.`SupplierId` WHERE s.`IsDeleted` = '0' AND  (s.`ProfilePic` != 'NULL' OR s.`ProfilePic` != '') GROUP BY p.`SupplierId` ORDER BY p.`ProductId` DESC";
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-    });
-
+exports.getcurrency = function(req, res) {
+  var CountryId = req.params.id;
+  var sql =
+    "SELECT `CountryCurrency` FROM `tbl_Countries` WHERE `CountryId`= " +
+    CountryId;
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+  });
 };
 
+exports.getcountry = function(req, res) {
+  var CountryId = req.params.id;
+  var sql =
+    "SELECT `CountryTitle` FROM `tbl_Countries` WHERE `CountryId`= " +
+    CountryId;
+  // //console.log(sql);
 
+  db.query(sql, function(err, data) {
+    res.json(7);
+  });
+};
+exports.sellerInfo = function(req, res) {
+  console.log("in seller info api call");
+  var product_Id = req.params.pId;
+  console.log("product id is ", product_Id);
+  sellerCRUD.load({ product_id: product_Id }, function(err, val) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("seller info for product page", val);
+      res.json(val);
+    }
+  });
+};
+exports.buyerInfo = function(req, res) {
+  console.log("in buyer info api call");
+  console.log("product id is ", product_Id);
+  var product_Id = req.params.pId;
+  buyerCRUD.load({ product_id: product_Id }, function(err, val) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("buyer info for product page", val);
+      res.json(val);
+    }
+  });
+};
 
-exports.getsellerinfobyname=function(req,res){
-    var companyName =req.params.companyName;
-    console.log('company name is',companyName);
-    userCRUD.load({'userName':companyName},function(err,data){
-        if(err){
-            console.log(err);
-        }else{
-          console.log(data);
-            res.json(data);
-        }
-    })
-}
+exports.getProductName = function(req, res) {
+  var ProductId = req.params.id;
+  var sql =
+    "SELECT `ProductName`,`ProductType` FROM `tbl_Products` WHERE `ProductId`= " +
+    ProductId;
+  ////console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data[0]);
+  });
+};
 
+exports.getAllcurrency = function(req, res) {
+  var sql = "SELECT `CountryCurrency` FROM `tbl_Currency`";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
 
+exports.featuredseller = function(req, res) {
+  var sql =
+    "SELECT * FROM `tbl_Suppliers` as s LEFT JOIN `tbl_Products` as p ON s.`SupId` = p.`SupplierId` WHERE s.`IsDeleted` = '0' AND  (s.`ProfilePic` != 'NULL' OR s.`ProfilePic` != '') GROUP BY p.`SupplierId` ORDER BY p.`ProductId` DESC";
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+  });
+};
+
+exports.getsellerinfobyname = function(req, res) {
+  var companyName = req.params.companyName;
+  console.log("company name is", companyName);
+  userCRUD.load({ userName: companyName }, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      res.json(data);
+    }
+  });
+};
 
 // exports.getsellerinfo = function (req, res) {
 //     console.log('in seller info api call');
@@ -1285,186 +1283,213 @@ exports.getsellerinfobyname=function(req,res){
 
 //   };
 
-  exports.getsellerinfo = function (req, res) {
-    console.log('in seller info api call');
+exports.getsellerinfo = function(req, res) {
+  console.log("in seller info api call");
 
-    var UserId = req.params.id;
-    userCRUD.load({'SupId':UserId},function(err, data){
-        if(err){
-            console.log(err);
-        }else{
-            res.json(data);
-        }
-
-    })
-
-
-
-  };
-
-exports.filterbyseller = function (req, res) {
-     var id=req.params.id;
-    console.log('req is in fillter by seller api');
-   // var sellerName = req.params.sellerName;
-    //console.log(sellerName);
-     var sql = "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = "+id+" AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
-
-    //console.log(sql);
-    db.query(sql, function (err, data) {
-        res.json(data);
-        console.log('first query data is',data);
-    });
+  var UserId = req.params.id;
+  userCRUD.load({ SupId: UserId }, function(err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
 };
 
-exports.addbankorder = function (req, res) {
+exports.filterbyseller = function(req, res) {
+  var id = req.params.id;
+  console.log("req is in fillter by seller api");
+  // var sellerName = req.params.sellerName;
+  //console.log(sellerName);
+  var sql =
+    "SELECT p.`ProductId`,p.`ProductName`,p.`Description`,p.`Price`,p.`Currency`,p.`Image1`,s.`CompanyName`,ct.`CategoryTitle`,c.`CountryFlag` FROM `tbl_Products` as p LEFT JOIN `tbl_Suppliers` as s ON s.`SupId` = p.`SupplierId` LEFT JOIN `tbl_Countries` as c ON c.`CountryId` = p.`CountryId` LEFT JOIN `tbl_Categories` as ct ON ct.`CategoryId` = p.`CategoryId` WHERE p.ProductType='Product' AND p.`SupplierId` = " +
+    id +
+    " AND p.IsDisabled = '0' AND s.`IsDeleted` = '0' GROUP BY p.`ProductId` ORDER BY p.`ProductId` DESC";
 
+  //console.log(sql);
+  db.query(sql, function(err, data) {
+    res.json(data);
+    console.log("first query data is", data);
+  });
+};
+
+exports.addbankorder = function(req, res) {
   //console.log(req.body);
   dateToday = now.format("YYYY-MM-DD H:mm:ss");
-  orderCRUD.create({
-                            SuplierId:req.body.SupplierId,
-                            ProductId:req.body.ProductId,
-                            Quantity:req.body.orderqty,
-                            Price:req.body.Price,
-                            TotalAmount: req.body.total,
-                            BuyerId: req.body.BuyerId,
-                            OrderDate: dateToday,
-                         // ShippingAddress: req.body.address,
-                            Address1: req.body.address1,
-                            Address2: req.body.address2,
-                            PostalCode: req.body.postalcode,
-                            Country: req.body.country,
-                            paymenttype:req.body.paymenttype,
+  orderCRUD.create(
+    {
+      SuplierId: req.body.SupplierId,
+      ProductId: req.body.ProductId,
+      Quantity: req.body.orderqty,
+      Price: req.body.Price,
+      TotalAmount: req.body.total,
+      BuyerId: req.body.BuyerId,
+      OrderDate: dateToday,
+      // ShippingAddress: req.body.address,
+      Address1: req.body.address1,
+      Address2: req.body.address2,
+      PostalCode: req.body.postalcode,
+      Country: req.body.country,
+      paymenttype: req.body.paymenttype
+    },
+    function(err2, val2) {
+      if (!err2) {
+        var orderID = val2.insertId;
+        var agentemail = "ceo@80startups.com";
+        var officeremail = "shital.talole@fountaintechies.com";
+        var subject = "New Order - " + orderID;
+        var mailbody =
+          "Hello,</br><p>New Order  : </p>" +
+          "<p></br><p><b> Name: </b> " +
+          req.body.fullname +
+          "</p>" +
+          "</br><p><b> Email:</b> " +
+          req.body.email +
+          "</p>" +
+          "</br><p><b> Phone: </b> " +
+          req.body.phonenumber +
+          "</p>" +
+          "</br><p><b> Address :</b> " +
+          req.body.address +
+          "</p>" +
+          "</br><p><b> Product :</b> " +
+          req.body.ProductName +
+          "</p>" +
+          "</br><p><b> Qty :</b> " +
+          req.body.orderqty +
+          "</p>" +
+          "</br><p><b> Product Price:</b> " +
+          req.body.Price +
+          "</p>" +
+          "</br><p><b> Total Price:</b> SGD " +
+          req.body.total +
+          "</p>" +
+          "</br><p><b> Payment Type:</b> " +
+          req.body.paymenttype +
+          "</p>" +
+          "<p></br><p><b></p>" +
+          "Thanks, tradeexchange";
 
-                        }, function(err2, val2) {
+        send_mail(agentemail, subject, mailbody);
+        send_mail(officeremail, subject, mailbody);
+        send_mail(req.body.Email, subject, mailbody);
+        var resdata = {
+          status: true,
+          value: val2,
+          message: "Order Placed successfully"
+        };
 
-                            if (!err2)
-                            {
-                            var orderID = val2.insertId ;
-                            var agentemail = "ceo@80startups.com";
-                            var officeremail = "shital.talole@fountaintechies.com";
-                            var subject = "New Order - "+orderID;
-                            var mailbody = "Hello,</br><p>New Order  : </p>"
+        res.jsonp(resdata);
+      } else {
+        var resdata = {
+          status: false,
+          error: err2,
+          message: "Order Not Placed"
+        };
 
-
-                             + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
-                             + "</br><p><b> Email:</b> " + req.body.email + "</p>"
-                             + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
-                             + "</br><p><b> Address :</b> " + req.body.address + "</p>"
-                             + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
-                             + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
-                             + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
-                             + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
-                             + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
-
-                             + "<p></br><p><b></p>"
-
-                             + "Thanks, tradeexchange";
-
-                             send_mail( agentemail, subject, mailbody );
-                             send_mail( officeremail, subject, mailbody );
-                             send_mail( req.body.Email, subject, mailbody );
-                                var resdata = {
-                                    status: true,
-                                    value:val2,
-                                    message: 'Order Placed successfully'
-                                };
-
-                                res.jsonp(resdata);
-                            }
-                            else
-                            {
-                                var resdata = {
-                                    status: false,
-                                    error: err2,
-                                    message: 'Order Not Placed'
-                                };
-
-                                res.jsonp(resdata);
-                            }
-
-
-               });
-
+        res.jsonp(resdata);
+      }
+    }
+  );
 };
 
-exports.addorder = function(req, res){
-        //console.log(req.body);
-        var token = req.body.stripeToken;
-        var amount = req.body.total ;
-        var stripeToken = "" ;
-        amount = amount*100 ;
-        dateToday = now.format("YYYY-MM-DD H:mm:ss");
-        // Charge the user's card:
-        var charge = stripe.charges.create({
-          amount: amount,
-          currency: "sgd",
-          description: req.body.ProductName,
-          source: token
-        }, function(err, charge) {
-          // asynchronously called
-        //  console.log('err',err);
-            if(!err){
-              //  console.log('charge',charge);
-                stripetoken = charge.id ;
-                orderCRUD.create({
-                  SuplierId:req.body.SupplierId,
-                            ProductId:req.body.ProductId,
-                            Quantity:req.body.orderqty,
-                            Price:req.body.Price,
-                            TotalAmount: req.body.total,
-                            BuyerId: req.body.BuyerId,
-                            OrderDate: dateToday,
-                             //   ShippingAddress: req.body.address,
-                            Address1: req.body.address1,
-                            Address2: req.body.address2,
-                            PostalCode: req.body.postalcode,
-                            Country: req.body.country,
-                            paymenttype:req.body.paymenttype,
-                            stripeToken: stripetoken,
-                 }, function (err, vals) {
-                  //mysql callback
-                        if(err){
-                          //console.log(err);
-                        }else{
+exports.addorder = function(req, res) {
+  //console.log(req.body);
+  var token = req.body.stripeToken;
+  var amount = req.body.total;
+  var stripeToken = "";
+  amount = amount * 100;
+  dateToday = now.format("YYYY-MM-DD H:mm:ss");
+  // Charge the user's card:
+  var charge = stripe.charges.create(
+    {
+      amount: amount,
+      currency: "sgd",
+      description: req.body.ProductName,
+      source: token
+    },
+    function(err, charge) {
+      // asynchronously called
+      //  console.log('err',err);
+      if (!err) {
+        //  console.log('charge',charge);
+        stripetoken = charge.id;
+        orderCRUD.create(
+          {
+            SuplierId: req.body.SupplierId,
+            ProductId: req.body.ProductId,
+            Quantity: req.body.orderqty,
+            Price: req.body.Price,
+            TotalAmount: req.body.total,
+            BuyerId: req.body.BuyerId,
+            OrderDate: dateToday,
+            //   ShippingAddress: req.body.address,
+            Address1: req.body.address1,
+            Address2: req.body.address2,
+            PostalCode: req.body.postalcode,
+            Country: req.body.country,
+            paymenttype: req.body.paymenttype,
+            stripeToken: stripetoken
+          },
+          function(err, vals) {
+            //mysql callback
+            if (err) {
+              //console.log(err);
+            } else {
+              console.log("return", vals.insertId);
 
-                            console.log('return',vals.insertId) ;
+              var orderID = vals.insertId;
+              var agentemail = "ceo@80startups.com";
+              var officeremail = "shital.talole@fountaintechies.com";
+              var subject = "New Order - " + orderID;
+              var mailbody =
+                "Hello,</br><p>New Order  : </p>" +
+                "<p></br><p><b> Name: </b> " +
+                req.body.fullname +
+                "</p>" +
+                "</br><p><b> Email:</b> " +
+                req.body.email +
+                "</p>" +
+                "</br><p><b> Phone: </b> " +
+                req.body.phonenumber +
+                "</p>" +
+                "</br><p><b> Address :</b> " +
+                req.body.address +
+                "</p>" +
+                "</br><p><b> Product :</b> " +
+                req.body.ProductName +
+                "</p>" +
+                "</br><p><b> Qty :</b> " +
+                req.body.orderqty +
+                "</p>" +
+                "</br><p><b> Product Price:</b> " +
+                req.body.Price +
+                "</p>" +
+                "</br><p><b> Total Price:</b> SGD " +
+                req.body.total +
+                "</p>" +
+                "</br><p><b> Payment Type:</b> " +
+                req.body.paymenttype +
+                "</p>" +
+                "<p></br><p><b></p>" +
+                "</br><p><b> Token:</b> " +
+                stripetoken +
+                "</p>" +
+                "Thanks, tradeexchange";
 
-                            var orderID = vals.insertId ;
-                            var agentemail = "ceo@80startups.com";
-                            var officeremail = "shital.talole@fountaintechies.com";
-                            var subject = "New Order - "+orderID;
-                            var mailbody = "Hello,</br><p>New Order  : </p>"
-
-
-                             + "<p></br><p><b> Name: </b> " + req.body.fullname + "</p>"
-                             + "</br><p><b> Email:</b> " + req.body.email + "</p>"
-                             + "</br><p><b> Phone: </b> " + req.body.phonenumber + "</p>"
-                             + "</br><p><b> Address :</b> " + req.body.address + "</p>"
-                             + "</br><p><b> Product :</b> " + req.body.ProductName + "</p>"
-                             + "</br><p><b> Qty :</b> " + req.body.orderqty + "</p>"
-                             + "</br><p><b> Product Price:</b> " + req.body.Price + "</p>"
-                             + "</br><p><b> Total Price:</b> SGD " + req.body.total + "</p>"
-                             + "</br><p><b> Payment Type:</b> " +  req.body.paymenttype + "</p>"
-
-                             + "<p></br><p><b></p>"
-                             + "</br><p><b> Token:</b> " + stripetoken + "</p>"
-                             + "Thanks, tradeexchange";
-
-                             send_mail( agentemail, subject, mailbody );
-                             send_mail( officeremail, subject, mailbody );
-                             send_mail( req.body.Email, subject, mailbody );
-                             //mail to ordering customer
-                             //send_mail( data.orderemail, subject, mailbody );
-
-                        }
-
-                  });
-            }else{
-                  console.log('err',err);
-                }
-
-        });
-
+              send_mail(agentemail, subject, mailbody);
+              send_mail(officeremail, subject, mailbody);
+              send_mail(req.body.Email, subject, mailbody);
+              //mail to ordering customer
+              //send_mail( data.orderemail, subject, mailbody );
+            }
+          }
+        );
+      } else {
+        console.log("err", err);
+      }
+    }
+  );
 };
 
 ///____________________END______________________
